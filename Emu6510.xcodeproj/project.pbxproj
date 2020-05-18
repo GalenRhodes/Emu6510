@@ -10,6 +10,15 @@
 		83A898FF2472E617002F2121 /* Emu6510.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83A898F52472E617002F2121 /* Emu6510.framework */; };
 		83A899042472E617002F2121 /* Emu6510Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83A899032472E617002F2121 /* Emu6510Tests.swift */; };
 		83A899062472E617002F2121 /* Emu6510.h in Headers */ = {isa = PBXBuildFile; fileRef = 83A898F82472E617002F2121 /* Emu6510.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		83A899112472E64A002F2121 /* Rubicon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83A899102472E64A002F2121 /* Rubicon.framework */; };
+		83A899122472E64A002F2121 /* Rubicon.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 83A899102472E64A002F2121 /* Rubicon.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		83A8991B2472E678002F2121 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83A8991A2472E678002F2121 /* main.swift */; };
+		83A899202472E688002F2121 /* PGDocFixer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83A8991F2472E688002F2121 /* PGDocFixer.framework */; };
+		83A899212472E688002F2121 /* PGDocFixer.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 83A8991F2472E688002F2121 /* PGDocFixer.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		83A8992A2472E7EE002F2121 /* CPU65xx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83A899262472E7EE002F2121 /* CPU65xx.swift */; };
+		83A8992B2472E7EE002F2121 /* SystemClock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83A899272472E7EE002F2121 /* SystemClock.swift */; };
+		83A8992C2472E7EE002F2121 /* Emu6510.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83A899282472E7EE002F2121 /* Emu6510.swift */; };
+		83A8992D2472E7EE002F2121 /* MemoryManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83A899292472E7EE002F2121 /* MemoryManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -22,6 +31,40 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		83A899132472E64A002F2121 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				83A899122472E64A002F2121 /* Rubicon.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		83A899162472E678002F2121 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = /usr/share/man/man1/;
+			dstSubfolderSpec = 0;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+		};
+		83A899222472E688002F2121 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				83A899212472E688002F2121 /* PGDocFixer.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		83A898F52472E617002F2121 /* Emu6510.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Emu6510.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		83A898F82472E617002F2121 /* Emu6510.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Emu6510.h; sourceTree = "<group>"; };
@@ -29,6 +72,17 @@
 		83A898FE2472E617002F2121 /* Emu6510Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Emu6510Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		83A899032472E617002F2121 /* Emu6510Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Emu6510Tests.swift; sourceTree = "<group>"; };
 		83A899052472E617002F2121 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		83A899102472E64A002F2121 /* Rubicon.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Rubicon.framework; path = ../../../../Library/Frameworks/Rubicon.framework; sourceTree = "<group>"; };
+		83A899182472E678002F2121 /* DocFixer */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = DocFixer; sourceTree = BUILT_PRODUCTS_DIR; };
+		83A8991A2472E678002F2121 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
+		83A8991F2472E688002F2121 /* PGDocFixer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PGDocFixer.framework; path = ../../../../Library/Frameworks/PGDocFixer.framework; sourceTree = "<group>"; };
+		83A899232472E6D7002F2121 /* build.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = build.sh; sourceTree = "<group>"; };
+		83A899242472E6D7002F2121 /* docfixer.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = docfixer.sh; sourceTree = "<group>"; };
+		83A899252472E6D7002F2121 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		83A899262472E7EE002F2121 /* CPU65xx.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CPU65xx.swift; sourceTree = "<group>"; };
+		83A899272472E7EE002F2121 /* SystemClock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SystemClock.swift; sourceTree = "<group>"; };
+		83A899282472E7EE002F2121 /* Emu6510.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Emu6510.swift; sourceTree = "<group>"; };
+		83A899292472E7EE002F2121 /* MemoryManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MemoryManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -36,6 +90,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				83A899112472E64A002F2121 /* Rubicon.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -47,15 +102,28 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		83A899152472E678002F2121 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				83A899202472E688002F2121 /* PGDocFixer.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
 		83A898EB2472E617002F2121 = {
 			isa = PBXGroup;
 			children = (
+				83A899232472E6D7002F2121 /* build.sh */,
+				83A899242472E6D7002F2121 /* docfixer.sh */,
+				83A899252472E6D7002F2121 /* README.md */,
 				83A898F72472E617002F2121 /* Emu6510 */,
 				83A899022472E617002F2121 /* Emu6510Tests */,
+				83A899192472E678002F2121 /* DocFixer */,
 				83A898F62472E617002F2121 /* Products */,
+				83A8990F2472E64A002F2121 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -64,6 +132,7 @@
 			children = (
 				83A898F52472E617002F2121 /* Emu6510.framework */,
 				83A898FE2472E617002F2121 /* Emu6510Tests.xctest */,
+				83A899182472E678002F2121 /* DocFixer */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -71,6 +140,10 @@
 		83A898F72472E617002F2121 /* Emu6510 */ = {
 			isa = PBXGroup;
 			children = (
+				83A899262472E7EE002F2121 /* CPU65xx.swift */,
+				83A899282472E7EE002F2121 /* Emu6510.swift */,
+				83A899292472E7EE002F2121 /* MemoryManager.swift */,
+				83A899272472E7EE002F2121 /* SystemClock.swift */,
 				83A898F82472E617002F2121 /* Emu6510.h */,
 				83A898F92472E617002F2121 /* Info.plist */,
 			);
@@ -84,6 +157,23 @@
 				83A899052472E617002F2121 /* Info.plist */,
 			);
 			path = Emu6510Tests;
+			sourceTree = "<group>";
+		};
+		83A8990F2472E64A002F2121 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				83A8991F2472E688002F2121 /* PGDocFixer.framework */,
+				83A899102472E64A002F2121 /* Rubicon.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		83A899192472E678002F2121 /* DocFixer */ = {
+			isa = PBXGroup;
+			children = (
+				83A8991A2472E678002F2121 /* main.swift */,
+			);
+			path = DocFixer;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -108,6 +198,7 @@
 				83A898F12472E617002F2121 /* Sources */,
 				83A898F22472E617002F2121 /* Frameworks */,
 				83A898F32472E617002F2121 /* Resources */,
+				83A899132472E64A002F2121 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -136,6 +227,24 @@
 			productReference = 83A898FE2472E617002F2121 /* Emu6510Tests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
+		83A899172472E678002F2121 /* DocFixer */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 83A8991C2472E678002F2121 /* Build configuration list for PBXNativeTarget "DocFixer" */;
+			buildPhases = (
+				83A899142472E678002F2121 /* Sources */,
+				83A899152472E678002F2121 /* Frameworks */,
+				83A899162472E678002F2121 /* CopyFiles */,
+				83A899222472E688002F2121 /* Embed Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = DocFixer;
+			productName = DocFixer;
+			productReference = 83A899182472E678002F2121 /* DocFixer */;
+			productType = "com.apple.product-type.tool";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -148,8 +257,12 @@
 				TargetAttributes = {
 					83A898F42472E617002F2121 = {
 						CreatedOnToolsVersion = 11.4.1;
+						LastSwiftMigration = 1140;
 					};
 					83A898FD2472E617002F2121 = {
+						CreatedOnToolsVersion = 11.4.1;
+					};
+					83A899172472E678002F2121 = {
 						CreatedOnToolsVersion = 11.4.1;
 					};
 				};
@@ -169,6 +282,7 @@
 			targets = (
 				83A898F42472E617002F2121 /* Emu6510 */,
 				83A898FD2472E617002F2121 /* Emu6510Tests */,
+				83A899172472E678002F2121 /* DocFixer */,
 			);
 		};
 /* End PBXProject section */
@@ -195,6 +309,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				83A8992A2472E7EE002F2121 /* CPU65xx.swift in Sources */,
+				83A8992C2472E7EE002F2121 /* Emu6510.swift in Sources */,
+				83A8992D2472E7EE002F2121 /* MemoryManager.swift in Sources */,
+				83A8992B2472E7EE002F2121 /* SystemClock.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -203,6 +321,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				83A899042472E617002F2121 /* Emu6510Tests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		83A899142472E678002F2121 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				83A8991B2472E678002F2121 /* main.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -339,6 +465,7 @@
 		83A8990A2472E617002F2121 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEFINES_MODULE = YES;
@@ -346,6 +473,10 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(USER_LIBRARY_DIR)/Frameworks",
+				);
 				INFOPLIST_FILE = Emu6510/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -356,6 +487,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.projectgalen.Emu6510;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
@@ -363,6 +495,7 @@
 		83A8990B2472E617002F2121 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEFINES_MODULE = YES;
@@ -370,6 +503,10 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(USER_LIBRARY_DIR)/Frameworks",
+				);
 				INFOPLIST_FILE = Emu6510/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -387,6 +524,7 @@
 		83A8990D2472E617002F2121 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = Q5XWZ7S7E9;
@@ -405,6 +543,7 @@
 		83A8990E2472E617002F2121 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = Q5XWZ7S7E9;
@@ -415,6 +554,36 @@
 					"@loader_path/../Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.projectgalen.Emu6510Tests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+		83A8991D2472E678002F2121 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = Q5XWZ7S7E9;
+				ENABLE_HARDENED_RUNTIME = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(USER_LIBRARY_DIR)/Frameworks",
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		83A8991E2472E678002F2121 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = Q5XWZ7S7E9;
+				ENABLE_HARDENED_RUNTIME = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(USER_LIBRARY_DIR)/Frameworks",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 			};
@@ -446,6 +615,15 @@
 			buildConfigurations = (
 				83A8990D2472E617002F2121 /* Debug */,
 				83A8990E2472E617002F2121 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		83A8991C2472E678002F2121 /* Build configuration list for PBXNativeTarget "DocFixer" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				83A8991D2472E678002F2121 /* Debug */,
+				83A8991E2472E678002F2121 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
