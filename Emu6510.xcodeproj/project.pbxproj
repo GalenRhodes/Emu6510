@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1117D8723BB2A3B6F23ED73C /* OpcodeData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1117D82A51262B865038707F /* OpcodeData.swift */; };
+		1117DCB3F5D984F414EE90AF /* CPUClock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1117DD9CF61D4D1CEC0AA1B8 /* CPUClock.swift */; };
+		1117DE6990D80E8F250579E0 /* Tools.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1117D350304371409338CF99 /* Tools.swift */; };
+		1117DF76F074C10606826202 /* OpCodes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1117DD88DC95C4D095ADA633 /* OpCodes.swift */; };
 		83A898FF2472E617002F2121 /* Emu6510.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83A898F52472E617002F2121 /* Emu6510.framework */; };
 		83A899042472E617002F2121 /* Emu6510Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83A899032472E617002F2121 /* Emu6510Tests.swift */; };
 		83A899062472E617002F2121 /* Emu6510.h in Headers */ = {isa = PBXBuildFile; fileRef = 83A898F82472E617002F2121 /* Emu6510.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -16,7 +20,6 @@
 		83A899202472E688002F2121 /* PGDocFixer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83A8991F2472E688002F2121 /* PGDocFixer.framework */; };
 		83A899212472E688002F2121 /* PGDocFixer.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 83A8991F2472E688002F2121 /* PGDocFixer.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		83A8992A2472E7EE002F2121 /* CPU65xx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83A899262472E7EE002F2121 /* CPU65xx.swift */; };
-		83A8992B2472E7EE002F2121 /* SystemClock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83A899272472E7EE002F2121 /* SystemClock.swift */; };
 		83A8992C2472E7EE002F2121 /* Emu6510.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83A899282472E7EE002F2121 /* Emu6510.swift */; };
 		83A8992D2472E7EE002F2121 /* MemoryManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83A899292472E7EE002F2121 /* MemoryManager.swift */; };
 /* End PBXBuildFile section */
@@ -66,6 +69,12 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		1117D350304371409338CF99 /* Tools.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tools.swift; sourceTree = "<group>"; };
+		1117D4C21471A1189FA22C82 /* opcodes.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = opcodes.txt; sourceTree = "<group>"; };
+		1117D82A51262B865038707F /* OpcodeData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OpcodeData.swift; sourceTree = "<group>"; };
+		1117DC56F2E485B64ECD924A /* 65c02.csv */ = {isa = PBXFileReference; lastKnownFileType = file.csv; path = 65c02.csv; sourceTree = "<group>"; };
+		1117DD88DC95C4D095ADA633 /* OpCodes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OpCodes.swift; sourceTree = "<group>"; };
+		1117DD9CF61D4D1CEC0AA1B8 /* CPUClock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CPUClock.swift; sourceTree = "<group>"; };
 		83A898F52472E617002F2121 /* Emu6510.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Emu6510.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		83A898F82472E617002F2121 /* Emu6510.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Emu6510.h; sourceTree = "<group>"; };
 		83A898F92472E617002F2121 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -80,7 +89,6 @@
 		83A899242472E6D7002F2121 /* docfixer.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = docfixer.sh; sourceTree = "<group>"; };
 		83A899252472E6D7002F2121 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		83A899262472E7EE002F2121 /* CPU65xx.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CPU65xx.swift; sourceTree = "<group>"; };
-		83A899272472E7EE002F2121 /* SystemClock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SystemClock.swift; sourceTree = "<group>"; };
 		83A899282472E7EE002F2121 /* Emu6510.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Emu6510.swift; sourceTree = "<group>"; };
 		83A899292472E7EE002F2121 /* MemoryManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MemoryManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -124,6 +132,8 @@
 				83A899192472E678002F2121 /* DocFixer */,
 				83A898F62472E617002F2121 /* Products */,
 				83A8990F2472E64A002F2121 /* Frameworks */,
+				1117DC56F2E485B64ECD924A /* 65c02.csv */,
+				1117D4C21471A1189FA22C82 /* opcodes.txt */,
 			);
 			sourceTree = "<group>";
 		};
@@ -143,9 +153,11 @@
 				83A899262472E7EE002F2121 /* CPU65xx.swift */,
 				83A899282472E7EE002F2121 /* Emu6510.swift */,
 				83A899292472E7EE002F2121 /* MemoryManager.swift */,
-				83A899272472E7EE002F2121 /* SystemClock.swift */,
 				83A898F82472E617002F2121 /* Emu6510.h */,
 				83A898F92472E617002F2121 /* Info.plist */,
+				1117DD9CF61D4D1CEC0AA1B8 /* CPUClock.swift */,
+				1117D350304371409338CF99 /* Tools.swift */,
+				1117D82A51262B865038707F /* OpcodeData.swift */,
 			);
 			path = Emu6510;
 			sourceTree = "<group>";
@@ -155,6 +167,7 @@
 			children = (
 				83A899032472E617002F2121 /* Emu6510Tests.swift */,
 				83A899052472E617002F2121 /* Info.plist */,
+				1117DD88DC95C4D095ADA633 /* OpCodes.swift */,
 			);
 			path = Emu6510Tests;
 			sourceTree = "<group>";
@@ -312,7 +325,9 @@
 				83A8992A2472E7EE002F2121 /* CPU65xx.swift in Sources */,
 				83A8992C2472E7EE002F2121 /* Emu6510.swift in Sources */,
 				83A8992D2472E7EE002F2121 /* MemoryManager.swift in Sources */,
-				83A8992B2472E7EE002F2121 /* SystemClock.swift in Sources */,
+				1117DCB3F5D984F414EE90AF /* CPUClock.swift in Sources */,
+				1117DE6990D80E8F250579E0 /* Tools.swift in Sources */,
+				1117D8723BB2A3B6F23ED73C /* OpcodeData.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -321,6 +336,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				83A899042472E617002F2121 /* Emu6510Tests.swift in Sources */,
+				1117DF76F074C10606826202 /* OpCodes.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -400,7 +416,8 @@
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = macosx;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_COMPILATION_MODE = singlefile;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
 			};
@@ -455,7 +472,7 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = macosx;
-				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_COMPILATION_MODE = singlefile;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
@@ -487,7 +504,6 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.projectgalen.Emu6510;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
@@ -528,6 +544,10 @@
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = Q5XWZ7S7E9;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(USER_LIBRARY_DIR)/Frameworks",
+				);
 				INFOPLIST_FILE = Emu6510Tests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -547,6 +567,10 @@
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = Q5XWZ7S7E9;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(USER_LIBRARY_DIR)/Frameworks",
+				);
 				INFOPLIST_FILE = Emu6510Tests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

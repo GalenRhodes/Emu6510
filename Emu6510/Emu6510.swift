@@ -1,21 +1,65 @@
-//
-//  Emu6502.swift
-//  Emu6502
-//
-//  Created by Galen Rhodes on 5/5/20.
-//  Copyright © 2020 Project Galen. All rights reserved.
-//
+/************************************************************************//**
+ *     PROJECT: Emu6510
+ *    FILENAME: CPU65xx.swift
+ *         IDE: AppCode
+ *      AUTHOR: Galen Rhodes
+ *        DATE: 5/5/20
+ *
+ * The website http://www.emulator101.com/6502-emulator.html was used as
+ * a starting point for this project.
+ *
+ * Copyright © 2020 Project Galen. All rights reserved.
+ *
+ * Permission to use, copy, modify, and distribute this software for any
+ * purpose with or without fee is hereby granted, provided that the above
+ * copyright notice and this permission notice appear in all copies.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES
+ * WITH REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF
+ * MERCHANTABILITY AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR
+ * ANY SPECIAL, DIRECT, INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES
+ * WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN AN
+ * ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF
+ * OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
+ *//************************************************************************/
 
 import Foundation
 import Rubicon
 
+/// The clock speed of most implementations back in the day was based on the video hardware which was based on the two television standards at the time - NTSC and PAL.
+/// Below are the two clock speeds for the Commodore 64 and Commodore 128 (running is 40 column mode).
 ///
-/// Denotes which exact CPU from the MOS 6500 family is being emulated.
-///
-public enum MOS65xxFamily {
-    case Mos6502
-    case Mos6510
-    case Mos8510
+public enum VideoStandard: UInt32 {
+    case C64_NTSC = 1_022_727
+    case C64_PAL  = 985_248
+}
+
+infix operator &?: ComparisonPrecedence
+
+public enum Bits8: UInt8 {
+    case bit0 = 1
+    case bit1 = 2
+    case bit2 = 4
+    case bit3 = 8
+    case bit4 = 16
+    case bit5 = 32
+    case bit6 = 64
+    case bit7 = 128
+
+    @inlinable public static func & <T: BinaryInteger>(lhs: T, rhs: Bits8) -> T { (lhs & T(rhs.rawValue)) }
+
+    @inlinable public static func | <T: BinaryInteger>(lhs: T, rhs: Bits8) -> T { (lhs | T(rhs.rawValue)) }
+
+    @inlinable public static prefix func ~ (oper: Bits8) -> UInt8 { (~oper.rawValue) }
+
+    @inlinable public static func |= <T: BinaryInteger>(lhs: inout T, rhs: Bits8) { lhs |= T(rhs.rawValue) }
+
+    @inlinable public static func &= <T: BinaryInteger>(lhs: inout T, rhs: Bits8) { lhs &= T(rhs.rawValue) }
+
+    @inlinable public static func &? <T: BinaryInteger>(lhs: T, rhs: Bits8) -> Bool {
+        let bitval: T = T(rhs.rawValue)
+        return ((lhs & bitval) == bitval)
+    }
 }
 
 /// Denotes the interrupt type that the CPU received.
@@ -33,7 +77,6 @@ public let AddressRange: UInt32 = UInt32(ByteRange * MaxPageCount)
 public protocol AddressBusListener: AnyObject {
     var offset: UInt16 { get }
     var size:   UInt32 { get }
-
     subscript(address: UInt16) -> UInt8? { get set }
 }
 
