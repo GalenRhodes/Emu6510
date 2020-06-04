@@ -45,14 +45,16 @@ public protocol IOPortControler: AnyObject {
 
 public protocol MOS65xxCPU {
     var cpuID:          MOS65xxFamily { get }
+    var panic:          Bool { get }
     var statusRegister: UInt8 { get }
     var accumulator:    UInt8 { get }
     var registerX:      UInt8 { get }
     var registerY:      UInt8 { get }
     var stackPointer:   UInt8 { get }
-    var programCounter: UInt16 { get }
     var lastOpcode:     UInt8 { get }
-    var panic:          Bool { get }
+    var programCounter: UInt16 { get }
+    var cpuClock:       CPUClock { get }
+    var addressBus:     AddressBusListener { get }
 
     func nextInstruction() -> Bool
     func handleError()
@@ -96,6 +98,12 @@ open class CPU65xx: MOS65xxCPU {
 
     public func handleError() {}
 
+    ///
+    /// This has to be very fast. On an NTSC Commodore 64 this has to finish in a minimum of about 1.9µs - 2 clock cycles.
+    ///
+    /// - Parameter opcode: the numeric opcode.
+    /// - Returns: true if successful.
+    ///
     @inlinable func dispatchInstruction(_ opcode: UInt8) -> Bool {
         lastOpcode = opcode
         guard let od: Mos6502OpcodeInfo = MOS6502_OPCODES[opcode] else { return false }
