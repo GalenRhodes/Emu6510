@@ -26,9 +26,9 @@ public typealias ClockClosure = () -> Void
 
 public let NANOS_PER_SECOND: UInt64 = 1_000_000_000
 
-///
+/*===============================================================================================================================*/
 /// Get the system monotonic time (CPU time) in nanoseconds.
-///
+/// 
 /// - Returns: monotonic time in nanoseconds.
 ///
 @inlinable public func getMonotonic() -> UInt64 {
@@ -46,7 +46,7 @@ fileprivate final class ClosureHolder {
     }
 }
 
-///
+/*===============================================================================================================================*/
 /// A timer that calls the provided closure once every timer `tick`.
 ///
 public class CPUClock {
@@ -58,20 +58,25 @@ public class CPUClock {
                                                           attributes: [ DispatchQueue.Attributes.concurrent ],
                                                           autoreleaseFrequency: DispatchQueue.AutoreleaseFrequency.workItem)
 
-    /// The `frequency` of the clock in Hz. Due to CPU speed limitations there exists an effective high frequency.  For example, on a 3.2GHz MacBookPro+Retna with 16GB of RAM it takes about 30-40ns
-    /// to get the system monotonic raw time. This means that, not counting any other overhead like actually doing anything but directly returning from the closure, the effective max frequency is
-    /// about 20-22 MHz.
+    /*===========================================================================================================================*/
+    /// The `frequency` of the clock in Hz. Due to CPU speed limitations there exists an effective high frequency. For example, on
+    /// a 3.2GHz MacBookPro+Retna with 16GB of RAM it takes about 30-40ns to get the system monotonic raw time. This means that,
+    /// not counting any other overhead like actually doing anything but directly returning from the closure, the effective max
+    /// frequency is about 20-22 MHz.
+    ///
     public let  freqency: UInt32
 
+    /*===========================================================================================================================*/
     /// The `period` of the frequency in nanoseconds. Calculated as ((1 / frequency) * 1_000_000_000)
+    ///
     public let  period:   UInt64
 
     public private(set) var running:  Bool = false
     public private(set) var finished: Bool = true
 
-    ///
+    /*===========================================================================================================================*/
     /// Initialize the CPUClock.
-    ///
+    /// 
     /// - Parameters:
     ///   - frequency: The frequency of the clock.
     ///
@@ -80,9 +85,9 @@ public class CPUClock {
         self.period = UInt64(((1.0 / Double(self.freqency)) * Double(NANOS_PER_SECOND)) + 0.5)
     }
 
-    ///
+    /*===========================================================================================================================*/
     /// Initialize the CPUClock.
-    ///
+    /// 
     /// - Parameters:
     ///   - frequency: The frequency of the clock.
     ///   - closure: the closure to execute every clock tick.
@@ -92,19 +97,20 @@ public class CPUClock {
         addClosure(closure: closure)
     }
 
-    ///
-    ///
+    /*===========================================================================================================================*/
     /// - Parameter block:
     ///
     public func addClosure(closure: @escaping ClockClosure) { closures.append(ClosureHolder(closure: closure)) }
 
-    ///
+    /*===========================================================================================================================*/
+    /// 
     ///
     deinit { stop() }
 
     private func incGate(_ amt: Int32 = 1) { gate = ((gate + amt) % INT32_MAX) }
 
-    ///
+    /*===========================================================================================================================*/
+    /// 
     ///
     public func start() {
         if !running {
@@ -140,7 +146,8 @@ public class CPUClock {
         }
     }
 
-    ///
+    /*===========================================================================================================================*/
+    /// 
     ///
     public func stop() {
         if running {

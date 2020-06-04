@@ -21,6 +21,7 @@ if [ ! -f "bin/DocFixer" ]; then
     xcodebuild -project "${PROJECT}.xcodeproj" -scheme "${TARGET}" -configuration "${CONF}" DSTROOT=. INSTALL_PATH=/bin install || exit $?
 fi
 
-bin/DocFixer "./${PROJECT}/Source" || exit $?
+echo "Running DocFixer on \"./${PROJECT}\"..."
+bin/DocFixer "./${PROJECT}" || exit $?
 rsync -avz --delete-after docs/ "${USER}@${HOST}:/var/www/html/${PROJECT}/"
 exit $?

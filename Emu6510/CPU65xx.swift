@@ -23,7 +23,7 @@
 import Foundation
 import Rubicon
 
-///
+/*===============================================================================================================================*/
 /// Denotes which exact CPU from the MOS 6500 family is being emulated.
 ///
 public enum MOS65xxFamily {
@@ -74,8 +74,9 @@ open class CPU65xx: MOS65xxCPU {
     public var addressBus:     AddressBusListener
     public let cpuClock:       CPUClock
 
-    ///
-    /// This gets set to the number of clock cycles the instruction takes minus one. The clock handler will allow this counter to go to zero before executing the next instruction.
+    /*===========================================================================================================================*/
+    /// This gets set to the number of clock cycles the instruction takes minus one. The clock handler will allow this counter to
+    /// go to zero before executing the next instruction.
     ///
     public var waitCycles:     UInt8  = 0
 
@@ -85,6 +86,13 @@ open class CPU65xx: MOS65xxCPU {
         cpuClock.addClosure { if !self.nextInstruction() { self.handleError() } }
     }
 
+    /*===========================================================================================================================*/
+    /// Fetch and execute the next instruction. If there is no next instruction (because the end of memory was reached) then the
+    /// `panic` flag will be set to `true` and this method will return `false`.
+    ///
+    /// - Returns: `true` if the instruction was successfully executed. `false` if the instruction was invalid or if there was no
+    ///            next instruction - i.e. the `programCounter` reached the top of the memory.
+    ///
     public func nextInstruction() -> Bool {
         if waitCycles > 0 {
             waitCycles -= 1
@@ -98,11 +106,13 @@ open class CPU65xx: MOS65xxCPU {
 
     public func handleError() {}
 
-    ///
-    /// This has to be very fast. On an NTSC Commodore 64 this has to finish in a minimum of about 1.9µs - 2 clock cycles.
+    /*===========================================================================================================================*/
+    /// This has to be very fast. The minimum number of clock cycles per instruction on a 6502 is two. That means on an NTSC
+    /// Commodore 64 this has to finish in a minimum of about 1.9µs. On an NTSC Commodore 128 in Fast Mode it has to complete in
+    /// about 0.95µs.
     ///
     /// - Parameter opcode: the numeric opcode.
-    /// - Returns: true if successful.
+    /// - Returns: `true` if successful.
     ///
     @inlinable func dispatchInstruction(_ opcode: UInt8) -> Bool {
         lastOpcode = opcode
@@ -175,8 +185,9 @@ open class CPU65xx: MOS65xxCPU {
         return !panic
     }
 
-    ///
-    /// Picks up the next byte indexed by the programCounter. If there is no next byte (e.g. - At the top of RAM) then the panic flag is set and zero is returned.
+    /*===========================================================================================================================*/
+    /// Picks up the next byte indexed by the programCounter. If there is no next byte (e.g. - At the top of RAM) then the panic
+    /// flag is set and zero is returned.
     ///
     /// - Returns: the next byte or zero if there is no next byte.
     ///
@@ -186,9 +197,9 @@ open class CPU65xx: MOS65xxCPU {
         return 0
     }
 
-    ///
-    /// Get the next count bytes from the addressBus indexed by the programCounter. If there are not enough next bytes (e.g. - At the top of RAM) then
-    /// the panic flag is set and zero are substituted for the needed bytes.
+    /*===========================================================================================================================*/
+    /// Get the next count bytes from the addressBus indexed by the programCounter. If there are not enough next bytes (e.g. - At
+    /// the top of RAM) then the panic flag is set and zero are substituted for the needed bytes.
     ///
     /// - Parameter count: the number of bytes to get.
     /// - Returns: an array of the bytes.
@@ -206,392 +217,392 @@ open class CPU65xx: MOS65xxCPU {
         }
     }
 
-    ///
+    /*===========================================================================================================================*/
     /// Process the ADC opcode.
     ///
     /// - Parameter od: the opcode information.
     ///
     @inlinable func opcodeADC(_ od: Mos6502OpcodeInfo, _ oprands: [UInt8]) {}
 
-    ///
+    /*===========================================================================================================================*/
     /// Process the AND opcode.
     ///
     /// - Parameter od: the opcode information.
     ///
     @inlinable func opcodeAND(_ od: Mos6502OpcodeInfo, _ oprands: [UInt8]) {}
 
-    ///
+    /*===========================================================================================================================*/
     /// Process the ASL opcode.
     ///
     /// - Parameter od: the opcode information.
     ///
     @inlinable func opcodeASL(_ od: Mos6502OpcodeInfo, _ oprands: [UInt8]) {}
 
-    ///
+    /*===========================================================================================================================*/
     /// Process the BCC opcode.
     ///
     /// - Parameter od: the opcode information.
     ///
     @inlinable func opcodeBCC(_ od: Mos6502OpcodeInfo, _ oprands: [UInt8]) {}
 
-    ///
+    /*===========================================================================================================================*/
     /// Process the BCS opcode.
     ///
     /// - Parameter od: the opcode information.
     ///
     @inlinable func opcodeBCS(_ od: Mos6502OpcodeInfo, _ oprands: [UInt8]) {}
 
-    ///
+    /*===========================================================================================================================*/
     /// Process the BEQ opcode.
     ///
     /// - Parameter od: the opcode information.
     ///
     @inlinable func opcodeBEQ(_ od: Mos6502OpcodeInfo, _ oprands: [UInt8]) {}
 
-    ///
+    /*===========================================================================================================================*/
     /// Process the BIT opcode.
     ///
     /// - Parameter od: the opcode information.
     ///
     @inlinable func opcodeBIT(_ od: Mos6502OpcodeInfo, _ oprands: [UInt8]) {}
 
-    ///
+    /*===========================================================================================================================*/
     /// Process the BMI opcode.
     ///
     /// - Parameter od: the opcode information.
     ///
     @inlinable func opcodeBMI(_ od: Mos6502OpcodeInfo, _ oprands: [UInt8]) {}
 
-    ///
+    /*===========================================================================================================================*/
     /// Process the BNE opcode.
     ///
     /// - Parameter od: the opcode information.
     ///
     @inlinable func opcodeBNE(_ od: Mos6502OpcodeInfo, _ oprands: [UInt8]) {}
 
-    ///
+    /*===========================================================================================================================*/
     /// Process the BPL opcode.
     ///
     /// - Parameter od: the opcode information.
     ///
     @inlinable func opcodeBPL(_ od: Mos6502OpcodeInfo, _ oprands: [UInt8]) {}
 
-    ///
+    /*===========================================================================================================================*/
     /// Process the BRK opcode.
     ///
     /// - Parameter od: the opcode information.
     ///
     @inlinable func opcodeBRK(_ od: Mos6502OpcodeInfo, _ oprands: [UInt8]) {}
 
-    ///
+    /*===========================================================================================================================*/
     /// Process the BVC opcode.
     ///
     /// - Parameter od: the opcode information.
     ///
     @inlinable func opcodeBVC(_ od: Mos6502OpcodeInfo, _ oprands: [UInt8]) {}
 
-    ///
+    /*===========================================================================================================================*/
     /// Process the BVS opcode.
     ///
     /// - Parameter od: the opcode information.
     ///
     @inlinable func opcodeBVS(_ od: Mos6502OpcodeInfo, _ oprands: [UInt8]) {}
 
-    ///
+    /*===========================================================================================================================*/
     /// Process the CLC opcode.
     ///
     /// - Parameter od: the opcode information.
     ///
     @inlinable func opcodeCLC(_ od: Mos6502OpcodeInfo, _ oprands: [UInt8]) {}
 
-    ///
+    /*===========================================================================================================================*/
     /// Process the CLD opcode.
     ///
     /// - Parameter od: the opcode information.
     ///
     @inlinable func opcodeCLD(_ od: Mos6502OpcodeInfo, _ oprands: [UInt8]) {}
 
-    ///
+    /*===========================================================================================================================*/
     /// Process the CLI opcode.
     ///
     /// - Parameter od: the opcode information.
     ///
     @inlinable func opcodeCLI(_ od: Mos6502OpcodeInfo, _ oprands: [UInt8]) {}
 
-    ///
+    /*===========================================================================================================================*/
     /// Process the CLV opcode.
     ///
     /// - Parameter od: the opcode information.
     ///
     @inlinable func opcodeCLV(_ od: Mos6502OpcodeInfo, _ oprands: [UInt8]) {}
 
-    ///
+    /*===========================================================================================================================*/
     /// Process the CMP opcode.
     ///
     /// - Parameter od: the opcode information.
     ///
     @inlinable func opcodeCMP(_ od: Mos6502OpcodeInfo, _ oprands: [UInt8]) {}
 
-    ///
+    /*===========================================================================================================================*/
     /// Process the CPX opcode.
     ///
     /// - Parameter od: the opcode information.
     ///
     @inlinable func opcodeCPX(_ od: Mos6502OpcodeInfo, _ oprands: [UInt8]) {}
 
-    ///
+    /*===========================================================================================================================*/
     /// Process the CPY opcode.
     ///
     /// - Parameter od: the opcode information.
     ///
     @inlinable func opcodeCPY(_ od: Mos6502OpcodeInfo, _ oprands: [UInt8]) {}
 
-    ///
+    /*===========================================================================================================================*/
     /// Process the DEC opcode.
     ///
     /// - Parameter od: the opcode information.
     ///
     @inlinable func opcodeDEC(_ od: Mos6502OpcodeInfo, _ oprands: [UInt8]) {}
 
-    ///
+    /*===========================================================================================================================*/
     /// Process the DEX opcode.
     ///
     /// - Parameter od: the opcode information.
     ///
     @inlinable func opcodeDEX(_ od: Mos6502OpcodeInfo, _ oprands: [UInt8]) {}
 
-    ///
+    /*===========================================================================================================================*/
     /// Process the DEY opcode.
     ///
     /// - Parameter od: the opcode information.
     ///
     @inlinable func opcodeDEY(_ od: Mos6502OpcodeInfo, _ oprands: [UInt8]) {}
 
-    ///
+    /*===========================================================================================================================*/
     /// Process the EOR opcode.
     ///
     /// - Parameter od: the opcode information.
     ///
     @inlinable func opcodeEOR(_ od: Mos6502OpcodeInfo, _ oprands: [UInt8]) {}
 
-    ///
+    /*===========================================================================================================================*/
     /// Process the INC opcode.
     ///
     /// - Parameter od: the opcode information.
     ///
     @inlinable func opcodeINC(_ od: Mos6502OpcodeInfo, _ oprands: [UInt8]) {}
 
-    ///
+    /*===========================================================================================================================*/
     /// Process the INX opcode.
     ///
     /// - Parameter od: the opcode information.
     ///
     @inlinable func opcodeINX(_ od: Mos6502OpcodeInfo, _ oprands: [UInt8]) {}
 
-    ///
+    /*===========================================================================================================================*/
     /// Process the INY opcode.
     ///
     /// - Parameter od: the opcode information.
     ///
     @inlinable func opcodeINY(_ od: Mos6502OpcodeInfo, _ oprands: [UInt8]) {}
 
-    ///
+    /*===========================================================================================================================*/
     /// Process the JMP opcode.
     ///
     /// - Parameter od: the opcode information.
     ///
     @inlinable func opcodeJMP(_ od: Mos6502OpcodeInfo, _ oprands: [UInt8]) {}
 
-    ///
+    /*===========================================================================================================================*/
     /// Process the JSR opcode.
     ///
     /// - Parameter od: the opcode information.
     ///
     @inlinable func opcodeJSR(_ od: Mos6502OpcodeInfo, _ oprands: [UInt8]) {}
 
-    ///
+    /*===========================================================================================================================*/
     /// Process the LDA opcode.
     ///
     /// - Parameter od: the opcode information.
     ///
     @inlinable func opcodeLDA(_ od: Mos6502OpcodeInfo, _ oprands: [UInt8]) {}
 
-    ///
+    /*===========================================================================================================================*/
     /// Process the LDX opcode.
     ///
     /// - Parameter od: the opcode information.
     ///
     @inlinable func opcodeLDX(_ od: Mos6502OpcodeInfo, _ oprands: [UInt8]) {}
 
-    ///
+    /*===========================================================================================================================*/
     /// Process the LDY opcode.
     ///
     /// - Parameter od: the opcode information.
     ///
     @inlinable func opcodeLDY(_ od: Mos6502OpcodeInfo, _ oprands: [UInt8]) {}
 
-    ///
+    /*===========================================================================================================================*/
     /// Process the LSR opcode.
     ///
     /// - Parameter od: the opcode information.
     ///
     @inlinable func opcodeLSR(_ od: Mos6502OpcodeInfo, _ oprands: [UInt8]) {}
 
-    ///
+    /*===========================================================================================================================*/
     /// Process the NOP opcode.
     ///
     /// - Parameter od: the opcode information.
     ///
     @inlinable func opcodeNOP(_ od: Mos6502OpcodeInfo, _ oprands: [UInt8]) {}
 
-    ///
+    /*===========================================================================================================================*/
     /// Process the ORA opcode.
     ///
     /// - Parameter od: the opcode information.
     ///
     @inlinable func opcodeORA(_ od: Mos6502OpcodeInfo, _ oprands: [UInt8]) {}
 
-    ///
+    /*===========================================================================================================================*/
     /// Process the PHA opcode.
     ///
     /// - Parameter od: the opcode information.
     ///
     @inlinable func opcodePHA(_ od: Mos6502OpcodeInfo, _ oprands: [UInt8]) {}
 
-    ///
+    /*===========================================================================================================================*/
     /// Process the PHP opcode.
     ///
     /// - Parameter od: the opcode information.
     ///
     @inlinable func opcodePHP(_ od: Mos6502OpcodeInfo, _ oprands: [UInt8]) {}
 
-    ///
+    /*===========================================================================================================================*/
     /// Process the PLA opcode.
     ///
     /// - Parameter od: the opcode information.
     ///
     @inlinable func opcodePLA(_ od: Mos6502OpcodeInfo, _ oprands: [UInt8]) {}
 
-    ///
+    /*===========================================================================================================================*/
     /// Process the PLP opcode.
     ///
     /// - Parameter od: the opcode information.
     ///
     @inlinable func opcodePLP(_ od: Mos6502OpcodeInfo, _ oprands: [UInt8]) {}
 
-    ///
+    /*===========================================================================================================================*/
     /// Process the ROL opcode.
     ///
     /// - Parameter od: the opcode information.
     ///
     @inlinable func opcodeROL(_ od: Mos6502OpcodeInfo, _ oprands: [UInt8]) {}
 
-    ///
+    /*===========================================================================================================================*/
     /// Process the ROR opcode.
     ///
     /// - Parameter od: the opcode information.
     ///
     @inlinable func opcodeROR(_ od: Mos6502OpcodeInfo, _ oprands: [UInt8]) {}
 
-    ///
+    /*===========================================================================================================================*/
     /// Process the RTI opcode.
     ///
     /// - Parameter od: the opcode information.
     ///
     @inlinable func opcodeRTI(_ od: Mos6502OpcodeInfo, _ oprands: [UInt8]) {}
 
-    ///
+    /*===========================================================================================================================*/
     /// Process the RTS opcode.
     ///
     /// - Parameter od: the opcode information.
     ///
     @inlinable func opcodeRTS(_ od: Mos6502OpcodeInfo, _ oprands: [UInt8]) {}
 
-    ///
+    /*===========================================================================================================================*/
     /// Process the SBC opcode.
     ///
     /// - Parameter od: the opcode information.
     ///
     @inlinable func opcodeSBC(_ od: Mos6502OpcodeInfo, _ oprands: [UInt8]) {}
 
-    ///
+    /*===========================================================================================================================*/
     /// Process the SEC opcode.
     ///
     /// - Parameter od: the opcode information.
     ///
     @inlinable func opcodeSEC(_ od: Mos6502OpcodeInfo, _ oprands: [UInt8]) {}
 
-    ///
+    /*===========================================================================================================================*/
     /// Process the SED opcode.
     ///
     /// - Parameter od: the opcode information.
     ///
     @inlinable func opcodeSED(_ od: Mos6502OpcodeInfo, _ oprands: [UInt8]) {}
 
-    ///
+    /*===========================================================================================================================*/
     /// Process the SEI opcode.
     ///
     /// - Parameter od: the opcode information.
     ///
     @inlinable func opcodeSEI(_ od: Mos6502OpcodeInfo, _ oprands: [UInt8]) {}
 
-    ///
+    /*===========================================================================================================================*/
     /// Process the STA opcode.
     ///
     /// - Parameter od: the opcode information.
     ///
     @inlinable func opcodeSTA(_ od: Mos6502OpcodeInfo, _ oprands: [UInt8]) {}
 
-    ///
+    /*===========================================================================================================================*/
     /// Process the STX opcode.
     ///
     /// - Parameter od: the opcode information.
     ///
     @inlinable func opcodeSTX(_ od: Mos6502OpcodeInfo, _ oprands: [UInt8]) {}
 
-    ///
+    /*===========================================================================================================================*/
     /// Process the STY opcode.
     ///
     /// - Parameter od: the opcode information.
     ///
     @inlinable func opcodeSTY(_ od: Mos6502OpcodeInfo, _ oprands: [UInt8]) {}
 
-    ///
+    /*===========================================================================================================================*/
     /// Process the TAX opcode.
     ///
     /// - Parameter od: the opcode information.
     ///
     @inlinable func opcodeTAX(_ od: Mos6502OpcodeInfo, _ oprands: [UInt8]) {}
 
-    ///
+    /*===========================================================================================================================*/
     /// Process the TAY opcode.
     ///
     /// - Parameter od: the opcode information.
     ///
     @inlinable func opcodeTAY(_ od: Mos6502OpcodeInfo, _ oprands: [UInt8]) {}
 
-    ///
+    /*===========================================================================================================================*/
     /// Process the TSX opcode.
     ///
     /// - Parameter od: the opcode information.
     ///
     @inlinable func opcodeTSX(_ od: Mos6502OpcodeInfo, _ oprands: [UInt8]) {}
 
-    ///
+    /*===========================================================================================================================*/
     /// Process the TXA opcode.
     ///
     /// - Parameter od: the opcode information.
     ///
     @inlinable func opcodeTXA(_ od: Mos6502OpcodeInfo, _ oprands: [UInt8]) {}
 
-    ///
+    /*===========================================================================================================================*/
     /// Process the TXS opcode.
     ///
     /// - Parameter od: the opcode information.
     ///
     @inlinable func opcodeTXS(_ od: Mos6502OpcodeInfo, _ oprands: [UInt8]) {}
 
-    ///
+    /*===========================================================================================================================*/
     /// Process the TYA opcode.
     ///
     /// - Parameter od: the opcode information.

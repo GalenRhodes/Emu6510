@@ -1,0 +1,617 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Mos6502OpcodeInfo Class Reference</title>
+    <link rel="stylesheet" type="text/css" href="../css/jazzy.css" />
+    <link rel="stylesheet" type="text/css" href="../css/highlight.css" />
+    <meta charset='utf-8'>
+    <script src="../js/jquery.min.js" defer></script>
+    <script src="../js/jazzy.js" defer></script>
+    
+  </head>
+  <body>
+    <a name="//apple_ref/swift/Class/Mos6502OpcodeInfo" class="dashAnchor"></a>
+    <a title="Mos6502OpcodeInfo Class Reference"></a>
+    <header>
+      <div class="content-wrapper">
+        <p><a href="../index.html">Emu6510©</a> (30% documented)</p>
+        <p class="header-right"><a href="https://github.com/GalenRhodes/Rubicon"><img src="../img/gh.png"/>View on GitHub</a></p>
+      </div>
+    </header>
+    <div class="content-wrapper">
+      <p id="breadcrumbs">
+        <a href="../index.html"> Reference</a>
+        <img id="carat" src="../img/carat.png" />
+        Mos6502OpcodeInfo Class Reference
+      </p>
+    </div>
+    <div class="content-wrapper">
+      <nav class="sidebar">
+        <ul class="nav-groups">
+          <li class="nav-group-name">
+            <a href="../Classes.html">Classes</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Classes/C64MemoryManager.html">C64MemoryManager</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/CPU65xx.html">CPU65xx</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/CPUClock.html">CPUClock</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/Memory.html">Memory</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/Mos6502OpcodeInfo.html">Mos6502OpcodeInfo</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/RAMmemory.html">RAMmemory</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/ROMmemory.html">ROMmemory</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Global%20Variables.html">Global Variables</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Global%20Variables.html#/s:7Emu651012AddressRanges6UInt32Vvp">AddressRange</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Global%20Variables.html#/s:7Emu65109ByteRanges6UInt16Vvp">ByteRange</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Global%20Variables.html#/s:7Emu651015MOS6502_OPCODESSDys5UInt8VAA17Mos6502OpcodeInfoCGvp">MOS6502_OPCODES</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Global%20Variables.html#/s:7Emu651012MaxPageCounts6UInt16Vvp">MaxPageCount</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Global%20Variables.html#/s:7Emu651016NANOS_PER_SECONDs6UInt64Vvp">NANOS_PER_SECOND</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Enums.html">Enumerations</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Enums/Alignment.html">Alignment</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/Bits8.html">Bits8</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/InterruptType.html">InterruptType</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/MOS65xxFamily.html">MOS65xxFamily</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/Mos6502AddressModes.html">Mos6502AddressModes</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/Mos6502Opcodes.html">Mos6502Opcodes</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/VideoStandard.html">VideoStandard</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Extensions.html">Extensions</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Extensions/String.html">String</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/StringProtocol.html">StringProtocol</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Functions.html">Functions</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Functions.html#/s:7Emu651012getMonotonics6UInt64VyF">getMonotonic()</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Protocols.html">Protocols</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Protocols/AddressBusListener.html">AddressBusListener</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/IOPortControler.html">IOPortControler</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/IOPortListener.html">IOPortListener</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/MOS65xxCPU.html">MOS65xxCPU</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols.html#/s:7Emu651013MemoryManagerP">MemoryManager</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Typealiases.html">Type Aliases</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Typealiases.html#/s:7Emu65109CPUIOPorta">CPUIOPort</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Typealiases.html#/s:7Emu651012ClockClosurea">ClockClosure</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+      <article class="main-content">
+        <section>
+          <section class="section">
+            <h1>Mos6502OpcodeInfo</h1>
+              <div class="declaration">
+                <div class="language">
+                  <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">Mos6502OpcodeInfo</span> <span class="p">:</span> <span class="kt">Equatable</span></code></pre>
+
+                </div>
+              </div>
+            
+          </section>
+          <section class="section task-group-section">
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7Emu651017Mos6502OpcodeInfoC6opcodes5UInt8Vvp"></a>
+                    <a name="//apple_ref/swift/Property/opcode" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7Emu651017Mos6502OpcodeInfoC6opcodes5UInt8Vvp">opcode</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">let</span> <span class="nv">opcode</span><span class="p">:</span> <span class="kt">UInt8</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Emu6510/OpcodeData.swift#L">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7Emu651017Mos6502OpcodeInfoC7numonicAA0B7OpcodesOvp"></a>
+                    <a name="//apple_ref/swift/Property/numonic" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7Emu651017Mos6502OpcodeInfoC7numonicAA0B7OpcodesOvp">numonic</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">let</span> <span class="nv">numonic</span><span class="p">:</span> <span class="kt"><a href="../Enums/Mos6502Opcodes.html">Mos6502Opcodes</a></span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Emu6510/OpcodeData.swift#L">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7Emu651017Mos6502OpcodeInfoC11addressModeAA0B12AddressModesOvp"></a>
+                    <a name="//apple_ref/swift/Property/addressMode" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7Emu651017Mos6502OpcodeInfoC11addressModeAA0B12AddressModesOvp">addressMode</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">let</span> <span class="nv">addressMode</span><span class="p">:</span> <span class="kt"><a href="../Enums/Mos6502AddressModes.html">Mos6502AddressModes</a></span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Emu6510/OpcodeData.swift#L">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7Emu651017Mos6502OpcodeInfoC5bytess5UInt8Vvp"></a>
+                    <a name="//apple_ref/swift/Property/bytes" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7Emu651017Mos6502OpcodeInfoC5bytess5UInt8Vvp">bytes</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">let</span> <span class="nv">bytes</span><span class="p">:</span> <span class="kt">UInt8</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Emu6510/OpcodeData.swift#L">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7Emu651017Mos6502OpcodeInfoC6cycless5UInt8Vvp"></a>
+                    <a name="//apple_ref/swift/Property/cycles" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7Emu651017Mos6502OpcodeInfoC6cycless5UInt8Vvp">cycles</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">let</span> <span class="nv">cycles</span><span class="p">:</span> <span class="kt">UInt8</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Emu6510/OpcodeData.swift#L">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7Emu651017Mos6502OpcodeInfoC5plus1Sbvp"></a>
+                    <a name="//apple_ref/swift/Property/plus1" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7Emu651017Mos6502OpcodeInfoC5plus1Sbvp">plus1</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">let</span> <span class="nv">plus1</span><span class="p">:</span> <span class="kt">Bool</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Emu6510/OpcodeData.swift#L">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7Emu651017Mos6502OpcodeInfoC12negativeFlagSbvp"></a>
+                    <a name="//apple_ref/swift/Property/negativeFlag" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7Emu651017Mos6502OpcodeInfoC12negativeFlagSbvp">negativeFlag</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">negativeFlag</span><span class="p">:</span> <span class="kt">Bool</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Emu6510/OpcodeData.swift#L">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7Emu651017Mos6502OpcodeInfoC12overflowFlagSbvp"></a>
+                    <a name="//apple_ref/swift/Property/overflowFlag" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7Emu651017Mos6502OpcodeInfoC12overflowFlagSbvp">overflowFlag</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">overflowFlag</span><span class="p">:</span> <span class="kt">Bool</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Emu6510/OpcodeData.swift#L">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7Emu651017Mos6502OpcodeInfoC9breakFlagSbvp"></a>
+                    <a name="//apple_ref/swift/Property/breakFlag" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7Emu651017Mos6502OpcodeInfoC9breakFlagSbvp">breakFlag</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">breakFlag</span><span class="p">:</span> <span class="kt">Bool</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Emu6510/OpcodeData.swift#L">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7Emu651017Mos6502OpcodeInfoC11decimalFlagSbvp"></a>
+                    <a name="//apple_ref/swift/Property/decimalFlag" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7Emu651017Mos6502OpcodeInfoC11decimalFlagSbvp">decimalFlag</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">decimalFlag</span><span class="p">:</span> <span class="kt">Bool</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Emu6510/OpcodeData.swift#L">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7Emu651017Mos6502OpcodeInfoC7irqFlagSbvp"></a>
+                    <a name="//apple_ref/swift/Property/irqFlag" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7Emu651017Mos6502OpcodeInfoC7irqFlagSbvp">irqFlag</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">irqFlag</span><span class="p">:</span> <span class="kt">Bool</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Emu6510/OpcodeData.swift#L">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7Emu651017Mos6502OpcodeInfoC8zeroFlagSbvp"></a>
+                    <a name="//apple_ref/swift/Property/zeroFlag" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7Emu651017Mos6502OpcodeInfoC8zeroFlagSbvp">zeroFlag</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">zeroFlag</span><span class="p">:</span> <span class="kt">Bool</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Emu6510/OpcodeData.swift#L">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7Emu651017Mos6502OpcodeInfoC9carryFlagSbvp"></a>
+                    <a name="//apple_ref/swift/Property/carryFlag" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7Emu651017Mos6502OpcodeInfoC9carryFlagSbvp">carryFlag</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">carryFlag</span><span class="p">:</span> <span class="kt">Bool</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Emu6510/OpcodeData.swift#L">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:SQ2eeoiySbx_xtFZ"></a>
+                    <a name="//apple_ref/swift/Method/==(_:_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:SQ2eeoiySbx_xtFZ">==(_:_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">static</span> <span class="kd">func</span> <span class="o">==</span> <span class="p">(</span><span class="nv">lhs</span><span class="p">:</span> <span class="kt">Mos6502OpcodeInfo</span><span class="p">,</span> <span class="nv">rhs</span><span class="p">:</span> <span class="kt">Mos6502OpcodeInfo</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Bool</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Emu6510/OpcodeData.swift#L">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7Emu651017Mos6502OpcodeInfoC6opcode7numonic11addressMode5bytes6cycles5plus15flagsACs5UInt8V_AA0B7OpcodesOAA0B12AddressModesOA2LSbSStcfc"></a>
+                    <a name="//apple_ref/swift/Method/init(opcode:numonic:addressMode:bytes:cycles:plus1:flags:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7Emu651017Mos6502OpcodeInfoC6opcode7numonic11addressMode5bytes6cycles5plus15flagsACs5UInt8V_AA0B7OpcodesOAA0B12AddressModesOA2LSbSStcfc">init(opcode:numonic:addressMode:bytes:cycles:plus1:flags:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="nf">init</span><span class="p">(</span><span class="nv">opcode</span><span class="p">:</span> <span class="kt">UInt8</span><span class="p">,</span> <span class="nv">numonic</span><span class="p">:</span> <span class="kt"><a href="../Enums/Mos6502Opcodes.html">Mos6502Opcodes</a></span><span class="p">,</span> <span class="nv">addressMode</span><span class="p">:</span> <span class="kt"><a href="../Enums/Mos6502AddressModes.html">Mos6502AddressModes</a></span><span class="p">,</span> <span class="nv">bytes</span><span class="p">:</span> <span class="kt">UInt8</span><span class="p">,</span> <span class="nv">cycles</span><span class="p">:</span> <span class="kt">UInt8</span><span class="p">,</span> <span class="nv">plus1</span><span class="p">:</span> <span class="kt">Bool</span> <span class="o">=</span> <span class="kc">false</span><span class="p">,</span> <span class="nv">flags</span><span class="p">:</span> <span class="kt">String</span> <span class="o">=</span> <span class="s">"-------"</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Emu6510/OpcodeData.swift#L203-L225">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </section>
+        </section>
+        <section id="footer">
+          <p>&copy; 2020 <a class="link" href="https://blog.projectgalen.com" target="_blank" rel="external">Galen Rhodes</a>. All rights reserved. (Last updated: 2020-06-04)</p>
+          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.13.1</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+        </section>
+      </article>
+    </div>
+  </body>
+</div>
+</html>

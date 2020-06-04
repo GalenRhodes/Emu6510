@@ -1,9 +1,9 @@
 #!/bin/bash
 
 #  build.sh
-#  Rubicon
+#  Emu6510
 #
-#  Created by Galen Rhodes on 5/4/2020.
+#  Created by Galen Rhodes on 5/20/2020.
 #  Copyright © 2020 ProjectGalen. All rights reserved.
 
 for i in *.xcodeproj; do

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1117D62FA795B332DD3383E8 /* AddressBus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1117D0213EB88437379F4E3D /* AddressBus.swift */; };
 		1117D8723BB2A3B6F23ED73C /* OpcodeData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1117D82A51262B865038707F /* OpcodeData.swift */; };
 		1117DCB3F5D984F414EE90AF /* CPUClock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1117DD9CF61D4D1CEC0AA1B8 /* CPUClock.swift */; };
 		1117DE6990D80E8F250579E0 /* Tools.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1117D350304371409338CF99 /* Tools.swift */; };
@@ -69,12 +70,91 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		1117D0213EB88437379F4E3D /* AddressBus.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddressBus.swift; sourceTree = "<group>"; };
+		1117D027303F0990E72383B7 /* dash.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dash.png; sourceTree = "<group>"; };
+		1117D073729E935563743D59 /* .jazzy.yaml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.yaml; path = .jazzy.yaml; sourceTree = "<group>"; };
+		1117D0782B9E76ABE0BBB0F4 /* MOS65xxCPU.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = MOS65xxCPU.html; sourceTree = "<group>"; };
+		1117D0D75662FE313972BFA2 /* C64MemoryManager.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = C64MemoryManager.html; sourceTree = "<group>"; };
+		1117D0F37EC0DF57309FC2A3 /* String.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = String.html; sourceTree = "<group>"; };
+		1117D11988EDE2C82CBA39AC /* jazzy.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = jazzy.js; sourceTree = "<group>"; };
+		1117D156AC1A6A0E57FE838F /* badge.svg */ = {isa = PBXFileReference; lastKnownFileType = file.svg; path = badge.svg; sourceTree = "<group>"; };
+		1117D171D250AE580B285B90 /* IOPortControler.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = IOPortControler.html; sourceTree = "<group>"; };
+		1117D183671527584354BDA5 /* Mos6502AddressModes.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = Mos6502AddressModes.html; sourceTree = "<group>"; };
+		1117D1945AC1A76850826070 /* Bits8.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = Bits8.html; sourceTree = "<group>"; };
+		1117D1EEB0817B0DC17ECFDF /* Functions.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = Functions.html; sourceTree = "<group>"; };
+		1117D21B30982ED2137FE1D8 /* C64MemoryManager.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = C64MemoryManager.html; sourceTree = "<group>"; };
+		1117D23369A4B7ED92919506 /* gh.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = gh.png; sourceTree = "<group>"; };
+		1117D243ED001DAD3D0A6C57 /* Global Variables.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = "Global Variables.html"; sourceTree = "<group>"; };
+		1117D24A0834EC0D8857A3CA /* IOPortListener.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = IOPortListener.html; sourceTree = "<group>"; };
+		1117D2F86D80F51466422366 /* VideoStandard.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = VideoStandard.html; sourceTree = "<group>"; };
+		1117D3301BCDE9B82BDFF1BD /* Protocols.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = Protocols.html; sourceTree = "<group>"; };
+		1117D33A14E1D50BEDE25C23 /* Enums.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = Enums.html; sourceTree = "<group>"; };
 		1117D350304371409338CF99 /* Tools.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tools.swift; sourceTree = "<group>"; };
+		1117D36243B16AFD97DF916E /* gh.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = gh.png; sourceTree = "<group>"; };
+		1117D3B567F3875A92222017 /* Alignment.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = Alignment.html; sourceTree = "<group>"; };
+		1117D3CD4AFCD05A16F46473 /* highlight.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = highlight.css; sourceTree = "<group>"; };
+		1117D459D1658BE369C7ABC1 /* highlight.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = highlight.css; sourceTree = "<group>"; };
+		1117D4647DF7FF31D7075DA0 /* Mos6502AddressModes.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = Mos6502AddressModes.html; sourceTree = "<group>"; };
+		1117D49957A1C6CFD2768C6D /* CPUClock.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = CPUClock.html; sourceTree = "<group>"; };
+		1117D4A7CBAF2318BDCB3AEE /* MOS65xxFamily.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = MOS65xxFamily.html; sourceTree = "<group>"; };
+		1117D4A9B86B461FCC77801D /* Mos6502OpcodeInfo.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = Mos6502OpcodeInfo.html; sourceTree = "<group>"; };
+		1117D4C204091585B81060FD /* ROMmemory.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = ROMmemory.html; sourceTree = "<group>"; };
 		1117D4C21471A1189FA22C82 /* opcodes.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = opcodes.txt; sourceTree = "<group>"; };
+		1117D4D09BF907CF07ECB7FB /* docSet.dsidx */ = {isa = PBXFileReference; lastKnownFileType = file.dsidx; path = docSet.dsidx; sourceTree = "<group>"; };
+		1117D4F0D371892DEC012801 /* AddressBusListener.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = AddressBusListener.html; sourceTree = "<group>"; };
+		1117D5D0B5FF0410E2D7984C /* .tgz */ = {isa = PBXFileReference; lastKnownFileType = file.tgz; path = .tgz; sourceTree = "<group>"; };
+		1117D636D4937809886E7D57 /* carat.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = carat.png; sourceTree = "<group>"; };
+		1117D647B31C92834D7397B4 /* jquery.min.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = jquery.min.js; sourceTree = "<group>"; };
+		1117D6693AEB8AB879A75AFF /* IOPortListener.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = IOPortListener.html; sourceTree = "<group>"; };
+		1117D69D8662392D2CD9EC0A /* StringProtocol.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = StringProtocol.html; sourceTree = "<group>"; };
+		1117D6B968143CA6956CD707 /* Mos6502Opcodes.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = Mos6502Opcodes.html; sourceTree = "<group>"; };
+		1117D6E023C7B91490D4797B /* Memory.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = Memory.html; sourceTree = "<group>"; };
+		1117D714DF8E0F342E6B1A9D /* AddressBusListener.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = AddressBusListener.html; sourceTree = "<group>"; };
+		1117D77A28F54364832CF496 /* ROMmemory.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = ROMmemory.html; sourceTree = "<group>"; };
+		1117D7BDBEEE15B305DDBE55 /* Typealiases.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = Typealiases.html; sourceTree = "<group>"; };
+		1117D7C57CD8BB8818FD83C1 /* RAMmemory.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = RAMmemory.html; sourceTree = "<group>"; };
+		1117D7DF15EC0BC48B1395C8 /* IOPortControler.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = IOPortControler.html; sourceTree = "<group>"; };
+		1117D7E4CA5BBFFE02E62E56 /* MOS65xxFamily.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = MOS65xxFamily.html; sourceTree = "<group>"; };
+		1117D7EEC9299B233A43D010 /* jazzy.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = jazzy.css; sourceTree = "<group>"; };
 		1117D82A51262B865038707F /* OpcodeData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OpcodeData.swift; sourceTree = "<group>"; };
+		1117D91488A6A37221731A31 /* CPUClock.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = CPUClock.html; sourceTree = "<group>"; };
+		1117D93715C6F8682538CB7F /* InterruptType.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = InterruptType.html; sourceTree = "<group>"; };
+		1117D948A5892A9EB05838EF /* VideoStandard.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = VideoStandard.html; sourceTree = "<group>"; };
+		1117D9738285E7D5778209E1 /* Global Variables.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = "Global Variables.html"; sourceTree = "<group>"; };
+		1117D975AB67C5F03E54DC23 /* index.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = index.html; sourceTree = "<group>"; };
+		1117D975E0363E19A6FA12D7 /* CPU65xx.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = CPU65xx.html; sourceTree = "<group>"; };
+		1117D9BA0965A431169059D3 /* undocumented.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = undocumented.json; sourceTree = "<group>"; };
+		1117DA4C32EFB074B64614C7 /* Mos6502Opcodes.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = Mos6502Opcodes.html; sourceTree = "<group>"; };
+		1117DA7A03DC7C4A4C6750DD /* Bits8.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = Bits8.html; sourceTree = "<group>"; };
+		1117DA81293B3A44FB3C551D /* search.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = search.json; sourceTree = "<group>"; };
+		1117DAC83D18B64F5116319B /* Typealiases.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = Typealiases.html; sourceTree = "<group>"; };
+		1117DAF68EF4F44279C4C60E /* Extensions.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = Extensions.html; sourceTree = "<group>"; };
+		1117DAFE394C9903EEEA7041 /* Classes.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = Classes.html; sourceTree = "<group>"; };
+		1117DB0BD2CC46658F0EF785 /* Protocols.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = Protocols.html; sourceTree = "<group>"; };
+		1117DB58E1D756E1B4B7B315 /* jazzy.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = jazzy.css; sourceTree = "<group>"; };
+		1117DB64976A7CDA510D6F20 /* jazzy.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = jazzy.js; sourceTree = "<group>"; };
+		1117DBEB9F53812DFA819BF6 /* MOS65xxCPU.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = MOS65xxCPU.html; sourceTree = "<group>"; };
+		1117DC04D685C3C2E046F73A /* carat.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = carat.png; sourceTree = "<group>"; };
 		1117DC56F2E485B64ECD924A /* 65c02.csv */ = {isa = PBXFileReference; lastKnownFileType = file.csv; path = 65c02.csv; sourceTree = "<group>"; };
+		1117DCA15E7057AF086AF733 /* Enums.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = Enums.html; sourceTree = "<group>"; };
+		1117DCCDD78E07F6C2387227 /* Classes.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = Classes.html; sourceTree = "<group>"; };
+		1117DCE593F31C17F5306364 /* Alignment.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = Alignment.html; sourceTree = "<group>"; };
+		1117DD1BD31C1C086C34000E /* InterruptType.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = InterruptType.html; sourceTree = "<group>"; };
+		1117DD238971677AD77D4750 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.info; path = Info.plist; sourceTree = "<group>"; };
+		1117DD4D65C4FE06CD32AEC0 /* CPU65xx.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = CPU65xx.html; sourceTree = "<group>"; };
+		1117DD54FA68275BFE9AD36D /* Functions.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = Functions.html; sourceTree = "<group>"; };
 		1117DD88DC95C4D095ADA633 /* OpCodes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OpCodes.swift; sourceTree = "<group>"; };
 		1117DD9CF61D4D1CEC0AA1B8 /* CPUClock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CPUClock.swift; sourceTree = "<group>"; };
+		1117DDB13F7D8E443BB70176 /* Extensions.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = Extensions.html; sourceTree = "<group>"; };
+		1117DDDC0755E6FD7E21CE02 /* StringProtocol.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = StringProtocol.html; sourceTree = "<group>"; };
+		1117DDE4EF9ECC664A4BC103 /* Mos6502OpcodeInfo.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = Mos6502OpcodeInfo.html; sourceTree = "<group>"; };
+		1117DE1506B689793A9A45C3 /* jquery.min.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = jquery.min.js; sourceTree = "<group>"; };
+		1117DE2B78B5ACDD7CA35BE2 /* RAMmemory.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = RAMmemory.html; sourceTree = "<group>"; };
+		1117DE658FB4FB2AF6AF79EC /* String.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = String.html; sourceTree = "<group>"; };
+		1117DED5A1BFDD96A7DA9F96 /* Memory.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = Memory.html; sourceTree = "<group>"; };
+		1117DFA980E6930A76EE75AC /* dash.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dash.png; sourceTree = "<group>"; };
+		1117DFAD6DAFB738BAAB74EF /* index.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = index.html; sourceTree = "<group>"; };
+		1117DFC5F3174BA16418829E /* search.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = search.json; sourceTree = "<group>"; };
 		83A898F52472E617002F2121 /* Emu6510.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Emu6510.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		83A898F82472E617002F2121 /* Emu6510.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Emu6510.h; sourceTree = "<group>"; };
 		83A898F92472E617002F2121 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -121,19 +201,273 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		83A898EB2472E617002F2121 = {
+		1117D09E8E44A5E30C5FCF14 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				1117DDE1B55FDF430EFCECAB /* Documents */,
+				1117D4D09BF907CF07ECB7FB /* docSet.dsidx */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		1117D1040571D3855D5D1EB9 /* API */ = {
+			isa = PBXGroup;
+			children = (
+				1117DD7BB727CB27B642DC77 /* js */,
+				1117D7397570561C26FC7E26 /* css */,
+				1117D6909292E9ACAAB5EF98 /* img */,
+				1117D6E70EDCFB845A2AA5D5 /* Enums */,
+				1117D53A3110AA458D375B40 /* Classes */,
+				1117DF08597A284B045199D9 /* docsets */,
+				1117D156AC1A6A0E57FE838F /* badge.svg */,
+				1117DD7E07F8EC5D2F2EE1C9 /* Protocols */,
+				1117D33A14E1D50BEDE25C23 /* Enums.html */,
+				1117DB7E05E5815F245829B4 /* Extensions */,
+				1117DFAD6DAFB738BAAB74EF /* index.html */,
+				1117DFC5F3174BA16418829E /* search.json */,
+				1117DCCDD78E07F6C2387227 /* Classes.html */,
+				1117DD54FA68275BFE9AD36D /* Functions.html */,
+				1117D3301BCDE9B82BDFF1BD /* Protocols.html */,
+				1117DAF68EF4F44279C4C60E /* Extensions.html */,
+				1117DAC83D18B64F5116319B /* Typealiases.html */,
+				1117D9BA0965A431169059D3 /* undocumented.json */,
+				1117D243ED001DAD3D0A6C57 /* Global Variables.html */,
+			);
+			path = API;
+			sourceTree = "<group>";
+		};
+		1117D19DCD0DEC0F009AC453 /* .docset */ = {
+			isa = PBXGroup;
+			children = (
+				1117DBFC0E1CA5430E3C480A /* Contents */,
+			);
+			path = .docset;
+			sourceTree = "<group>";
+		};
+		1117D3F2FBD6DFB2FE650056 /* css */ = {
+			isa = PBXGroup;
+			children = (
+				1117D7EEC9299B233A43D010 /* jazzy.css */,
+				1117D3CD4AFCD05A16F46473 /* highlight.css */,
+			);
+			path = css;
+			sourceTree = "<group>";
+		};
+		1117D53A3110AA458D375B40 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				1117D6E023C7B91490D4797B /* Memory.html */,
+				1117D975E0363E19A6FA12D7 /* CPU65xx.html */,
+				1117D49957A1C6CFD2768C6D /* CPUClock.html */,
+				1117D7C57CD8BB8818FD83C1 /* RAMmemory.html */,
+				1117D4C204091585B81060FD /* ROMmemory.html */,
+				1117D0D75662FE313972BFA2 /* C64MemoryManager.html */,
+				1117DDE4EF9ECC664A4BC103 /* Mos6502OpcodeInfo.html */,
+			);
+			path = Classes;
+			sourceTree = "<group>";
+		};
+		1117D65B2A486D5ED24E5A38 /* Enums */ = {
+			isa = PBXGroup;
+			children = (
+				1117D1945AC1A76850826070 /* Bits8.html */,
+				1117D3B567F3875A92222017 /* Alignment.html */,
+				1117D93715C6F8682538CB7F /* InterruptType.html */,
+				1117D7E4CA5BBFFE02E62E56 /* MOS65xxFamily.html */,
+				1117D948A5892A9EB05838EF /* VideoStandard.html */,
+				1117DA4C32EFB074B64614C7 /* Mos6502Opcodes.html */,
+				1117D183671527584354BDA5 /* Mos6502AddressModes.html */,
+			);
+			path = Enums;
+			sourceTree = "<group>";
+		};
+		1117D6909292E9ACAAB5EF98 /* img */ = {
+			isa = PBXGroup;
+			children = (
+				1117D23369A4B7ED92919506 /* gh.png */,
+				1117D027303F0990E72383B7 /* dash.png */,
+				1117D636D4937809886E7D57 /* carat.png */,
+			);
+			path = img;
+			sourceTree = "<group>";
+		};
+		1117D6E70EDCFB845A2AA5D5 /* Enums */ = {
+			isa = PBXGroup;
+			children = (
+				1117DA7A03DC7C4A4C6750DD /* Bits8.html */,
+				1117DCE593F31C17F5306364 /* Alignment.html */,
+				1117DD1BD31C1C086C34000E /* InterruptType.html */,
+				1117D4A7CBAF2318BDCB3AEE /* MOS65xxFamily.html */,
+				1117D2F86D80F51466422366 /* VideoStandard.html */,
+				1117D6B968143CA6956CD707 /* Mos6502Opcodes.html */,
+				1117D4647DF7FF31D7075DA0 /* Mos6502AddressModes.html */,
+			);
+			path = Enums;
+			sourceTree = "<group>";
+		};
+		1117D7397570561C26FC7E26 /* css */ = {
+			isa = PBXGroup;
+			children = (
+				1117DB58E1D756E1B4B7B315 /* jazzy.css */,
+				1117D459D1658BE369C7ABC1 /* highlight.css */,
+			);
+			path = css;
+			sourceTree = "<group>";
+		};
+		1117D8C9AF63A2DA060573E9 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				1117DED5A1BFDD96A7DA9F96 /* Memory.html */,
+				1117DD4D65C4FE06CD32AEC0 /* CPU65xx.html */,
+				1117D91488A6A37221731A31 /* CPUClock.html */,
+				1117DE2B78B5ACDD7CA35BE2 /* RAMmemory.html */,
+				1117D77A28F54364832CF496 /* ROMmemory.html */,
+				1117D21B30982ED2137FE1D8 /* C64MemoryManager.html */,
+				1117D4A9B86B461FCC77801D /* Mos6502OpcodeInfo.html */,
+			);
+			path = Classes;
+			sourceTree = "<group>";
+		};
+		1117D9BEDC88BEE928CCD378 /* img */ = {
+			isa = PBXGroup;
+			children = (
+				1117D36243B16AFD97DF916E /* gh.png */,
+				1117DFA980E6930A76EE75AC /* dash.png */,
+				1117DC04D685C3C2E046F73A /* carat.png */,
+			);
+			path = img;
+			sourceTree = "<group>";
+		};
+		1117DA2B5472F5FBC92A6491 /* js */ = {
+			isa = PBXGroup;
+			children = (
+				1117D11988EDE2C82CBA39AC /* jazzy.js */,
+				1117DE1506B689793A9A45C3 /* jquery.min.js */,
+			);
+			path = js;
+			sourceTree = "<group>";
+		};
+		1117DAF3A879D0E67AB2D605 /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				1117DBEB9F53812DFA819BF6 /* MOS65xxCPU.html */,
+				1117D24A0834EC0D8857A3CA /* IOPortListener.html */,
+				1117D7DF15EC0BC48B1395C8 /* IOPortControler.html */,
+				1117D714DF8E0F342E6B1A9D /* AddressBusListener.html */,
+			);
+			path = Protocols;
+			sourceTree = "<group>";
+		};
+		1117DB5A582B4AB621FF00E1 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				1117D0F37EC0DF57309FC2A3 /* String.html */,
+				1117D69D8662392D2CD9EC0A /* StringProtocol.html */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		1117DB7E05E5815F245829B4 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				1117DE658FB4FB2AF6AF79EC /* String.html */,
+				1117DDDC0755E6FD7E21CE02 /* StringProtocol.html */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		1117DBFC0E1CA5430E3C480A /* Contents */ = {
+			isa = PBXGroup;
+			children = (
+				1117D09E8E44A5E30C5FCF14 /* Resources */,
+				1117DD238971677AD77D4750 /* Info.plist */,
+			);
+			path = Contents;
+			sourceTree = "<group>";
+		};
+		1117DD7BB727CB27B642DC77 /* js */ = {
+			isa = PBXGroup;
+			children = (
+				1117DB64976A7CDA510D6F20 /* jazzy.js */,
+				1117D647B31C92834D7397B4 /* jquery.min.js */,
+			);
+			path = js;
+			sourceTree = "<group>";
+		};
+		1117DD7E07F8EC5D2F2EE1C9 /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				1117D0782B9E76ABE0BBB0F4 /* MOS65xxCPU.html */,
+				1117D6693AEB8AB879A75AFF /* IOPortListener.html */,
+				1117D171D250AE580B285B90 /* IOPortControler.html */,
+				1117D4F0D371892DEC012801 /* AddressBusListener.html */,
+			);
+			path = Protocols;
+			sourceTree = "<group>";
+		};
+		1117DDE1B55FDF430EFCECAB /* Documents */ = {
+			isa = PBXGroup;
+			children = (
+				1117DA2B5472F5FBC92A6491 /* js */,
+				1117D3F2FBD6DFB2FE650056 /* css */,
+				1117D9BEDC88BEE928CCD378 /* img */,
+				1117D65B2A486D5ED24E5A38 /* Enums */,
+				1117D8C9AF63A2DA060573E9 /* Classes */,
+				1117DAF3A879D0E67AB2D605 /* Protocols */,
+				1117DCA15E7057AF086AF733 /* Enums.html */,
+				1117DB5A582B4AB621FF00E1 /* Extensions */,
+				1117D975AB67C5F03E54DC23 /* index.html */,
+				1117DA81293B3A44FB3C551D /* search.json */,
+				1117DAFE394C9903EEEA7041 /* Classes.html */,
+				1117D1EEB0817B0DC17ECFDF /* Functions.html */,
+				1117DB0BD2CC46658F0EF785 /* Protocols.html */,
+				1117DDB13F7D8E443BB70176 /* Extensions.html */,
+				1117D7BDBEEE15B305DDBE55 /* Typealiases.html */,
+				1117D9738285E7D5778209E1 /* Global Variables.html */,
+			);
+			path = Documents;
+			sourceTree = "<group>";
+		};
+		1117DF08597A284B045199D9 /* docsets */ = {
+			isa = PBXGroup;
+			children = (
+				1117D5D0B5FF0410E2D7984C /* .tgz */,
+				1117D19DCD0DEC0F009AC453 /* .docset */,
+			);
+			path = docsets;
+			sourceTree = "<group>";
+		};
+		8338267824891AB7005013C4 /* Other */ = {
 			isa = PBXGroup;
 			children = (
 				83A899232472E6D7002F2121 /* build.sh */,
 				83A899242472E6D7002F2121 /* docfixer.sh */,
-				83A899252472E6D7002F2121 /* README.md */,
+				1117D073729E935563743D59 /* .jazzy.yaml */,
+			);
+			name = Other;
+			sourceTree = "<group>";
+		};
+		8338267924891AF5005013C4 /* Supporting Documentation */ = {
+			isa = PBXGroup;
+			children = (
+				1117D1040571D3855D5D1EB9 /* API */,
+				1117DC56F2E485B64ECD924A /* 65c02.csv */,
+				1117D4C21471A1189FA22C82 /* opcodes.txt */,
+			);
+			name = "Supporting Documentation";
+			sourceTree = "<group>";
+		};
+		83A898EB2472E617002F2121 = {
+			isa = PBXGroup;
+			children = (
 				83A898F72472E617002F2121 /* Emu6510 */,
 				83A899022472E617002F2121 /* Emu6510Tests */,
 				83A899192472E678002F2121 /* DocFixer */,
 				83A898F62472E617002F2121 /* Products */,
 				83A8990F2472E64A002F2121 /* Frameworks */,
-				1117DC56F2E485B64ECD924A /* 65c02.csv */,
-				1117D4C21471A1189FA22C82 /* opcodes.txt */,
+				8338267924891AF5005013C4 /* Supporting Documentation */,
+				8338267824891AB7005013C4 /* Other */,
+				83A899252472E6D7002F2121 /* README.md */,
 			);
 			sourceTree = "<group>";
 		};
@@ -150,14 +484,15 @@
 		83A898F72472E617002F2121 /* Emu6510 */ = {
 			isa = PBXGroup;
 			children = (
-				83A899262472E7EE002F2121 /* CPU65xx.swift */,
 				83A899282472E7EE002F2121 /* Emu6510.swift */,
+				1117D0213EB88437379F4E3D /* AddressBus.swift */,
 				83A899292472E7EE002F2121 /* MemoryManager.swift */,
+				1117DD9CF61D4D1CEC0AA1B8 /* CPUClock.swift */,
+				1117D82A51262B865038707F /* OpcodeData.swift */,
+				83A899262472E7EE002F2121 /* CPU65xx.swift */,
+				1117D350304371409338CF99 /* Tools.swift */,
 				83A898F82472E617002F2121 /* Emu6510.h */,
 				83A898F92472E617002F2121 /* Info.plist */,
-				1117DD9CF61D4D1CEC0AA1B8 /* CPUClock.swift */,
-				1117D350304371409338CF99 /* Tools.swift */,
-				1117D82A51262B865038707F /* OpcodeData.swift */,
 			);
 			path = Emu6510;
 			sourceTree = "<group>";
@@ -165,9 +500,9 @@
 		83A899022472E617002F2121 /* Emu6510Tests */ = {
 			isa = PBXGroup;
 			children = (
+				1117DD88DC95C4D095ADA633 /* OpCodes.swift */,
 				83A899032472E617002F2121 /* Emu6510Tests.swift */,
 				83A899052472E617002F2121 /* Info.plist */,
-				1117DD88DC95C4D095ADA633 /* OpCodes.swift */,
 			);
 			path = Emu6510Tests;
 			sourceTree = "<group>";
@@ -328,6 +663,7 @@
 				1117DCB3F5D984F414EE90AF /* CPUClock.swift in Sources */,
 				1117DE6990D80E8F250579E0 /* Tools.swift in Sources */,
 				1117D8723BB2A3B6F23ED73C /* OpcodeData.swift in Sources */,
+				1117D62FA795B332DD3383E8 /* AddressBus.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -416,7 +752,7 @@
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = macosx;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
-				SWIFT_COMPILATION_MODE = singlefile;
+				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
@@ -472,7 +808,7 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = macosx;
-				SWIFT_COMPILATION_MODE = singlefile;
+				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
@@ -593,6 +929,8 @@
 					"$(inherited)",
 					"$(USER_LIBRARY_DIR)/Frameworks",
 				);
+				LD_RUNPATH_SEARCH_PATHS = "@executable_path";
+				PRODUCT_BUNDLE_IDENTIFIER = com.projectgalen.DocFixer;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 			};
@@ -608,6 +946,8 @@
 					"$(inherited)",
 					"$(USER_LIBRARY_DIR)/Frameworks",
 				);
+				LD_RUNPATH_SEARCH_PATHS = "@executable_path";
+				PRODUCT_BUNDLE_IDENTIFIER = com.projectgalen.DocFixer;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 			};

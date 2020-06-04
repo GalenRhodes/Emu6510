@@ -26,8 +26,10 @@
 import Foundation
 import Rubicon
 
-/// The clock speed of most implementations back in the day was based on the video hardware which was based on the two television standards at the time - NTSC and PAL.
-/// Below are the two clock speeds for the Commodore 64 and Commodore 128 (running is 40 column mode).
+/*===============================================================================================================================*/
+/// The clock speed of most implementations back in the day was based on the video hardware which was based on the two television
+/// standards at the time - NTSC and PAL. Below are the two clock speeds for the Commodore 64 and Commodore 128 (running is 40
+/// column mode).
 ///
 public enum VideoStandard: UInt32 {
     case C64_NTSC = 1_022_727
@@ -62,11 +64,17 @@ public enum Bits8: UInt8 {
     }
 }
 
+/*===============================================================================================================================*/
 /// Denotes the interrupt type that the CPU received.
+///
 public enum InterruptType {
+    /*===========================================================================================================================*/
     /// Standard maskable interrupt.
+    ///
     case IRQ
+    /*===========================================================================================================================*/
     /// Non-Maskable interrupt.
+    ///
     case NMI
 }
 
