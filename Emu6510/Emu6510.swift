@@ -27,6 +27,15 @@ import Foundation
 import Rubicon
 
 /*===============================================================================================================================*/
+/// Denotes which exact CPU from the MOS 6500 family is being emulated.
+///
+public enum MOS65xxFamily {
+    case Mos6502
+    case Mos6510
+    case Mos8510
+}
+
+/*===============================================================================================================================*/
 /// The clock speed of most implementations back in the day was based on the video hardware which was based on the two television
 /// standards at the time - NTSC and PAL. Below are the two clock speeds for the Commodore 64 and Commodore 128 (running is 40
 /// column mode).
@@ -37,16 +46,17 @@ public enum VideoStandard: UInt32 {
 }
 
 infix operator &?: ComparisonPrecedence
+infix operator &!: ComparisonPrecedence
 
 public enum Bits8: UInt8 {
-    case bit0 = 1
-    case bit1 = 2
-    case bit2 = 4
-    case bit3 = 8
-    case bit4 = 16
-    case bit5 = 32
-    case bit6 = 64
-    case bit7 = 128
+    case b0 = 1
+    case b1 = 2
+    case b2 = 4
+    case b3 = 8
+    case b4 = 16
+    case b5 = 32
+    case b6 = 64
+    case b7 = 128
 
     @inlinable public static func & <T: BinaryInteger>(lhs: T, rhs: Bits8) -> T { (lhs & T(rhs.rawValue)) }
 
@@ -58,10 +68,7 @@ public enum Bits8: UInt8 {
 
     @inlinable public static func &= <T: BinaryInteger>(lhs: inout T, rhs: Bits8) { lhs &= T(rhs.rawValue) }
 
-    @inlinable public static func &? <T: BinaryInteger>(lhs: T, rhs: Bits8) -> Bool {
-        let bitval: T = T(rhs.rawValue)
-        return ((lhs & bitval) == bitval)
-    }
+    @inlinable public static func &! <T: BinaryInteger>(lhs: T, rhs: Bits8) -> Bool { let v: T = T(rhs.rawValue); return ((lhs & v) == v) }
 }
 
 /*===============================================================================================================================*/

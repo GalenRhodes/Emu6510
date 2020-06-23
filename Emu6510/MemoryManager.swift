@@ -21,6 +21,7 @@
  *//************************************************************************/
 
 import Foundation
+import Rubicon
 
 public protocol MemoryManager: AddressBusListener, IOPortListener {
 

@@ -38,9 +38,6 @@
                 <a href="Classes/CPU65xx.html">CPU65xx</a>
               </li>
               <li class="nav-group-task">
-                <a href="Classes/CPUClock.html">CPUClock</a>
-              </li>
-              <li class="nav-group-task">
                 <a href="Classes/Memory.html">Memory</a>
               </li>
               <li class="nav-group-task">
@@ -70,7 +67,7 @@
                 <a href="Global%20Variables.html#/s:7Emu651012MaxPageCounts6UInt16Vvp">MaxPageCount</a>
               </li>
               <li class="nav-group-task">
-                <a href="Global%20Variables.html#/s:7Emu651016NANOS_PER_SECONDs6UInt64Vvp">NANOS_PER_SECOND</a>
+                <a href="Global%20Variables.html#/s:7Emu651010SignedByteSays4Int8VGvp">SignedByte</a>
               </li>
             </ul>
           </li>
@@ -91,6 +88,9 @@
               </li>
               <li class="nav-group-task">
                 <a href="Enums/Mos6502AddressModes.html">Mos6502AddressModes</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Enums/Mos6502Flags.html">Mos6502Flags</a>
               </li>
               <li class="nav-group-task">
                 <a href="Enums/Mos6502Opcodes.html">Mos6502Opcodes</a>
@@ -115,7 +115,13 @@
             <a href="Functions.html">Functions</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
-                <a href="Functions.html#/s:7Emu651012getMonotonics6UInt64VyF">getMonotonic()</a>
+                <a href="Functions.html#/s:7Emu65102anoiySbx_xtSzRzlF">&amp;!(_:_:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Functions.html#/s:7Emu65102aqoiySbx_xtSzRzlF">&amp;?(_:_:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Functions.html#/s:7Emu651010makeSignedys4Int8Vs5UInt8VF">makeSigned(_:)</a>
               </li>
             </ul>
           </li>
@@ -132,9 +138,6 @@
                 <a href="Protocols/IOPortListener.html">IOPortListener</a>
               </li>
               <li class="nav-group-task">
-                <a href="Protocols/MOS65xxCPU.html">MOS65xxCPU</a>
-              </li>
-              <li class="nav-group-task">
                 <a href="Protocols.html#/s:7Emu651013MemoryManagerP">MemoryManager</a>
               </li>
             </ul>
@@ -144,9 +147,6 @@
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
                 <a href="Typealiases.html#/s:7Emu65109CPUIOPorta">CPUIOPort</a>
-              </li>
-              <li class="nav-group-task">
-                <a href="Typealiases.html#/s:7Emu651012ClockClosurea">ClockClosure</a>
               </li>
             </ul>
           </li>
@@ -165,9 +165,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:7Emu651012getMonotonics6UInt64VyF"></a>
-                    <a name="//apple_ref/swift/Function/getMonotonic()" class="dashAnchor"></a>
-                    <a class="token" href="#/s:7Emu651012getMonotonics6UInt64VyF">getMonotonic()</a>
+                    <a name="/s:7Emu65102anoiySbx_xtSzRzlF"></a>
+                    <a name="//apple_ref/swift/Function/&amp;!(_:_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7Emu65102anoiySbx_xtSzRzlF">&amp;!(_:_:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -175,24 +175,79 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Get the system monotonic time (CPU time) in nanoseconds.</p>
-
+                        
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight swift"><code><span class="kd">@inlinable</span>
-<span class="kd">public</span> <span class="kd">func</span> <span class="nf">getMonotonic</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kt">UInt64</span></code></pre>
+<span class="kd">public</span> <span class="kd">func</span> <span class="o">&amp;!</span> <span class="o">&lt;</span><span class="kt">T</span><span class="o">&gt;</span><span class="p">(</span><span class="nv">lhs</span><span class="p">:</span> <span class="kt">T</span><span class="p">,</span> <span class="nv">rhs</span><span class="p">:</span> <span class="kt">T</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Bool</span> <span class="k">where</span> <span class="kt">T</span> <span class="p">:</span> <span class="kt">BinaryInteger</span></code></pre>
 
                         </div>
                       </div>
-                      <div>
-                        <h4>Return Value</h4>
-                        <p>monotonic time in nanoseconds.</p>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Emu6510/Tools.swift#L">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7Emu65102aqoiySbx_xtSzRzlF"></a>
+                    <a name="//apple_ref/swift/Function/&amp;?(_:_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7Emu65102aqoiySbx_xtSzRzlF">&amp;?(_:_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@inlinable</span>
+<span class="kd">public</span> <span class="kd">func</span> <span class="o">&amp;</span><span class="p">?</span> <span class="o">&lt;</span><span class="kt">T</span><span class="o">&gt;</span><span class="p">(</span><span class="nv">lhs</span><span class="p">:</span> <span class="kt">T</span><span class="p">,</span> <span class="nv">rhs</span><span class="p">:</span> <span class="kt">T</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Bool</span> <span class="k">where</span> <span class="kt">T</span> <span class="p">:</span> <span class="kt">BinaryInteger</span></code></pre>
+
+                        </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Emu6510/CPUClock.swift#L34-L38">Show on GitHub</a>
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Emu6510/Tools.swift#L">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7Emu651010makeSignedys4Int8Vs5UInt8VF"></a>
+                    <a name="//apple_ref/swift/Function/makeSigned(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7Emu651010makeSignedys4Int8Vs5UInt8VF">makeSigned(_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@inlinable</span>
+<span class="kd">public</span> <span class="kd">func</span> <span class="nf">makeSigned</span><span class="p">(</span><span class="n">_</span> <span class="nv">ui</span><span class="p">:</span> <span class="kt">UInt8</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Int8</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Emu6510/Tools.swift#L">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -202,7 +257,7 @@
           </section>
         </section>
         <section id="footer">
-          <p>&copy; 2020 <a class="link" href="https://blog.projectgalen.com" target="_blank" rel="external">Galen Rhodes</a>. All rights reserved. (Last updated: 2020-06-04)</p>
+          <p>&copy; 2020 <a class="link" href="https://blog.projectgalen.com" target="_blank" rel="external">Galen Rhodes</a>. All rights reserved. (Last updated: 2020-06-23)</p>
           <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.13.1</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
         </section>
       </article>

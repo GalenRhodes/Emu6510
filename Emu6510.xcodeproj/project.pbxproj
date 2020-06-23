@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		1117D62FA795B332DD3383E8 /* AddressBus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1117D0213EB88437379F4E3D /* AddressBus.swift */; };
 		1117D8723BB2A3B6F23ED73C /* OpcodeData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1117D82A51262B865038707F /* OpcodeData.swift */; };
-		1117DCB3F5D984F414EE90AF /* CPUClock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1117DD9CF61D4D1CEC0AA1B8 /* CPUClock.swift */; };
 		1117DE6990D80E8F250579E0 /* Tools.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1117D350304371409338CF99 /* Tools.swift */; };
 		1117DF76F074C10606826202 /* OpCodes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1117DD88DC95C4D095ADA633 /* OpCodes.swift */; };
 		83A898FF2472E617002F2121 /* Emu6510.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83A898F52472E617002F2121 /* Emu6510.framework */; };
@@ -144,7 +143,6 @@
 		1117DD4D65C4FE06CD32AEC0 /* CPU65xx.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = CPU65xx.html; sourceTree = "<group>"; };
 		1117DD54FA68275BFE9AD36D /* Functions.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = Functions.html; sourceTree = "<group>"; };
 		1117DD88DC95C4D095ADA633 /* OpCodes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OpCodes.swift; sourceTree = "<group>"; };
-		1117DD9CF61D4D1CEC0AA1B8 /* CPUClock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CPUClock.swift; sourceTree = "<group>"; };
 		1117DDB13F7D8E443BB70176 /* Extensions.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = Extensions.html; sourceTree = "<group>"; };
 		1117DDDC0755E6FD7E21CE02 /* StringProtocol.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = StringProtocol.html; sourceTree = "<group>"; };
 		1117DDE4EF9ECC664A4BC103 /* Mos6502OpcodeInfo.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = Mos6502OpcodeInfo.html; sourceTree = "<group>"; };
@@ -487,7 +485,6 @@
 				83A899282472E7EE002F2121 /* Emu6510.swift */,
 				1117D0213EB88437379F4E3D /* AddressBus.swift */,
 				83A899292472E7EE002F2121 /* MemoryManager.swift */,
-				1117DD9CF61D4D1CEC0AA1B8 /* CPUClock.swift */,
 				1117D82A51262B865038707F /* OpcodeData.swift */,
 				83A899262472E7EE002F2121 /* CPU65xx.swift */,
 				1117D350304371409338CF99 /* Tools.swift */,
@@ -660,7 +657,6 @@
 				83A8992A2472E7EE002F2121 /* CPU65xx.swift in Sources */,
 				83A8992C2472E7EE002F2121 /* Emu6510.swift in Sources */,
 				83A8992D2472E7EE002F2121 /* MemoryManager.swift in Sources */,
-				1117DCB3F5D984F414EE90AF /* CPUClock.swift in Sources */,
 				1117DE6990D80E8F250579E0 /* Tools.swift in Sources */,
 				1117D8723BB2A3B6F23ED73C /* OpcodeData.swift in Sources */,
 				1117D62FA795B332DD3383E8 /* AddressBus.swift in Sources */,

@@ -38,9 +38,6 @@
                 <a href="Classes/CPU65xx.html">CPU65xx</a>
               </li>
               <li class="nav-group-task">
-                <a href="Classes/CPUClock.html">CPUClock</a>
-              </li>
-              <li class="nav-group-task">
                 <a href="Classes/Memory.html">Memory</a>
               </li>
               <li class="nav-group-task">
@@ -70,7 +67,7 @@
                 <a href="Global%20Variables.html#/s:7Emu651012MaxPageCounts6UInt16Vvp">MaxPageCount</a>
               </li>
               <li class="nav-group-task">
-                <a href="Global%20Variables.html#/s:7Emu651016NANOS_PER_SECONDs6UInt64Vvp">NANOS_PER_SECOND</a>
+                <a href="Global%20Variables.html#/s:7Emu651010SignedByteSays4Int8VGvp">SignedByte</a>
               </li>
             </ul>
           </li>
@@ -91,6 +88,9 @@
               </li>
               <li class="nav-group-task">
                 <a href="Enums/Mos6502AddressModes.html">Mos6502AddressModes</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Enums/Mos6502Flags.html">Mos6502Flags</a>
               </li>
               <li class="nav-group-task">
                 <a href="Enums/Mos6502Opcodes.html">Mos6502Opcodes</a>
@@ -115,7 +115,13 @@
             <a href="Functions.html">Functions</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
-                <a href="Functions.html#/s:7Emu651012getMonotonics6UInt64VyF">getMonotonic()</a>
+                <a href="Functions.html#/s:7Emu65102anoiySbx_xtSzRzlF">&amp;!(_:_:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Functions.html#/s:7Emu65102aqoiySbx_xtSzRzlF">&amp;?(_:_:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Functions.html#/s:7Emu651010makeSignedys4Int8Vs5UInt8VF">makeSigned(_:)</a>
               </li>
             </ul>
           </li>
@@ -132,9 +138,6 @@
                 <a href="Protocols/IOPortListener.html">IOPortListener</a>
               </li>
               <li class="nav-group-task">
-                <a href="Protocols/MOS65xxCPU.html">MOS65xxCPU</a>
-              </li>
-              <li class="nav-group-task">
                 <a href="Protocols.html#/s:7Emu651013MemoryManagerP">MemoryManager</a>
               </li>
             </ul>
@@ -144,9 +147,6 @@
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
                 <a href="Typealiases.html#/s:7Emu65109CPUIOPorta">CPUIOPort</a>
-              </li>
-              <li class="nav-group-task">
-                <a href="Typealiases.html#/s:7Emu651012ClockClosurea">ClockClosure</a>
               </li>
             </ul>
           </li>
@@ -188,7 +188,7 @@
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Emu6510/CPU65xx.swift#L29-L33">Show on GitHub</a>
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Emu6510/Emu6510.swift#L32-L36">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -221,7 +221,7 @@ column mode).</p>
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Emu6510/Emu6510.swift#L34-L37">Show on GitHub</a>
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Emu6510/Emu6510.swift#L43-L46">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -251,7 +251,7 @@ column mode).</p>
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Emu6510/Emu6510.swift#L41-L65">Show on GitHub</a>
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Emu6510/Emu6510.swift#L51-L72">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -282,7 +282,37 @@ column mode).</p>
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Emu6510/Emu6510.swift#L70-L79">Show on GitHub</a>
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Emu6510/Emu6510.swift#L77-L86">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7Emu651012Mos6502FlagsO"></a>
+                    <a name="//apple_ref/swift/Enum/Mos6502Flags" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7Emu651012Mos6502FlagsO">Mos6502Flags</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                        <a href="Enums/Mos6502Flags.html" class="slightly-smaller">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">enum</span> <span class="kt">Mos6502Flags</span> <span class="p">:</span> <span class="kt">UInt8</span><span class="p">,</span> <span class="kt">CustomStringConvertible</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Emu6510/OpcodeData.swift#L26-L93">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -312,7 +342,7 @@ column mode).</p>
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Emu6510/OpcodeData.swift#L25-L58">Show on GitHub</a>
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Emu6510/OpcodeData.swift#L95-L128">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -342,7 +372,7 @@ column mode).</p>
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Emu6510/OpcodeData.swift#L60-L180">Show on GitHub</a>
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Emu6510/OpcodeData.swift#L130-L250">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -372,7 +402,7 @@ column mode).</p>
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Emu6510/Tools.swift#L25-L27">Show on GitHub</a>
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Emu6510/Tools.swift#L29-L31">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -382,7 +412,7 @@ column mode).</p>
           </section>
         </section>
         <section id="footer">
-          <p>&copy; 2020 <a class="link" href="https://blog.projectgalen.com" target="_blank" rel="external">Galen Rhodes</a>. All rights reserved. (Last updated: 2020-06-04)</p>
+          <p>&copy; 2020 <a class="link" href="https://blog.projectgalen.com" target="_blank" rel="external">Galen Rhodes</a>. All rights reserved. (Last updated: 2020-06-23)</p>
           <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.13.1</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
         </section>
       </article>
