@@ -550,484 +550,92 @@ open class CPU65xx {
         if !panic {
             switch oc.mnemonic {
               // Add & Subtract
-                case .ADC: opcodeADC(oc, ops)
-                case .SBC: opcodeSBC(oc, ops)
+                case .ADC: addsub(opcode: oc, ops: ops, mask: 0x0000)
+                case .SBC: addsub(opcode: oc, ops: ops, mask: 0x00ff)
               // Bitwise opcodes
-                case .AND: opcodeAND(oc, ops)
-                case .ORA: opcodeORA(oc, ops)
-                case .EOR: opcodeEOR(oc, ops)
-                case .ROL: opcodeROL(oc, ops)
-                case .ROR: opcodeROR(oc, ops)
-                case .ASL: opcodeASL(oc, ops)
-                case .LSR: opcodeLSR(oc, ops)
+                case .AND: accumulator = testSZ(accumulator & readValue(mode: oc.addressMode, ops: ops))
+                case .ORA: accumulator = testSZ(accumulator | readValue(mode: oc.addressMode, ops: ops))
+                case .EOR: accumulator = testSZ(accumulator ^ readValue(mode: oc.addressMode, ops: ops))
+                case .ROL: shifter(b: rol(carry: hasStatus(.C), oc: oc, ops: ops), oc: oc, ops: ops)
+                case .ROR: shifter(b: ror(carry: hasStatus(.C), oc: oc, ops: ops), oc: oc, ops: ops)
+                case .ASL: shifter(b: rol(oc: oc, ops: ops), oc: oc, ops: ops)
+                case .LSR: shifter(b: ror(oc: oc, ops: ops), oc: oc, ops: ops)
               // Branch opcodes
-                case .BCC: opcodeBCC(oc, ops)
-                case .BCS: opcodeBCS(oc, ops)
-                case .BEQ: opcodeBEQ(oc, ops)
-                case .BMI: opcodeBMI(oc, ops)
-                case .BNE: opcodeBNE(oc, ops)
-                case .BPL: opcodeBPL(oc, ops)
-                case .BVC: opcodeBVC(oc, ops)
-                case .BVS: opcodeBVS(oc, ops)
-              // Jump opcodes
-                case .JMP: opcodeJMP(oc, ops)
-                case .JSR: opcodeJSR(oc, ops)
+                case .BCS: if hasStatus(.C) { programCounter = getAddress(mode: oc.addressMode, ops: ops) }
+                case .BEQ: if hasStatus(.Z) { programCounter = getAddress(mode: oc.addressMode, ops: ops) }
+                case .BMI: if hasStatus(.N) { programCounter = getAddress(mode: oc.addressMode, ops: ops) }
+                case .BVS: if hasStatus(.V) { programCounter = getAddress(mode: oc.addressMode, ops: ops) }
+                case .BCC: if !hasStatus(.C) { programCounter = getAddress(mode: oc.addressMode, ops: ops) }
+                case .BNE: if !hasStatus(.Z) { programCounter = getAddress(mode: oc.addressMode, ops: ops) }
+                case .BPL: if !hasStatus(.N) { programCounter = getAddress(mode: oc.addressMode, ops: ops) }
+                case .BVC: if !hasStatus(.V) { programCounter = getAddress(mode: oc.addressMode, ops: ops) }
               // Return from opcodes
-                case .RTI: opcodeRTI(oc, ops)
-                case .RTS: opcodeRTS(oc, ops)
-              // Test status bits opcode
-                case .BIT: opcodeBIT(oc, ops) /**/
+                case .RTI: programCounter = popWord()
+                case .RTS: programCounter = (popWord() + 1)
               // Set status bits opcodes
-                case .SEC: opcodeSEC(oc, ops)
-                case .SED: opcodeSED(oc, ops)
-                case .SEI: opcodeSEI(oc, ops)
+                case .SEC: setStatus(.C)
+                case .SED: setStatus(.D)
+                case .SEI: setStatus(.I)
               // Clear status bits opcodes
-                case .CLC: opcodeCLC(oc, ops)
-                case .CLD: opcodeCLD(oc, ops)
-                case .CLI: opcodeCLI(oc, ops)
-                case .CLV: opcodeCLV(oc, ops)
+                case .CLC: setStatus(.C, false)
+                case .CLD: setStatus(.D, false)
+                case .CLI: setStatus(.I, false)
+                case .CLV: setStatus(.V, false)
               // Compare opcodes
-                case .CMP: opcodeCMP(oc, ops)
-                case .CPX: opcodeCPX(oc, ops)
-                case .CPY: opcodeCPY(oc, ops)
+                case .CMP: compare(accumulator, oc, ops)
+                case .CPX: compare(registerX, oc, ops)
+                case .CPY: compare(registerY, oc, ops)
               // Decrement registers opcodes
-                case .DEC: opcodeDEC(oc, ops)
-                case .DEX: opcodeDEX(oc, ops)
-                case .DEY: opcodeDEY(oc, ops)
+                case .DEC: alterMemory(getAddress(mode: oc.addressMode, ops: ops)) { (v: UInt8) in (v - 1) }
+                case .DEX: testSZ(--registerX)
+                case .DEY: testSZ(--registerY)
               // Increment registers opcodes
-                case .INC: opcodeINC(oc, ops)
-                case .INX: opcodeINX(oc, ops)
-                case .INY: opcodeINY(oc, ops)
+                case .INC: alterMemory(getAddress(mode: oc.addressMode, ops: ops)) { (v: UInt8) in (v + 1) }
+                case .INX: testSZ(++registerX)
+                case .INY: testSZ(++registerY)
               // Load registers opcodes
-                case .LDA: opcodeLDA(oc, ops)
-                case .LDX: opcodeLDX(oc, ops)
-                case .LDY: opcodeLDY(oc, ops)
+                case .LDA: accumulator = testSZ(readValue(mode: oc.addressMode, ops: ops))
+                case .LDX: registerX = testSZ(readValue(mode: oc.addressMode, ops: ops))
+                case .LDY: registerY = testSZ(readValue(mode: oc.addressMode, ops: ops))
               // Store registers opcodes
-                case .STA: opcodeSTA(oc, ops)
-                case .STX: opcodeSTX(oc, ops)
-                case .STY: opcodeSTY(oc, ops)
+                case .STA: writeValue(value: accumulator, mode: oc.addressMode, ops: ops)
+                case .STX: writeValue(value: registerX, mode: oc.addressMode, ops: ops)
+                case .STY: writeValue(value: registerY, mode: oc.addressMode, ops: ops)
               // Stack opcodes
-                case .PHA: opcodePHA(oc, ops)
-                case .PHP: opcodePHP(oc, ops)
-                case .PLA: opcodePLA(oc, ops)
-                case .PLP: opcodePLP(oc, ops)
+                case .PHA: push(byte: accumulator)
+                case .PHP: push(byte: statusRegister)
+                case .PLA: accumulator = testSZ(pop())
+                case .PLP: statusRegister = pop()
               // Transfer opcodes
-                case .TAX: opcodeTAX(oc, ops)
-                case .TAY: opcodeTAY(oc, ops)
-                case .TXA: opcodeTXA(oc, ops)
-                case .TYA: opcodeTYA(oc, ops)
-                case .TSX: opcodeTSX(oc, ops)
-                case .TXS: opcodeTXS(oc, ops)
-              // Break opcode
-                case .BRK: opcodeBRK(oc, ops) /**/
+                case .TAX: registerX = testSZ(accumulator)
+                case .TAY: registerY = testSZ(accumulator)
+                case .TSX: registerX = testSZ(stackPointer)
+                case .TXA: accumulator = testSZ(registerX)
+                case .TXS: stackPointer = registerX
+                case .TYA: accumulator = testSZ(registerY)
               // NOOP opcode
-                case .NOP: opcodeNOP(oc, ops)
+                case .NOP: break
+              // Jump opcodes
+                case .JMP: programCounter = getAddress(mode: oc.addressMode, ops: ops)
+                case .JSR:
+                    push(word: (programCounter - 1))
+                    programCounter = getAddress(mode: oc.addressMode, ops: ops)
+              // Break opcode
+                case .BRK:
+                    push(word: programCounter++)
+                    push(byte: statusRegister | Mos6502Flags.B)
+                    setStatus(.I)
+                    programCounter = getIndirectAddress(UInt16(0xfffe))
+              // Test status bits opcode
+                case .BIT:
+                    let v: UInt8 = readValue(mode: oc.addressMode, ops: ops)
+                    setStatus(.Z, (v &? accumulator))
+                    setStatus(.N, (v &! 0x80))
+                    setStatus(.V, (v &! 0x40))
             }
         }
         else {
             handleError()
         }
     }
-
-    /*===========================================================================================================================*/
-    /// Process the BIT opcode.
-    ///
-    /// - Parameter oc: the opcode information.
-    ///
-    public func opcodeBIT(_ oc: Mos6502OpcodeInfo, _ ops: [UInt8]) {
-        let v: UInt8 = readValue(mode: oc.addressMode, ops: ops)
-        setStatus(.Z, (v &? accumulator))
-        setStatus(.N, (v &! 0x80))
-        setStatus(.V, (v &! 0x40))
-    }
-
-    /*===========================================================================================================================*/
-    /// Process the BRK opcode.
-    ///
-    /// - Parameter oc: the opcode information.
-    ///
-    public func opcodeBRK(_ oc: Mos6502OpcodeInfo, _ ops: [UInt8]) {
-        push(word: programCounter++)
-        push(byte: statusRegister | Mos6502Flags.B)
-        setStatus(.I)
-        programCounter = getIndirectAddress(UInt16(0xfffe))
-    }
-
-    /*===========================================================================================================================*/
-    /// Process the ADC opcode.
-    ///
-    /// - Parameter oc: the opcode information.
-    ///
-    public func opcodeADC(_ oc: Mos6502OpcodeInfo, _ ops: [UInt8]) { addsub(opcode: oc, ops: ops, mask: 0x0000) }
-
-    /*===========================================================================================================================*/
-    /// Process the SBC opcode.
-    ///
-    /// - Parameter oc: the opcode information.
-    ///
-    public func opcodeSBC(_ oc: Mos6502OpcodeInfo, _ ops: [UInt8]) { addsub(opcode: oc, ops: ops, mask: 0x00ff) }
-
-    /*===========================================================================================================================*/
-    /// Process the DEC opcode.
-    ///
-    /// - Parameter oc: the opcode information.
-    ///
-    public func opcodeDEC(_ oc: Mos6502OpcodeInfo, _ ops: [UInt8]) { alterMemory(getAddress(mode: oc.addressMode, ops: ops)) { (v: UInt8) in (v - 1) } }
-
-    /*===========================================================================================================================*/
-    /// Process the INC opcode.
-    ///
-    /// - Parameter oc: the opcode information.
-    ///
-    public func opcodeINC(_ oc: Mos6502OpcodeInfo, _ ops: [UInt8]) { alterMemory(getAddress(mode: oc.addressMode, ops: ops)) { (v: UInt8) in (v + 1) } }
-
-    /*===========================================================================================================================*/
-    /// Process the ROL opcode.
-    ///
-    /// - Parameter oc: the opcode information.
-    ///
-    public func opcodeROL(_ oc: Mos6502OpcodeInfo, _ ops: [UInt8]) { shifter(b: rol(carry: hasStatus(.C), oc: oc, ops: ops), oc: oc, ops: ops) }
-
-    /*===========================================================================================================================*/
-    /// Process the ROR opcode.
-    ///
-    /// - Parameter oc: the opcode information.
-    ///
-    public func opcodeROR(_ oc: Mos6502OpcodeInfo, _ ops: [UInt8]) { shifter(b: ror(carry: hasStatus(.C), oc: oc, ops: ops), oc: oc, ops: ops) }
-
-    /*===========================================================================================================================*/
-    /// Process the ASL opcode.
-    ///
-    /// - Parameter oc: the opcode information.
-    ///
-    public func opcodeASL(_ oc: Mos6502OpcodeInfo, _ ops: [UInt8]) { shifter(b: rol(oc: oc, ops: ops), oc: oc, ops: ops) }
-
-    /*===========================================================================================================================*/
-    /// Process the LSR opcode.
-    ///
-    /// - Parameter oc: the opcode information.
-    ///
-    public func opcodeLSR(_ oc: Mos6502OpcodeInfo, _ ops: [UInt8]) { shifter(b: ror(oc: oc, ops: ops), oc: oc, ops: ops) }
-
-    /*===========================================================================================================================*/
-    /// Process the CMP opcode.
-    ///
-    /// - Parameter oc: the opcode information.
-    ///
-    public func opcodeCMP(_ oc: Mos6502OpcodeInfo, _ ops: [UInt8]) { compare(accumulator, oc, ops) }
-
-    /*===========================================================================================================================*/
-    /// Process the CPX opcode.
-    ///
-    /// - Parameter oc: the opcode information.
-    ///
-    public func opcodeCPX(_ oc: Mos6502OpcodeInfo, _ ops: [UInt8]) { compare(registerX, oc, ops) }
-
-    /*===========================================================================================================================*/
-    /// Process the CPY opcode.
-    ///
-    /// - Parameter oc: the opcode information.
-    ///
-    public func opcodeCPY(_ oc: Mos6502OpcodeInfo, _ ops: [UInt8]) { compare(registerY, oc, ops) }
-
-    /*===========================================================================================================================*/
-    /// Process the AND opcode.
-    ///
-    /// - Parameter oc: the opcode information.
-    ///
-    public func opcodeAND(_ oc: Mos6502OpcodeInfo, _ ops: [UInt8]) { accumulator = testSZ(accumulator & readValue(mode: oc.addressMode, ops: ops)) }
-
-    /*===========================================================================================================================*/
-    /// Process the ORA opcode.
-    ///
-    /// - Parameter oc: the opcode information.
-    ///
-    public func opcodeORA(_ oc: Mos6502OpcodeInfo, _ ops: [UInt8]) { accumulator = testSZ(accumulator | readValue(mode: oc.addressMode, ops: ops)) }
-
-    /*===========================================================================================================================*/
-    /// Process the EOR opcode.
-    ///
-    /// - Parameter oc: the opcode information.
-    ///
-    public func opcodeEOR(_ oc: Mos6502OpcodeInfo, _ ops: [UInt8]) { accumulator = testSZ(accumulator ^ readValue(mode: oc.addressMode, ops: ops)) }
-
-    /*===========================================================================================================================*/
-    /// Process the BCC opcode.
-    ///
-    /// - Parameter oc: the opcode information.
-    ///
-    public func opcodeBCC(_ oc: Mos6502OpcodeInfo, _ ops: [UInt8]) { if !hasStatus(.C) { programCounter = getAddress(mode: oc.addressMode, ops: ops) } }
-
-    /*===========================================================================================================================*/
-    /// Process the BCS opcode.
-    ///
-    /// - Parameter oc: the opcode information.
-    ///
-    public func opcodeBCS(_ oc: Mos6502OpcodeInfo, _ ops: [UInt8]) { if hasStatus(.C) { programCounter = getAddress(mode: oc.addressMode, ops: ops) } }
-
-    /*===========================================================================================================================*/
-    /// Process the BEQ opcode.
-    ///
-    /// - Parameter oc: the opcode information.
-    ///
-    public func opcodeBEQ(_ oc: Mos6502OpcodeInfo, _ ops: [UInt8]) { if hasStatus(.Z) { programCounter = getAddress(mode: oc.addressMode, ops: ops) } }
-
-    /*===========================================================================================================================*/
-    /// Process the BMI opcode.
-    ///
-    /// - Parameter oc: the opcode information.
-    ///
-    public func opcodeBMI(_ oc: Mos6502OpcodeInfo, _ ops: [UInt8]) { if hasStatus(.N) { programCounter = getAddress(mode: oc.addressMode, ops: ops) } }
-
-    /*===========================================================================================================================*/
-    /// Process the BNE opcode.
-    ///
-    /// - Parameter oc: the opcode information.
-    ///
-    public func opcodeBNE(_ oc: Mos6502OpcodeInfo, _ ops: [UInt8]) { if !hasStatus(.Z) { programCounter = getAddress(mode: oc.addressMode, ops: ops) } }
-
-    /*===========================================================================================================================*/
-    /// Process the BPL opcode.
-    ///
-    /// - Parameter oc: the opcode information.
-    ///
-    public func opcodeBPL(_ oc: Mos6502OpcodeInfo, _ ops: [UInt8]) { if !hasStatus(.N) { programCounter = getAddress(mode: oc.addressMode, ops: ops) } }
-
-    /*===========================================================================================================================*/
-    /// Process the BVC opcode.
-    ///
-    /// - Parameter oc: the opcode information.
-    ///
-    public func opcodeBVC(_ oc: Mos6502OpcodeInfo, _ ops: [UInt8]) { if !hasStatus(.V) { programCounter = getAddress(mode: oc.addressMode, ops: ops) } }
-
-    /*===========================================================================================================================*/
-    /// Process the BVS opcode.
-    ///
-    /// - Parameter oc: the opcode information.
-    ///
-    public func opcodeBVS(_ oc: Mos6502OpcodeInfo, _ ops: [UInt8]) { if hasStatus(.V) { programCounter = getAddress(mode: oc.addressMode, ops: ops) } }
-
-    /*===========================================================================================================================*/
-    /// Process the CLC opcode.
-    ///
-    /// - Parameter oc: the opcode information.
-    ///
-    public func opcodeCLC(_ oc: Mos6502OpcodeInfo, _ ops: [UInt8]) { setStatus(.C, false) }
-
-    /*===========================================================================================================================*/
-    /// Process the CLD opcode.
-    ///
-    /// - Parameter oc: the opcode information.
-    ///
-    public func opcodeCLD(_ oc: Mos6502OpcodeInfo, _ ops: [UInt8]) { setStatus(.D, false) }
-
-    /*===========================================================================================================================*/
-    /// Process the CLI opcode.
-    ///
-    /// - Parameter oc: the opcode information.
-    ///
-    public func opcodeCLI(_ oc: Mos6502OpcodeInfo, _ ops: [UInt8]) { setStatus(.I, false) }
-
-    /*===========================================================================================================================*/
-    /// Process the CLV opcode.
-    ///
-    /// - Parameter oc: the opcode information.
-    ///
-    public func opcodeCLV(_ oc: Mos6502OpcodeInfo, _ ops: [UInt8]) { setStatus(.V, false) }
-
-    /*===========================================================================================================================*/
-    /// Process the DEX opcode.
-    ///
-    /// - Parameter oc: the opcode information.
-    ///
-    public func opcodeDEX(_ oc: Mos6502OpcodeInfo, _ ops: [UInt8]) { testSZ(--registerX) }
-
-    /*===========================================================================================================================*/
-    /// Process the DEY opcode.
-    ///
-    /// - Parameter oc: the opcode information.
-    ///
-    public func opcodeDEY(_ oc: Mos6502OpcodeInfo, _ ops: [UInt8]) { testSZ(--registerY) }
-
-    /*===========================================================================================================================*/
-    /// Process the INX opcode.
-    ///
-    /// - Parameter oc: the opcode information.
-    ///
-    public func opcodeINX(_ oc: Mos6502OpcodeInfo, _ ops: [UInt8]) { testSZ(++registerX) }
-
-    /*===========================================================================================================================*/
-    /// Process the INY opcode.
-    ///
-    /// - Parameter oc: the opcode information.
-    ///
-    public func opcodeINY(_ oc: Mos6502OpcodeInfo, _ ops: [UInt8]) { testSZ(++registerY) }
-
-    /*===========================================================================================================================*/
-    /// Process the JMP opcode.
-    ///
-    /// - Parameter oc: the opcode information.
-    ///
-    public func opcodeJMP(_ oc: Mos6502OpcodeInfo, _ ops: [UInt8]) { programCounter = getAddress(mode: oc.addressMode, ops: ops) }
-
-    /*===========================================================================================================================*/
-    /// Process the JSR opcode.
-    ///
-    /// - Parameter oc: the opcode information.
-    ///
-    public func opcodeJSR(_ oc: Mos6502OpcodeInfo, _ ops: [UInt8]) { push(word: (programCounter - 1)); programCounter = getAddress(mode: oc.addressMode, ops: ops) }
-
-    /*===========================================================================================================================*/
-    /// Process the LDA opcode.
-    ///
-    /// - Parameter oc: the opcode information.
-    ///
-    public func opcodeLDA(_ oc: Mos6502OpcodeInfo, _ ops: [UInt8]) { accumulator = testSZ(readValue(mode: oc.addressMode, ops: ops)) }
-
-    /*===========================================================================================================================*/
-    /// Process the LDX opcode.
-    ///
-    /// - Parameter oc: the opcode information.
-    ///
-    public func opcodeLDX(_ oc: Mos6502OpcodeInfo, _ ops: [UInt8]) { registerX = testSZ(readValue(mode: oc.addressMode, ops: ops)) }
-
-    /*===========================================================================================================================*/
-    /// Process the LDY opcode.
-    ///
-    /// - Parameter oc: the opcode information.
-    ///
-    public func opcodeLDY(_ oc: Mos6502OpcodeInfo, _ ops: [UInt8]) { registerY = testSZ(readValue(mode: oc.addressMode, ops: ops)) }
-
-    /*===========================================================================================================================*/
-    /// Process the NOP opcode.
-    ///
-    /// - Parameter oc: the opcode information.
-    ///
-    public func opcodeNOP(_ oc: Mos6502OpcodeInfo, _ ops: [UInt8]) {}
-
-    /*===========================================================================================================================*/
-    /// Process the PHA opcode.
-    ///
-    /// - Parameter oc: the opcode information.
-    ///
-    public func opcodePHA(_ oc: Mos6502OpcodeInfo, _ ops: [UInt8]) { push(byte: accumulator) }
-
-    /*===========================================================================================================================*/
-    /// Process the PHP opcode.
-    ///
-    /// - Parameter oc: the opcode information.
-    ///
-    public func opcodePHP(_ oc: Mos6502OpcodeInfo, _ ops: [UInt8]) { push(byte: statusRegister) }
-
-    /*===========================================================================================================================*/
-    /// Process the PLA opcode.
-    ///
-    /// - Parameter oc: the opcode information.
-    ///
-    public func opcodePLA(_ oc: Mos6502OpcodeInfo, _ ops: [UInt8]) { accumulator = testSZ(pop()) }
-
-    /*===========================================================================================================================*/
-    /// Process the PLP opcode.
-    ///
-    /// - Parameter oc: the opcode information.
-    ///
-    public func opcodePLP(_ oc: Mos6502OpcodeInfo, _ ops: [UInt8]) { statusRegister = pop() }
-
-    /*===========================================================================================================================*/
-    /// Process the RTI opcode.
-    ///
-    /// - Parameter oc: the opcode information.
-    ///
-    public func opcodeRTI(_ oc: Mos6502OpcodeInfo, _ ops: [UInt8]) { programCounter = popWord() }
-
-    /*===========================================================================================================================*/
-    /// Process the RTS opcode.
-    ///
-    /// - Parameter oc: the opcode information.
-    ///
-    public func opcodeRTS(_ oc: Mos6502OpcodeInfo, _ ops: [UInt8]) { programCounter = (popWord() + 1) }
-
-    /*===========================================================================================================================*/
-    /// Process the SEC opcode.
-    ///
-    /// - Parameter oc: the opcode information.
-    ///
-    public func opcodeSEC(_ oc: Mos6502OpcodeInfo, _ ops: [UInt8]) { setStatus(.C) }
-
-    /*===========================================================================================================================*/
-    /// Process the SED opcode.
-    ///
-    /// - Parameter oc: the opcode information.
-    ///
-    public func opcodeSED(_ oc: Mos6502OpcodeInfo, _ ops: [UInt8]) { setStatus(.D) }
-
-    /*===========================================================================================================================*/
-    /// Process the SEI opcode.
-    ///
-    /// - Parameter oc: the opcode information.
-    ///
-    public func opcodeSEI(_ oc: Mos6502OpcodeInfo, _ ops: [UInt8]) { setStatus(.I) }
-
-    /*===========================================================================================================================*/
-    /// Process the STA opcode.
-    ///
-    /// - Parameter oc: the opcode information.
-    ///
-    public func opcodeSTA(_ oc: Mos6502OpcodeInfo, _ ops: [UInt8]) { writeValue(value: accumulator, mode: oc.addressMode, ops: ops) }
-
-    /*===========================================================================================================================*/
-    /// Process the STX opcode.
-    ///
-    /// - Parameter oc: the opcode information.
-    ///
-    public func opcodeSTX(_ oc: Mos6502OpcodeInfo, _ ops: [UInt8]) { writeValue(value: registerX, mode: oc.addressMode, ops: ops) }
-
-    /*===========================================================================================================================*/
-    /// Process the STY opcode.
-    ///
-    /// - Parameter oc: the opcode information.
-    ///
-    public func opcodeSTY(_ oc: Mos6502OpcodeInfo, _ ops: [UInt8]) { writeValue(value: registerY, mode: oc.addressMode, ops: ops) }
-
-    /*===========================================================================================================================*/
-    /// Process the TSX opcode.
-    ///
-    /// - Parameter oc: the opcode information.
-    ///
-    public func opcodeTSX(_ oc: Mos6502OpcodeInfo, _ ops: [UInt8]) { registerX = testSZ(stackPointer) }
-
-    /*===========================================================================================================================*/
-    /// Process the TXS opcode.
-    ///
-    /// - Parameter oc: the opcode information.
-    ///
-    public func opcodeTXS(_ oc: Mos6502OpcodeInfo, _ ops: [UInt8]) { stackPointer = registerX }
-
-    /*===========================================================================================================================*/
-    /// Process the TXA opcode.
-    ///
-    /// - Parameter oc: the opcode information.
-    ///
-    public func opcodeTXA(_ oc: Mos6502OpcodeInfo, _ ops: [UInt8]) { accumulator = testSZ(registerX) }
-
-    /*===========================================================================================================================*/
-    /// Process the TAX opcode.
-    ///
-    /// - Parameter oc: the opcode information.
-    ///
-    public func opcodeTAX(_ oc: Mos6502OpcodeInfo, _ ops: [UInt8]) { registerX = testSZ(accumulator) }
-
-    /*===========================================================================================================================*/
-    /// Process the TYA opcode.
-    ///
-    /// - Parameter oc: the opcode information.
-    ///
-    public func opcodeTYA(_ oc: Mos6502OpcodeInfo, _ ops: [UInt8]) { accumulator = testSZ(registerY) }
-
-    /*===========================================================================================================================*/
-    /// Process the TAY opcode.
-    ///
-    /// - Parameter oc: the opcode information.
-    ///
-    public func opcodeTAY(_ oc: Mos6502OpcodeInfo, _ ops: [UInt8]) { registerY = testSZ(accumulator) }
 }
