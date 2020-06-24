@@ -289,13 +289,6 @@
     },
     {
       "file": "/Users/grhodes/Projects/2020/SwiftProjects/Emu6510/Emu6510/Emu6510.swift",
-      "line": 111,
-      "symbol": "Memory.ramMemory",
-      "symbol_kind": "source.lang.swift.decl.var.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/grhodes/Projects/2020/SwiftProjects/Emu6510/Emu6510/Emu6510.swift",
       "line": 113,
       "symbol": "Memory.init(pageCount:offset:isReadOnly:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
@@ -1178,13 +1171,6 @@
     },
     {
       "file": "/Users/grhodes/Projects/2020/SwiftProjects/Emu6510/Emu6510/OpcodeData.swift",
-      "line": 269,
-      "symbol": "Mos6502OpcodeInfo._flags",
-      "symbol_kind": "source.lang.swift.decl.var.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/grhodes/Projects/2020/SwiftProjects/Emu6510/Emu6510/OpcodeData.swift",
       "line": 273,
       "symbol": "Mos6502OpcodeInfo.init(opcode:mnemonic:addressMode:bytes:cycles:plus1:flags:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
@@ -1286,13 +1272,6 @@
       "line": 65,
       "symbol": "StringProtocol.rep(toLength:startingAt:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/grhodes/Projects/2020/SwiftProjects/Emu6510/Emu6510/Tools.swift",
-      "line": 75,
-      "symbol": "SignedByte",
-      "symbol_kind": "source.lang.swift.decl.var.global",
       "warning": "undocumented"
     },
     {
