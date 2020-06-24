@@ -22,9 +22,9 @@
 
 import Foundation
 
-@inlinable public func &!<T: BinaryInteger>(lhs: T, rhs: T) -> Bool { ((lhs & rhs) == rhs) }
+@inlinable public func &! <T: BinaryInteger>(lhs: T, rhs: T) -> Bool { ((lhs & rhs) == rhs) }
 
-@inlinable public func &?<T: BinaryInteger>(lhs: T, rhs: T) -> Bool { ((lhs & rhs) != rhs) }
+@inlinable public func &? <T: BinaryInteger>(lhs: T, rhs: T) -> Bool { ((lhs & rhs) != rhs) }
 
 public enum Alignment {
     case Left, Right, Center

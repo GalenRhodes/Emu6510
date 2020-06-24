@@ -24,12 +24,11 @@ import Foundation
 import Rubicon
 
 public protocol MemoryManager: AddressBusListener, IOPortListener {
-
 }
 
 public class C64MemoryManager: MemoryManager {
-    public private(set) var offset: UInt16 = 0
-    public private(set) var size:   UInt32 = AddressRange
+    public private(set) var offset: UInt16    = 0
+    public private(set) var size:   UInt32    = AddressRange
     public private(set) var ioPort: CPUIOPort = (directionRegister: 0, ioPort: 0)
 
     public init() {}

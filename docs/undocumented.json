@@ -50,125 +50,6 @@
       "warning": "undocumented"
     },
     {
-      "file": "/Users/grhodes/Projects/2020/SwiftProjects/Emu6510/Emu6510/CPU65xx.swift",
-      "line": 146,
-      "symbol": "CPU65xx.testOverflow(acc:val:res:)",
-      "symbol_kind": "source.lang.swift.decl.function.method.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/grhodes/Projects/2020/SwiftProjects/Emu6510/Emu6510/CPU65xx.swift",
-      "line": 148,
-      "symbol": "CPU65xx.testZero(_:)",
-      "symbol_kind": "source.lang.swift.decl.function.method.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/grhodes/Projects/2020/SwiftProjects/Emu6510/Emu6510/CPU65xx.swift",
-      "line": 150,
-      "symbol": "CPU65xx.testSign(_:)",
-      "symbol_kind": "source.lang.swift.decl.function.method.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/grhodes/Projects/2020/SwiftProjects/Emu6510/Emu6510/CPU65xx.swift",
-      "line": 152,
-      "symbol": "CPU65xx.testCarry(_:)",
-      "symbol_kind": "source.lang.swift.decl.function.method.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/grhodes/Projects/2020/SwiftProjects/Emu6510/Emu6510/CPU65xx.swift",
-      "line": 154,
-      "symbol": "CPU65xx.decSP()",
-      "symbol_kind": "source.lang.swift.decl.function.method.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/grhodes/Projects/2020/SwiftProjects/Emu6510/Emu6510/CPU65xx.swift",
-      "line": 160,
-      "symbol": "CPU65xx.incSP()",
-      "symbol_kind": "source.lang.swift.decl.function.method.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/grhodes/Projects/2020/SwiftProjects/Emu6510/Emu6510/CPU65xx.swift",
-      "line": 165,
-      "symbol": "CPU65xx.push(byte:)",
-      "symbol_kind": "source.lang.swift.decl.function.method.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/grhodes/Projects/2020/SwiftProjects/Emu6510/Emu6510/CPU65xx.swift",
-      "line": 167,
-      "symbol": "CPU65xx.push(word:)",
-      "symbol_kind": "source.lang.swift.decl.function.method.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/grhodes/Projects/2020/SwiftProjects/Emu6510/Emu6510/CPU65xx.swift",
-      "line": 172,
-      "symbol": "CPU65xx.pop()",
-      "symbol_kind": "source.lang.swift.decl.function.method.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/grhodes/Projects/2020/SwiftProjects/Emu6510/Emu6510/CPU65xx.swift",
-      "line": 174,
-      "symbol": "CPU65xx.popWord()",
-      "symbol_kind": "source.lang.swift.decl.function.method.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/grhodes/Projects/2020/SwiftProjects/Emu6510/Emu6510/CPU65xx.swift",
-      "line": 233,
-      "symbol": "CPU65xx.getValue(mode:operands:)",
-      "symbol_kind": "source.lang.swift.decl.function.method.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/grhodes/Projects/2020/SwiftProjects/Emu6510/Emu6510/CPU65xx.swift",
-      "line": 242,
-      "symbol": "CPU65xx.setValue(value:mode:operands:)",
-      "symbol_kind": "source.lang.swift.decl.function.method.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/grhodes/Projects/2020/SwiftProjects/Emu6510/Emu6510/CPU65xx.swift",
-      "line": 256,
-      "symbol": "CPU65xx.getNextPCByte()",
-      "symbol_kind": "source.lang.swift.decl.function.method.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/grhodes/Projects/2020/SwiftProjects/Emu6510/Emu6510/CPU65xx.swift",
-      "line": 372,
-      "symbol": "CPU65xx.rol(carry:od:oprands:)",
-      "symbol_kind": "source.lang.swift.decl.function.method.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/grhodes/Projects/2020/SwiftProjects/Emu6510/Emu6510/CPU65xx.swift",
-      "line": 378,
-      "symbol": "CPU65xx.ror(carry:od:oprands:)",
-      "symbol_kind": "source.lang.swift.decl.function.method.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/grhodes/Projects/2020/SwiftProjects/Emu6510/Emu6510/CPU65xx.swift",
-      "line": 384,
-      "symbol": "CPU65xx.supertramp(v:od:oprands:)",
-      "symbol_kind": "source.lang.swift.decl.function.method.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/grhodes/Projects/2020/SwiftProjects/Emu6510/Emu6510/CPU65xx.swift",
-      "line": 389,
-      "symbol": "CPU65xx.testSZ(_:)",
-      "symbol_kind": "source.lang.swift.decl.function.method.instance",
-      "warning": "undocumented"
-    },
-    {
       "file": "/Users/grhodes/Projects/2020/SwiftProjects/Emu6510/Emu6510/Emu6510.swift",
       "line": 33,
       "symbol": "MOS65xxFamily.Mos6502",
@@ -464,49 +345,49 @@
     },
     {
       "file": "/Users/grhodes/Projects/2020/SwiftProjects/Emu6510/Emu6510/MemoryManager.swift",
-      "line": 30,
+      "line": 29,
       "symbol": "C64MemoryManager",
       "symbol_kind": "source.lang.swift.decl.class",
       "warning": "undocumented"
     },
     {
       "file": "/Users/grhodes/Projects/2020/SwiftProjects/Emu6510/Emu6510/MemoryManager.swift",
-      "line": 31,
+      "line": 30,
       "symbol": "C64MemoryManager.offset",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/grhodes/Projects/2020/SwiftProjects/Emu6510/Emu6510/MemoryManager.swift",
-      "line": 32,
+      "line": 31,
       "symbol": "C64MemoryManager.size",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/grhodes/Projects/2020/SwiftProjects/Emu6510/Emu6510/MemoryManager.swift",
-      "line": 33,
+      "line": 32,
       "symbol": "C64MemoryManager.ioPort",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/grhodes/Projects/2020/SwiftProjects/Emu6510/Emu6510/MemoryManager.swift",
-      "line": 35,
+      "line": 34,
       "symbol": "C64MemoryManager.init()",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/grhodes/Projects/2020/SwiftProjects/Emu6510/Emu6510/MemoryManager.swift",
-      "line": 37,
+      "line": 36,
       "symbol": "C64MemoryManager.subscript(_:)",
       "symbol_kind": "source.lang.swift.decl.function.subscript",
       "warning": "undocumented"
     },
     {
       "file": "/Users/grhodes/Projects/2020/SwiftProjects/Emu6510/Emu6510/MemoryManager.swift",
-      "line": 42,
+      "line": 41,
       "symbol": "C64MemoryManager.ioPortStatusChanged(oldStatus:newStatus:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
