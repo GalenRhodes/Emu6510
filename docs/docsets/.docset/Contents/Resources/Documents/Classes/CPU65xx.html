@@ -14,7 +14,7 @@
     <a title="CPU65xx Class Reference"></a>
     <header>
       <div class="content-wrapper">
-        <p><a href="../index.html">Emu6510©</a> (38% documented)</p>
+        <p><a href="../index.html">Emu6510©</a> (25% documented)</p>
         <p class="header-right"><a href="https://github.com/GalenRhodes/Rubicon"><img src="../img/gh.png"/>View on GitHub</a></p>
       </div>
     </header>
@@ -1282,6 +1282,328 @@ zero is returned.</p>
                 <li class="item">
                   <div>
                     <code>
+                    <a name="/s:7Emu65107CPU65xxC17getIndexedAddressys6UInt16VAF_s5UInt8VtF"></a>
+                    <a name="//apple_ref/swift/Method/getIndexedAddress(_:_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7Emu65107CPU65xxC17getIndexedAddressys6UInt16VAF_s5UInt8VtF">getIndexedAddress(_:_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Offset an address by an amount. This method adds one to the instruction execution time if the result is in a different page
+of memory.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@inlinable</span>
+<span class="kd">func</span> <span class="nf">getIndexedAddress</span><span class="p">(</span><span class="n">_</span> <span class="nv">a</span><span class="p">:</span> <span class="kt">UInt16</span><span class="p">,</span> <span class="n">_</span> <span class="nv">o</span><span class="p">:</span> <span class="kt">UInt8</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">UInt16</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>a</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>the address</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>o</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>the offset</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>the sum of the address and the offset.</p>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Emu6510/CPU65xx.swift#L292-L296">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7Emu65107CPU65xxC18getRelativeAddressys6UInt16VAF_s4Int8VtF"></a>
+                    <a name="//apple_ref/swift/Method/getRelativeAddress(_:_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7Emu65107CPU65xxC18getRelativeAddressys6UInt16VAF_s4Int8VtF">getRelativeAddress(_:_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Offset an address by an amount. This method adds one to the instruction execution time if the result is in a different page
+of memory. This method differs from getIndexedAddress(<em>:</em>:) in that the offset is signed and therefore the result can be
+before as well as after then given address.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@inlinable</span>
+<span class="kd">func</span> <span class="nf">getRelativeAddress</span><span class="p">(</span><span class="n">_</span> <span class="nv">a</span><span class="p">:</span> <span class="kt">UInt16</span><span class="p">,</span> <span class="n">_</span> <span class="nv">o</span><span class="p">:</span> <span class="kt">Int8</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">UInt16</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>a</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>the address</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>o</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>the offset</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>the sum of the address and the offset.</p>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Emu6510/CPU65xx.swift#L308-L312">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7Emu65107CPU65xxC19getIndirectYAddressys6UInt16Vs5UInt8VF"></a>
+                    <a name="//apple_ref/swift/Method/getIndirectYAddress(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7Emu65107CPU65xxC19getIndirectYAddressys6UInt16Vs5UInt8VF">getIndirectYAddress(_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Yeah. Ummm. See the discussion on Indirect Indexed here: <a href="http://www.emulator101.com/6502-addressing-modes.html">http://www.emulator101.com/6502-addressing-modes.html</a> As with the
+others this method adds one to the instruction execution time if the result is in a different page of memory.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@inlinable</span>
+<span class="kd">func</span> <span class="nf">getIndirectYAddress</span><span class="p">(</span><span class="n">_</span> <span class="nv">zpAddr</span><span class="p">:</span> <span class="kt">UInt8</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">UInt16</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>zpAddr</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>the address in page zero.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>the Indirect Indexed address.</p>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Emu6510/CPU65xx.swift#L321-L326">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7Emu65107CPU65xxC11addWithWrapys5UInt8VAF_AFtF"></a>
+                    <a name="//apple_ref/swift/Method/addWithWrap(_:_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7Emu65107CPU65xxC11addWithWrapys5UInt8VAF_AFtF">addWithWrap(_:_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Add two numbers together wrapping around if needed. No overflow error will occur.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@inlinable</span>
+<span class="kd">func</span> <span class="nf">addWithWrap</span><span class="p">(</span><span class="n">_</span> <span class="nv">a</span><span class="p">:</span> <span class="kt">UInt8</span><span class="p">,</span> <span class="n">_</span> <span class="nv">b</span><span class="p">:</span> <span class="kt">UInt8</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">UInt8</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>a</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>number 1</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>b</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>number 2</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>the sum of the two numbers.</p>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Emu6510/CPU65xx.swift#L336-L338">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7Emu65107CPU65xxC6diffPgySbs6UInt16V_AFtF"></a>
+                    <a name="//apple_ref/swift/Method/diffPg(_:_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7Emu65107CPU65xxC6diffPgySbs6UInt16V_AFtF">diffPg(_:_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Return <code>true</code> if the two addresses are in different pages of memory.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@inlinable</span>
+<span class="kd">func</span> <span class="nf">diffPg</span><span class="p">(</span><span class="n">_</span> <span class="nv">a</span><span class="p">:</span> <span class="kt">UInt16</span><span class="p">,</span> <span class="n">_</span> <span class="nv">b</span><span class="p">:</span> <span class="kt">UInt16</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Bool</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>a</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>address 1</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>b</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>address 2</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p><code>true</code> if the upper 8 bits of both values are not the same.</p>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Emu6510/CPU65xx.swift#L348-L350">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
                     <a name="/s:7Emu65107CPU65xxC10getAddress4mode3opss6UInt16VAA07Mos6502D5ModesO_Says5UInt8VGtF"></a>
                     <a name="//apple_ref/swift/Method/getAddress(mode:ops:)" class="dashAnchor"></a>
                     <a class="token" href="#/s:7Emu65107CPU65xxC10getAddress4mode3opss6UInt16VAA07Mos6502D5ModesO_Says5UInt8VGtF">getAddress(mode:ops:)</a>
@@ -1293,8 +1615,6 @@ zero is returned.</p>
                       <div class="pointer"></div>
                       <div class="abstract">
                         <p>Get the operational address based on the ops and the addressing mode.</p>
-
-<p>TODO: Handle additional clock cycles for crossing page boundaries.</p>
 
                       </div>
                       <div class="declaration">
@@ -1342,7 +1662,7 @@ zero is returned.</p>
                         <p>the operational address.</p>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Emu6510/CPU65xx.swift#L293-L313">Show on GitHub</a>
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Emu6510/CPU65xx.swift#L360-L400">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -1408,7 +1728,7 @@ zero is returned.</p>
                         <p>the value.</p>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Emu6510/CPU65xx.swift#L323-L330">Show on GitHub</a>
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Emu6510/CPU65xx.swift#L410-L417">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -1483,7 +1803,7 @@ operators.</p>
                         </table>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Emu6510/CPU65xx.swift#L341-L348">Show on GitHub</a>
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Emu6510/CPU65xx.swift#L428-L435">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -1545,7 +1865,7 @@ operators.</p>
                         </table>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Emu6510/CPU65xx.swift#L357-L359">Show on GitHub</a>
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Emu6510/CPU65xx.swift#L444-L446">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -1599,7 +1919,7 @@ operators.</p>
                         <p><code>true</code> if that flag is set in the status register.</p>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Emu6510/CPU65xx.swift#L367-L369">Show on GitHub</a>
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Emu6510/CPU65xx.swift#L454-L456">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -1677,7 +1997,7 @@ operators.</p>
                         <p>the new value.</p>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Emu6510/CPU65xx.swift#L380-L384">Show on GitHub</a>
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Emu6510/CPU65xx.swift#L467-L471">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -1755,7 +2075,7 @@ operators.</p>
                         <p>the new value.</p>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Emu6510/CPU65xx.swift#L395-L399">Show on GitHub</a>
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Emu6510/CPU65xx.swift#L482-L486">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -1763,9 +2083,9 @@ operators.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:7Emu65107CPU65xxC7shifter1b2oc3opsys5UInt8V_AA17Mos6502OpcodeInfoCSayAIGtF"></a>
-                    <a name="//apple_ref/swift/Method/shifter(b:oc:ops:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:7Emu65107CPU65xxC7shifter1b2oc3opsys5UInt8V_AA17Mos6502OpcodeInfoCSayAIGtF">shifter(b:oc:ops:)</a>
+                    <a name="/s:7Emu65107CPU65xxC18writeValueWithTest1b2oc3opsys5UInt8V_AA17Mos6502OpcodeInfoCSayAIGtF"></a>
+                    <a name="//apple_ref/swift/Method/writeValueWithTest(b:oc:ops:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7Emu65107CPU65xxC18writeValueWithTest1b2oc3opsys5UInt8V_AA17Mos6502OpcodeInfoCSayAIGtF">writeValueWithTest(b:oc:ops:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -1773,8 +2093,8 @@ operators.</p>
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>This method is really misnamed. All it does is take the value and sets the (Z)ero and sig(N) status bits before writing the
-value back according to the opcode&rsquo;s address mode.</p>
+                        <p>This method takes the value and sets the (Z)ero and sig(N) status bits before writing the value back according to the
+opcode&rsquo;s address mode.</p>
 
                       </div>
                       <div class="declaration">
@@ -1782,7 +2102,7 @@ value back according to the opcode&rsquo;s address mode.</p>
                         <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight swift"><code><span class="kd">@inlinable</span>
-<span class="kd">func</span> <span class="nf">shifter</span><span class="p">(</span><span class="nv">b</span><span class="p">:</span> <span class="kt">UInt8</span><span class="p">,</span> <span class="nv">oc</span><span class="p">:</span> <span class="kt"><a href="../Classes/Mos6502OpcodeInfo.html">Mos6502OpcodeInfo</a></span><span class="p">,</span> <span class="nv">ops</span><span class="p">:</span> <span class="p">[</span><span class="kt">UInt8</span><span class="p">])</span></code></pre>
+<span class="kd">func</span> <span class="nf">writeValueWithTest</span><span class="p">(</span><span class="nv">b</span><span class="p">:</span> <span class="kt">UInt8</span><span class="p">,</span> <span class="nv">oc</span><span class="p">:</span> <span class="kt"><a href="../Classes/Mos6502OpcodeInfo.html">Mos6502OpcodeInfo</a></span><span class="p">,</span> <span class="nv">ops</span><span class="p">:</span> <span class="p">[</span><span class="kt">UInt8</span><span class="p">])</span></code></pre>
 
                         </div>
                       </div>
@@ -1830,7 +2150,7 @@ value back according to the opcode&rsquo;s address mode.</p>
                         </table>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Emu6510/CPU65xx.swift#L410-L412">Show on GitHub</a>
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Emu6510/CPU65xx.swift#L497-L499">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -1884,7 +2204,7 @@ value back according to the opcode&rsquo;s address mode.</p>
                         <p>the binary value as a UInt16.</p>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Emu6510/CPU65xx.swift#L420-L423">Show on GitHub</a>
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Emu6510/CPU65xx.swift#L507-L510">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -1938,7 +2258,7 @@ value back according to the opcode&rsquo;s address mode.</p>
                         <p>the BCD value.</p>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Emu6510/CPU65xx.swift#L431-L434">Show on GitHub</a>
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Emu6510/CPU65xx.swift#L518-L521">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -1992,7 +2312,7 @@ value back according to the opcode&rsquo;s address mode.</p>
                         <p>the lower 8 bits as a UInt8 value.</p>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Emu6510/CPU65xx.swift#L442-L444">Show on GitHub</a>
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Emu6510/CPU65xx.swift#L529-L531">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -2027,7 +2347,7 @@ value back according to the opcode&rsquo;s address mode.</p>
                         <p>the next byte from the program counter.</p>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Emu6510/CPU65xx.swift#L451-L455">Show on GitHub</a>
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Emu6510/CPU65xx.swift#L538-L542">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -2101,7 +2421,7 @@ value back according to the opcode&rsquo;s address mode.</p>
                         </table>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Emu6510/CPU65xx.swift#L465-L470">Show on GitHub</a>
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Emu6510/CPU65xx.swift#L552-L557">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -2163,7 +2483,7 @@ value back according to the opcode&rsquo;s address mode.</p>
                         </table>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Emu6510/CPU65xx.swift#L479-L481">Show on GitHub</a>
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Emu6510/CPU65xx.swift#L566-L568">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -2239,7 +2559,7 @@ with <code>255</code>.</p>
                         </table>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Emu6510/CPU65xx.swift#L493-L503">Show on GitHub</a>
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Emu6510/CPU65xx.swift#L580-L590">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -2317,7 +2637,7 @@ with <code>255</code>.</p>
                         <p>the result as a 16-bit unsigned integer.</p>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Emu6510/CPU65xx.swift#L514-L520">Show on GitHub</a>
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Emu6510/CPU65xx.swift#L601-L607">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -2372,7 +2692,7 @@ the top of RAM) then the panic flag is set and zero are substituted for the need
                         <p>an array of the bytes.</p>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Emu6510/CPU65xx.swift#L529-L540">Show on GitHub</a>
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Emu6510/CPU65xx.swift#L616-L627">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -2434,2751 +2754,7 @@ the top of RAM) then the panic flag is set and zero are substituted for the need
                         </table>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Emu6510/CPU65xx.swift#L549-L630">Show on GitHub</a>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:7Emu65107CPU65xxC9opcodeBITyyAA17Mos6502OpcodeInfoC_Says5UInt8VGtF"></a>
-                    <a name="//apple_ref/swift/Method/opcodeBIT(_:_:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:7Emu65107CPU65xxC9opcodeBITyyAA17Mos6502OpcodeInfoC_Says5UInt8VGtF">opcodeBIT(_:_:)</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Process the BIT opcode.</p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">opcodeBIT</span><span class="p">(</span><span class="n">_</span> <span class="nv">oc</span><span class="p">:</span> <span class="kt"><a href="../Classes/Mos6502OpcodeInfo.html">Mos6502OpcodeInfo</a></span><span class="p">,</span> <span class="n">_</span> <span class="nv">ops</span><span class="p">:</span> <span class="p">[</span><span class="kt">UInt8</span><span class="p">])</span></code></pre>
-
-                        </div>
-                      </div>
-                      <div>
-                        <h4>Parameters</h4>
-                        <table class="graybox">
-                          <tbody>
-                            <tr>
-                              <td>
-                                <code>
-                                <em>oc</em>
-                                </code>
-                              </td>
-                              <td>
-                                <div>
-                                  <p>the opcode information.</p>
-                                </div>
-                              </td>
-                            </tr>
-                          </tbody>
-                        </table>
-                      </div>
-                      <div class="slightly-smaller">
-                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Emu6510/CPU65xx.swift#L637-L642">Show on GitHub</a>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:7Emu65107CPU65xxC9opcodeBRKyyAA17Mos6502OpcodeInfoC_Says5UInt8VGtF"></a>
-                    <a name="//apple_ref/swift/Method/opcodeBRK(_:_:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:7Emu65107CPU65xxC9opcodeBRKyyAA17Mos6502OpcodeInfoC_Says5UInt8VGtF">opcodeBRK(_:_:)</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Process the BRK opcode.</p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">opcodeBRK</span><span class="p">(</span><span class="n">_</span> <span class="nv">oc</span><span class="p">:</span> <span class="kt"><a href="../Classes/Mos6502OpcodeInfo.html">Mos6502OpcodeInfo</a></span><span class="p">,</span> <span class="n">_</span> <span class="nv">ops</span><span class="p">:</span> <span class="p">[</span><span class="kt">UInt8</span><span class="p">])</span></code></pre>
-
-                        </div>
-                      </div>
-                      <div>
-                        <h4>Parameters</h4>
-                        <table class="graybox">
-                          <tbody>
-                            <tr>
-                              <td>
-                                <code>
-                                <em>oc</em>
-                                </code>
-                              </td>
-                              <td>
-                                <div>
-                                  <p>the opcode information.</p>
-                                </div>
-                              </td>
-                            </tr>
-                          </tbody>
-                        </table>
-                      </div>
-                      <div class="slightly-smaller">
-                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Emu6510/CPU65xx.swift#L649-L654">Show on GitHub</a>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:7Emu65107CPU65xxC9opcodeADCyyAA17Mos6502OpcodeInfoC_Says5UInt8VGtF"></a>
-                    <a name="//apple_ref/swift/Method/opcodeADC(_:_:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:7Emu65107CPU65xxC9opcodeADCyyAA17Mos6502OpcodeInfoC_Says5UInt8VGtF">opcodeADC(_:_:)</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Process the ADC opcode.</p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">opcodeADC</span><span class="p">(</span><span class="n">_</span> <span class="nv">oc</span><span class="p">:</span> <span class="kt"><a href="../Classes/Mos6502OpcodeInfo.html">Mos6502OpcodeInfo</a></span><span class="p">,</span> <span class="n">_</span> <span class="nv">ops</span><span class="p">:</span> <span class="p">[</span><span class="kt">UInt8</span><span class="p">])</span></code></pre>
-
-                        </div>
-                      </div>
-                      <div>
-                        <h4>Parameters</h4>
-                        <table class="graybox">
-                          <tbody>
-                            <tr>
-                              <td>
-                                <code>
-                                <em>oc</em>
-                                </code>
-                              </td>
-                              <td>
-                                <div>
-                                  <p>the opcode information.</p>
-                                </div>
-                              </td>
-                            </tr>
-                          </tbody>
-                        </table>
-                      </div>
-                      <div class="slightly-smaller">
-                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Emu6510/CPU65xx.swift#L661">Show on GitHub</a>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:7Emu65107CPU65xxC9opcodeSBCyyAA17Mos6502OpcodeInfoC_Says5UInt8VGtF"></a>
-                    <a name="//apple_ref/swift/Method/opcodeSBC(_:_:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:7Emu65107CPU65xxC9opcodeSBCyyAA17Mos6502OpcodeInfoC_Says5UInt8VGtF">opcodeSBC(_:_:)</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Process the SBC opcode.</p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">opcodeSBC</span><span class="p">(</span><span class="n">_</span> <span class="nv">oc</span><span class="p">:</span> <span class="kt"><a href="../Classes/Mos6502OpcodeInfo.html">Mos6502OpcodeInfo</a></span><span class="p">,</span> <span class="n">_</span> <span class="nv">ops</span><span class="p">:</span> <span class="p">[</span><span class="kt">UInt8</span><span class="p">])</span></code></pre>
-
-                        </div>
-                      </div>
-                      <div>
-                        <h4>Parameters</h4>
-                        <table class="graybox">
-                          <tbody>
-                            <tr>
-                              <td>
-                                <code>
-                                <em>oc</em>
-                                </code>
-                              </td>
-                              <td>
-                                <div>
-                                  <p>the opcode information.</p>
-                                </div>
-                              </td>
-                            </tr>
-                          </tbody>
-                        </table>
-                      </div>
-                      <div class="slightly-smaller">
-                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Emu6510/CPU65xx.swift#L668">Show on GitHub</a>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:7Emu65107CPU65xxC9opcodeDECyyAA17Mos6502OpcodeInfoC_Says5UInt8VGtF"></a>
-                    <a name="//apple_ref/swift/Method/opcodeDEC(_:_:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:7Emu65107CPU65xxC9opcodeDECyyAA17Mos6502OpcodeInfoC_Says5UInt8VGtF">opcodeDEC(_:_:)</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Process the DEC opcode.</p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">opcodeDEC</span><span class="p">(</span><span class="n">_</span> <span class="nv">oc</span><span class="p">:</span> <span class="kt"><a href="../Classes/Mos6502OpcodeInfo.html">Mos6502OpcodeInfo</a></span><span class="p">,</span> <span class="n">_</span> <span class="nv">ops</span><span class="p">:</span> <span class="p">[</span><span class="kt">UInt8</span><span class="p">])</span></code></pre>
-
-                        </div>
-                      </div>
-                      <div>
-                        <h4>Parameters</h4>
-                        <table class="graybox">
-                          <tbody>
-                            <tr>
-                              <td>
-                                <code>
-                                <em>oc</em>
-                                </code>
-                              </td>
-                              <td>
-                                <div>
-                                  <p>the opcode information.</p>
-                                </div>
-                              </td>
-                            </tr>
-                          </tbody>
-                        </table>
-                      </div>
-                      <div class="slightly-smaller">
-                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Emu6510/CPU65xx.swift#L675">Show on GitHub</a>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:7Emu65107CPU65xxC9opcodeINCyyAA17Mos6502OpcodeInfoC_Says5UInt8VGtF"></a>
-                    <a name="//apple_ref/swift/Method/opcodeINC(_:_:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:7Emu65107CPU65xxC9opcodeINCyyAA17Mos6502OpcodeInfoC_Says5UInt8VGtF">opcodeINC(_:_:)</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Process the INC opcode.</p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">opcodeINC</span><span class="p">(</span><span class="n">_</span> <span class="nv">oc</span><span class="p">:</span> <span class="kt"><a href="../Classes/Mos6502OpcodeInfo.html">Mos6502OpcodeInfo</a></span><span class="p">,</span> <span class="n">_</span> <span class="nv">ops</span><span class="p">:</span> <span class="p">[</span><span class="kt">UInt8</span><span class="p">])</span></code></pre>
-
-                        </div>
-                      </div>
-                      <div>
-                        <h4>Parameters</h4>
-                        <table class="graybox">
-                          <tbody>
-                            <tr>
-                              <td>
-                                <code>
-                                <em>oc</em>
-                                </code>
-                              </td>
-                              <td>
-                                <div>
-                                  <p>the opcode information.</p>
-                                </div>
-                              </td>
-                            </tr>
-                          </tbody>
-                        </table>
-                      </div>
-                      <div class="slightly-smaller">
-                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Emu6510/CPU65xx.swift#L682">Show on GitHub</a>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:7Emu65107CPU65xxC9opcodeROLyyAA17Mos6502OpcodeInfoC_Says5UInt8VGtF"></a>
-                    <a name="//apple_ref/swift/Method/opcodeROL(_:_:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:7Emu65107CPU65xxC9opcodeROLyyAA17Mos6502OpcodeInfoC_Says5UInt8VGtF">opcodeROL(_:_:)</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Process the ROL opcode.</p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">opcodeROL</span><span class="p">(</span><span class="n">_</span> <span class="nv">oc</span><span class="p">:</span> <span class="kt"><a href="../Classes/Mos6502OpcodeInfo.html">Mos6502OpcodeInfo</a></span><span class="p">,</span> <span class="n">_</span> <span class="nv">ops</span><span class="p">:</span> <span class="p">[</span><span class="kt">UInt8</span><span class="p">])</span></code></pre>
-
-                        </div>
-                      </div>
-                      <div>
-                        <h4>Parameters</h4>
-                        <table class="graybox">
-                          <tbody>
-                            <tr>
-                              <td>
-                                <code>
-                                <em>oc</em>
-                                </code>
-                              </td>
-                              <td>
-                                <div>
-                                  <p>the opcode information.</p>
-                                </div>
-                              </td>
-                            </tr>
-                          </tbody>
-                        </table>
-                      </div>
-                      <div class="slightly-smaller">
-                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Emu6510/CPU65xx.swift#L689">Show on GitHub</a>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:7Emu65107CPU65xxC9opcodeRORyyAA17Mos6502OpcodeInfoC_Says5UInt8VGtF"></a>
-                    <a name="//apple_ref/swift/Method/opcodeROR(_:_:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:7Emu65107CPU65xxC9opcodeRORyyAA17Mos6502OpcodeInfoC_Says5UInt8VGtF">opcodeROR(_:_:)</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Process the ROR opcode.</p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">opcodeROR</span><span class="p">(</span><span class="n">_</span> <span class="nv">oc</span><span class="p">:</span> <span class="kt"><a href="../Classes/Mos6502OpcodeInfo.html">Mos6502OpcodeInfo</a></span><span class="p">,</span> <span class="n">_</span> <span class="nv">ops</span><span class="p">:</span> <span class="p">[</span><span class="kt">UInt8</span><span class="p">])</span></code></pre>
-
-                        </div>
-                      </div>
-                      <div>
-                        <h4>Parameters</h4>
-                        <table class="graybox">
-                          <tbody>
-                            <tr>
-                              <td>
-                                <code>
-                                <em>oc</em>
-                                </code>
-                              </td>
-                              <td>
-                                <div>
-                                  <p>the opcode information.</p>
-                                </div>
-                              </td>
-                            </tr>
-                          </tbody>
-                        </table>
-                      </div>
-                      <div class="slightly-smaller">
-                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Emu6510/CPU65xx.swift#L696">Show on GitHub</a>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:7Emu65107CPU65xxC9opcodeASLyyAA17Mos6502OpcodeInfoC_Says5UInt8VGtF"></a>
-                    <a name="//apple_ref/swift/Method/opcodeASL(_:_:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:7Emu65107CPU65xxC9opcodeASLyyAA17Mos6502OpcodeInfoC_Says5UInt8VGtF">opcodeASL(_:_:)</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Process the ASL opcode.</p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">opcodeASL</span><span class="p">(</span><span class="n">_</span> <span class="nv">oc</span><span class="p">:</span> <span class="kt"><a href="../Classes/Mos6502OpcodeInfo.html">Mos6502OpcodeInfo</a></span><span class="p">,</span> <span class="n">_</span> <span class="nv">ops</span><span class="p">:</span> <span class="p">[</span><span class="kt">UInt8</span><span class="p">])</span></code></pre>
-
-                        </div>
-                      </div>
-                      <div>
-                        <h4>Parameters</h4>
-                        <table class="graybox">
-                          <tbody>
-                            <tr>
-                              <td>
-                                <code>
-                                <em>oc</em>
-                                </code>
-                              </td>
-                              <td>
-                                <div>
-                                  <p>the opcode information.</p>
-                                </div>
-                              </td>
-                            </tr>
-                          </tbody>
-                        </table>
-                      </div>
-                      <div class="slightly-smaller">
-                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Emu6510/CPU65xx.swift#L703">Show on GitHub</a>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:7Emu65107CPU65xxC9opcodeLSRyyAA17Mos6502OpcodeInfoC_Says5UInt8VGtF"></a>
-                    <a name="//apple_ref/swift/Method/opcodeLSR(_:_:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:7Emu65107CPU65xxC9opcodeLSRyyAA17Mos6502OpcodeInfoC_Says5UInt8VGtF">opcodeLSR(_:_:)</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Process the LSR opcode.</p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">opcodeLSR</span><span class="p">(</span><span class="n">_</span> <span class="nv">oc</span><span class="p">:</span> <span class="kt"><a href="../Classes/Mos6502OpcodeInfo.html">Mos6502OpcodeInfo</a></span><span class="p">,</span> <span class="n">_</span> <span class="nv">ops</span><span class="p">:</span> <span class="p">[</span><span class="kt">UInt8</span><span class="p">])</span></code></pre>
-
-                        </div>
-                      </div>
-                      <div>
-                        <h4>Parameters</h4>
-                        <table class="graybox">
-                          <tbody>
-                            <tr>
-                              <td>
-                                <code>
-                                <em>oc</em>
-                                </code>
-                              </td>
-                              <td>
-                                <div>
-                                  <p>the opcode information.</p>
-                                </div>
-                              </td>
-                            </tr>
-                          </tbody>
-                        </table>
-                      </div>
-                      <div class="slightly-smaller">
-                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Emu6510/CPU65xx.swift#L710">Show on GitHub</a>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:7Emu65107CPU65xxC9opcodeCMPyyAA17Mos6502OpcodeInfoC_Says5UInt8VGtF"></a>
-                    <a name="//apple_ref/swift/Method/opcodeCMP(_:_:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:7Emu65107CPU65xxC9opcodeCMPyyAA17Mos6502OpcodeInfoC_Says5UInt8VGtF">opcodeCMP(_:_:)</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Process the CMP opcode.</p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">opcodeCMP</span><span class="p">(</span><span class="n">_</span> <span class="nv">oc</span><span class="p">:</span> <span class="kt"><a href="../Classes/Mos6502OpcodeInfo.html">Mos6502OpcodeInfo</a></span><span class="p">,</span> <span class="n">_</span> <span class="nv">ops</span><span class="p">:</span> <span class="p">[</span><span class="kt">UInt8</span><span class="p">])</span></code></pre>
-
-                        </div>
-                      </div>
-                      <div>
-                        <h4>Parameters</h4>
-                        <table class="graybox">
-                          <tbody>
-                            <tr>
-                              <td>
-                                <code>
-                                <em>oc</em>
-                                </code>
-                              </td>
-                              <td>
-                                <div>
-                                  <p>the opcode information.</p>
-                                </div>
-                              </td>
-                            </tr>
-                          </tbody>
-                        </table>
-                      </div>
-                      <div class="slightly-smaller">
-                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Emu6510/CPU65xx.swift#L717">Show on GitHub</a>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:7Emu65107CPU65xxC9opcodeCPXyyAA17Mos6502OpcodeInfoC_Says5UInt8VGtF"></a>
-                    <a name="//apple_ref/swift/Method/opcodeCPX(_:_:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:7Emu65107CPU65xxC9opcodeCPXyyAA17Mos6502OpcodeInfoC_Says5UInt8VGtF">opcodeCPX(_:_:)</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Process the CPX opcode.</p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">opcodeCPX</span><span class="p">(</span><span class="n">_</span> <span class="nv">oc</span><span class="p">:</span> <span class="kt"><a href="../Classes/Mos6502OpcodeInfo.html">Mos6502OpcodeInfo</a></span><span class="p">,</span> <span class="n">_</span> <span class="nv">ops</span><span class="p">:</span> <span class="p">[</span><span class="kt">UInt8</span><span class="p">])</span></code></pre>
-
-                        </div>
-                      </div>
-                      <div>
-                        <h4>Parameters</h4>
-                        <table class="graybox">
-                          <tbody>
-                            <tr>
-                              <td>
-                                <code>
-                                <em>oc</em>
-                                </code>
-                              </td>
-                              <td>
-                                <div>
-                                  <p>the opcode information.</p>
-                                </div>
-                              </td>
-                            </tr>
-                          </tbody>
-                        </table>
-                      </div>
-                      <div class="slightly-smaller">
-                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Emu6510/CPU65xx.swift#L724">Show on GitHub</a>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:7Emu65107CPU65xxC9opcodeCPYyyAA17Mos6502OpcodeInfoC_Says5UInt8VGtF"></a>
-                    <a name="//apple_ref/swift/Method/opcodeCPY(_:_:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:7Emu65107CPU65xxC9opcodeCPYyyAA17Mos6502OpcodeInfoC_Says5UInt8VGtF">opcodeCPY(_:_:)</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Process the CPY opcode.</p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">opcodeCPY</span><span class="p">(</span><span class="n">_</span> <span class="nv">oc</span><span class="p">:</span> <span class="kt"><a href="../Classes/Mos6502OpcodeInfo.html">Mos6502OpcodeInfo</a></span><span class="p">,</span> <span class="n">_</span> <span class="nv">ops</span><span class="p">:</span> <span class="p">[</span><span class="kt">UInt8</span><span class="p">])</span></code></pre>
-
-                        </div>
-                      </div>
-                      <div>
-                        <h4>Parameters</h4>
-                        <table class="graybox">
-                          <tbody>
-                            <tr>
-                              <td>
-                                <code>
-                                <em>oc</em>
-                                </code>
-                              </td>
-                              <td>
-                                <div>
-                                  <p>the opcode information.</p>
-                                </div>
-                              </td>
-                            </tr>
-                          </tbody>
-                        </table>
-                      </div>
-                      <div class="slightly-smaller">
-                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Emu6510/CPU65xx.swift#L731">Show on GitHub</a>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:7Emu65107CPU65xxC9opcodeANDyyAA17Mos6502OpcodeInfoC_Says5UInt8VGtF"></a>
-                    <a name="//apple_ref/swift/Method/opcodeAND(_:_:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:7Emu65107CPU65xxC9opcodeANDyyAA17Mos6502OpcodeInfoC_Says5UInt8VGtF">opcodeAND(_:_:)</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Process the AND opcode.</p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">opcodeAND</span><span class="p">(</span><span class="n">_</span> <span class="nv">oc</span><span class="p">:</span> <span class="kt"><a href="../Classes/Mos6502OpcodeInfo.html">Mos6502OpcodeInfo</a></span><span class="p">,</span> <span class="n">_</span> <span class="nv">ops</span><span class="p">:</span> <span class="p">[</span><span class="kt">UInt8</span><span class="p">])</span></code></pre>
-
-                        </div>
-                      </div>
-                      <div>
-                        <h4>Parameters</h4>
-                        <table class="graybox">
-                          <tbody>
-                            <tr>
-                              <td>
-                                <code>
-                                <em>oc</em>
-                                </code>
-                              </td>
-                              <td>
-                                <div>
-                                  <p>the opcode information.</p>
-                                </div>
-                              </td>
-                            </tr>
-                          </tbody>
-                        </table>
-                      </div>
-                      <div class="slightly-smaller">
-                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Emu6510/CPU65xx.swift#L738">Show on GitHub</a>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:7Emu65107CPU65xxC9opcodeORAyyAA17Mos6502OpcodeInfoC_Says5UInt8VGtF"></a>
-                    <a name="//apple_ref/swift/Method/opcodeORA(_:_:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:7Emu65107CPU65xxC9opcodeORAyyAA17Mos6502OpcodeInfoC_Says5UInt8VGtF">opcodeORA(_:_:)</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Process the ORA opcode.</p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">opcodeORA</span><span class="p">(</span><span class="n">_</span> <span class="nv">oc</span><span class="p">:</span> <span class="kt"><a href="../Classes/Mos6502OpcodeInfo.html">Mos6502OpcodeInfo</a></span><span class="p">,</span> <span class="n">_</span> <span class="nv">ops</span><span class="p">:</span> <span class="p">[</span><span class="kt">UInt8</span><span class="p">])</span></code></pre>
-
-                        </div>
-                      </div>
-                      <div>
-                        <h4>Parameters</h4>
-                        <table class="graybox">
-                          <tbody>
-                            <tr>
-                              <td>
-                                <code>
-                                <em>oc</em>
-                                </code>
-                              </td>
-                              <td>
-                                <div>
-                                  <p>the opcode information.</p>
-                                </div>
-                              </td>
-                            </tr>
-                          </tbody>
-                        </table>
-                      </div>
-                      <div class="slightly-smaller">
-                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Emu6510/CPU65xx.swift#L745">Show on GitHub</a>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:7Emu65107CPU65xxC9opcodeEORyyAA17Mos6502OpcodeInfoC_Says5UInt8VGtF"></a>
-                    <a name="//apple_ref/swift/Method/opcodeEOR(_:_:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:7Emu65107CPU65xxC9opcodeEORyyAA17Mos6502OpcodeInfoC_Says5UInt8VGtF">opcodeEOR(_:_:)</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Process the EOR opcode.</p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">opcodeEOR</span><span class="p">(</span><span class="n">_</span> <span class="nv">oc</span><span class="p">:</span> <span class="kt"><a href="../Classes/Mos6502OpcodeInfo.html">Mos6502OpcodeInfo</a></span><span class="p">,</span> <span class="n">_</span> <span class="nv">ops</span><span class="p">:</span> <span class="p">[</span><span class="kt">UInt8</span><span class="p">])</span></code></pre>
-
-                        </div>
-                      </div>
-                      <div>
-                        <h4>Parameters</h4>
-                        <table class="graybox">
-                          <tbody>
-                            <tr>
-                              <td>
-                                <code>
-                                <em>oc</em>
-                                </code>
-                              </td>
-                              <td>
-                                <div>
-                                  <p>the opcode information.</p>
-                                </div>
-                              </td>
-                            </tr>
-                          </tbody>
-                        </table>
-                      </div>
-                      <div class="slightly-smaller">
-                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Emu6510/CPU65xx.swift#L752">Show on GitHub</a>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:7Emu65107CPU65xxC9opcodeBCCyyAA17Mos6502OpcodeInfoC_Says5UInt8VGtF"></a>
-                    <a name="//apple_ref/swift/Method/opcodeBCC(_:_:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:7Emu65107CPU65xxC9opcodeBCCyyAA17Mos6502OpcodeInfoC_Says5UInt8VGtF">opcodeBCC(_:_:)</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Process the BCC opcode.</p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">opcodeBCC</span><span class="p">(</span><span class="n">_</span> <span class="nv">oc</span><span class="p">:</span> <span class="kt"><a href="../Classes/Mos6502OpcodeInfo.html">Mos6502OpcodeInfo</a></span><span class="p">,</span> <span class="n">_</span> <span class="nv">ops</span><span class="p">:</span> <span class="p">[</span><span class="kt">UInt8</span><span class="p">])</span></code></pre>
-
-                        </div>
-                      </div>
-                      <div>
-                        <h4>Parameters</h4>
-                        <table class="graybox">
-                          <tbody>
-                            <tr>
-                              <td>
-                                <code>
-                                <em>oc</em>
-                                </code>
-                              </td>
-                              <td>
-                                <div>
-                                  <p>the opcode information.</p>
-                                </div>
-                              </td>
-                            </tr>
-                          </tbody>
-                        </table>
-                      </div>
-                      <div class="slightly-smaller">
-                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Emu6510/CPU65xx.swift#L759">Show on GitHub</a>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:7Emu65107CPU65xxC9opcodeBCSyyAA17Mos6502OpcodeInfoC_Says5UInt8VGtF"></a>
-                    <a name="//apple_ref/swift/Method/opcodeBCS(_:_:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:7Emu65107CPU65xxC9opcodeBCSyyAA17Mos6502OpcodeInfoC_Says5UInt8VGtF">opcodeBCS(_:_:)</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Process the BCS opcode.</p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">opcodeBCS</span><span class="p">(</span><span class="n">_</span> <span class="nv">oc</span><span class="p">:</span> <span class="kt"><a href="../Classes/Mos6502OpcodeInfo.html">Mos6502OpcodeInfo</a></span><span class="p">,</span> <span class="n">_</span> <span class="nv">ops</span><span class="p">:</span> <span class="p">[</span><span class="kt">UInt8</span><span class="p">])</span></code></pre>
-
-                        </div>
-                      </div>
-                      <div>
-                        <h4>Parameters</h4>
-                        <table class="graybox">
-                          <tbody>
-                            <tr>
-                              <td>
-                                <code>
-                                <em>oc</em>
-                                </code>
-                              </td>
-                              <td>
-                                <div>
-                                  <p>the opcode information.</p>
-                                </div>
-                              </td>
-                            </tr>
-                          </tbody>
-                        </table>
-                      </div>
-                      <div class="slightly-smaller">
-                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Emu6510/CPU65xx.swift#L766">Show on GitHub</a>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:7Emu65107CPU65xxC9opcodeBEQyyAA17Mos6502OpcodeInfoC_Says5UInt8VGtF"></a>
-                    <a name="//apple_ref/swift/Method/opcodeBEQ(_:_:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:7Emu65107CPU65xxC9opcodeBEQyyAA17Mos6502OpcodeInfoC_Says5UInt8VGtF">opcodeBEQ(_:_:)</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Process the BEQ opcode.</p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">opcodeBEQ</span><span class="p">(</span><span class="n">_</span> <span class="nv">oc</span><span class="p">:</span> <span class="kt"><a href="../Classes/Mos6502OpcodeInfo.html">Mos6502OpcodeInfo</a></span><span class="p">,</span> <span class="n">_</span> <span class="nv">ops</span><span class="p">:</span> <span class="p">[</span><span class="kt">UInt8</span><span class="p">])</span></code></pre>
-
-                        </div>
-                      </div>
-                      <div>
-                        <h4>Parameters</h4>
-                        <table class="graybox">
-                          <tbody>
-                            <tr>
-                              <td>
-                                <code>
-                                <em>oc</em>
-                                </code>
-                              </td>
-                              <td>
-                                <div>
-                                  <p>the opcode information.</p>
-                                </div>
-                              </td>
-                            </tr>
-                          </tbody>
-                        </table>
-                      </div>
-                      <div class="slightly-smaller">
-                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Emu6510/CPU65xx.swift#L773">Show on GitHub</a>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:7Emu65107CPU65xxC9opcodeBMIyyAA17Mos6502OpcodeInfoC_Says5UInt8VGtF"></a>
-                    <a name="//apple_ref/swift/Method/opcodeBMI(_:_:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:7Emu65107CPU65xxC9opcodeBMIyyAA17Mos6502OpcodeInfoC_Says5UInt8VGtF">opcodeBMI(_:_:)</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Process the BMI opcode.</p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">opcodeBMI</span><span class="p">(</span><span class="n">_</span> <span class="nv">oc</span><span class="p">:</span> <span class="kt"><a href="../Classes/Mos6502OpcodeInfo.html">Mos6502OpcodeInfo</a></span><span class="p">,</span> <span class="n">_</span> <span class="nv">ops</span><span class="p">:</span> <span class="p">[</span><span class="kt">UInt8</span><span class="p">])</span></code></pre>
-
-                        </div>
-                      </div>
-                      <div>
-                        <h4>Parameters</h4>
-                        <table class="graybox">
-                          <tbody>
-                            <tr>
-                              <td>
-                                <code>
-                                <em>oc</em>
-                                </code>
-                              </td>
-                              <td>
-                                <div>
-                                  <p>the opcode information.</p>
-                                </div>
-                              </td>
-                            </tr>
-                          </tbody>
-                        </table>
-                      </div>
-                      <div class="slightly-smaller">
-                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Emu6510/CPU65xx.swift#L780">Show on GitHub</a>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:7Emu65107CPU65xxC9opcodeBNEyyAA17Mos6502OpcodeInfoC_Says5UInt8VGtF"></a>
-                    <a name="//apple_ref/swift/Method/opcodeBNE(_:_:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:7Emu65107CPU65xxC9opcodeBNEyyAA17Mos6502OpcodeInfoC_Says5UInt8VGtF">opcodeBNE(_:_:)</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Process the BNE opcode.</p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">opcodeBNE</span><span class="p">(</span><span class="n">_</span> <span class="nv">oc</span><span class="p">:</span> <span class="kt"><a href="../Classes/Mos6502OpcodeInfo.html">Mos6502OpcodeInfo</a></span><span class="p">,</span> <span class="n">_</span> <span class="nv">ops</span><span class="p">:</span> <span class="p">[</span><span class="kt">UInt8</span><span class="p">])</span></code></pre>
-
-                        </div>
-                      </div>
-                      <div>
-                        <h4>Parameters</h4>
-                        <table class="graybox">
-                          <tbody>
-                            <tr>
-                              <td>
-                                <code>
-                                <em>oc</em>
-                                </code>
-                              </td>
-                              <td>
-                                <div>
-                                  <p>the opcode information.</p>
-                                </div>
-                              </td>
-                            </tr>
-                          </tbody>
-                        </table>
-                      </div>
-                      <div class="slightly-smaller">
-                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Emu6510/CPU65xx.swift#L787">Show on GitHub</a>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:7Emu65107CPU65xxC9opcodeBPLyyAA17Mos6502OpcodeInfoC_Says5UInt8VGtF"></a>
-                    <a name="//apple_ref/swift/Method/opcodeBPL(_:_:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:7Emu65107CPU65xxC9opcodeBPLyyAA17Mos6502OpcodeInfoC_Says5UInt8VGtF">opcodeBPL(_:_:)</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Process the BPL opcode.</p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">opcodeBPL</span><span class="p">(</span><span class="n">_</span> <span class="nv">oc</span><span class="p">:</span> <span class="kt"><a href="../Classes/Mos6502OpcodeInfo.html">Mos6502OpcodeInfo</a></span><span class="p">,</span> <span class="n">_</span> <span class="nv">ops</span><span class="p">:</span> <span class="p">[</span><span class="kt">UInt8</span><span class="p">])</span></code></pre>
-
-                        </div>
-                      </div>
-                      <div>
-                        <h4>Parameters</h4>
-                        <table class="graybox">
-                          <tbody>
-                            <tr>
-                              <td>
-                                <code>
-                                <em>oc</em>
-                                </code>
-                              </td>
-                              <td>
-                                <div>
-                                  <p>the opcode information.</p>
-                                </div>
-                              </td>
-                            </tr>
-                          </tbody>
-                        </table>
-                      </div>
-                      <div class="slightly-smaller">
-                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Emu6510/CPU65xx.swift#L794">Show on GitHub</a>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:7Emu65107CPU65xxC9opcodeBVCyyAA17Mos6502OpcodeInfoC_Says5UInt8VGtF"></a>
-                    <a name="//apple_ref/swift/Method/opcodeBVC(_:_:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:7Emu65107CPU65xxC9opcodeBVCyyAA17Mos6502OpcodeInfoC_Says5UInt8VGtF">opcodeBVC(_:_:)</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Process the BVC opcode.</p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">opcodeBVC</span><span class="p">(</span><span class="n">_</span> <span class="nv">oc</span><span class="p">:</span> <span class="kt"><a href="../Classes/Mos6502OpcodeInfo.html">Mos6502OpcodeInfo</a></span><span class="p">,</span> <span class="n">_</span> <span class="nv">ops</span><span class="p">:</span> <span class="p">[</span><span class="kt">UInt8</span><span class="p">])</span></code></pre>
-
-                        </div>
-                      </div>
-                      <div>
-                        <h4>Parameters</h4>
-                        <table class="graybox">
-                          <tbody>
-                            <tr>
-                              <td>
-                                <code>
-                                <em>oc</em>
-                                </code>
-                              </td>
-                              <td>
-                                <div>
-                                  <p>the opcode information.</p>
-                                </div>
-                              </td>
-                            </tr>
-                          </tbody>
-                        </table>
-                      </div>
-                      <div class="slightly-smaller">
-                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Emu6510/CPU65xx.swift#L801">Show on GitHub</a>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:7Emu65107CPU65xxC9opcodeBVSyyAA17Mos6502OpcodeInfoC_Says5UInt8VGtF"></a>
-                    <a name="//apple_ref/swift/Method/opcodeBVS(_:_:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:7Emu65107CPU65xxC9opcodeBVSyyAA17Mos6502OpcodeInfoC_Says5UInt8VGtF">opcodeBVS(_:_:)</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Process the BVS opcode.</p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">opcodeBVS</span><span class="p">(</span><span class="n">_</span> <span class="nv">oc</span><span class="p">:</span> <span class="kt"><a href="../Classes/Mos6502OpcodeInfo.html">Mos6502OpcodeInfo</a></span><span class="p">,</span> <span class="n">_</span> <span class="nv">ops</span><span class="p">:</span> <span class="p">[</span><span class="kt">UInt8</span><span class="p">])</span></code></pre>
-
-                        </div>
-                      </div>
-                      <div>
-                        <h4>Parameters</h4>
-                        <table class="graybox">
-                          <tbody>
-                            <tr>
-                              <td>
-                                <code>
-                                <em>oc</em>
-                                </code>
-                              </td>
-                              <td>
-                                <div>
-                                  <p>the opcode information.</p>
-                                </div>
-                              </td>
-                            </tr>
-                          </tbody>
-                        </table>
-                      </div>
-                      <div class="slightly-smaller">
-                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Emu6510/CPU65xx.swift#L808">Show on GitHub</a>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:7Emu65107CPU65xxC9opcodeCLCyyAA17Mos6502OpcodeInfoC_Says5UInt8VGtF"></a>
-                    <a name="//apple_ref/swift/Method/opcodeCLC(_:_:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:7Emu65107CPU65xxC9opcodeCLCyyAA17Mos6502OpcodeInfoC_Says5UInt8VGtF">opcodeCLC(_:_:)</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Process the CLC opcode.</p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">opcodeCLC</span><span class="p">(</span><span class="n">_</span> <span class="nv">oc</span><span class="p">:</span> <span class="kt"><a href="../Classes/Mos6502OpcodeInfo.html">Mos6502OpcodeInfo</a></span><span class="p">,</span> <span class="n">_</span> <span class="nv">ops</span><span class="p">:</span> <span class="p">[</span><span class="kt">UInt8</span><span class="p">])</span></code></pre>
-
-                        </div>
-                      </div>
-                      <div>
-                        <h4>Parameters</h4>
-                        <table class="graybox">
-                          <tbody>
-                            <tr>
-                              <td>
-                                <code>
-                                <em>oc</em>
-                                </code>
-                              </td>
-                              <td>
-                                <div>
-                                  <p>the opcode information.</p>
-                                </div>
-                              </td>
-                            </tr>
-                          </tbody>
-                        </table>
-                      </div>
-                      <div class="slightly-smaller">
-                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Emu6510/CPU65xx.swift#L815">Show on GitHub</a>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:7Emu65107CPU65xxC9opcodeCLDyyAA17Mos6502OpcodeInfoC_Says5UInt8VGtF"></a>
-                    <a name="//apple_ref/swift/Method/opcodeCLD(_:_:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:7Emu65107CPU65xxC9opcodeCLDyyAA17Mos6502OpcodeInfoC_Says5UInt8VGtF">opcodeCLD(_:_:)</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Process the CLD opcode.</p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">opcodeCLD</span><span class="p">(</span><span class="n">_</span> <span class="nv">oc</span><span class="p">:</span> <span class="kt"><a href="../Classes/Mos6502OpcodeInfo.html">Mos6502OpcodeInfo</a></span><span class="p">,</span> <span class="n">_</span> <span class="nv">ops</span><span class="p">:</span> <span class="p">[</span><span class="kt">UInt8</span><span class="p">])</span></code></pre>
-
-                        </div>
-                      </div>
-                      <div>
-                        <h4>Parameters</h4>
-                        <table class="graybox">
-                          <tbody>
-                            <tr>
-                              <td>
-                                <code>
-                                <em>oc</em>
-                                </code>
-                              </td>
-                              <td>
-                                <div>
-                                  <p>the opcode information.</p>
-                                </div>
-                              </td>
-                            </tr>
-                          </tbody>
-                        </table>
-                      </div>
-                      <div class="slightly-smaller">
-                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Emu6510/CPU65xx.swift#L822">Show on GitHub</a>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:7Emu65107CPU65xxC9opcodeCLIyyAA17Mos6502OpcodeInfoC_Says5UInt8VGtF"></a>
-                    <a name="//apple_ref/swift/Method/opcodeCLI(_:_:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:7Emu65107CPU65xxC9opcodeCLIyyAA17Mos6502OpcodeInfoC_Says5UInt8VGtF">opcodeCLI(_:_:)</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Process the CLI opcode.</p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">opcodeCLI</span><span class="p">(</span><span class="n">_</span> <span class="nv">oc</span><span class="p">:</span> <span class="kt"><a href="../Classes/Mos6502OpcodeInfo.html">Mos6502OpcodeInfo</a></span><span class="p">,</span> <span class="n">_</span> <span class="nv">ops</span><span class="p">:</span> <span class="p">[</span><span class="kt">UInt8</span><span class="p">])</span></code></pre>
-
-                        </div>
-                      </div>
-                      <div>
-                        <h4>Parameters</h4>
-                        <table class="graybox">
-                          <tbody>
-                            <tr>
-                              <td>
-                                <code>
-                                <em>oc</em>
-                                </code>
-                              </td>
-                              <td>
-                                <div>
-                                  <p>the opcode information.</p>
-                                </div>
-                              </td>
-                            </tr>
-                          </tbody>
-                        </table>
-                      </div>
-                      <div class="slightly-smaller">
-                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Emu6510/CPU65xx.swift#L829">Show on GitHub</a>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:7Emu65107CPU65xxC9opcodeCLVyyAA17Mos6502OpcodeInfoC_Says5UInt8VGtF"></a>
-                    <a name="//apple_ref/swift/Method/opcodeCLV(_:_:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:7Emu65107CPU65xxC9opcodeCLVyyAA17Mos6502OpcodeInfoC_Says5UInt8VGtF">opcodeCLV(_:_:)</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Process the CLV opcode.</p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">opcodeCLV</span><span class="p">(</span><span class="n">_</span> <span class="nv">oc</span><span class="p">:</span> <span class="kt"><a href="../Classes/Mos6502OpcodeInfo.html">Mos6502OpcodeInfo</a></span><span class="p">,</span> <span class="n">_</span> <span class="nv">ops</span><span class="p">:</span> <span class="p">[</span><span class="kt">UInt8</span><span class="p">])</span></code></pre>
-
-                        </div>
-                      </div>
-                      <div>
-                        <h4>Parameters</h4>
-                        <table class="graybox">
-                          <tbody>
-                            <tr>
-                              <td>
-                                <code>
-                                <em>oc</em>
-                                </code>
-                              </td>
-                              <td>
-                                <div>
-                                  <p>the opcode information.</p>
-                                </div>
-                              </td>
-                            </tr>
-                          </tbody>
-                        </table>
-                      </div>
-                      <div class="slightly-smaller">
-                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Emu6510/CPU65xx.swift#L836">Show on GitHub</a>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:7Emu65107CPU65xxC9opcodeDEXyyAA17Mos6502OpcodeInfoC_Says5UInt8VGtF"></a>
-                    <a name="//apple_ref/swift/Method/opcodeDEX(_:_:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:7Emu65107CPU65xxC9opcodeDEXyyAA17Mos6502OpcodeInfoC_Says5UInt8VGtF">opcodeDEX(_:_:)</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Process the DEX opcode.</p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">opcodeDEX</span><span class="p">(</span><span class="n">_</span> <span class="nv">oc</span><span class="p">:</span> <span class="kt"><a href="../Classes/Mos6502OpcodeInfo.html">Mos6502OpcodeInfo</a></span><span class="p">,</span> <span class="n">_</span> <span class="nv">ops</span><span class="p">:</span> <span class="p">[</span><span class="kt">UInt8</span><span class="p">])</span></code></pre>
-
-                        </div>
-                      </div>
-                      <div>
-                        <h4>Parameters</h4>
-                        <table class="graybox">
-                          <tbody>
-                            <tr>
-                              <td>
-                                <code>
-                                <em>oc</em>
-                                </code>
-                              </td>
-                              <td>
-                                <div>
-                                  <p>the opcode information.</p>
-                                </div>
-                              </td>
-                            </tr>
-                          </tbody>
-                        </table>
-                      </div>
-                      <div class="slightly-smaller">
-                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Emu6510/CPU65xx.swift#L843">Show on GitHub</a>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:7Emu65107CPU65xxC9opcodeDEYyyAA17Mos6502OpcodeInfoC_Says5UInt8VGtF"></a>
-                    <a name="//apple_ref/swift/Method/opcodeDEY(_:_:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:7Emu65107CPU65xxC9opcodeDEYyyAA17Mos6502OpcodeInfoC_Says5UInt8VGtF">opcodeDEY(_:_:)</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Process the DEY opcode.</p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">opcodeDEY</span><span class="p">(</span><span class="n">_</span> <span class="nv">oc</span><span class="p">:</span> <span class="kt"><a href="../Classes/Mos6502OpcodeInfo.html">Mos6502OpcodeInfo</a></span><span class="p">,</span> <span class="n">_</span> <span class="nv">ops</span><span class="p">:</span> <span class="p">[</span><span class="kt">UInt8</span><span class="p">])</span></code></pre>
-
-                        </div>
-                      </div>
-                      <div>
-                        <h4>Parameters</h4>
-                        <table class="graybox">
-                          <tbody>
-                            <tr>
-                              <td>
-                                <code>
-                                <em>oc</em>
-                                </code>
-                              </td>
-                              <td>
-                                <div>
-                                  <p>the opcode information.</p>
-                                </div>
-                              </td>
-                            </tr>
-                          </tbody>
-                        </table>
-                      </div>
-                      <div class="slightly-smaller">
-                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Emu6510/CPU65xx.swift#L850">Show on GitHub</a>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:7Emu65107CPU65xxC9opcodeINXyyAA17Mos6502OpcodeInfoC_Says5UInt8VGtF"></a>
-                    <a name="//apple_ref/swift/Method/opcodeINX(_:_:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:7Emu65107CPU65xxC9opcodeINXyyAA17Mos6502OpcodeInfoC_Says5UInt8VGtF">opcodeINX(_:_:)</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Process the INX opcode.</p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">opcodeINX</span><span class="p">(</span><span class="n">_</span> <span class="nv">oc</span><span class="p">:</span> <span class="kt"><a href="../Classes/Mos6502OpcodeInfo.html">Mos6502OpcodeInfo</a></span><span class="p">,</span> <span class="n">_</span> <span class="nv">ops</span><span class="p">:</span> <span class="p">[</span><span class="kt">UInt8</span><span class="p">])</span></code></pre>
-
-                        </div>
-                      </div>
-                      <div>
-                        <h4>Parameters</h4>
-                        <table class="graybox">
-                          <tbody>
-                            <tr>
-                              <td>
-                                <code>
-                                <em>oc</em>
-                                </code>
-                              </td>
-                              <td>
-                                <div>
-                                  <p>the opcode information.</p>
-                                </div>
-                              </td>
-                            </tr>
-                          </tbody>
-                        </table>
-                      </div>
-                      <div class="slightly-smaller">
-                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Emu6510/CPU65xx.swift#L857">Show on GitHub</a>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:7Emu65107CPU65xxC9opcodeINYyyAA17Mos6502OpcodeInfoC_Says5UInt8VGtF"></a>
-                    <a name="//apple_ref/swift/Method/opcodeINY(_:_:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:7Emu65107CPU65xxC9opcodeINYyyAA17Mos6502OpcodeInfoC_Says5UInt8VGtF">opcodeINY(_:_:)</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Process the INY opcode.</p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">opcodeINY</span><span class="p">(</span><span class="n">_</span> <span class="nv">oc</span><span class="p">:</span> <span class="kt"><a href="../Classes/Mos6502OpcodeInfo.html">Mos6502OpcodeInfo</a></span><span class="p">,</span> <span class="n">_</span> <span class="nv">ops</span><span class="p">:</span> <span class="p">[</span><span class="kt">UInt8</span><span class="p">])</span></code></pre>
-
-                        </div>
-                      </div>
-                      <div>
-                        <h4>Parameters</h4>
-                        <table class="graybox">
-                          <tbody>
-                            <tr>
-                              <td>
-                                <code>
-                                <em>oc</em>
-                                </code>
-                              </td>
-                              <td>
-                                <div>
-                                  <p>the opcode information.</p>
-                                </div>
-                              </td>
-                            </tr>
-                          </tbody>
-                        </table>
-                      </div>
-                      <div class="slightly-smaller">
-                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Emu6510/CPU65xx.swift#L864">Show on GitHub</a>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:7Emu65107CPU65xxC9opcodeJMPyyAA17Mos6502OpcodeInfoC_Says5UInt8VGtF"></a>
-                    <a name="//apple_ref/swift/Method/opcodeJMP(_:_:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:7Emu65107CPU65xxC9opcodeJMPyyAA17Mos6502OpcodeInfoC_Says5UInt8VGtF">opcodeJMP(_:_:)</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Process the JMP opcode.</p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">opcodeJMP</span><span class="p">(</span><span class="n">_</span> <span class="nv">oc</span><span class="p">:</span> <span class="kt"><a href="../Classes/Mos6502OpcodeInfo.html">Mos6502OpcodeInfo</a></span><span class="p">,</span> <span class="n">_</span> <span class="nv">ops</span><span class="p">:</span> <span class="p">[</span><span class="kt">UInt8</span><span class="p">])</span></code></pre>
-
-                        </div>
-                      </div>
-                      <div>
-                        <h4>Parameters</h4>
-                        <table class="graybox">
-                          <tbody>
-                            <tr>
-                              <td>
-                                <code>
-                                <em>oc</em>
-                                </code>
-                              </td>
-                              <td>
-                                <div>
-                                  <p>the opcode information.</p>
-                                </div>
-                              </td>
-                            </tr>
-                          </tbody>
-                        </table>
-                      </div>
-                      <div class="slightly-smaller">
-                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Emu6510/CPU65xx.swift#L871">Show on GitHub</a>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:7Emu65107CPU65xxC9opcodeJSRyyAA17Mos6502OpcodeInfoC_Says5UInt8VGtF"></a>
-                    <a name="//apple_ref/swift/Method/opcodeJSR(_:_:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:7Emu65107CPU65xxC9opcodeJSRyyAA17Mos6502OpcodeInfoC_Says5UInt8VGtF">opcodeJSR(_:_:)</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Process the JSR opcode.</p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">opcodeJSR</span><span class="p">(</span><span class="n">_</span> <span class="nv">oc</span><span class="p">:</span> <span class="kt"><a href="../Classes/Mos6502OpcodeInfo.html">Mos6502OpcodeInfo</a></span><span class="p">,</span> <span class="n">_</span> <span class="nv">ops</span><span class="p">:</span> <span class="p">[</span><span class="kt">UInt8</span><span class="p">])</span></code></pre>
-
-                        </div>
-                      </div>
-                      <div>
-                        <h4>Parameters</h4>
-                        <table class="graybox">
-                          <tbody>
-                            <tr>
-                              <td>
-                                <code>
-                                <em>oc</em>
-                                </code>
-                              </td>
-                              <td>
-                                <div>
-                                  <p>the opcode information.</p>
-                                </div>
-                              </td>
-                            </tr>
-                          </tbody>
-                        </table>
-                      </div>
-                      <div class="slightly-smaller">
-                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Emu6510/CPU65xx.swift#L878">Show on GitHub</a>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:7Emu65107CPU65xxC9opcodeLDAyyAA17Mos6502OpcodeInfoC_Says5UInt8VGtF"></a>
-                    <a name="//apple_ref/swift/Method/opcodeLDA(_:_:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:7Emu65107CPU65xxC9opcodeLDAyyAA17Mos6502OpcodeInfoC_Says5UInt8VGtF">opcodeLDA(_:_:)</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Process the LDA opcode.</p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">opcodeLDA</span><span class="p">(</span><span class="n">_</span> <span class="nv">oc</span><span class="p">:</span> <span class="kt"><a href="../Classes/Mos6502OpcodeInfo.html">Mos6502OpcodeInfo</a></span><span class="p">,</span> <span class="n">_</span> <span class="nv">ops</span><span class="p">:</span> <span class="p">[</span><span class="kt">UInt8</span><span class="p">])</span></code></pre>
-
-                        </div>
-                      </div>
-                      <div>
-                        <h4>Parameters</h4>
-                        <table class="graybox">
-                          <tbody>
-                            <tr>
-                              <td>
-                                <code>
-                                <em>oc</em>
-                                </code>
-                              </td>
-                              <td>
-                                <div>
-                                  <p>the opcode information.</p>
-                                </div>
-                              </td>
-                            </tr>
-                          </tbody>
-                        </table>
-                      </div>
-                      <div class="slightly-smaller">
-                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Emu6510/CPU65xx.swift#L885">Show on GitHub</a>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:7Emu65107CPU65xxC9opcodeLDXyyAA17Mos6502OpcodeInfoC_Says5UInt8VGtF"></a>
-                    <a name="//apple_ref/swift/Method/opcodeLDX(_:_:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:7Emu65107CPU65xxC9opcodeLDXyyAA17Mos6502OpcodeInfoC_Says5UInt8VGtF">opcodeLDX(_:_:)</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Process the LDX opcode.</p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">opcodeLDX</span><span class="p">(</span><span class="n">_</span> <span class="nv">oc</span><span class="p">:</span> <span class="kt"><a href="../Classes/Mos6502OpcodeInfo.html">Mos6502OpcodeInfo</a></span><span class="p">,</span> <span class="n">_</span> <span class="nv">ops</span><span class="p">:</span> <span class="p">[</span><span class="kt">UInt8</span><span class="p">])</span></code></pre>
-
-                        </div>
-                      </div>
-                      <div>
-                        <h4>Parameters</h4>
-                        <table class="graybox">
-                          <tbody>
-                            <tr>
-                              <td>
-                                <code>
-                                <em>oc</em>
-                                </code>
-                              </td>
-                              <td>
-                                <div>
-                                  <p>the opcode information.</p>
-                                </div>
-                              </td>
-                            </tr>
-                          </tbody>
-                        </table>
-                      </div>
-                      <div class="slightly-smaller">
-                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Emu6510/CPU65xx.swift#L892">Show on GitHub</a>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:7Emu65107CPU65xxC9opcodeLDYyyAA17Mos6502OpcodeInfoC_Says5UInt8VGtF"></a>
-                    <a name="//apple_ref/swift/Method/opcodeLDY(_:_:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:7Emu65107CPU65xxC9opcodeLDYyyAA17Mos6502OpcodeInfoC_Says5UInt8VGtF">opcodeLDY(_:_:)</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Process the LDY opcode.</p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">opcodeLDY</span><span class="p">(</span><span class="n">_</span> <span class="nv">oc</span><span class="p">:</span> <span class="kt"><a href="../Classes/Mos6502OpcodeInfo.html">Mos6502OpcodeInfo</a></span><span class="p">,</span> <span class="n">_</span> <span class="nv">ops</span><span class="p">:</span> <span class="p">[</span><span class="kt">UInt8</span><span class="p">])</span></code></pre>
-
-                        </div>
-                      </div>
-                      <div>
-                        <h4>Parameters</h4>
-                        <table class="graybox">
-                          <tbody>
-                            <tr>
-                              <td>
-                                <code>
-                                <em>oc</em>
-                                </code>
-                              </td>
-                              <td>
-                                <div>
-                                  <p>the opcode information.</p>
-                                </div>
-                              </td>
-                            </tr>
-                          </tbody>
-                        </table>
-                      </div>
-                      <div class="slightly-smaller">
-                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Emu6510/CPU65xx.swift#L899">Show on GitHub</a>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:7Emu65107CPU65xxC9opcodeNOPyyAA17Mos6502OpcodeInfoC_Says5UInt8VGtF"></a>
-                    <a name="//apple_ref/swift/Method/opcodeNOP(_:_:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:7Emu65107CPU65xxC9opcodeNOPyyAA17Mos6502OpcodeInfoC_Says5UInt8VGtF">opcodeNOP(_:_:)</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Process the NOP opcode.</p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">opcodeNOP</span><span class="p">(</span><span class="n">_</span> <span class="nv">oc</span><span class="p">:</span> <span class="kt"><a href="../Classes/Mos6502OpcodeInfo.html">Mos6502OpcodeInfo</a></span><span class="p">,</span> <span class="n">_</span> <span class="nv">ops</span><span class="p">:</span> <span class="p">[</span><span class="kt">UInt8</span><span class="p">])</span></code></pre>
-
-                        </div>
-                      </div>
-                      <div>
-                        <h4>Parameters</h4>
-                        <table class="graybox">
-                          <tbody>
-                            <tr>
-                              <td>
-                                <code>
-                                <em>oc</em>
-                                </code>
-                              </td>
-                              <td>
-                                <div>
-                                  <p>the opcode information.</p>
-                                </div>
-                              </td>
-                            </tr>
-                          </tbody>
-                        </table>
-                      </div>
-                      <div class="slightly-smaller">
-                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Emu6510/CPU65xx.swift#L906">Show on GitHub</a>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:7Emu65107CPU65xxC9opcodePHAyyAA17Mos6502OpcodeInfoC_Says5UInt8VGtF"></a>
-                    <a name="//apple_ref/swift/Method/opcodePHA(_:_:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:7Emu65107CPU65xxC9opcodePHAyyAA17Mos6502OpcodeInfoC_Says5UInt8VGtF">opcodePHA(_:_:)</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Process the PHA opcode.</p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">opcodePHA</span><span class="p">(</span><span class="n">_</span> <span class="nv">oc</span><span class="p">:</span> <span class="kt"><a href="../Classes/Mos6502OpcodeInfo.html">Mos6502OpcodeInfo</a></span><span class="p">,</span> <span class="n">_</span> <span class="nv">ops</span><span class="p">:</span> <span class="p">[</span><span class="kt">UInt8</span><span class="p">])</span></code></pre>
-
-                        </div>
-                      </div>
-                      <div>
-                        <h4>Parameters</h4>
-                        <table class="graybox">
-                          <tbody>
-                            <tr>
-                              <td>
-                                <code>
-                                <em>oc</em>
-                                </code>
-                              </td>
-                              <td>
-                                <div>
-                                  <p>the opcode information.</p>
-                                </div>
-                              </td>
-                            </tr>
-                          </tbody>
-                        </table>
-                      </div>
-                      <div class="slightly-smaller">
-                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Emu6510/CPU65xx.swift#L913">Show on GitHub</a>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:7Emu65107CPU65xxC9opcodePHPyyAA17Mos6502OpcodeInfoC_Says5UInt8VGtF"></a>
-                    <a name="//apple_ref/swift/Method/opcodePHP(_:_:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:7Emu65107CPU65xxC9opcodePHPyyAA17Mos6502OpcodeInfoC_Says5UInt8VGtF">opcodePHP(_:_:)</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Process the PHP opcode.</p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">opcodePHP</span><span class="p">(</span><span class="n">_</span> <span class="nv">oc</span><span class="p">:</span> <span class="kt"><a href="../Classes/Mos6502OpcodeInfo.html">Mos6502OpcodeInfo</a></span><span class="p">,</span> <span class="n">_</span> <span class="nv">ops</span><span class="p">:</span> <span class="p">[</span><span class="kt">UInt8</span><span class="p">])</span></code></pre>
-
-                        </div>
-                      </div>
-                      <div>
-                        <h4>Parameters</h4>
-                        <table class="graybox">
-                          <tbody>
-                            <tr>
-                              <td>
-                                <code>
-                                <em>oc</em>
-                                </code>
-                              </td>
-                              <td>
-                                <div>
-                                  <p>the opcode information.</p>
-                                </div>
-                              </td>
-                            </tr>
-                          </tbody>
-                        </table>
-                      </div>
-                      <div class="slightly-smaller">
-                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Emu6510/CPU65xx.swift#L920">Show on GitHub</a>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:7Emu65107CPU65xxC9opcodePLAyyAA17Mos6502OpcodeInfoC_Says5UInt8VGtF"></a>
-                    <a name="//apple_ref/swift/Method/opcodePLA(_:_:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:7Emu65107CPU65xxC9opcodePLAyyAA17Mos6502OpcodeInfoC_Says5UInt8VGtF">opcodePLA(_:_:)</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Process the PLA opcode.</p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">opcodePLA</span><span class="p">(</span><span class="n">_</span> <span class="nv">oc</span><span class="p">:</span> <span class="kt"><a href="../Classes/Mos6502OpcodeInfo.html">Mos6502OpcodeInfo</a></span><span class="p">,</span> <span class="n">_</span> <span class="nv">ops</span><span class="p">:</span> <span class="p">[</span><span class="kt">UInt8</span><span class="p">])</span></code></pre>
-
-                        </div>
-                      </div>
-                      <div>
-                        <h4>Parameters</h4>
-                        <table class="graybox">
-                          <tbody>
-                            <tr>
-                              <td>
-                                <code>
-                                <em>oc</em>
-                                </code>
-                              </td>
-                              <td>
-                                <div>
-                                  <p>the opcode information.</p>
-                                </div>
-                              </td>
-                            </tr>
-                          </tbody>
-                        </table>
-                      </div>
-                      <div class="slightly-smaller">
-                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Emu6510/CPU65xx.swift#L927">Show on GitHub</a>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:7Emu65107CPU65xxC9opcodePLPyyAA17Mos6502OpcodeInfoC_Says5UInt8VGtF"></a>
-                    <a name="//apple_ref/swift/Method/opcodePLP(_:_:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:7Emu65107CPU65xxC9opcodePLPyyAA17Mos6502OpcodeInfoC_Says5UInt8VGtF">opcodePLP(_:_:)</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Process the PLP opcode.</p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">opcodePLP</span><span class="p">(</span><span class="n">_</span> <span class="nv">oc</span><span class="p">:</span> <span class="kt"><a href="../Classes/Mos6502OpcodeInfo.html">Mos6502OpcodeInfo</a></span><span class="p">,</span> <span class="n">_</span> <span class="nv">ops</span><span class="p">:</span> <span class="p">[</span><span class="kt">UInt8</span><span class="p">])</span></code></pre>
-
-                        </div>
-                      </div>
-                      <div>
-                        <h4>Parameters</h4>
-                        <table class="graybox">
-                          <tbody>
-                            <tr>
-                              <td>
-                                <code>
-                                <em>oc</em>
-                                </code>
-                              </td>
-                              <td>
-                                <div>
-                                  <p>the opcode information.</p>
-                                </div>
-                              </td>
-                            </tr>
-                          </tbody>
-                        </table>
-                      </div>
-                      <div class="slightly-smaller">
-                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Emu6510/CPU65xx.swift#L934">Show on GitHub</a>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:7Emu65107CPU65xxC9opcodeRTIyyAA17Mos6502OpcodeInfoC_Says5UInt8VGtF"></a>
-                    <a name="//apple_ref/swift/Method/opcodeRTI(_:_:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:7Emu65107CPU65xxC9opcodeRTIyyAA17Mos6502OpcodeInfoC_Says5UInt8VGtF">opcodeRTI(_:_:)</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Process the RTI opcode.</p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">opcodeRTI</span><span class="p">(</span><span class="n">_</span> <span class="nv">oc</span><span class="p">:</span> <span class="kt"><a href="../Classes/Mos6502OpcodeInfo.html">Mos6502OpcodeInfo</a></span><span class="p">,</span> <span class="n">_</span> <span class="nv">ops</span><span class="p">:</span> <span class="p">[</span><span class="kt">UInt8</span><span class="p">])</span></code></pre>
-
-                        </div>
-                      </div>
-                      <div>
-                        <h4>Parameters</h4>
-                        <table class="graybox">
-                          <tbody>
-                            <tr>
-                              <td>
-                                <code>
-                                <em>oc</em>
-                                </code>
-                              </td>
-                              <td>
-                                <div>
-                                  <p>the opcode information.</p>
-                                </div>
-                              </td>
-                            </tr>
-                          </tbody>
-                        </table>
-                      </div>
-                      <div class="slightly-smaller">
-                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Emu6510/CPU65xx.swift#L941">Show on GitHub</a>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:7Emu65107CPU65xxC9opcodeRTSyyAA17Mos6502OpcodeInfoC_Says5UInt8VGtF"></a>
-                    <a name="//apple_ref/swift/Method/opcodeRTS(_:_:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:7Emu65107CPU65xxC9opcodeRTSyyAA17Mos6502OpcodeInfoC_Says5UInt8VGtF">opcodeRTS(_:_:)</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Process the RTS opcode.</p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">opcodeRTS</span><span class="p">(</span><span class="n">_</span> <span class="nv">oc</span><span class="p">:</span> <span class="kt"><a href="../Classes/Mos6502OpcodeInfo.html">Mos6502OpcodeInfo</a></span><span class="p">,</span> <span class="n">_</span> <span class="nv">ops</span><span class="p">:</span> <span class="p">[</span><span class="kt">UInt8</span><span class="p">])</span></code></pre>
-
-                        </div>
-                      </div>
-                      <div>
-                        <h4>Parameters</h4>
-                        <table class="graybox">
-                          <tbody>
-                            <tr>
-                              <td>
-                                <code>
-                                <em>oc</em>
-                                </code>
-                              </td>
-                              <td>
-                                <div>
-                                  <p>the opcode information.</p>
-                                </div>
-                              </td>
-                            </tr>
-                          </tbody>
-                        </table>
-                      </div>
-                      <div class="slightly-smaller">
-                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Emu6510/CPU65xx.swift#L948">Show on GitHub</a>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:7Emu65107CPU65xxC9opcodeSECyyAA17Mos6502OpcodeInfoC_Says5UInt8VGtF"></a>
-                    <a name="//apple_ref/swift/Method/opcodeSEC(_:_:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:7Emu65107CPU65xxC9opcodeSECyyAA17Mos6502OpcodeInfoC_Says5UInt8VGtF">opcodeSEC(_:_:)</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Process the SEC opcode.</p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">opcodeSEC</span><span class="p">(</span><span class="n">_</span> <span class="nv">oc</span><span class="p">:</span> <span class="kt"><a href="../Classes/Mos6502OpcodeInfo.html">Mos6502OpcodeInfo</a></span><span class="p">,</span> <span class="n">_</span> <span class="nv">ops</span><span class="p">:</span> <span class="p">[</span><span class="kt">UInt8</span><span class="p">])</span></code></pre>
-
-                        </div>
-                      </div>
-                      <div>
-                        <h4>Parameters</h4>
-                        <table class="graybox">
-                          <tbody>
-                            <tr>
-                              <td>
-                                <code>
-                                <em>oc</em>
-                                </code>
-                              </td>
-                              <td>
-                                <div>
-                                  <p>the opcode information.</p>
-                                </div>
-                              </td>
-                            </tr>
-                          </tbody>
-                        </table>
-                      </div>
-                      <div class="slightly-smaller">
-                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Emu6510/CPU65xx.swift#L955">Show on GitHub</a>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:7Emu65107CPU65xxC9opcodeSEDyyAA17Mos6502OpcodeInfoC_Says5UInt8VGtF"></a>
-                    <a name="//apple_ref/swift/Method/opcodeSED(_:_:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:7Emu65107CPU65xxC9opcodeSEDyyAA17Mos6502OpcodeInfoC_Says5UInt8VGtF">opcodeSED(_:_:)</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Process the SED opcode.</p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">opcodeSED</span><span class="p">(</span><span class="n">_</span> <span class="nv">oc</span><span class="p">:</span> <span class="kt"><a href="../Classes/Mos6502OpcodeInfo.html">Mos6502OpcodeInfo</a></span><span class="p">,</span> <span class="n">_</span> <span class="nv">ops</span><span class="p">:</span> <span class="p">[</span><span class="kt">UInt8</span><span class="p">])</span></code></pre>
-
-                        </div>
-                      </div>
-                      <div>
-                        <h4>Parameters</h4>
-                        <table class="graybox">
-                          <tbody>
-                            <tr>
-                              <td>
-                                <code>
-                                <em>oc</em>
-                                </code>
-                              </td>
-                              <td>
-                                <div>
-                                  <p>the opcode information.</p>
-                                </div>
-                              </td>
-                            </tr>
-                          </tbody>
-                        </table>
-                      </div>
-                      <div class="slightly-smaller">
-                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Emu6510/CPU65xx.swift#L962">Show on GitHub</a>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:7Emu65107CPU65xxC9opcodeSEIyyAA17Mos6502OpcodeInfoC_Says5UInt8VGtF"></a>
-                    <a name="//apple_ref/swift/Method/opcodeSEI(_:_:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:7Emu65107CPU65xxC9opcodeSEIyyAA17Mos6502OpcodeInfoC_Says5UInt8VGtF">opcodeSEI(_:_:)</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Process the SEI opcode.</p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">opcodeSEI</span><span class="p">(</span><span class="n">_</span> <span class="nv">oc</span><span class="p">:</span> <span class="kt"><a href="../Classes/Mos6502OpcodeInfo.html">Mos6502OpcodeInfo</a></span><span class="p">,</span> <span class="n">_</span> <span class="nv">ops</span><span class="p">:</span> <span class="p">[</span><span class="kt">UInt8</span><span class="p">])</span></code></pre>
-
-                        </div>
-                      </div>
-                      <div>
-                        <h4>Parameters</h4>
-                        <table class="graybox">
-                          <tbody>
-                            <tr>
-                              <td>
-                                <code>
-                                <em>oc</em>
-                                </code>
-                              </td>
-                              <td>
-                                <div>
-                                  <p>the opcode information.</p>
-                                </div>
-                              </td>
-                            </tr>
-                          </tbody>
-                        </table>
-                      </div>
-                      <div class="slightly-smaller">
-                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Emu6510/CPU65xx.swift#L969">Show on GitHub</a>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:7Emu65107CPU65xxC9opcodeSTAyyAA17Mos6502OpcodeInfoC_Says5UInt8VGtF"></a>
-                    <a name="//apple_ref/swift/Method/opcodeSTA(_:_:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:7Emu65107CPU65xxC9opcodeSTAyyAA17Mos6502OpcodeInfoC_Says5UInt8VGtF">opcodeSTA(_:_:)</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Process the STA opcode.</p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">opcodeSTA</span><span class="p">(</span><span class="n">_</span> <span class="nv">oc</span><span class="p">:</span> <span class="kt"><a href="../Classes/Mos6502OpcodeInfo.html">Mos6502OpcodeInfo</a></span><span class="p">,</span> <span class="n">_</span> <span class="nv">ops</span><span class="p">:</span> <span class="p">[</span><span class="kt">UInt8</span><span class="p">])</span></code></pre>
-
-                        </div>
-                      </div>
-                      <div>
-                        <h4>Parameters</h4>
-                        <table class="graybox">
-                          <tbody>
-                            <tr>
-                              <td>
-                                <code>
-                                <em>oc</em>
-                                </code>
-                              </td>
-                              <td>
-                                <div>
-                                  <p>the opcode information.</p>
-                                </div>
-                              </td>
-                            </tr>
-                          </tbody>
-                        </table>
-                      </div>
-                      <div class="slightly-smaller">
-                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Emu6510/CPU65xx.swift#L976">Show on GitHub</a>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:7Emu65107CPU65xxC9opcodeSTXyyAA17Mos6502OpcodeInfoC_Says5UInt8VGtF"></a>
-                    <a name="//apple_ref/swift/Method/opcodeSTX(_:_:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:7Emu65107CPU65xxC9opcodeSTXyyAA17Mos6502OpcodeInfoC_Says5UInt8VGtF">opcodeSTX(_:_:)</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Process the STX opcode.</p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">opcodeSTX</span><span class="p">(</span><span class="n">_</span> <span class="nv">oc</span><span class="p">:</span> <span class="kt"><a href="../Classes/Mos6502OpcodeInfo.html">Mos6502OpcodeInfo</a></span><span class="p">,</span> <span class="n">_</span> <span class="nv">ops</span><span class="p">:</span> <span class="p">[</span><span class="kt">UInt8</span><span class="p">])</span></code></pre>
-
-                        </div>
-                      </div>
-                      <div>
-                        <h4>Parameters</h4>
-                        <table class="graybox">
-                          <tbody>
-                            <tr>
-                              <td>
-                                <code>
-                                <em>oc</em>
-                                </code>
-                              </td>
-                              <td>
-                                <div>
-                                  <p>the opcode information.</p>
-                                </div>
-                              </td>
-                            </tr>
-                          </tbody>
-                        </table>
-                      </div>
-                      <div class="slightly-smaller">
-                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Emu6510/CPU65xx.swift#L983">Show on GitHub</a>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:7Emu65107CPU65xxC9opcodeSTYyyAA17Mos6502OpcodeInfoC_Says5UInt8VGtF"></a>
-                    <a name="//apple_ref/swift/Method/opcodeSTY(_:_:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:7Emu65107CPU65xxC9opcodeSTYyyAA17Mos6502OpcodeInfoC_Says5UInt8VGtF">opcodeSTY(_:_:)</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Process the STY opcode.</p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">opcodeSTY</span><span class="p">(</span><span class="n">_</span> <span class="nv">oc</span><span class="p">:</span> <span class="kt"><a href="../Classes/Mos6502OpcodeInfo.html">Mos6502OpcodeInfo</a></span><span class="p">,</span> <span class="n">_</span> <span class="nv">ops</span><span class="p">:</span> <span class="p">[</span><span class="kt">UInt8</span><span class="p">])</span></code></pre>
-
-                        </div>
-                      </div>
-                      <div>
-                        <h4>Parameters</h4>
-                        <table class="graybox">
-                          <tbody>
-                            <tr>
-                              <td>
-                                <code>
-                                <em>oc</em>
-                                </code>
-                              </td>
-                              <td>
-                                <div>
-                                  <p>the opcode information.</p>
-                                </div>
-                              </td>
-                            </tr>
-                          </tbody>
-                        </table>
-                      </div>
-                      <div class="slightly-smaller">
-                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Emu6510/CPU65xx.swift#L990">Show on GitHub</a>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:7Emu65107CPU65xxC9opcodeTSXyyAA17Mos6502OpcodeInfoC_Says5UInt8VGtF"></a>
-                    <a name="//apple_ref/swift/Method/opcodeTSX(_:_:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:7Emu65107CPU65xxC9opcodeTSXyyAA17Mos6502OpcodeInfoC_Says5UInt8VGtF">opcodeTSX(_:_:)</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Process the TSX opcode.</p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">opcodeTSX</span><span class="p">(</span><span class="n">_</span> <span class="nv">oc</span><span class="p">:</span> <span class="kt"><a href="../Classes/Mos6502OpcodeInfo.html">Mos6502OpcodeInfo</a></span><span class="p">,</span> <span class="n">_</span> <span class="nv">ops</span><span class="p">:</span> <span class="p">[</span><span class="kt">UInt8</span><span class="p">])</span></code></pre>
-
-                        </div>
-                      </div>
-                      <div>
-                        <h4>Parameters</h4>
-                        <table class="graybox">
-                          <tbody>
-                            <tr>
-                              <td>
-                                <code>
-                                <em>oc</em>
-                                </code>
-                              </td>
-                              <td>
-                                <div>
-                                  <p>the opcode information.</p>
-                                </div>
-                              </td>
-                            </tr>
-                          </tbody>
-                        </table>
-                      </div>
-                      <div class="slightly-smaller">
-                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Emu6510/CPU65xx.swift#L997">Show on GitHub</a>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:7Emu65107CPU65xxC9opcodeTXSyyAA17Mos6502OpcodeInfoC_Says5UInt8VGtF"></a>
-                    <a name="//apple_ref/swift/Method/opcodeTXS(_:_:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:7Emu65107CPU65xxC9opcodeTXSyyAA17Mos6502OpcodeInfoC_Says5UInt8VGtF">opcodeTXS(_:_:)</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Process the TXS opcode.</p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">opcodeTXS</span><span class="p">(</span><span class="n">_</span> <span class="nv">oc</span><span class="p">:</span> <span class="kt"><a href="../Classes/Mos6502OpcodeInfo.html">Mos6502OpcodeInfo</a></span><span class="p">,</span> <span class="n">_</span> <span class="nv">ops</span><span class="p">:</span> <span class="p">[</span><span class="kt">UInt8</span><span class="p">])</span></code></pre>
-
-                        </div>
-                      </div>
-                      <div>
-                        <h4>Parameters</h4>
-                        <table class="graybox">
-                          <tbody>
-                            <tr>
-                              <td>
-                                <code>
-                                <em>oc</em>
-                                </code>
-                              </td>
-                              <td>
-                                <div>
-                                  <p>the opcode information.</p>
-                                </div>
-                              </td>
-                            </tr>
-                          </tbody>
-                        </table>
-                      </div>
-                      <div class="slightly-smaller">
-                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Emu6510/CPU65xx.swift#L1004">Show on GitHub</a>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:7Emu65107CPU65xxC9opcodeTXAyyAA17Mos6502OpcodeInfoC_Says5UInt8VGtF"></a>
-                    <a name="//apple_ref/swift/Method/opcodeTXA(_:_:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:7Emu65107CPU65xxC9opcodeTXAyyAA17Mos6502OpcodeInfoC_Says5UInt8VGtF">opcodeTXA(_:_:)</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Process the TXA opcode.</p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">opcodeTXA</span><span class="p">(</span><span class="n">_</span> <span class="nv">oc</span><span class="p">:</span> <span class="kt"><a href="../Classes/Mos6502OpcodeInfo.html">Mos6502OpcodeInfo</a></span><span class="p">,</span> <span class="n">_</span> <span class="nv">ops</span><span class="p">:</span> <span class="p">[</span><span class="kt">UInt8</span><span class="p">])</span></code></pre>
-
-                        </div>
-                      </div>
-                      <div>
-                        <h4>Parameters</h4>
-                        <table class="graybox">
-                          <tbody>
-                            <tr>
-                              <td>
-                                <code>
-                                <em>oc</em>
-                                </code>
-                              </td>
-                              <td>
-                                <div>
-                                  <p>the opcode information.</p>
-                                </div>
-                              </td>
-                            </tr>
-                          </tbody>
-                        </table>
-                      </div>
-                      <div class="slightly-smaller">
-                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Emu6510/CPU65xx.swift#L1011">Show on GitHub</a>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:7Emu65107CPU65xxC9opcodeTAXyyAA17Mos6502OpcodeInfoC_Says5UInt8VGtF"></a>
-                    <a name="//apple_ref/swift/Method/opcodeTAX(_:_:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:7Emu65107CPU65xxC9opcodeTAXyyAA17Mos6502OpcodeInfoC_Says5UInt8VGtF">opcodeTAX(_:_:)</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Process the TAX opcode.</p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">opcodeTAX</span><span class="p">(</span><span class="n">_</span> <span class="nv">oc</span><span class="p">:</span> <span class="kt"><a href="../Classes/Mos6502OpcodeInfo.html">Mos6502OpcodeInfo</a></span><span class="p">,</span> <span class="n">_</span> <span class="nv">ops</span><span class="p">:</span> <span class="p">[</span><span class="kt">UInt8</span><span class="p">])</span></code></pre>
-
-                        </div>
-                      </div>
-                      <div>
-                        <h4>Parameters</h4>
-                        <table class="graybox">
-                          <tbody>
-                            <tr>
-                              <td>
-                                <code>
-                                <em>oc</em>
-                                </code>
-                              </td>
-                              <td>
-                                <div>
-                                  <p>the opcode information.</p>
-                                </div>
-                              </td>
-                            </tr>
-                          </tbody>
-                        </table>
-                      </div>
-                      <div class="slightly-smaller">
-                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Emu6510/CPU65xx.swift#L1018">Show on GitHub</a>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:7Emu65107CPU65xxC9opcodeTYAyyAA17Mos6502OpcodeInfoC_Says5UInt8VGtF"></a>
-                    <a name="//apple_ref/swift/Method/opcodeTYA(_:_:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:7Emu65107CPU65xxC9opcodeTYAyyAA17Mos6502OpcodeInfoC_Says5UInt8VGtF">opcodeTYA(_:_:)</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Process the TYA opcode.</p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">opcodeTYA</span><span class="p">(</span><span class="n">_</span> <span class="nv">oc</span><span class="p">:</span> <span class="kt"><a href="../Classes/Mos6502OpcodeInfo.html">Mos6502OpcodeInfo</a></span><span class="p">,</span> <span class="n">_</span> <span class="nv">ops</span><span class="p">:</span> <span class="p">[</span><span class="kt">UInt8</span><span class="p">])</span></code></pre>
-
-                        </div>
-                      </div>
-                      <div>
-                        <h4>Parameters</h4>
-                        <table class="graybox">
-                          <tbody>
-                            <tr>
-                              <td>
-                                <code>
-                                <em>oc</em>
-                                </code>
-                              </td>
-                              <td>
-                                <div>
-                                  <p>the opcode information.</p>
-                                </div>
-                              </td>
-                            </tr>
-                          </tbody>
-                        </table>
-                      </div>
-                      <div class="slightly-smaller">
-                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Emu6510/CPU65xx.swift#L1025">Show on GitHub</a>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:7Emu65107CPU65xxC9opcodeTAYyyAA17Mos6502OpcodeInfoC_Says5UInt8VGtF"></a>
-                    <a name="//apple_ref/swift/Method/opcodeTAY(_:_:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:7Emu65107CPU65xxC9opcodeTAYyyAA17Mos6502OpcodeInfoC_Says5UInt8VGtF">opcodeTAY(_:_:)</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Process the TAY opcode.</p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">opcodeTAY</span><span class="p">(</span><span class="n">_</span> <span class="nv">oc</span><span class="p">:</span> <span class="kt"><a href="../Classes/Mos6502OpcodeInfo.html">Mos6502OpcodeInfo</a></span><span class="p">,</span> <span class="n">_</span> <span class="nv">ops</span><span class="p">:</span> <span class="p">[</span><span class="kt">UInt8</span><span class="p">])</span></code></pre>
-
-                        </div>
-                      </div>
-                      <div>
-                        <h4>Parameters</h4>
-                        <table class="graybox">
-                          <tbody>
-                            <tr>
-                              <td>
-                                <code>
-                                <em>oc</em>
-                                </code>
-                              </td>
-                              <td>
-                                <div>
-                                  <p>the opcode information.</p>
-                                </div>
-                              </td>
-                            </tr>
-                          </tbody>
-                        </table>
-                      </div>
-                      <div class="slightly-smaller">
-                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Emu6510/CPU65xx.swift#L1032">Show on GitHub</a>
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Emu6510/CPU65xx.swift#L636-L727">Show on GitHub</a>
                       </div>
                     </section>
                   </div>

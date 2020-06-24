@@ -99,7 +99,7 @@ open class CPU65xx {
 
     /*===========================================================================================================================*/
     /// Initialize the CPU with the given `clock` and `memoryManager`.
-    ///
+    /// 
     /// - Parameters:
     ///   - clock: The `CPUClock` that the CPU will use for timing.
     ///   - memoryManager: The `MemoryManager` that the CPU will use for accessing memory.
@@ -133,7 +133,7 @@ open class CPU65xx {
     /*===========================================================================================================================*/
     /// Get the byte from the given address. If there is no next byte (e.g. - At the top of RAM) then the panic flag is set and
     /// zero is returned.
-    ///
+    /// 
     /// - Parameter addr: the address to get the byte up from.
     /// - Returns: the next byte or zero if there is no next byte.
     ///
@@ -145,7 +145,7 @@ open class CPU65xx {
     /*===========================================================================================================================*/
     /// Get the byte from the given address. If there is no next byte (e.g. - At the top of RAM) then the panic flag is set and
     /// zero is returned.
-    ///
+    /// 
     /// - Parameter addr: the address to get the byte up from.
     /// - Returns: the next byte or zero if there is no next byte.
     ///
@@ -156,7 +156,7 @@ open class CPU65xx {
 
     /*===========================================================================================================================*/
     /// Test the given value and set the (Z)ero and sig(N) flags of the status register.
-    ///
+    /// 
     /// - Parameter value: the value to test.
     /// - Returns: the value.
     ///
@@ -168,7 +168,7 @@ open class CPU65xx {
 
     /*===========================================================================================================================*/
     /// Decrement the stack pointer by one.
-    ///
+    /// 
     /// - Returns: the original stack pointer value BEFORE the decrement.
     ///
     @inlinable func decSP() -> UInt16 {
@@ -179,7 +179,7 @@ open class CPU65xx {
 
     /*===========================================================================================================================*/
     /// Increment the stack pointer by one.
-    ///
+    /// 
     /// - Returns: the new stack pointer value AFTER the increment.
     ///
     @inlinable func incSP() -> UInt16 {
@@ -189,7 +189,7 @@ open class CPU65xx {
 
     /*===========================================================================================================================*/
     /// Push a byte onto the stack.
-    ///
+    /// 
     /// - Parameter byte: the byte.
     ///
     @inlinable func push(byte: UInt8) {
@@ -198,7 +198,7 @@ open class CPU65xx {
 
     /*===========================================================================================================================*/
     /// Push a 16-bit word onto the stack.
-    ///
+    /// 
     /// - Parameter word: the word.
     ///
     @inlinable func push(word: UInt16) {
@@ -208,7 +208,7 @@ open class CPU65xx {
 
     /*===========================================================================================================================*/
     /// Pop a byte from the stack.
-    ///
+    /// 
     /// - Returns: the byte.
     ///
     @inlinable func pop() -> UInt8 {
@@ -217,7 +217,7 @@ open class CPU65xx {
 
     /*===========================================================================================================================*/
     /// Pop a 16-bit word from the stack.
-    ///
+    /// 
     /// - Returns: the word.
     ///
     @inlinable func popWord() -> UInt16 {
@@ -228,7 +228,7 @@ open class CPU65xx {
 
     /*===========================================================================================================================*/
     /// Converts two bytes into a UInt16 value.
-    ///
+    /// 
     /// - Parameters:
     ///   - lo: the low byte
     ///   - hi: the high byte
@@ -240,7 +240,7 @@ open class CPU65xx {
 
     /*===========================================================================================================================*/
     /// Converts one or two operand bytes to a 16-bit address.
-    ///
+    /// 
     /// - Parameter ops: the operators
     /// - Returns: the address.
     ///
@@ -250,7 +250,7 @@ open class CPU65xx {
 
     /*===========================================================================================================================*/
     /// Gets an indirect address.
-    ///
+    /// 
     /// - Parameter ops: the operators to the opcode.
     /// - Returns: the indirect address (the address stored at the address).
     ///
@@ -260,7 +260,7 @@ open class CPU65xx {
 
     /*===========================================================================================================================*/
     /// Gets an indirect address. This method is for a page zero lookup which means it wraps.
-    ///
+    /// 
     /// - Parameter addr: the address
     /// - Returns: the indirect address (the address stored at the address).
     ///
@@ -271,7 +271,7 @@ open class CPU65xx {
 
     /*===========================================================================================================================*/
     /// Gets an indirect address.
-    ///
+    /// 
     /// - Parameter addr: the address
     /// - Returns: the indirect address (the address stored at the address).
     ///
@@ -281,40 +281,127 @@ open class CPU65xx {
     }
 
     /*===========================================================================================================================*/
+    /// Offset an address by an amount. This method adds one to the instruction execution time if the result is in a different page
+    /// of memory.
+    /// 
+    /// - Parameters:
+    ///   - a: the address
+    ///   - o: the offset
+    /// - Returns: the sum of the address and the offset.
+    ///
+    @inlinable func getIndexedAddress(_ a: UInt16, _ o: UInt8) -> UInt16 {
+        let f: UInt16 = (a + UInt16(o))
+        if diffPg(a, f) { cpuClock.add() }
+        return f
+    }
+
+    /*===========================================================================================================================*/
+    /// Offset an address by an amount. This method adds one to the instruction execution time if the result is in a different page
+    /// of memory. This method differs from getIndexedAddress(_:_:) in that the offset is signed and therefore the result can be
+    /// before as well as after then given address.
+    /// 
+    /// - Parameters:
+    ///   - a: the address
+    ///   - o: the offset
+    /// - Returns: the sum of the address and the offset.
+    ///
+    @inlinable func getRelativeAddress(_ a: UInt16, _ o: Int8) -> UInt16 {
+        let r: UInt16 = UInt16((Int32(a) + Int32(o)) & 0xffff)
+        if diffPg(a, r) { cpuClock.add() }
+        return r
+    }
+
+    /*===========================================================================================================================*/
+    /// Yeah. Ummm. See the discussion on Indirect Indexed here: http://www.emulator101.com/6502-addressing-modes.html As with the
+    /// others this method adds one to the instruction execution time if the result is in a different page of memory.
+    /// 
+    /// - Parameter zpAddr: the address in page zero.
+    /// - Returns: the Indirect Indexed address.
+    ///
+    @inlinable func getIndirectYAddress(_ zpAddr: UInt8) -> UInt16 {
+        let f: UInt16 = getIndirectAddress(zpAddr)
+        let a: UInt16 = (f + UInt16(registerY))
+        if diffPg(f, a) { cpuClock.add() }
+        return a
+    }
+
+    /*===========================================================================================================================*/
+    /// Add two numbers together wrapping around if needed. No overflow error will occur.
+    /// 
+    /// - Parameters:
+    ///   - a: number 1
+    ///   - b: number 2
+    /// - Returns: the sum of the two numbers.
+    ///
+    @inlinable func addWithWrap(_ a: UInt8, _ b: UInt8) -> UInt8 {
+        UInt8((UInt16(a) + UInt16(b)) & 0xff)
+    }
+
+    /*===========================================================================================================================*/
+    /// Return `true` if the two addresses are in different pages of memory.
+    /// 
+    /// - Parameters:
+    ///   - a: address 1
+    ///   - b: address 2
+    /// - Returns: `true` if the upper 8 bits of both values are not the same.
+    ///
+    @inlinable func diffPg(_ a: UInt16, _ b: UInt16) -> Bool {
+        ((a & 0xff00) != (b & 0xff00))
+    }
+
+    /*===========================================================================================================================*/
     /// Get the operational address based on the ops and the addressing mode.
-    ///
-    /// TODO: Handle additional clock cycles for crossing page boundaries.
-    ///
+    /// 
     /// - Parameters:
     ///   - mode: the addressing mode.
     ///   - ops: the ops.
     /// - Returns: the operational address.
     ///
     @inlinable func getAddress(mode: Mos6502AddressModes, ops: [UInt8]) -> UInt16 {
+        var addr: UInt16 = 0
+
         switch mode {
           // One operand which is a signed offset to be applied to the program counter.
-            case .REL: return UInt16((Int32(programCounter) + Int32(makeSigned(ops[0]))) & 0xffff)
+            case .REL:
+                addr = getRelativeAddress(programCounter, makeSigned(ops[0]))
+
           // Two ops which represent an address in which to get another address.
-            case .IND: return getIndirectAddress(ops)
+            case .IND:
+                addr = getIndirectAddress(ops)
+
           // All have one operand and use page zero.
-            case .INDX: return getIndirectAddress(ops[0] + registerX)
-            case .INDY: return (getIndirectAddress(ops[0]) + UInt16(registerY))
+            case .INDX:
+                addr = getIndirectAddress(addWithWrap(ops[0], registerX))
+            case .INDY:
+                addr = getIndirectYAddress(ops[0])
+
           // Two ops which represent an address in memory.
-            case .ABS: return getAddress(ops)
-            case .ABSX: return (getAddress(ops) + UInt16(registerX))
-            case .ABSY: return (getAddress(ops) + UInt16(registerY))
+            case .ABS:
+                addr = getAddress(ops)
+            case .ABSX:
+                addr = getIndexedAddress(getAddress(ops), registerX)
+            case .ABSY:
+                addr = getIndexedAddress(getAddress(ops), registerY)
+
           // All have one operand and use page zero.
-            case .ZP: return UInt16(ops[0])
-            case .ZPX: return (UInt16(ops[0]) + UInt16(registerX))
-            case .ZPY: return (UInt16(ops[0]) + UInt16(registerY))
+            case .ZP:
+                addr = UInt16(ops[0])
+            case .ZPX:
+                addr = UInt16(addWithWrap(ops[0], registerX))
+            case .ZPY:
+                addr = UInt16(addWithWrap(ops[0], registerY))
+
           // Accumulator, Immediate, and Implied addressing modes. No address
-            default: return 0
+            default:
+                break
         }
+
+        return addr
     }
 
     /*===========================================================================================================================*/
     /// Read a value. The source of the value is determined by the opcode's address mode and provided operators.
-    ///
+    /// 
     /// - Parameters:
     ///   - mode: the address mode.
     ///   - ops: the operators.
@@ -332,7 +419,7 @@ open class CPU65xx {
     /*===========================================================================================================================*/
     /// Write a value back to memory or the accumulator. It's destination is determined by the opcode's address mode and provided
     /// operators.
-    ///
+    /// 
     /// - Parameters:
     ///   - value: the value
     ///   - mode: the address mode
@@ -349,7 +436,7 @@ open class CPU65xx {
 
     /*===========================================================================================================================*/
     /// Set or clear a flag in the status register.
-    ///
+    /// 
     /// - Parameters:
     ///   - f: the flag to set or clear
     ///   - s: `true` if the flag should be set or `false` if it should be cleared.
@@ -360,7 +447,7 @@ open class CPU65xx {
 
     /*===========================================================================================================================*/
     /// Check if the status register has a particular flag set.
-    ///
+    /// 
     /// - Parameter f: the flag
     /// - Returns: `true` if that flag is set in the status register.
     ///
@@ -370,7 +457,7 @@ open class CPU65xx {
 
     /*===========================================================================================================================*/
     /// Perform a left rotation.
-    ///
+    /// 
     /// - Parameters:
     ///   - carry: `true` if the carry flag should be moved into the low bit.
     ///   - oc: the opcode
@@ -385,7 +472,7 @@ open class CPU65xx {
 
     /*===========================================================================================================================*/
     /// Perform a right rotation.
-    ///
+    /// 
     /// - Parameters:
     ///   - carry: `true` if the carry flag should be moved into the high bit.
     ///   - oc: the opcode
@@ -399,21 +486,21 @@ open class CPU65xx {
     }
 
     /*===========================================================================================================================*/
-    /// This method is really misnamed. All it does is take the value and sets the (Z)ero and sig(N) status bits before writing the
-    /// value back according to the opcode's address mode.
-    ///
+    /// This method takes the value and sets the (Z)ero and sig(N) status bits before writing the value back according to the
+    /// opcode's address mode.
+    /// 
     /// - Parameters:
     ///   - b: the value
     ///   - oc: the opcode
     ///   - ops: the operators
     ///
-    @inlinable func shifter(b: UInt8, oc: Mos6502OpcodeInfo, ops: [UInt8]) {
+    @inlinable func writeValueWithTest(b: UInt8, oc: Mos6502OpcodeInfo, ops: [UInt8]) {
         writeValue(value: testSZ(b), mode: oc.addressMode, ops: ops)
     }
 
     /*===========================================================================================================================*/
     /// Take a packed BCD value and convert it to a normal binary value.
-    ///
+    /// 
     /// - Parameter b: the packed BCD value.
     /// - Returns: the binary value as a UInt16.
     ///
@@ -424,7 +511,7 @@ open class CPU65xx {
 
     /*===========================================================================================================================*/
     /// Take a value and convert it to a packed BCD value.
-    ///
+    /// 
     /// - Parameter value: the value.
     /// - Returns: the BCD value.
     ///
@@ -435,7 +522,7 @@ open class CPU65xx {
 
     /*===========================================================================================================================*/
     /// Truncate an integer value and return as a UInt8 value.
-    ///
+    /// 
     /// - Parameter b: the integer value.
     /// - Returns: the lower 8 bits as a UInt8 value.
     ///
@@ -445,7 +532,7 @@ open class CPU65xx {
 
     /*===========================================================================================================================*/
     /// Get the next byte from the program counter. Increments the program counter.
-    ///
+    /// 
     /// - Returns: the next byte from the program counter.
     ///
     @inlinable func getNextPCByte() -> UInt8 {
@@ -456,7 +543,7 @@ open class CPU65xx {
 
     /*===========================================================================================================================*/
     /// Compare a register to a value or byte in memory and set the status flags accordingly.
-    ///
+    /// 
     /// - Parameters:
     ///   - register: the register value.
     ///   - oc: the opcode that triggered this call.
@@ -471,7 +558,7 @@ open class CPU65xx {
 
     /*===========================================================================================================================*/
     /// Alter a byte in memory setting the (Z)ero and sig(N) flags accordingly.
-    ///
+    /// 
     /// - Parameters:
     ///   - a: the address of the byte.
     ///   - c: the closure to perform the alteration.
@@ -484,7 +571,7 @@ open class CPU65xx {
     /// Perform `addition` or `subtraction`. For `addition` set the `mask` parameter to `0` (`zero`). For `subtraction` set the
     /// `mask` parameter to `255`. Simply put, `subtraction` is nothing but `addition` with the right-hand operand exclusive-or'd
     /// with `255`.
-    ///
+    /// 
     /// - Parameters:
     ///   - opcode: the `opcode` that triggered this call.
     ///   - ops: the operators for the `opcode`.
@@ -504,7 +591,7 @@ open class CPU65xx {
 
     /*===========================================================================================================================*/
     /// Perform a basic addition and set the status register accordingly.
-    ///
+    /// 
     /// - Parameters:
     ///   - lhs: the `left-hand` operand
     ///   - rhs: the `right-hand` operand
@@ -522,7 +609,7 @@ open class CPU65xx {
     /*===========================================================================================================================*/
     /// Get the next count bytes from the addressBus indexed by the programCounter. If there are not enough next bytes (e.g. - At
     /// the top of RAM) then the panic flag is set and zero are substituted for the needed bytes.
-    ///
+    /// 
     /// - Parameter count: the number of bytes to get.
     /// - Returns: an array of the bytes.
     ///
@@ -541,7 +628,7 @@ open class CPU65xx {
 
     /*===========================================================================================================================*/
     /// Dispatch the opcode to its handler.
-    ///
+    /// 
     /// - Parameters:
     ///   - opcode: the opcode
     ///   - ops: it's ops
@@ -556,10 +643,10 @@ open class CPU65xx {
                 case .AND: accumulator = testSZ(accumulator & readValue(mode: oc.addressMode, ops: ops))
                 case .ORA: accumulator = testSZ(accumulator | readValue(mode: oc.addressMode, ops: ops))
                 case .EOR: accumulator = testSZ(accumulator ^ readValue(mode: oc.addressMode, ops: ops))
-                case .ROL: shifter(b: rol(carry: hasStatus(.C), oc: oc, ops: ops), oc: oc, ops: ops)
-                case .ROR: shifter(b: ror(carry: hasStatus(.C), oc: oc, ops: ops), oc: oc, ops: ops)
-                case .ASL: shifter(b: rol(oc: oc, ops: ops), oc: oc, ops: ops)
-                case .LSR: shifter(b: ror(oc: oc, ops: ops), oc: oc, ops: ops)
+                case .ROL: writeValueWithTest(b: rol(carry: hasStatus(.C), oc: oc, ops: ops), oc: oc, ops: ops)
+                case .ROR: writeValueWithTest(b: ror(carry: hasStatus(.C), oc: oc, ops: ops), oc: oc, ops: ops)
+                case .ASL: writeValueWithTest(b: rol(oc: oc, ops: ops), oc: oc, ops: ops)
+                case .LSR: writeValueWithTest(b: ror(oc: oc, ops: ops), oc: oc, ops: ops)
               // Branch opcodes
                 case .BCS: if hasStatus(.C) { programCounter = getAddress(mode: oc.addressMode, ops: ops) }
                 case .BEQ: if hasStatus(.Z) { programCounter = getAddress(mode: oc.addressMode, ops: ops) }
