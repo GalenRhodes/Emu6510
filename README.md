@@ -7,10 +7,10 @@ such as the Commodore® 64.
 
 The project will be developed in four phases:
 
-1) Documented opcode emulation - no undocumented opcodes.
-2) Frequency emulation - throttling down to 1-2 Mhz. 
-3) Exact cycle support.  In other words if an instruction took 7 clock
-cycles on a 6510 then it will take 7 clock cycles in the emulator as well.
+1) ~~Documented opcode emulation - no undocumented opcodes.~~ - _Done_.
+2) ~~Frequency emulation - throttling down to 1-2 Mhz.~~ - _Done_.
+3) ~~Exact cycle support.  In other words if an instruction took 7 clock
+cycles on a 6510 then it will take 7 clock cycles in the emulator as well.~~ - _Done_.
 4) Undocumented opcodes.
 
 ## Learning Resources
@@ -18,6 +18,7 @@ cycles on a 6510 then it will take 7 clock cycles in the emulator as well.
 The following websites were used as excellent resources for learning to write an emulator.
 
 - [emulator101.com - 6502 emulator](http://www.emulator101.com/6502-emulator.html)
+- [the 6502 microprocessor resource](http://www.6502.org)
 
 ## References for the 6510 microprocessor
 
