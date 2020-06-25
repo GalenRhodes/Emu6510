@@ -101,6 +101,7 @@
 		1117D4C21471A1189FA22C82 /* opcodes.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = opcodes.txt; sourceTree = "<group>"; };
 		1117D4D09BF907CF07ECB7FB /* docSet.dsidx */ = {isa = PBXFileReference; lastKnownFileType = file.dsidx; path = docSet.dsidx; sourceTree = "<group>"; };
 		1117D4F0D371892DEC012801 /* AddressBusListener.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = AddressBusListener.html; sourceTree = "<group>"; };
+		1117D5835C54C86B057D819A /* .gitattributes */ = {isa = PBXFileReference; lastKnownFileType = file.gitattributes; path = .gitattributes; sourceTree = "<group>"; };
 		1117D5D0B5FF0410E2D7984C /* .tgz */ = {isa = PBXFileReference; lastKnownFileType = file.tgz; path = .tgz; sourceTree = "<group>"; };
 		1117D636D4937809886E7D57 /* carat.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = carat.png; sourceTree = "<group>"; };
 		1117D647B31C92834D7397B4 /* jquery.min.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = jquery.min.js; sourceTree = "<group>"; };
@@ -466,6 +467,7 @@
 				8338267924891AF5005013C4 /* Supporting Documentation */,
 				8338267824891AB7005013C4 /* Other */,
 				83A899252472E6D7002F2121 /* README.md */,
+				1117D5835C54C86B057D819A /* .gitattributes */,
 			);
 			sourceTree = "<group>";
 		};
