@@ -44,7 +44,7 @@ open class CPU65xx {
     /*===========================================================================================================================*/
     /// The status register.
     ///
-    public var statusRegister: UInt8  = 0
+    public var statusRegister: Mos6502status = Mos6502status(0)
 
     /*===========================================================================================================================*/
     /// The accumulator.
@@ -111,7 +111,7 @@ open class CPU65xx {
             if !self.halt {
                 self.lastOpcode = self.getNextPCByte()
 
-                if !self.panic, let opcode: Mos6502OpcodeInfo = MOS6502_OPCODES[self.lastOpcode] {
+                if !self.panic, let opcode: Mos6502opcodeInfo = Mos6502opcodeMap[self.lastOpcode] {
                     let ops: [UInt8] = self.getOperators(opcode.bytes - 1)
                     // Set the clock for the base number of cycles this instruction takes.
                     // (It may take longer but we'll handle that later on.)
@@ -161,8 +161,8 @@ open class CPU65xx {
     /// - Returns: the value.
     ///
     @discardableResult @inlinable func testSZ(_ value: UInt8) -> UInt8 {
-        setStatus(.Z, value == 0)
-        setStatus(.N, (value &! 0x80))
+        statusRegister.set(.Z, value == 0)
+        statusRegister.set(.N, (value &! 0x80))
         return value
     }
 
@@ -357,7 +357,7 @@ open class CPU65xx {
     ///   - ops: the ops.
     /// - Returns: the operational address.
     ///
-    @inlinable func getAddress(mode: Mos6502AddressModes, ops: [UInt8]) -> UInt16 {
+    @inlinable func getAddress(mode: Mos6502addressModes, ops: [UInt8]) -> UInt16 {
         switch mode {
           // One operand which is a signed offset to be applied to the program counter.
             case .REL:  return getRelativeAddress(programCounter, makeSigned(ops[0]))
@@ -392,7 +392,7 @@ open class CPU65xx {
     ///   - ops: the operators.
     /// - Returns: the value.
     ///
-    @inlinable func readValue(mode: Mos6502AddressModes, ops: [UInt8]) -> UInt8 {
+    @inlinable func readValue(mode: Mos6502addressModes, ops: [UInt8]) -> UInt8 {
         switch mode {
             case .IMM: return ops[0]
             case .ACC: return accumulator
@@ -410,34 +410,13 @@ open class CPU65xx {
     ///   - mode: the address mode
     ///   - ops: the operators.
     ///
-    @inlinable func writeValue(value: UInt8, mode: Mos6502AddressModes, ops: [UInt8]) {
+    @inlinable func writeValue(value: UInt8, mode: Mos6502addressModes, ops: [UInt8]) {
         switch mode {
             case .IMM: break
             case .IMP: break
             case .ACC: accumulator = value
             default: self[getAddress(mode: mode, ops: ops)] = value
         }
-    }
-
-    /*===========================================================================================================================*/
-    /// Set or clear a flag in the status register.
-    /// 
-    /// - Parameters:
-    ///   - f: the flag to set or clear
-    ///   - s: `true` if the flag should be set or `false` if it should be cleared.
-    ///
-    @inlinable func setStatus(_ f: Mos6502Flags, _ s: Bool = true) {
-        statusRegister = (s ? (statusRegister | f) : (statusRegister & ~f))
-    }
-
-    /*===========================================================================================================================*/
-    /// Check if the status register has a particular flag set.
-    /// 
-    /// - Parameter f: the flag
-    /// - Returns: `true` if that flag is set in the status register.
-    ///
-    @inlinable func hasStatus(_ f: Mos6502Flags) -> Bool {
-        (statusRegister &! f)
     }
 
     /*===========================================================================================================================*/
@@ -449,9 +428,9 @@ open class CPU65xx {
     ///   - ops: the operators
     /// - Returns: the new value.
     ///
-    @inlinable func rol(carry: Bool = false, oc: Mos6502OpcodeInfo, ops: [UInt8]) -> UInt8 {
+    @inlinable func rol(carry: Bool = false, oc: Mos6502opcodeInfo, ops: [UInt8]) -> UInt8 {
         let v: UInt8 = readValue(mode: oc.addressMode, ops: ops)
-        setStatus(.C, (v &! 0x80))
+        statusRegister.set(.C, (v &! 0x80))
         return ((v << 1) | (carry ? 1 : 0))
     }
 
@@ -464,9 +443,9 @@ open class CPU65xx {
     ///   - ops: the operators
     /// - Returns: the new value.
     ///
-    @inlinable func ror(carry: Bool = false, oc: Mos6502OpcodeInfo, ops: [UInt8]) -> UInt8 {
+    @inlinable func ror(carry: Bool = false, oc: Mos6502opcodeInfo, ops: [UInt8]) -> UInt8 {
         let v: UInt8 = readValue(mode: oc.addressMode, ops: ops)
-        setStatus(.C, (v &! 1))
+        statusRegister.set(.C, (v &! 1))
         return ((v >> 1) | (carry ? 0x80 : 0))
     }
 
@@ -479,7 +458,7 @@ open class CPU65xx {
     ///   - oc: the opcode
     ///   - ops: the operators
     ///
-    @inlinable func writeValueWithTest(b: UInt8, oc: Mos6502OpcodeInfo, ops: [UInt8]) {
+    @inlinable func writeValueWithTest(b: UInt8, oc: Mos6502opcodeInfo, ops: [UInt8]) {
         writeValue(value: testSZ(b), mode: oc.addressMode, ops: ops)
     }
 
@@ -534,11 +513,11 @@ open class CPU65xx {
     ///   - oc: the opcode that triggered this call.
     ///   - ops: the operators for the opcode.
     ///
-    @inlinable func compare(_ register: UInt8, _ oc: Mos6502OpcodeInfo, _ ops: [UInt8]) {
+    @inlinable func compare(_ register: UInt8, _ oc: Mos6502opcodeInfo, _ ops: [UInt8]) {
         let v: UInt8 = readValue(mode: oc.addressMode, ops: ops)
-        setStatus(.C, (register >= v))
-        setStatus(.Z, (register == v))
-        setStatus(.N, (register &! 0x80))
+        statusRegister.set(.C, (register >= v))
+        statusRegister.set(.Z, (register == v))
+        statusRegister.set(.N, (register &! 0x80))
     }
 
     /*===========================================================================================================================*/
@@ -562,8 +541,8 @@ open class CPU65xx {
     ///   - ops: the operators for the `opcode`.
     ///   - mask: the add/subtract `mask`
     ///
-    @inlinable func addsub(opcode: Mos6502OpcodeInfo, ops: [UInt8], mask: UInt16) {
-        if !hasStatus(.D) {
+    @inlinable func addsub(opcode: Mos6502opcodeInfo, ops: [UInt8], mask: UInt16) {
+        if statusRegister.notSet(.D) {
             cpuClock.add(skip: 1)
             let val: UInt16 = unpackBCD(readValue(mode: opcode.addressMode, ops: ops)) ^ mask
             accumulator = packBCD(doAdd(lhs: unpackBCD(accumulator), rhs: val) { (r: UInt16) in ((r / 100) != 0) })
@@ -584,9 +563,9 @@ open class CPU65xx {
     /// - Returns: the result as a 16-bit unsigned integer.
     ///
     @inlinable func doAdd(lhs: UInt16, rhs: UInt16, testCarry: (UInt16) -> Bool) -> UInt16 {
-        let r: UInt16 = (lhs + rhs + UInt16(hasStatus(.C) ? 1 : 0))
-        setStatus(.V, (((r ^ lhs) & (r ^ rhs) & 0x80) != 0))
-        setStatus(.C, testCarry(r))
+        let r: UInt16 = (lhs + rhs + UInt16(statusRegister.isSet(.C) ? 1 : 0))
+        statusRegister.set(.V, (((r ^ lhs) & (r ^ rhs) & 0x80) != 0))
+        statusRegister.set(.C, testCarry(r))
         testSZ(pack8(r))
         return r
     }
@@ -612,13 +591,88 @@ open class CPU65xx {
     }
 
     /*===========================================================================================================================*/
+    /// Branches if the given flag is set in the `statusRegister`.
+    /// 
+    /// - Parameters:
+    ///   - flag: the `statusRegister` flag
+    ///   - rel: the relative branch amount.
+    ///
+    @inlinable func branchIfSet(_ flag: Mos6502flags, _ rel: UInt8) {
+        if statusRegister.isSet(flag) {
+            cpuClock.add()
+            programCounter = getRelativeAddress(programCounter, makeSigned(rel))
+        }
+    }
+
+    /*===========================================================================================================================*/
+    /// Branches if the given flag is NOT set in the `statusRegister`.
+    /// 
+    /// - Parameters:
+    ///   - flag: the `statusRegister` flag
+    ///   - rel: the relative branch amount.
+    ///
+    @inlinable func branchIfNotSet(_ flag: Mos6502flags, _ rel: UInt8) {
+        if statusRegister.notSet(flag) {
+            cpuClock.add()
+            programCounter = getRelativeAddress(programCounter, makeSigned(rel))
+        }
+    }
+
+    /*===========================================================================================================================*/
+    /// Handle the JMP instruction.
+    /// 
+    /// - Parameters:
+    ///   - mode: the addressing mode.
+    ///   - ops: the operators.
+    ///
+    @inlinable func doJMP(mode: Mos6502addressModes, ops: [UInt8]) {
+        programCounter = getAddress(mode: mode, ops: ops)
+    }
+
+    /*===========================================================================================================================*/
+    /// Handle the JSR instruction.
+    /// 
+    /// - Parameters:
+    ///   - mode: the addressing mode.
+    ///   - ops: the operators.
+    ///
+    @inlinable func doJSR(mode: Mos6502addressModes, ops: [UInt8]) {
+        push(word: (programCounter - 1))
+        doJMP(mode: mode, ops: ops)
+    }
+
+    /*===========================================================================================================================*/
+    /// Handle the BIT instruction.
+    /// 
+    /// - Parameters:
+    ///   - mode: the addressing mode.
+    ///   - ops: the operators.
+    ///
+    @inlinable func doBIT(mode: Mos6502addressModes, ops: [UInt8]) {
+        let v: UInt8 = readValue(mode: mode, ops: ops)
+        statusRegister.set(.Z, (v &? accumulator))
+        statusRegister.set(.N, (v &! 0x80))
+        statusRegister.set(.V, (v &! 0x40))
+    }
+
+    /*===========================================================================================================================*/
+    /// Handle the BRK instruction.
+    ///
+    @inlinable func doBRK() {
+        push(word: programCounter++)
+        push(byte: statusRegister.status | Mos6502flags.B)
+        statusRegister.set(.I)
+        programCounter = getIndirectAddress(UInt16(0xfffe))
+    }
+
+    /*===========================================================================================================================*/
     /// Dispatch the opcode to its handler.
     /// 
     /// - Parameters:
     ///   - opcode: the opcode
     ///   - ops: it's ops
     ///
-    public func dispatch(opcode oc: Mos6502OpcodeInfo, ops: [UInt8]) {
+    public func dispatch(opcode oc: Mos6502opcodeInfo, ops: [UInt8]) {
         if !panic {
             switch oc.mnemonic {
               // Add & Subtract
@@ -628,31 +682,31 @@ open class CPU65xx {
                 case .AND: accumulator = testSZ(accumulator & readValue(mode: oc.addressMode, ops: ops))
                 case .ORA: accumulator = testSZ(accumulator | readValue(mode: oc.addressMode, ops: ops))
                 case .EOR: accumulator = testSZ(accumulator ^ readValue(mode: oc.addressMode, ops: ops))
-                case .ROL: writeValueWithTest(b: rol(carry: hasStatus(.C), oc: oc, ops: ops), oc: oc, ops: ops)
-                case .ROR: writeValueWithTest(b: ror(carry: hasStatus(.C), oc: oc, ops: ops), oc: oc, ops: ops)
+                case .ROL: writeValueWithTest(b: rol(carry: statusRegister.isSet(.C), oc: oc, ops: ops), oc: oc, ops: ops)
+                case .ROR: writeValueWithTest(b: ror(carry: statusRegister.isSet(.C), oc: oc, ops: ops), oc: oc, ops: ops)
                 case .ASL: writeValueWithTest(b: rol(oc: oc, ops: ops), oc: oc, ops: ops)
                 case .LSR: writeValueWithTest(b: ror(oc: oc, ops: ops), oc: oc, ops: ops)
               // Branch opcodes
-                case .BCS: if hasStatus(.C) { programCounter = getAddress(mode: oc.addressMode, ops: ops) }
-                case .BEQ: if hasStatus(.Z) { programCounter = getAddress(mode: oc.addressMode, ops: ops) }
-                case .BMI: if hasStatus(.N) { programCounter = getAddress(mode: oc.addressMode, ops: ops) }
-                case .BVS: if hasStatus(.V) { programCounter = getAddress(mode: oc.addressMode, ops: ops) }
-                case .BCC: if !hasStatus(.C) { programCounter = getAddress(mode: oc.addressMode, ops: ops) }
-                case .BNE: if !hasStatus(.Z) { programCounter = getAddress(mode: oc.addressMode, ops: ops) }
-                case .BPL: if !hasStatus(.N) { programCounter = getAddress(mode: oc.addressMode, ops: ops) }
-                case .BVC: if !hasStatus(.V) { programCounter = getAddress(mode: oc.addressMode, ops: ops) }
+                case .BCS: branchIfSet(.C, ops[0])
+                case .BEQ: branchIfSet(.Z, ops[0])
+                case .BMI: branchIfSet(.N, ops[0])
+                case .BVS: branchIfSet(.V, ops[0])
+                case .BCC: branchIfNotSet(.C, ops[0])
+                case .BNE: branchIfNotSet(.Z, ops[0])
+                case .BPL: branchIfNotSet(.N, ops[0])
+                case .BVC: branchIfNotSet(.V, ops[0])
               // Return from opcodes
                 case .RTI: programCounter = popWord()
                 case .RTS: programCounter = (popWord() + 1)
               // Set status bits opcodes
-                case .SEC: setStatus(.C)
-                case .SED: setStatus(.D)
-                case .SEI: setStatus(.I)
+                case .SEC: statusRegister.set(.C)
+                case .SED: statusRegister.set(.D)
+                case .SEI: statusRegister.set(.I)
               // Clear status bits opcodes
-                case .CLC: setStatus(.C, false)
-                case .CLD: setStatus(.D, false)
-                case .CLI: setStatus(.I, false)
-                case .CLV: setStatus(.V, false)
+                case .CLC: statusRegister.clr(.C)
+                case .CLD: statusRegister.clr(.D)
+                case .CLI: statusRegister.clr(.I)
+                case .CLV: statusRegister.clr(.V)
               // Compare opcodes
                 case .CMP: compare(accumulator, oc, ops)
                 case .CPX: compare(registerX, oc, ops)
@@ -675,9 +729,9 @@ open class CPU65xx {
                 case .STY: writeValue(value: registerY, mode: oc.addressMode, ops: ops)
               // Stack opcodes
                 case .PHA: push(byte: accumulator)
-                case .PHP: push(byte: statusRegister)
+                case .PHP: push(byte: statusRegister.status)
                 case .PLA: accumulator = testSZ(pop())
-                case .PLP: statusRegister = pop()
+                case .PLP: statusRegister.status = pop()
               // Transfer opcodes
                 case .TAX: registerX = testSZ(accumulator)
                 case .TAY: registerY = testSZ(accumulator)
@@ -688,22 +742,12 @@ open class CPU65xx {
               // NOOP opcode
                 case .NOP: break
               // Jump opcodes
-                case .JMP: programCounter = getAddress(mode: oc.addressMode, ops: ops)
-                case .JSR:
-                    push(word: (programCounter - 1))
-                    programCounter = getAddress(mode: oc.addressMode, ops: ops)
+                case .JMP: doJMP(mode: oc.addressMode, ops: ops)
+                case .JSR: doJSR(mode: oc.addressMode, ops: ops)
               // Break opcode
-                case .BRK:
-                    push(word: programCounter++)
-                    push(byte: statusRegister | Mos6502Flags.B)
-                    setStatus(.I)
-                    programCounter = getIndirectAddress(UInt16(0xfffe))
+                case .BRK: doBRK()
               // Test status bits opcode
-                case .BIT:
-                    let v: UInt8 = readValue(mode: oc.addressMode, ops: ops)
-                    setStatus(.Z, (v &? accumulator))
-                    setStatus(.N, (v &! 0x80))
-                    setStatus(.V, (v &! 0x40))
+                case .BIT: doBIT(mode: oc.addressMode, ops: ops)
             }
         }
         else {

@@ -23,60 +23,69 @@
 import Foundation
 import Rubicon
 
-public enum Mos6502Flags: UInt8, CustomStringConvertible {
-    case N = 1
-    case V = 2
-    case X = 4
-    case B = 8
-    case D = 16
-    case I = 32
-    case Z = 64
-    case C = 128
+public struct Mos6502status: CustomStringConvertible, Equatable, Comparable {
 
-    @inlinable public static func & <T: BinaryInteger>(lhs: T, rhs: Mos6502Flags) -> T { (lhs & T(rhs.rawValue)) }
-
-    @inlinable public static func & <T: BinaryInteger>(lhs: Mos6502Flags, rhs: T) -> T { (T(lhs.rawValue) & rhs) }
-
-    @inlinable public static func | <T: BinaryInteger>(lhs: T, rhs: Mos6502Flags) -> T { (lhs | T(rhs.rawValue)) }
-
-    @inlinable public static func | <T: BinaryInteger>(lhs: Mos6502Flags, rhs: T) -> T { (T(lhs.rawValue) | rhs) }
-
-    @inlinable public static prefix func ~ (oper: Mos6502Flags) -> UInt8 { (~oper.rawValue) }
-
-    @inlinable public static func |= <T: BinaryInteger>(lhs: inout T, rhs: Mos6502Flags) { (lhs |= T(rhs.rawValue)) }
-
-    @inlinable public static func &= <T: BinaryInteger>(lhs: inout T, rhs: Mos6502Flags) { (lhs &= T(rhs.rawValue)) }
-
-    @inlinable public static func &! <T: BinaryInteger>(lhs: T, rhs: Mos6502Flags) -> Bool { let v: T = T(rhs.rawValue); return ((lhs & v) == v) }
-
-    @inlinable public static func &! <T: BinaryInteger>(lhs: Mos6502Flags, rhs: T) -> Bool { let v: T = T(lhs.rawValue); return ((rhs & v) == v) }
-
-    @inlinable public static func &? <T: BinaryInteger>(lhs: T, rhs: Mos6502Flags) -> Bool { let v: T = T(rhs.rawValue); return ((lhs & v) == 0) }
-
-    @inlinable public static func &? <T: BinaryInteger>(lhs: Mos6502Flags, rhs: T) -> Bool { let v: T = T(lhs.rawValue); return ((rhs & v) == 0) }
-
-    @inlinable public static func == <T: BinaryInteger>(lhs: T, rhs: Mos6502Flags) -> Bool { (lhs == rhs.rawValue) }
-
-    @inlinable public static func == <T: BinaryInteger>(lhs: Mos6502Flags, rhs: T) -> Bool { (lhs.rawValue == rhs) }
-
-    @inlinable public func foo(n: inout UInt8, f: Bool) { n = (f ? (n | self) : (n & ~self)) }
-
-    public static func doSet(_ s: String) -> UInt8 {
-        var f: UInt8 = 0
-        for c: String.Element in s {
-            switch c {
-                case "N": f |= Mos6502Flags.N
-                case "V": f |= Mos6502Flags.V
-                case "B": f |= Mos6502Flags.B
-                case "D": f |= Mos6502Flags.D
-                case "I": f |= Mos6502Flags.I
-                case "Z": f |= Mos6502Flags.Z
-                case "C": f |= Mos6502Flags.C
-                default: break
-            }
-        }
-        return f
+    @inlinable public var status: UInt8 {
+        get { _status }
+        set { _status = (newValue | Mos6502flags.X) }
     }
+
+    @inlinable public var description: String { (q(_status, .N) + q(_status, .V) + "-" + q(_status, .B) + q(_status, .D) + q(_status, .I) + q(_status, .Z) + q(_status, .C)) }
+
+    @usableFromInline var _status: UInt8
+
+    @inlinable public init<T: BinaryInteger>(_ value: T = 0) { _status = (UInt8(value & 0xff) | Mos6502flags.X) }
+
+    @inlinable public func isSet(_ flag: Mos6502flags) -> Bool { ((_status & flag) == flag) }
+
+    @inlinable public func notSet(_ flag: Mos6502flags) -> Bool { ((_status & flag) == 0) }
+
+    @inlinable public mutating func set(_ flag: Mos6502flags, _ v: Bool = true) { status = (v ? (_status | flag) : (_status & ~flag)) }
+
+    @inlinable public mutating func clr(_ flag: Mos6502flags) { status = (_status & ~flag) }
+
+    @inlinable public static func == <T: BinaryInteger>(lhs: T, rhs: Mos6502status) -> Bool { (lhs == T(rhs._status)) }
+
+    @inlinable public static func != <T: BinaryInteger>(lhs: T, rhs: Mos6502status) -> Bool { (lhs != T(rhs._status)) }
+
+    @inlinable public static func == <T: BinaryInteger>(lhs: Mos6502status, rhs: T) -> Bool { (rhs == lhs) }
+
+    @inlinable public static func != <T: BinaryInteger>(lhs: Mos6502status, rhs: T) -> Bool { (rhs != lhs) }
+
+    @inlinable public static func < <T: BinaryInteger>(lhs: T, rhs: Mos6502status) -> Bool { (lhs < T(rhs._status)) }
+
+    @inlinable public static func <= <T: BinaryInteger>(lhs: T, rhs: Mos6502status) -> Bool { (lhs <= T(rhs._status)) }
+
+    @inlinable public static func > <T: BinaryInteger>(lhs: T, rhs: Mos6502status) -> Bool { (lhs > T(rhs._status)) }
+
+    @inlinable public static func >= <T: BinaryInteger>(lhs: T, rhs: Mos6502status) -> Bool { (lhs >= T(rhs._status)) }
+
+    @inlinable public static func < <T: BinaryInteger>(lhs: Mos6502status, rhs: T) -> Bool { (rhs > lhs) }
+
+    @inlinable public static func <= <T: BinaryInteger>(lhs: Mos6502status, rhs: T) -> Bool { (rhs >= lhs) }
+
+    @inlinable public static func > <T: BinaryInteger>(lhs: Mos6502status, rhs: T) -> Bool { (rhs < lhs) }
+
+    @inlinable public static func >= <T: BinaryInteger>(lhs: Mos6502status, rhs: T) -> Bool { (rhs <= lhs) }
+
+    @inlinable public static func == (lhs: Mos6502status, rhs: Mos6502status) -> Bool { (lhs._status == rhs._status) }
+
+    @inlinable public static func < (lhs: Mos6502status, rhs: Mos6502status) -> Bool { (lhs._status < rhs._status) }
+
+    @inlinable func q(_ b: UInt8, _ f: Mos6502flags) -> String { ((b &! f) ? f.description : "-") }
+}
+
+public extension UnsignedInteger { @inlinable init(_ f: Mos6502status) { self.init(f._status) } }
+
+public enum Mos6502flags: UInt8, CustomStringConvertible {
+    case N = 128
+    case V = 64
+    case X = 32
+    case B = 16
+    case D = 8
+    case I = 4
+    case Z = 2
+    case C = 1
 
     public var description: String {
         switch self {
@@ -90,9 +99,52 @@ public enum Mos6502Flags: UInt8, CustomStringConvertible {
             case .X: return "X"
         }
     }
+
+    @inlinable public static func & <T: BinaryInteger>(lhs: T, rhs: Mos6502flags) -> T { (lhs & T(rhs.rawValue)) }
+
+    @inlinable public static func & <T: BinaryInteger>(lhs: Mos6502flags, rhs: T) -> T { (T(lhs.rawValue) & rhs) }
+
+    @inlinable public static func | <T: BinaryInteger>(lhs: T, rhs: Mos6502flags) -> T { (lhs | T(rhs.rawValue)) }
+
+    @inlinable public static func | <T: BinaryInteger>(lhs: Mos6502flags, rhs: T) -> T { (T(lhs.rawValue) | rhs) }
+
+    @inlinable public static prefix func ~ (oper: Mos6502flags) -> UInt8 { (~oper.rawValue) }
+
+    @inlinable public static func |= <T: BinaryInteger>(lhs: inout T, rhs: Mos6502flags) { (lhs |= T(rhs.rawValue)) }
+
+    @inlinable public static func &= <T: BinaryInteger>(lhs: inout T, rhs: Mos6502flags) { (lhs &= T(rhs.rawValue)) }
+
+    @inlinable public static func &! <T: BinaryInteger>(lhs: T, rhs: Mos6502flags) -> Bool { let v: T = T(rhs.rawValue); return ((lhs & v) == v) }
+
+    @inlinable public static func &! <T: BinaryInteger>(lhs: Mos6502flags, rhs: T) -> Bool { let v: T = T(lhs.rawValue); return ((rhs & v) == v) }
+
+    @inlinable public static func &? <T: BinaryInteger>(lhs: T, rhs: Mos6502flags) -> Bool { let v: T = T(rhs.rawValue); return ((lhs & v) == 0) }
+
+    @inlinable public static func &? <T: BinaryInteger>(lhs: Mos6502flags, rhs: T) -> Bool { let v: T = T(lhs.rawValue); return ((rhs & v) == 0) }
+
+    @inlinable public static func == <T: BinaryInteger>(lhs: T, rhs: Mos6502flags) -> Bool { (lhs == rhs.rawValue) }
+
+    @inlinable public static func == <T: BinaryInteger>(lhs: Mos6502flags, rhs: T) -> Bool { (lhs.rawValue == rhs) }
+
+    public static func setList(_ s: String) -> UInt8 {
+        var f: UInt8 = 0
+        for c: String.Element in s {
+            switch c {
+                case "N": f |= Mos6502flags.N
+                case "V": f |= Mos6502flags.V
+                case "B": f |= Mos6502flags.B
+                case "D": f |= Mos6502flags.D
+                case "I": f |= Mos6502flags.I
+                case "Z": f |= Mos6502flags.Z
+                case "C": f |= Mos6502flags.C
+                default: break
+            }
+        }
+        return f
+    }
 }
 
-public enum Mos6502AddressModes: UInt16, CustomStringConvertible {
+public enum Mos6502addressModes: UInt16, CustomStringConvertible {
     case ABS  = 0b0100000000
     case ABSX = 0b0000001100
     case ABSY = 0b0000011000
@@ -107,8 +159,8 @@ public enum Mos6502AddressModes: UInt16, CustomStringConvertible {
     case ZPX  = 0b0000010100
     case ZPY  = 0b0010010110
 
-    public var bitMask:     UInt8 { UInt8(rawValue & 0xff) }
-    public var description: String {
+    @inlinable public var bitMask:     UInt8 { UInt8(rawValue & 0xff) }
+    public var            description: String {
         switch self {
             case .ABS: return "Absolute"
             case .ABSX: return "Absolute,X"
@@ -127,7 +179,7 @@ public enum Mos6502AddressModes: UInt16, CustomStringConvertible {
     }
 }
 
-public enum Mos6502Opcodes: UInt8, CustomStringConvertible {
+public enum Mos6502opcodes: UInt8, CustomStringConvertible {
     case ADC = 0b01100001
     case AND = 0b00100001
     case ASL = 0b00000010
@@ -185,9 +237,9 @@ public enum Mos6502Opcodes: UInt8, CustomStringConvertible {
     case TXS = 0b10011010
     case TYA = 0b10011000
 
-    public var bitMask:     UInt8 { rawValue }
-    public var description: String { mnemonic }
-    public var mnemonic:    String {
+    @inlinable public var bitMask:     UInt8 { rawValue }
+    @inlinable public var description: String { mnemonic }
+    @inlinable public var mnemonic:    String {
         switch self {
             case .ADC: return "ADC"
             case .AND: return "AND"
@@ -249,188 +301,188 @@ public enum Mos6502Opcodes: UInt8, CustomStringConvertible {
     }
 }
 
-public class Mos6502OpcodeInfo: Equatable {
+public class Mos6502opcodeInfo: Equatable {
 
     public let opcode:      UInt8
-    public let mnemonic:    Mos6502Opcodes
-    public let addressMode: Mos6502AddressModes
+    public let mnemonic:    Mos6502opcodes
+    public let addressMode: Mos6502addressModes
     public let bytes:       UInt8
     public let cycles:      UInt8
     public let plus1:       Bool
 
-    @inlinable public var negativeFlag: Bool { (_flags &! Mos6502Flags.N) }
-    @inlinable public var overflowFlag: Bool { (_flags &! Mos6502Flags.V) }
-    @inlinable public var breakFlag:    Bool { (_flags &! Mos6502Flags.B) }
-    @inlinable public var decimalFlag:  Bool { (_flags &! Mos6502Flags.D) }
-    @inlinable public var irqFlag:      Bool { (_flags &! Mos6502Flags.I) }
-    @inlinable public var zeroFlag:     Bool { (_flags &! Mos6502Flags.Z) }
-    @inlinable public var carryFlag:    Bool { (_flags &! Mos6502Flags.C) }
+    @inlinable public var negativeFlag: Bool { (_flags &! Mos6502flags.N) }
+    @inlinable public var overflowFlag: Bool { (_flags &! Mos6502flags.V) }
+    @inlinable public var breakFlag:    Bool { (_flags &! Mos6502flags.B) }
+    @inlinable public var decimalFlag:  Bool { (_flags &! Mos6502flags.D) }
+    @inlinable public var irqFlag:      Bool { (_flags &! Mos6502flags.I) }
+    @inlinable public var zeroFlag:     Bool { (_flags &! Mos6502flags.Z) }
+    @inlinable public var carryFlag:    Bool { (_flags &! Mos6502flags.C) }
 
     @usableFromInline let _flags: UInt8
 
-    @inlinable public static func == (lhs: Mos6502OpcodeInfo, rhs: Mos6502OpcodeInfo) -> Bool { lhs.opcode == rhs.opcode }
+    @inlinable public static func == (lhs: Mos6502opcodeInfo, rhs: Mos6502opcodeInfo) -> Bool { lhs.opcode == rhs.opcode }
 
-    public init(opcode: UInt8, mnemonic: Mos6502Opcodes, addressMode: Mos6502AddressModes, bytes: UInt8, cycles: UInt8, plus1: Bool = false, flags: String = "-------") {
+    public init(opcode: UInt8, mnemonic: Mos6502opcodes, addressMode: Mos6502addressModes, bytes: UInt8, cycles: UInt8, plus1: Bool = false, flags: String = "-------") {
         self.opcode = opcode
         self.mnemonic = mnemonic
         self.addressMode = addressMode
         self.bytes = bytes
         self.cycles = cycles
         self.plus1 = plus1
-        self._flags = Mos6502Flags.doSet(flags)
+        self._flags = Mos6502flags.setList(flags)
     }
 }
 
-public let MOS6502_OPCODES: [UInt8: Mos6502OpcodeInfo] = [
-    0x69: Mos6502OpcodeInfo(opcode: 0x69, mnemonic: .ADC, addressMode: .IMM, bytes: 2, cycles: 2, flags: "NV---ZC"),
-    0x65: Mos6502OpcodeInfo(opcode: 0x65, mnemonic: .ADC, addressMode: .ZP, bytes: 2, cycles: 3, flags: "NV---ZC"),
-    0x75: Mos6502OpcodeInfo(opcode: 0x75, mnemonic: .ADC, addressMode: .ZPX, bytes: 2, cycles: 4, flags: "NV---ZC"),
-    0x6d: Mos6502OpcodeInfo(opcode: 0x6d, mnemonic: .ADC, addressMode: .ABS, bytes: 3, cycles: 4, flags: "NV---ZC"),
-    0x7d: Mos6502OpcodeInfo(opcode: 0x7d, mnemonic: .ADC, addressMode: .ABSX, bytes: 3, cycles: 4, flags: "NV---ZC"),
-    0x79: Mos6502OpcodeInfo(opcode: 0x79, mnemonic: .ADC, addressMode: .ABSY, bytes: 3, cycles: 4, flags: "NV---ZC"),
-    0x61: Mos6502OpcodeInfo(opcode: 0x61, mnemonic: .ADC, addressMode: .INDX, bytes: 2, cycles: 6, flags: "NV---ZC"),
-    0x71: Mos6502OpcodeInfo(opcode: 0x71, mnemonic: .ADC, addressMode: .INDY, bytes: 2, cycles: 5, flags: "NV---ZC"),
-    0x29: Mos6502OpcodeInfo(opcode: 0x29, mnemonic: .AND, addressMode: .IMM, bytes: 2, cycles: 2, flags: "N----Z-"),
-    0x25: Mos6502OpcodeInfo(opcode: 0x25, mnemonic: .AND, addressMode: .ZP, bytes: 2, cycles: 3, flags: "N----Z-"),
-    0x35: Mos6502OpcodeInfo(opcode: 0x35, mnemonic: .AND, addressMode: .ZPX, bytes: 2, cycles: 4, flags: "N----Z-"),
-    0x2d: Mos6502OpcodeInfo(opcode: 0x2d, mnemonic: .AND, addressMode: .ABS, bytes: 3, cycles: 4, flags: "N----Z-"),
-    0x3d: Mos6502OpcodeInfo(opcode: 0x3d, mnemonic: .AND, addressMode: .ABSX, bytes: 3, cycles: 4, flags: "N----Z-"),
-    0x39: Mos6502OpcodeInfo(opcode: 0x39, mnemonic: .AND, addressMode: .ABSY, bytes: 3, cycles: 4, flags: "N----Z-"),
-    0x21: Mos6502OpcodeInfo(opcode: 0x21, mnemonic: .AND, addressMode: .INDX, bytes: 2, cycles: 6, flags: "N----Z-"),
-    0x31: Mos6502OpcodeInfo(opcode: 0x31, mnemonic: .AND, addressMode: .INDY, bytes: 2, cycles: 5, flags: "N----Z-"),
-    0x0a: Mos6502OpcodeInfo(opcode: 0x0a, mnemonic: .ASL, addressMode: .ACC, bytes: 1, cycles: 2, flags: "N----ZC"),
-    0x06: Mos6502OpcodeInfo(opcode: 0x06, mnemonic: .ASL, addressMode: .ZP, bytes: 2, cycles: 5, flags: "N----ZC"),
-    0x16: Mos6502OpcodeInfo(opcode: 0x16, mnemonic: .ASL, addressMode: .ZPX, bytes: 2, cycles: 6, flags: "N----ZC"),
-    0x0e: Mos6502OpcodeInfo(opcode: 0x0e, mnemonic: .ASL, addressMode: .ABS, bytes: 3, cycles: 6, flags: "N----ZC"),
-    0x1e: Mos6502OpcodeInfo(opcode: 0x1e, mnemonic: .ASL, addressMode: .ABSX, bytes: 3, cycles: 7, flags: "N----ZC"),
-    0x90: Mos6502OpcodeInfo(opcode: 0x90, mnemonic: .BCC, addressMode: .REL, bytes: 2, cycles: 2, plus1: true),
-    0xb0: Mos6502OpcodeInfo(opcode: 0xb0, mnemonic: .BCS, addressMode: .REL, bytes: 2, cycles: 2, plus1: true),
-    0xf0: Mos6502OpcodeInfo(opcode: 0xf0, mnemonic: .BEQ, addressMode: .REL, bytes: 2, cycles: 2, plus1: true),
-    0x30: Mos6502OpcodeInfo(opcode: 0x30, mnemonic: .BMI, addressMode: .REL, bytes: 2, cycles: 2, plus1: true),
-    0xd0: Mos6502OpcodeInfo(opcode: 0xd0, mnemonic: .BNE, addressMode: .REL, bytes: 2, cycles: 2, plus1: true),
-    0x10: Mos6502OpcodeInfo(opcode: 0x10, mnemonic: .BPL, addressMode: .REL, bytes: 2, cycles: 2, plus1: true),
-    0x50: Mos6502OpcodeInfo(opcode: 0x50, mnemonic: .BVC, addressMode: .REL, bytes: 2, cycles: 2, plus1: true),
-    0x70: Mos6502OpcodeInfo(opcode: 0x70, mnemonic: .BVS, addressMode: .REL, bytes: 2, cycles: 2, plus1: true),
-    0x24: Mos6502OpcodeInfo(opcode: 0x24, mnemonic: .BIT, addressMode: .ZP, bytes: 2, cycles: 3, flags: "NV---Z-"),
-    0x2c: Mos6502OpcodeInfo(opcode: 0x2c, mnemonic: .BIT, addressMode: .ABS, bytes: 3, cycles: 4, flags: "NV---Z-"),
-    0x00: Mos6502OpcodeInfo(opcode: 0x00, mnemonic: .BRK, addressMode: .IMP, bytes: 1, cycles: 7),
-    0x18: Mos6502OpcodeInfo(opcode: 0x18, mnemonic: .CLC, addressMode: .IMP, bytes: 1, cycles: 2, flags: "------C"),
-    0xd8: Mos6502OpcodeInfo(opcode: 0xd8, mnemonic: .CLD, addressMode: .IMP, bytes: 1, cycles: 2, flags: "---D---"),
-    0x58: Mos6502OpcodeInfo(opcode: 0x58, mnemonic: .CLI, addressMode: .IMP, bytes: 1, cycles: 2, flags: "----I--"),
-    0xb8: Mos6502OpcodeInfo(opcode: 0xb8, mnemonic: .CLV, addressMode: .IMP, bytes: 1, cycles: 2, flags: "-V-----"),
-    0xea: Mos6502OpcodeInfo(opcode: 0xea, mnemonic: .NOP, addressMode: .IMP, bytes: 1, cycles: 2),
-    0x48: Mos6502OpcodeInfo(opcode: 0x48, mnemonic: .PHA, addressMode: .IMP, bytes: 1, cycles: 3),
-    0x68: Mos6502OpcodeInfo(opcode: 0x68, mnemonic: .PLA, addressMode: .IMP, bytes: 1, cycles: 4, flags: "N----Z-"),
-    0x08: Mos6502OpcodeInfo(opcode: 0x08, mnemonic: .PHP, addressMode: .IMP, bytes: 1, cycles: 3),
-    0x28: Mos6502OpcodeInfo(opcode: 0x28, mnemonic: .PLP, addressMode: .IMP, bytes: 1, cycles: 4, flags: "NVBDIZC"),
-    0x40: Mos6502OpcodeInfo(opcode: 0x40, mnemonic: .RTI, addressMode: .IMP, bytes: 1, cycles: 6),
-    0x60: Mos6502OpcodeInfo(opcode: 0x60, mnemonic: .RTS, addressMode: .IMP, bytes: 1, cycles: 6),
-    0x38: Mos6502OpcodeInfo(opcode: 0x38, mnemonic: .SEC, addressMode: .IMP, bytes: 1, cycles: 2, flags: "------C"),
-    0xf8: Mos6502OpcodeInfo(opcode: 0xf8, mnemonic: .SED, addressMode: .IMP, bytes: 1, cycles: 2, flags: "---D---"),
-    0x78: Mos6502OpcodeInfo(opcode: 0x78, mnemonic: .SEI, addressMode: .IMP, bytes: 1, cycles: 2, flags: "----I--"),
-    0xaa: Mos6502OpcodeInfo(opcode: 0xaa, mnemonic: .TAX, addressMode: .IMP, bytes: 1, cycles: 2, flags: "N----Z-"),
-    0x8a: Mos6502OpcodeInfo(opcode: 0x8a, mnemonic: .TXA, addressMode: .IMP, bytes: 1, cycles: 2, flags: "N----Z-"),
-    0xa8: Mos6502OpcodeInfo(opcode: 0xa8, mnemonic: .TAY, addressMode: .IMP, bytes: 1, cycles: 2, flags: "N----Z-"),
-    0x98: Mos6502OpcodeInfo(opcode: 0x98, mnemonic: .TYA, addressMode: .IMP, bytes: 1, cycles: 2, flags: "N----Z-"),
-    0xba: Mos6502OpcodeInfo(opcode: 0xba, mnemonic: .TSX, addressMode: .IMP, bytes: 1, cycles: 2, flags: "N----Z-"),
-    0x9a: Mos6502OpcodeInfo(opcode: 0x9a, mnemonic: .TXS, addressMode: .IMP, bytes: 1, cycles: 2),
-    0xc9: Mos6502OpcodeInfo(opcode: 0xc9, mnemonic: .CMP, addressMode: .IMM, bytes: 2, cycles: 2, flags: "N----ZC"),
-    0xc5: Mos6502OpcodeInfo(opcode: 0xc5, mnemonic: .CMP, addressMode: .ZP, bytes: 2, cycles: 3, flags: "N----ZC"),
-    0xd5: Mos6502OpcodeInfo(opcode: 0xd5, mnemonic: .CMP, addressMode: .ZPX, bytes: 2, cycles: 4, flags: "N----ZC"),
-    0xcd: Mos6502OpcodeInfo(opcode: 0xcd, mnemonic: .CMP, addressMode: .ABS, bytes: 3, cycles: 4, flags: "N----ZC"),
-    0xdd: Mos6502OpcodeInfo(opcode: 0xdd, mnemonic: .CMP, addressMode: .ABSX, bytes: 3, cycles: 4, flags: "N----ZC"),
-    0xd9: Mos6502OpcodeInfo(opcode: 0xd9, mnemonic: .CMP, addressMode: .ABSY, bytes: 3, cycles: 4, flags: "N----ZC"),
-    0xc1: Mos6502OpcodeInfo(opcode: 0xc1, mnemonic: .CMP, addressMode: .INDX, bytes: 2, cycles: 6, flags: "N----ZC"),
-    0xd1: Mos6502OpcodeInfo(opcode: 0xd1, mnemonic: .CMP, addressMode: .INDY, bytes: 2, cycles: 5, flags: "N----ZC"),
-    0xe0: Mos6502OpcodeInfo(opcode: 0xe0, mnemonic: .CPX, addressMode: .IMM, bytes: 2, cycles: 2, flags: "N----ZC"),
-    0xe4: Mos6502OpcodeInfo(opcode: 0xe4, mnemonic: .CPX, addressMode: .ZP, bytes: 2, cycles: 3, flags: "N----ZC"),
-    0xec: Mos6502OpcodeInfo(opcode: 0xec, mnemonic: .CPX, addressMode: .ABS, bytes: 3, cycles: 4, flags: "N----ZC"),
-    0xc0: Mos6502OpcodeInfo(opcode: 0xc0, mnemonic: .CPY, addressMode: .IMM, bytes: 2, cycles: 2, flags: "N----ZC"),
-    0xc4: Mos6502OpcodeInfo(opcode: 0xc4, mnemonic: .CPY, addressMode: .ZP, bytes: 2, cycles: 3, flags: "N----ZC"),
-    0xcc: Mos6502OpcodeInfo(opcode: 0xcc, mnemonic: .CPY, addressMode: .ABS, bytes: 3, cycles: 4, flags: "N----ZC"),
-    0xc6: Mos6502OpcodeInfo(opcode: 0xc6, mnemonic: .DEC, addressMode: .ZP, bytes: 2, cycles: 5, flags: "N----Z-"),
-    0xd6: Mos6502OpcodeInfo(opcode: 0xd6, mnemonic: .DEC, addressMode: .ZPX, bytes: 2, cycles: 6, flags: "N----Z-"),
-    0xce: Mos6502OpcodeInfo(opcode: 0xce, mnemonic: .DEC, addressMode: .ABS, bytes: 3, cycles: 6, flags: "N----Z-"),
-    0xde: Mos6502OpcodeInfo(opcode: 0xde, mnemonic: .DEC, addressMode: .ABSX, bytes: 3, cycles: 7, flags: "N----Z-"),
-    0xca: Mos6502OpcodeInfo(opcode: 0xca, mnemonic: .DEX, addressMode: .IMP, bytes: 1, cycles: 2, flags: "N----Z-"),
-    0x88: Mos6502OpcodeInfo(opcode: 0x88, mnemonic: .DEY, addressMode: .IMP, bytes: 1, cycles: 2, flags: "N----Z-"),
-    0xe8: Mos6502OpcodeInfo(opcode: 0xe8, mnemonic: .INX, addressMode: .IMP, bytes: 1, cycles: 2, flags: "N----Z-"),
-    0xc8: Mos6502OpcodeInfo(opcode: 0xc8, mnemonic: .INY, addressMode: .IMP, bytes: 1, cycles: 2, flags: "N----Z-"),
-    0x49: Mos6502OpcodeInfo(opcode: 0x49, mnemonic: .EOR, addressMode: .IMM, bytes: 2, cycles: 2, flags: "N----Z-"),
-    0x45: Mos6502OpcodeInfo(opcode: 0x45, mnemonic: .EOR, addressMode: .ZP, bytes: 2, cycles: 3, flags: "N----Z-"),
-    0x55: Mos6502OpcodeInfo(opcode: 0x55, mnemonic: .EOR, addressMode: .ZPX, bytes: 2, cycles: 4, flags: "N----Z-"),
-    0x4d: Mos6502OpcodeInfo(opcode: 0x4d, mnemonic: .EOR, addressMode: .ABS, bytes: 3, cycles: 4, flags: "N----Z-"),
-    0x5d: Mos6502OpcodeInfo(opcode: 0x5d, mnemonic: .EOR, addressMode: .ABSX, bytes: 3, cycles: 4, flags: "N----Z-"),
-    0x59: Mos6502OpcodeInfo(opcode: 0x59, mnemonic: .EOR, addressMode: .ABSY, bytes: 3, cycles: 4, flags: "N----Z-"),
-    0x41: Mos6502OpcodeInfo(opcode: 0x41, mnemonic: .EOR, addressMode: .INDX, bytes: 2, cycles: 6, flags: "N----Z-"),
-    0x51: Mos6502OpcodeInfo(opcode: 0x51, mnemonic: .EOR, addressMode: .INDY, bytes: 2, cycles: 5, flags: "N----Z-"),
-    0xe6: Mos6502OpcodeInfo(opcode: 0xe6, mnemonic: .INC, addressMode: .ZP, bytes: 2, cycles: 5, flags: "N----Z-"),
-    0xf6: Mos6502OpcodeInfo(opcode: 0xf6, mnemonic: .INC, addressMode: .ZPX, bytes: 2, cycles: 6, flags: "N----Z-"),
-    0xee: Mos6502OpcodeInfo(opcode: 0xee, mnemonic: .INC, addressMode: .ABS, bytes: 3, cycles: 6, flags: "N----Z-"),
-    0xfe: Mos6502OpcodeInfo(opcode: 0xfe, mnemonic: .INC, addressMode: .ABSX, bytes: 3, cycles: 7, flags: "N----Z-"),
-    0x4c: Mos6502OpcodeInfo(opcode: 0x4c, mnemonic: .JMP, addressMode: .ABS, bytes: 3, cycles: 3),
-    0x6c: Mos6502OpcodeInfo(opcode: 0x6c, mnemonic: .JMP, addressMode: .IND, bytes: 3, cycles: 5),
-    0x20: Mos6502OpcodeInfo(opcode: 0x20, mnemonic: .JSR, addressMode: .ABS, bytes: 3, cycles: 6),
-    0xa9: Mos6502OpcodeInfo(opcode: 0xa9, mnemonic: .LDA, addressMode: .IMM, bytes: 2, cycles: 2, flags: "N----Z-"),
-    0xa5: Mos6502OpcodeInfo(opcode: 0xa5, mnemonic: .LDA, addressMode: .ZP, bytes: 2, cycles: 3, flags: "N----Z-"),
-    0xb5: Mos6502OpcodeInfo(opcode: 0xb5, mnemonic: .LDA, addressMode: .ZPX, bytes: 2, cycles: 4, flags: "N----Z-"),
-    0xad: Mos6502OpcodeInfo(opcode: 0xad, mnemonic: .LDA, addressMode: .ABS, bytes: 3, cycles: 4, flags: "N----Z-"),
-    0xbd: Mos6502OpcodeInfo(opcode: 0xbd, mnemonic: .LDA, addressMode: .ABSX, bytes: 3, cycles: 4, flags: "N----Z-"),
-    0xb9: Mos6502OpcodeInfo(opcode: 0xb9, mnemonic: .LDA, addressMode: .ABSY, bytes: 3, cycles: 4, flags: "N----Z-"),
-    0xa1: Mos6502OpcodeInfo(opcode: 0xa1, mnemonic: .LDA, addressMode: .INDX, bytes: 2, cycles: 6, flags: "N----Z-"),
-    0xb1: Mos6502OpcodeInfo(opcode: 0xb1, mnemonic: .LDA, addressMode: .INDY, bytes: 2, cycles: 5, flags: "N----Z-"),
-    0xa2: Mos6502OpcodeInfo(opcode: 0xa2, mnemonic: .LDX, addressMode: .IMM, bytes: 2, cycles: 2, flags: "N----Z-"),
-    0xa6: Mos6502OpcodeInfo(opcode: 0xa6, mnemonic: .LDX, addressMode: .ZP, bytes: 2, cycles: 3, flags: "N----Z-"),
-    0xb6: Mos6502OpcodeInfo(opcode: 0xb6, mnemonic: .LDX, addressMode: .ZPY, bytes: 2, cycles: 4, flags: "N----Z-"),
-    0xae: Mos6502OpcodeInfo(opcode: 0xae, mnemonic: .LDX, addressMode: .ABS, bytes: 3, cycles: 4, flags: "N----Z-"),
-    0xbe: Mos6502OpcodeInfo(opcode: 0xbe, mnemonic: .LDX, addressMode: .ABSY, bytes: 3, cycles: 4, flags: "N----Z-"),
-    0xa0: Mos6502OpcodeInfo(opcode: 0xa0, mnemonic: .LDY, addressMode: .IMM, bytes: 2, cycles: 2, flags: "N----Z-"),
-    0xa4: Mos6502OpcodeInfo(opcode: 0xa4, mnemonic: .LDY, addressMode: .ZP, bytes: 2, cycles: 3, flags: "N----Z-"),
-    0xb4: Mos6502OpcodeInfo(opcode: 0xb4, mnemonic: .LDY, addressMode: .ZPX, bytes: 2, cycles: 4, flags: "N----Z-"),
-    0xac: Mos6502OpcodeInfo(opcode: 0xac, mnemonic: .LDY, addressMode: .ABS, bytes: 3, cycles: 4, flags: "N----Z-"),
-    0xbc: Mos6502OpcodeInfo(opcode: 0xbc, mnemonic: .LDY, addressMode: .ABSX, bytes: 3, cycles: 4, flags: "N----Z-"),
-    0x4a: Mos6502OpcodeInfo(opcode: 0x4a, mnemonic: .LSR, addressMode: .ACC, bytes: 1, cycles: 2, flags: "N----ZC"),
-    0x46: Mos6502OpcodeInfo(opcode: 0x46, mnemonic: .LSR, addressMode: .ZP, bytes: 2, cycles: 5, flags: "N----ZC"),
-    0x56: Mos6502OpcodeInfo(opcode: 0x56, mnemonic: .LSR, addressMode: .ZPX, bytes: 2, cycles: 6, flags: "N----ZC"),
-    0x4e: Mos6502OpcodeInfo(opcode: 0x4e, mnemonic: .LSR, addressMode: .ABS, bytes: 3, cycles: 6, flags: "N----ZC"),
-    0x5e: Mos6502OpcodeInfo(opcode: 0x5e, mnemonic: .LSR, addressMode: .ABSX, bytes: 3, cycles: 7, flags: "N----ZC"),
-    0x09: Mos6502OpcodeInfo(opcode: 0x09, mnemonic: .ORA, addressMode: .IMM, bytes: 2, cycles: 2, flags: "N----Z-"),
-    0x05: Mos6502OpcodeInfo(opcode: 0x05, mnemonic: .ORA, addressMode: .ZP, bytes: 2, cycles: 3, flags: "N----Z-"),
-    0x15: Mos6502OpcodeInfo(opcode: 0x15, mnemonic: .ORA, addressMode: .ZPX, bytes: 2, cycles: 4, flags: "N----Z-"),
-    0x0d: Mos6502OpcodeInfo(opcode: 0x0d, mnemonic: .ORA, addressMode: .ABS, bytes: 3, cycles: 4, flags: "N----Z-"),
-    0x1d: Mos6502OpcodeInfo(opcode: 0x1d, mnemonic: .ORA, addressMode: .ABSX, bytes: 3, cycles: 4, flags: "N----Z-"),
-    0x19: Mos6502OpcodeInfo(opcode: 0x19, mnemonic: .ORA, addressMode: .ABSY, bytes: 3, cycles: 4, flags: "N----Z-"),
-    0x01: Mos6502OpcodeInfo(opcode: 0x01, mnemonic: .ORA, addressMode: .INDX, bytes: 2, cycles: 6, flags: "N----Z-"),
-    0x11: Mos6502OpcodeInfo(opcode: 0x11, mnemonic: .ORA, addressMode: .INDY, bytes: 2, cycles: 5, flags: "N----Z-"),
-    0x2a: Mos6502OpcodeInfo(opcode: 0x2a, mnemonic: .ROL, addressMode: .ACC, bytes: 1, cycles: 2, flags: "N----ZC"),
-    0x26: Mos6502OpcodeInfo(opcode: 0x26, mnemonic: .ROL, addressMode: .ZP, bytes: 2, cycles: 5, flags: "N----ZC"),
-    0x36: Mos6502OpcodeInfo(opcode: 0x36, mnemonic: .ROL, addressMode: .ZPX, bytes: 2, cycles: 6, flags: "N----ZC"),
-    0x2e: Mos6502OpcodeInfo(opcode: 0x2e, mnemonic: .ROL, addressMode: .ABS, bytes: 3, cycles: 6, flags: "N----ZC"),
-    0x3e: Mos6502OpcodeInfo(opcode: 0x3e, mnemonic: .ROL, addressMode: .ABSX, bytes: 3, cycles: 7, flags: "N----ZC"),
-    0x6a: Mos6502OpcodeInfo(opcode: 0x6a, mnemonic: .ROR, addressMode: .ACC, bytes: 1, cycles: 2, flags: "N----ZC"),
-    0x66: Mos6502OpcodeInfo(opcode: 0x66, mnemonic: .ROR, addressMode: .ZP, bytes: 2, cycles: 5, flags: "N----ZC"),
-    0x76: Mos6502OpcodeInfo(opcode: 0x76, mnemonic: .ROR, addressMode: .ZPX, bytes: 2, cycles: 6, flags: "N----ZC"),
-    0x7e: Mos6502OpcodeInfo(opcode: 0x7e, mnemonic: .ROR, addressMode: .ABS, bytes: 3, cycles: 6, flags: "N----ZC"),
-    0x6e: Mos6502OpcodeInfo(opcode: 0x6e, mnemonic: .ROR, addressMode: .ABSX, bytes: 3, cycles: 7, flags: "N----ZC"),
-    0xe9: Mos6502OpcodeInfo(opcode: 0xe9, mnemonic: .SBC, addressMode: .IMM, bytes: 2, cycles: 2, flags: "NV---ZC"),
-    0xe5: Mos6502OpcodeInfo(opcode: 0xe5, mnemonic: .SBC, addressMode: .ZP, bytes: 2, cycles: 3, flags: "NV---ZC"),
-    0xf5: Mos6502OpcodeInfo(opcode: 0xf5, mnemonic: .SBC, addressMode: .ZPX, bytes: 2, cycles: 4, flags: "NV---ZC"),
-    0xed: Mos6502OpcodeInfo(opcode: 0xed, mnemonic: .SBC, addressMode: .ABS, bytes: 3, cycles: 4, flags: "NV---ZC"),
-    0xfd: Mos6502OpcodeInfo(opcode: 0xfd, mnemonic: .SBC, addressMode: .ABSX, bytes: 3, cycles: 4, flags: "NV---ZC"),
-    0xf9: Mos6502OpcodeInfo(opcode: 0xf9, mnemonic: .SBC, addressMode: .ABSY, bytes: 3, cycles: 4, flags: "NV---ZC"),
-    0xe1: Mos6502OpcodeInfo(opcode: 0xe1, mnemonic: .SBC, addressMode: .INDX, bytes: 2, cycles: 6, flags: "NV---ZC"),
-    0xf1: Mos6502OpcodeInfo(opcode: 0xf1, mnemonic: .SBC, addressMode: .INDY, bytes: 2, cycles: 5, flags: "NV---ZC"),
-    0x85: Mos6502OpcodeInfo(opcode: 0x85, mnemonic: .STA, addressMode: .ZP, bytes: 2, cycles: 3),
-    0x95: Mos6502OpcodeInfo(opcode: 0x95, mnemonic: .STA, addressMode: .ZPX, bytes: 2, cycles: 4),
-    0x8d: Mos6502OpcodeInfo(opcode: 0x8d, mnemonic: .STA, addressMode: .ABS, bytes: 3, cycles: 4),
-    0x9d: Mos6502OpcodeInfo(opcode: 0x9d, mnemonic: .STA, addressMode: .ABSX, bytes: 3, cycles: 5),
-    0x99: Mos6502OpcodeInfo(opcode: 0x99, mnemonic: .STA, addressMode: .ABSY, bytes: 3, cycles: 5),
-    0x81: Mos6502OpcodeInfo(opcode: 0x81, mnemonic: .STA, addressMode: .INDX, bytes: 2, cycles: 6),
-    0x91: Mos6502OpcodeInfo(opcode: 0x91, mnemonic: .STA, addressMode: .INDY, bytes: 2, cycles: 6),
-    0x86: Mos6502OpcodeInfo(opcode: 0x86, mnemonic: .STX, addressMode: .ZP, bytes: 2, cycles: 3),
-    0x96: Mos6502OpcodeInfo(opcode: 0x96, mnemonic: .STX, addressMode: .ZPY, bytes: 2, cycles: 4),
-    0x8e: Mos6502OpcodeInfo(opcode: 0x8e, mnemonic: .STX, addressMode: .ABS, bytes: 3, cycles: 4),
-    0x84: Mos6502OpcodeInfo(opcode: 0x84, mnemonic: .STY, addressMode: .ZP, bytes: 2, cycles: 3),
-    0x94: Mos6502OpcodeInfo(opcode: 0x94, mnemonic: .STY, addressMode: .ZPX, bytes: 2, cycles: 4),
-    0x8c: Mos6502OpcodeInfo(opcode: 0x8c, mnemonic: .STY, addressMode: .ABS, bytes: 3, cycles: 4),
+public let Mos6502opcodeMap: [UInt8: Mos6502opcodeInfo] = [
+    0x69: Mos6502opcodeInfo(opcode: 0x69, mnemonic: .ADC, addressMode: .IMM, bytes: 2, cycles: 2, flags: "NV---ZC"),
+    0x65: Mos6502opcodeInfo(opcode: 0x65, mnemonic: .ADC, addressMode: .ZP, bytes: 2, cycles: 3, flags: "NV---ZC"),
+    0x75: Mos6502opcodeInfo(opcode: 0x75, mnemonic: .ADC, addressMode: .ZPX, bytes: 2, cycles: 4, flags: "NV---ZC"),
+    0x6d: Mos6502opcodeInfo(opcode: 0x6d, mnemonic: .ADC, addressMode: .ABS, bytes: 3, cycles: 4, flags: "NV---ZC"),
+    0x7d: Mos6502opcodeInfo(opcode: 0x7d, mnemonic: .ADC, addressMode: .ABSX, bytes: 3, cycles: 4, flags: "NV---ZC"),
+    0x79: Mos6502opcodeInfo(opcode: 0x79, mnemonic: .ADC, addressMode: .ABSY, bytes: 3, cycles: 4, flags: "NV---ZC"),
+    0x61: Mos6502opcodeInfo(opcode: 0x61, mnemonic: .ADC, addressMode: .INDX, bytes: 2, cycles: 6, flags: "NV---ZC"),
+    0x71: Mos6502opcodeInfo(opcode: 0x71, mnemonic: .ADC, addressMode: .INDY, bytes: 2, cycles: 5, flags: "NV---ZC"),
+    0x29: Mos6502opcodeInfo(opcode: 0x29, mnemonic: .AND, addressMode: .IMM, bytes: 2, cycles: 2, flags: "N----Z-"),
+    0x25: Mos6502opcodeInfo(opcode: 0x25, mnemonic: .AND, addressMode: .ZP, bytes: 2, cycles: 3, flags: "N----Z-"),
+    0x35: Mos6502opcodeInfo(opcode: 0x35, mnemonic: .AND, addressMode: .ZPX, bytes: 2, cycles: 4, flags: "N----Z-"),
+    0x2d: Mos6502opcodeInfo(opcode: 0x2d, mnemonic: .AND, addressMode: .ABS, bytes: 3, cycles: 4, flags: "N----Z-"),
+    0x3d: Mos6502opcodeInfo(opcode: 0x3d, mnemonic: .AND, addressMode: .ABSX, bytes: 3, cycles: 4, flags: "N----Z-"),
+    0x39: Mos6502opcodeInfo(opcode: 0x39, mnemonic: .AND, addressMode: .ABSY, bytes: 3, cycles: 4, flags: "N----Z-"),
+    0x21: Mos6502opcodeInfo(opcode: 0x21, mnemonic: .AND, addressMode: .INDX, bytes: 2, cycles: 6, flags: "N----Z-"),
+    0x31: Mos6502opcodeInfo(opcode: 0x31, mnemonic: .AND, addressMode: .INDY, bytes: 2, cycles: 5, flags: "N----Z-"),
+    0x0a: Mos6502opcodeInfo(opcode: 0x0a, mnemonic: .ASL, addressMode: .ACC, bytes: 1, cycles: 2, flags: "N----ZC"),
+    0x06: Mos6502opcodeInfo(opcode: 0x06, mnemonic: .ASL, addressMode: .ZP, bytes: 2, cycles: 5, flags: "N----ZC"),
+    0x16: Mos6502opcodeInfo(opcode: 0x16, mnemonic: .ASL, addressMode: .ZPX, bytes: 2, cycles: 6, flags: "N----ZC"),
+    0x0e: Mos6502opcodeInfo(opcode: 0x0e, mnemonic: .ASL, addressMode: .ABS, bytes: 3, cycles: 6, flags: "N----ZC"),
+    0x1e: Mos6502opcodeInfo(opcode: 0x1e, mnemonic: .ASL, addressMode: .ABSX, bytes: 3, cycles: 7, flags: "N----ZC"),
+    0x90: Mos6502opcodeInfo(opcode: 0x90, mnemonic: .BCC, addressMode: .REL, bytes: 2, cycles: 2, plus1: true),
+    0xb0: Mos6502opcodeInfo(opcode: 0xb0, mnemonic: .BCS, addressMode: .REL, bytes: 2, cycles: 2, plus1: true),
+    0xf0: Mos6502opcodeInfo(opcode: 0xf0, mnemonic: .BEQ, addressMode: .REL, bytes: 2, cycles: 2, plus1: true),
+    0x30: Mos6502opcodeInfo(opcode: 0x30, mnemonic: .BMI, addressMode: .REL, bytes: 2, cycles: 2, plus1: true),
+    0xd0: Mos6502opcodeInfo(opcode: 0xd0, mnemonic: .BNE, addressMode: .REL, bytes: 2, cycles: 2, plus1: true),
+    0x10: Mos6502opcodeInfo(opcode: 0x10, mnemonic: .BPL, addressMode: .REL, bytes: 2, cycles: 2, plus1: true),
+    0x50: Mos6502opcodeInfo(opcode: 0x50, mnemonic: .BVC, addressMode: .REL, bytes: 2, cycles: 2, plus1: true),
+    0x70: Mos6502opcodeInfo(opcode: 0x70, mnemonic: .BVS, addressMode: .REL, bytes: 2, cycles: 2, plus1: true),
+    0x24: Mos6502opcodeInfo(opcode: 0x24, mnemonic: .BIT, addressMode: .ZP, bytes: 2, cycles: 3, flags: "NV---Z-"),
+    0x2c: Mos6502opcodeInfo(opcode: 0x2c, mnemonic: .BIT, addressMode: .ABS, bytes: 3, cycles: 4, flags: "NV---Z-"),
+    0x00: Mos6502opcodeInfo(opcode: 0x00, mnemonic: .BRK, addressMode: .IMP, bytes: 1, cycles: 7),
+    0x18: Mos6502opcodeInfo(opcode: 0x18, mnemonic: .CLC, addressMode: .IMP, bytes: 1, cycles: 2, flags: "------C"),
+    0xd8: Mos6502opcodeInfo(opcode: 0xd8, mnemonic: .CLD, addressMode: .IMP, bytes: 1, cycles: 2, flags: "---D---"),
+    0x58: Mos6502opcodeInfo(opcode: 0x58, mnemonic: .CLI, addressMode: .IMP, bytes: 1, cycles: 2, flags: "----I--"),
+    0xb8: Mos6502opcodeInfo(opcode: 0xb8, mnemonic: .CLV, addressMode: .IMP, bytes: 1, cycles: 2, flags: "-V-----"),
+    0xea: Mos6502opcodeInfo(opcode: 0xea, mnemonic: .NOP, addressMode: .IMP, bytes: 1, cycles: 2),
+    0x48: Mos6502opcodeInfo(opcode: 0x48, mnemonic: .PHA, addressMode: .IMP, bytes: 1, cycles: 3),
+    0x68: Mos6502opcodeInfo(opcode: 0x68, mnemonic: .PLA, addressMode: .IMP, bytes: 1, cycles: 4, flags: "N----Z-"),
+    0x08: Mos6502opcodeInfo(opcode: 0x08, mnemonic: .PHP, addressMode: .IMP, bytes: 1, cycles: 3),
+    0x28: Mos6502opcodeInfo(opcode: 0x28, mnemonic: .PLP, addressMode: .IMP, bytes: 1, cycles: 4, flags: "NVBDIZC"),
+    0x40: Mos6502opcodeInfo(opcode: 0x40, mnemonic: .RTI, addressMode: .IMP, bytes: 1, cycles: 6),
+    0x60: Mos6502opcodeInfo(opcode: 0x60, mnemonic: .RTS, addressMode: .IMP, bytes: 1, cycles: 6),
+    0x38: Mos6502opcodeInfo(opcode: 0x38, mnemonic: .SEC, addressMode: .IMP, bytes: 1, cycles: 2, flags: "------C"),
+    0xf8: Mos6502opcodeInfo(opcode: 0xf8, mnemonic: .SED, addressMode: .IMP, bytes: 1, cycles: 2, flags: "---D---"),
+    0x78: Mos6502opcodeInfo(opcode: 0x78, mnemonic: .SEI, addressMode: .IMP, bytes: 1, cycles: 2, flags: "----I--"),
+    0xaa: Mos6502opcodeInfo(opcode: 0xaa, mnemonic: .TAX, addressMode: .IMP, bytes: 1, cycles: 2, flags: "N----Z-"),
+    0x8a: Mos6502opcodeInfo(opcode: 0x8a, mnemonic: .TXA, addressMode: .IMP, bytes: 1, cycles: 2, flags: "N----Z-"),
+    0xa8: Mos6502opcodeInfo(opcode: 0xa8, mnemonic: .TAY, addressMode: .IMP, bytes: 1, cycles: 2, flags: "N----Z-"),
+    0x98: Mos6502opcodeInfo(opcode: 0x98, mnemonic: .TYA, addressMode: .IMP, bytes: 1, cycles: 2, flags: "N----Z-"),
+    0xba: Mos6502opcodeInfo(opcode: 0xba, mnemonic: .TSX, addressMode: .IMP, bytes: 1, cycles: 2, flags: "N----Z-"),
+    0x9a: Mos6502opcodeInfo(opcode: 0x9a, mnemonic: .TXS, addressMode: .IMP, bytes: 1, cycles: 2),
+    0xc9: Mos6502opcodeInfo(opcode: 0xc9, mnemonic: .CMP, addressMode: .IMM, bytes: 2, cycles: 2, flags: "N----ZC"),
+    0xc5: Mos6502opcodeInfo(opcode: 0xc5, mnemonic: .CMP, addressMode: .ZP, bytes: 2, cycles: 3, flags: "N----ZC"),
+    0xd5: Mos6502opcodeInfo(opcode: 0xd5, mnemonic: .CMP, addressMode: .ZPX, bytes: 2, cycles: 4, flags: "N----ZC"),
+    0xcd: Mos6502opcodeInfo(opcode: 0xcd, mnemonic: .CMP, addressMode: .ABS, bytes: 3, cycles: 4, flags: "N----ZC"),
+    0xdd: Mos6502opcodeInfo(opcode: 0xdd, mnemonic: .CMP, addressMode: .ABSX, bytes: 3, cycles: 4, flags: "N----ZC"),
+    0xd9: Mos6502opcodeInfo(opcode: 0xd9, mnemonic: .CMP, addressMode: .ABSY, bytes: 3, cycles: 4, flags: "N----ZC"),
+    0xc1: Mos6502opcodeInfo(opcode: 0xc1, mnemonic: .CMP, addressMode: .INDX, bytes: 2, cycles: 6, flags: "N----ZC"),
+    0xd1: Mos6502opcodeInfo(opcode: 0xd1, mnemonic: .CMP, addressMode: .INDY, bytes: 2, cycles: 5, flags: "N----ZC"),
+    0xe0: Mos6502opcodeInfo(opcode: 0xe0, mnemonic: .CPX, addressMode: .IMM, bytes: 2, cycles: 2, flags: "N----ZC"),
+    0xe4: Mos6502opcodeInfo(opcode: 0xe4, mnemonic: .CPX, addressMode: .ZP, bytes: 2, cycles: 3, flags: "N----ZC"),
+    0xec: Mos6502opcodeInfo(opcode: 0xec, mnemonic: .CPX, addressMode: .ABS, bytes: 3, cycles: 4, flags: "N----ZC"),
+    0xc0: Mos6502opcodeInfo(opcode: 0xc0, mnemonic: .CPY, addressMode: .IMM, bytes: 2, cycles: 2, flags: "N----ZC"),
+    0xc4: Mos6502opcodeInfo(opcode: 0xc4, mnemonic: .CPY, addressMode: .ZP, bytes: 2, cycles: 3, flags: "N----ZC"),
+    0xcc: Mos6502opcodeInfo(opcode: 0xcc, mnemonic: .CPY, addressMode: .ABS, bytes: 3, cycles: 4, flags: "N----ZC"),
+    0xc6: Mos6502opcodeInfo(opcode: 0xc6, mnemonic: .DEC, addressMode: .ZP, bytes: 2, cycles: 5, flags: "N----Z-"),
+    0xd6: Mos6502opcodeInfo(opcode: 0xd6, mnemonic: .DEC, addressMode: .ZPX, bytes: 2, cycles: 6, flags: "N----Z-"),
+    0xce: Mos6502opcodeInfo(opcode: 0xce, mnemonic: .DEC, addressMode: .ABS, bytes: 3, cycles: 6, flags: "N----Z-"),
+    0xde: Mos6502opcodeInfo(opcode: 0xde, mnemonic: .DEC, addressMode: .ABSX, bytes: 3, cycles: 7, flags: "N----Z-"),
+    0xca: Mos6502opcodeInfo(opcode: 0xca, mnemonic: .DEX, addressMode: .IMP, bytes: 1, cycles: 2, flags: "N----Z-"),
+    0x88: Mos6502opcodeInfo(opcode: 0x88, mnemonic: .DEY, addressMode: .IMP, bytes: 1, cycles: 2, flags: "N----Z-"),
+    0xe8: Mos6502opcodeInfo(opcode: 0xe8, mnemonic: .INX, addressMode: .IMP, bytes: 1, cycles: 2, flags: "N----Z-"),
+    0xc8: Mos6502opcodeInfo(opcode: 0xc8, mnemonic: .INY, addressMode: .IMP, bytes: 1, cycles: 2, flags: "N----Z-"),
+    0x49: Mos6502opcodeInfo(opcode: 0x49, mnemonic: .EOR, addressMode: .IMM, bytes: 2, cycles: 2, flags: "N----Z-"),
+    0x45: Mos6502opcodeInfo(opcode: 0x45, mnemonic: .EOR, addressMode: .ZP, bytes: 2, cycles: 3, flags: "N----Z-"),
+    0x55: Mos6502opcodeInfo(opcode: 0x55, mnemonic: .EOR, addressMode: .ZPX, bytes: 2, cycles: 4, flags: "N----Z-"),
+    0x4d: Mos6502opcodeInfo(opcode: 0x4d, mnemonic: .EOR, addressMode: .ABS, bytes: 3, cycles: 4, flags: "N----Z-"),
+    0x5d: Mos6502opcodeInfo(opcode: 0x5d, mnemonic: .EOR, addressMode: .ABSX, bytes: 3, cycles: 4, flags: "N----Z-"),
+    0x59: Mos6502opcodeInfo(opcode: 0x59, mnemonic: .EOR, addressMode: .ABSY, bytes: 3, cycles: 4, flags: "N----Z-"),
+    0x41: Mos6502opcodeInfo(opcode: 0x41, mnemonic: .EOR, addressMode: .INDX, bytes: 2, cycles: 6, flags: "N----Z-"),
+    0x51: Mos6502opcodeInfo(opcode: 0x51, mnemonic: .EOR, addressMode: .INDY, bytes: 2, cycles: 5, flags: "N----Z-"),
+    0xe6: Mos6502opcodeInfo(opcode: 0xe6, mnemonic: .INC, addressMode: .ZP, bytes: 2, cycles: 5, flags: "N----Z-"),
+    0xf6: Mos6502opcodeInfo(opcode: 0xf6, mnemonic: .INC, addressMode: .ZPX, bytes: 2, cycles: 6, flags: "N----Z-"),
+    0xee: Mos6502opcodeInfo(opcode: 0xee, mnemonic: .INC, addressMode: .ABS, bytes: 3, cycles: 6, flags: "N----Z-"),
+    0xfe: Mos6502opcodeInfo(opcode: 0xfe, mnemonic: .INC, addressMode: .ABSX, bytes: 3, cycles: 7, flags: "N----Z-"),
+    0x4c: Mos6502opcodeInfo(opcode: 0x4c, mnemonic: .JMP, addressMode: .ABS, bytes: 3, cycles: 3),
+    0x6c: Mos6502opcodeInfo(opcode: 0x6c, mnemonic: .JMP, addressMode: .IND, bytes: 3, cycles: 5),
+    0x20: Mos6502opcodeInfo(opcode: 0x20, mnemonic: .JSR, addressMode: .ABS, bytes: 3, cycles: 6),
+    0xa9: Mos6502opcodeInfo(opcode: 0xa9, mnemonic: .LDA, addressMode: .IMM, bytes: 2, cycles: 2, flags: "N----Z-"),
+    0xa5: Mos6502opcodeInfo(opcode: 0xa5, mnemonic: .LDA, addressMode: .ZP, bytes: 2, cycles: 3, flags: "N----Z-"),
+    0xb5: Mos6502opcodeInfo(opcode: 0xb5, mnemonic: .LDA, addressMode: .ZPX, bytes: 2, cycles: 4, flags: "N----Z-"),
+    0xad: Mos6502opcodeInfo(opcode: 0xad, mnemonic: .LDA, addressMode: .ABS, bytes: 3, cycles: 4, flags: "N----Z-"),
+    0xbd: Mos6502opcodeInfo(opcode: 0xbd, mnemonic: .LDA, addressMode: .ABSX, bytes: 3, cycles: 4, flags: "N----Z-"),
+    0xb9: Mos6502opcodeInfo(opcode: 0xb9, mnemonic: .LDA, addressMode: .ABSY, bytes: 3, cycles: 4, flags: "N----Z-"),
+    0xa1: Mos6502opcodeInfo(opcode: 0xa1, mnemonic: .LDA, addressMode: .INDX, bytes: 2, cycles: 6, flags: "N----Z-"),
+    0xb1: Mos6502opcodeInfo(opcode: 0xb1, mnemonic: .LDA, addressMode: .INDY, bytes: 2, cycles: 5, flags: "N----Z-"),
+    0xa2: Mos6502opcodeInfo(opcode: 0xa2, mnemonic: .LDX, addressMode: .IMM, bytes: 2, cycles: 2, flags: "N----Z-"),
+    0xa6: Mos6502opcodeInfo(opcode: 0xa6, mnemonic: .LDX, addressMode: .ZP, bytes: 2, cycles: 3, flags: "N----Z-"),
+    0xb6: Mos6502opcodeInfo(opcode: 0xb6, mnemonic: .LDX, addressMode: .ZPY, bytes: 2, cycles: 4, flags: "N----Z-"),
+    0xae: Mos6502opcodeInfo(opcode: 0xae, mnemonic: .LDX, addressMode: .ABS, bytes: 3, cycles: 4, flags: "N----Z-"),
+    0xbe: Mos6502opcodeInfo(opcode: 0xbe, mnemonic: .LDX, addressMode: .ABSY, bytes: 3, cycles: 4, flags: "N----Z-"),
+    0xa0: Mos6502opcodeInfo(opcode: 0xa0, mnemonic: .LDY, addressMode: .IMM, bytes: 2, cycles: 2, flags: "N----Z-"),
+    0xa4: Mos6502opcodeInfo(opcode: 0xa4, mnemonic: .LDY, addressMode: .ZP, bytes: 2, cycles: 3, flags: "N----Z-"),
+    0xb4: Mos6502opcodeInfo(opcode: 0xb4, mnemonic: .LDY, addressMode: .ZPX, bytes: 2, cycles: 4, flags: "N----Z-"),
+    0xac: Mos6502opcodeInfo(opcode: 0xac, mnemonic: .LDY, addressMode: .ABS, bytes: 3, cycles: 4, flags: "N----Z-"),
+    0xbc: Mos6502opcodeInfo(opcode: 0xbc, mnemonic: .LDY, addressMode: .ABSX, bytes: 3, cycles: 4, flags: "N----Z-"),
+    0x4a: Mos6502opcodeInfo(opcode: 0x4a, mnemonic: .LSR, addressMode: .ACC, bytes: 1, cycles: 2, flags: "N----ZC"),
+    0x46: Mos6502opcodeInfo(opcode: 0x46, mnemonic: .LSR, addressMode: .ZP, bytes: 2, cycles: 5, flags: "N----ZC"),
+    0x56: Mos6502opcodeInfo(opcode: 0x56, mnemonic: .LSR, addressMode: .ZPX, bytes: 2, cycles: 6, flags: "N----ZC"),
+    0x4e: Mos6502opcodeInfo(opcode: 0x4e, mnemonic: .LSR, addressMode: .ABS, bytes: 3, cycles: 6, flags: "N----ZC"),
+    0x5e: Mos6502opcodeInfo(opcode: 0x5e, mnemonic: .LSR, addressMode: .ABSX, bytes: 3, cycles: 7, flags: "N----ZC"),
+    0x09: Mos6502opcodeInfo(opcode: 0x09, mnemonic: .ORA, addressMode: .IMM, bytes: 2, cycles: 2, flags: "N----Z-"),
+    0x05: Mos6502opcodeInfo(opcode: 0x05, mnemonic: .ORA, addressMode: .ZP, bytes: 2, cycles: 3, flags: "N----Z-"),
+    0x15: Mos6502opcodeInfo(opcode: 0x15, mnemonic: .ORA, addressMode: .ZPX, bytes: 2, cycles: 4, flags: "N----Z-"),
+    0x0d: Mos6502opcodeInfo(opcode: 0x0d, mnemonic: .ORA, addressMode: .ABS, bytes: 3, cycles: 4, flags: "N----Z-"),
+    0x1d: Mos6502opcodeInfo(opcode: 0x1d, mnemonic: .ORA, addressMode: .ABSX, bytes: 3, cycles: 4, flags: "N----Z-"),
+    0x19: Mos6502opcodeInfo(opcode: 0x19, mnemonic: .ORA, addressMode: .ABSY, bytes: 3, cycles: 4, flags: "N----Z-"),
+    0x01: Mos6502opcodeInfo(opcode: 0x01, mnemonic: .ORA, addressMode: .INDX, bytes: 2, cycles: 6, flags: "N----Z-"),
+    0x11: Mos6502opcodeInfo(opcode: 0x11, mnemonic: .ORA, addressMode: .INDY, bytes: 2, cycles: 5, flags: "N----Z-"),
+    0x2a: Mos6502opcodeInfo(opcode: 0x2a, mnemonic: .ROL, addressMode: .ACC, bytes: 1, cycles: 2, flags: "N----ZC"),
+    0x26: Mos6502opcodeInfo(opcode: 0x26, mnemonic: .ROL, addressMode: .ZP, bytes: 2, cycles: 5, flags: "N----ZC"),
+    0x36: Mos6502opcodeInfo(opcode: 0x36, mnemonic: .ROL, addressMode: .ZPX, bytes: 2, cycles: 6, flags: "N----ZC"),
+    0x2e: Mos6502opcodeInfo(opcode: 0x2e, mnemonic: .ROL, addressMode: .ABS, bytes: 3, cycles: 6, flags: "N----ZC"),
+    0x3e: Mos6502opcodeInfo(opcode: 0x3e, mnemonic: .ROL, addressMode: .ABSX, bytes: 3, cycles: 7, flags: "N----ZC"),
+    0x6a: Mos6502opcodeInfo(opcode: 0x6a, mnemonic: .ROR, addressMode: .ACC, bytes: 1, cycles: 2, flags: "N----ZC"),
+    0x66: Mos6502opcodeInfo(opcode: 0x66, mnemonic: .ROR, addressMode: .ZP, bytes: 2, cycles: 5, flags: "N----ZC"),
+    0x76: Mos6502opcodeInfo(opcode: 0x76, mnemonic: .ROR, addressMode: .ZPX, bytes: 2, cycles: 6, flags: "N----ZC"),
+    0x7e: Mos6502opcodeInfo(opcode: 0x7e, mnemonic: .ROR, addressMode: .ABS, bytes: 3, cycles: 6, flags: "N----ZC"),
+    0x6e: Mos6502opcodeInfo(opcode: 0x6e, mnemonic: .ROR, addressMode: .ABSX, bytes: 3, cycles: 7, flags: "N----ZC"),
+    0xe9: Mos6502opcodeInfo(opcode: 0xe9, mnemonic: .SBC, addressMode: .IMM, bytes: 2, cycles: 2, flags: "NV---ZC"),
+    0xe5: Mos6502opcodeInfo(opcode: 0xe5, mnemonic: .SBC, addressMode: .ZP, bytes: 2, cycles: 3, flags: "NV---ZC"),
+    0xf5: Mos6502opcodeInfo(opcode: 0xf5, mnemonic: .SBC, addressMode: .ZPX, bytes: 2, cycles: 4, flags: "NV---ZC"),
+    0xed: Mos6502opcodeInfo(opcode: 0xed, mnemonic: .SBC, addressMode: .ABS, bytes: 3, cycles: 4, flags: "NV---ZC"),
+    0xfd: Mos6502opcodeInfo(opcode: 0xfd, mnemonic: .SBC, addressMode: .ABSX, bytes: 3, cycles: 4, flags: "NV---ZC"),
+    0xf9: Mos6502opcodeInfo(opcode: 0xf9, mnemonic: .SBC, addressMode: .ABSY, bytes: 3, cycles: 4, flags: "NV---ZC"),
+    0xe1: Mos6502opcodeInfo(opcode: 0xe1, mnemonic: .SBC, addressMode: .INDX, bytes: 2, cycles: 6, flags: "NV---ZC"),
+    0xf1: Mos6502opcodeInfo(opcode: 0xf1, mnemonic: .SBC, addressMode: .INDY, bytes: 2, cycles: 5, flags: "NV---ZC"),
+    0x85: Mos6502opcodeInfo(opcode: 0x85, mnemonic: .STA, addressMode: .ZP, bytes: 2, cycles: 3),
+    0x95: Mos6502opcodeInfo(opcode: 0x95, mnemonic: .STA, addressMode: .ZPX, bytes: 2, cycles: 4),
+    0x8d: Mos6502opcodeInfo(opcode: 0x8d, mnemonic: .STA, addressMode: .ABS, bytes: 3, cycles: 4),
+    0x9d: Mos6502opcodeInfo(opcode: 0x9d, mnemonic: .STA, addressMode: .ABSX, bytes: 3, cycles: 5),
+    0x99: Mos6502opcodeInfo(opcode: 0x99, mnemonic: .STA, addressMode: .ABSY, bytes: 3, cycles: 5),
+    0x81: Mos6502opcodeInfo(opcode: 0x81, mnemonic: .STA, addressMode: .INDX, bytes: 2, cycles: 6),
+    0x91: Mos6502opcodeInfo(opcode: 0x91, mnemonic: .STA, addressMode: .INDY, bytes: 2, cycles: 6),
+    0x86: Mos6502opcodeInfo(opcode: 0x86, mnemonic: .STX, addressMode: .ZP, bytes: 2, cycles: 3),
+    0x96: Mos6502opcodeInfo(opcode: 0x96, mnemonic: .STX, addressMode: .ZPY, bytes: 2, cycles: 4),
+    0x8e: Mos6502opcodeInfo(opcode: 0x8e, mnemonic: .STX, addressMode: .ABS, bytes: 3, cycles: 4),
+    0x84: Mos6502opcodeInfo(opcode: 0x84, mnemonic: .STY, addressMode: .ZP, bytes: 2, cycles: 3),
+    0x94: Mos6502opcodeInfo(opcode: 0x94, mnemonic: .STY, addressMode: .ZPX, bytes: 2, cycles: 4),
+    0x8c: Mos6502opcodeInfo(opcode: 0x8c, mnemonic: .STY, addressMode: .ABS, bytes: 3, cycles: 4),
 ]

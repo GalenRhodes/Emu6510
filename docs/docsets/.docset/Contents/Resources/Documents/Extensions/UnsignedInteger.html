@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>VideoStandard Enumeration Reference</title>
+    <title>UnsignedInteger Extension Reference</title>
     <link rel="stylesheet" type="text/css" href="../css/jazzy.css" />
     <link rel="stylesheet" type="text/css" href="../css/highlight.css" />
     <meta charset='utf-8'>
@@ -10,8 +10,8 @@
     
   </head>
   <body>
-    <a name="//apple_ref/swift/Enum/VideoStandard" class="dashAnchor"></a>
-    <a title="VideoStandard Enumeration Reference"></a>
+    <a name="//apple_ref/swift/Extension/UnsignedInteger" class="dashAnchor"></a>
+    <a title="UnsignedInteger Extension Reference"></a>
     <header>
       <div class="content-wrapper">
         <p><a href="../index.html">Emu6510©</a> (12% documented)</p>
@@ -22,7 +22,7 @@
       <p id="breadcrumbs">
         <a href="../index.html"> Reference</a>
         <img id="carat" src="../img/carat.png" />
-        VideoStandard Enumeration Reference
+        UnsignedInteger Extension Reference
       </p>
     </div>
     <div class="content-wrapper">
@@ -163,17 +163,14 @@
       <article class="main-content">
         <section>
           <section class="section">
-            <h1>VideoStandard</h1>
+            <h1>UnsignedInteger</h1>
               <div class="declaration">
                 <div class="language">
-                  <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">enum</span> <span class="kt">VideoStandard</span> <span class="p">:</span> <span class="kt">UInt32</span></code></pre>
+                  <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">extension</span> <span class="kt">UnsignedInteger</span></code></pre>
 
                 </div>
               </div>
-            <p>The clock speed of most implementations back in the day was based on the video hardware which was based on the two television
-standards at the time - NTSC and PAL. Below are the two clock speeds for the Commodore 64 and Commodore 128 (running is 40
-column mode).</p>
-
+            
           </section>
           <section class="section task-group-section">
             <div class="task-group">
@@ -181,9 +178,9 @@ column mode).</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:7Emu651013VideoStandardO8C64_NTSCyA2CmF"></a>
-                    <a name="//apple_ref/swift/Element/C64_NTSC" class="dashAnchor"></a>
-                    <a class="token" href="#/s:7Emu651013VideoStandardO8C64_NTSCyA2CmF">C64_NTSC</a>
+                    <a name="/s:SU7Emu6510EyxAA13Mos6502statusVcfc"></a>
+                    <a name="//apple_ref/swift/Method/init(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:SU7Emu6510EyxAA13Mos6502statusVcfc">init(_:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -197,41 +194,13 @@ column mode).</p>
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="k">case</span> <span class="kt">C64_NTSC</span> <span class="o">=</span> <span class="mi">1022727</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">@inlinable</span>
+<span class="nf">init</span><span class="p">(</span><span class="n">_</span> <span class="nv">f</span><span class="p">:</span> <span class="kt"><a href="../Structs/Mos6502status.html">Mos6502status</a></span><span class="p">)</span></code></pre>
 
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Emu6510/Emu6510.swift#L">Show on GitHub</a>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:7Emu651013VideoStandardO7C64_PALyA2CmF"></a>
-                    <a name="//apple_ref/swift/Element/C64_PAL" class="dashAnchor"></a>
-                    <a class="token" href="#/s:7Emu651013VideoStandardO7C64_PALyA2CmF">C64_PAL</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="k">case</span> <span class="kt">C64_PAL</span> <span class="o">=</span> <span class="mi">985248</span></code></pre>
-
-                        </div>
-                      </div>
-                      <div class="slightly-smaller">
-                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Emu6510/Emu6510.swift#L">Show on GitHub</a>
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Emu6510/OpcodeData.swift#L">Show on GitHub</a>
                       </div>
                     </section>
                   </div>

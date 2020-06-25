@@ -13,7 +13,8 @@ done
 
 TARGET="DocFixer"
 USER="grhodes"
-HOST="goober"
+#HOST="goober"
+HOST="galenrhodes.com"
 CONF="Release"
 
 if [ ! -f "bin/DocFixer" ]; then

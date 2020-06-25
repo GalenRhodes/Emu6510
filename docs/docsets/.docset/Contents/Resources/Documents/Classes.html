@@ -41,7 +41,7 @@
                 <a href="Classes/Memory.html">Memory</a>
               </li>
               <li class="nav-group-task">
-                <a href="Classes/Mos6502OpcodeInfo.html">Mos6502OpcodeInfo</a>
+                <a href="Classes/Mos6502opcodeInfo.html">Mos6502opcodeInfo</a>
               </li>
               <li class="nav-group-task">
                 <a href="Classes/RAMmemory.html">RAMmemory</a>
@@ -61,10 +61,10 @@
                 <a href="Global%20Variables.html#/s:7Emu65109ByteRanges6UInt16Vvp">ByteRange</a>
               </li>
               <li class="nav-group-task">
-                <a href="Global%20Variables.html#/s:7Emu651015MOS6502_OPCODESSDys5UInt8VAA17Mos6502OpcodeInfoCGvp">MOS6502_OPCODES</a>
+                <a href="Global%20Variables.html#/s:7Emu651012MaxPageCounts6UInt16Vvp">MaxPageCount</a>
               </li>
               <li class="nav-group-task">
-                <a href="Global%20Variables.html#/s:7Emu651012MaxPageCounts6UInt16Vvp">MaxPageCount</a>
+                <a href="Global%20Variables.html#/s:7Emu651016Mos6502opcodeMapSDys5UInt8VAA0B4InfoCGvp">Mos6502opcodeMap</a>
               </li>
             </ul>
           </li>
@@ -84,13 +84,13 @@
                 <a href="Enums/MOS65xxFamily.html">MOS65xxFamily</a>
               </li>
               <li class="nav-group-task">
-                <a href="Enums/Mos6502AddressModes.html">Mos6502AddressModes</a>
+                <a href="Enums/Mos6502addressModes.html">Mos6502addressModes</a>
               </li>
               <li class="nav-group-task">
-                <a href="Enums/Mos6502Flags.html">Mos6502Flags</a>
+                <a href="Enums/Mos6502flags.html">Mos6502flags</a>
               </li>
               <li class="nav-group-task">
-                <a href="Enums/Mos6502Opcodes.html">Mos6502Opcodes</a>
+                <a href="Enums/Mos6502opcodes.html">Mos6502opcodes</a>
               </li>
               <li class="nav-group-task">
                 <a href="Enums/VideoStandard.html">VideoStandard</a>
@@ -105,6 +105,9 @@
               </li>
               <li class="nav-group-task">
                 <a href="Extensions/StringProtocol.html">StringProtocol</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Extensions/UnsignedInteger.html">UnsignedInteger</a>
               </li>
             </ul>
           </li>
@@ -136,6 +139,14 @@
               </li>
               <li class="nav-group-task">
                 <a href="Protocols.html#/s:7Emu651013MemoryManagerP">MemoryManager</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="Structs.html">Structures</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="Structs/Mos6502status.html">Mos6502status</a>
               </li>
             </ul>
           </li>
@@ -184,7 +195,7 @@
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Emu6510/CPU65xx.swift#L37-L713">Show on GitHub</a>
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Emu6510/CPU65xx.swift#L37-L757">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -312,9 +323,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:7Emu651017Mos6502OpcodeInfoC"></a>
-                    <a name="//apple_ref/swift/Class/Mos6502OpcodeInfo" class="dashAnchor"></a>
-                    <a class="token" href="#/s:7Emu651017Mos6502OpcodeInfoC">Mos6502OpcodeInfo</a>
+                    <a name="/s:7Emu651017Mos6502opcodeInfoC"></a>
+                    <a name="//apple_ref/swift/Class/Mos6502opcodeInfo" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7Emu651017Mos6502opcodeInfoC">Mos6502opcodeInfo</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -323,18 +334,18 @@
                       <div class="pointer"></div>
                       <div class="abstract">
                         
-                        <a href="Classes/Mos6502OpcodeInfo.html" class="slightly-smaller">See more</a>
+                        <a href="Classes/Mos6502opcodeInfo.html" class="slightly-smaller">See more</a>
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">Mos6502OpcodeInfo</span> <span class="p">:</span> <span class="kt">Equatable</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">Mos6502opcodeInfo</span> <span class="p">:</span> <span class="kt">Equatable</span></code></pre>
 
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Emu6510/OpcodeData.swift#L252-L282">Show on GitHub</a>
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Emu6510/OpcodeData.swift#L304-L334">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -344,7 +355,7 @@
           </section>
         </section>
         <section id="footer">
-          <p>&copy; 2020 <a class="link" href="https://blog.projectgalen.com" target="_blank" rel="external">Galen Rhodes</a>. All rights reserved. (Last updated: 2020-06-24)</p>
+          <p>&copy; 2020 <a class="link" href="https://blog.projectgalen.com" target="_blank" rel="external">Galen Rhodes</a>. All rights reserved. (Last updated: 2020-06-25)</p>
           <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.13.1</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
         </section>
       </article>

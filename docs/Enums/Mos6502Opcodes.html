@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>Mos6502Opcodes Enumeration Reference</title>
+    <title>Mos6502opcodes Enumeration Reference</title>
     <link rel="stylesheet" type="text/css" href="../css/jazzy.css" />
     <link rel="stylesheet" type="text/css" href="../css/highlight.css" />
     <meta charset='utf-8'>
@@ -10,8 +10,8 @@
     
   </head>
   <body>
-    <a name="//apple_ref/swift/Enum/Mos6502Opcodes" class="dashAnchor"></a>
-    <a title="Mos6502Opcodes Enumeration Reference"></a>
+    <a name="//apple_ref/swift/Enum/Mos6502opcodes" class="dashAnchor"></a>
+    <a title="Mos6502opcodes Enumeration Reference"></a>
     <header>
       <div class="content-wrapper">
         <p><a href="../index.html">Emu6510©</a> (12% documented)</p>
@@ -22,7 +22,7 @@
       <p id="breadcrumbs">
         <a href="../index.html"> Reference</a>
         <img id="carat" src="../img/carat.png" />
-        Mos6502Opcodes Enumeration Reference
+        Mos6502opcodes Enumeration Reference
       </p>
     </div>
     <div class="content-wrapper">
@@ -41,7 +41,7 @@
                 <a href="../Classes/Memory.html">Memory</a>
               </li>
               <li class="nav-group-task">
-                <a href="../Classes/Mos6502OpcodeInfo.html">Mos6502OpcodeInfo</a>
+                <a href="../Classes/Mos6502opcodeInfo.html">Mos6502opcodeInfo</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Classes/RAMmemory.html">RAMmemory</a>
@@ -61,10 +61,10 @@
                 <a href="../Global%20Variables.html#/s:7Emu65109ByteRanges6UInt16Vvp">ByteRange</a>
               </li>
               <li class="nav-group-task">
-                <a href="../Global%20Variables.html#/s:7Emu651015MOS6502_OPCODESSDys5UInt8VAA17Mos6502OpcodeInfoCGvp">MOS6502_OPCODES</a>
+                <a href="../Global%20Variables.html#/s:7Emu651012MaxPageCounts6UInt16Vvp">MaxPageCount</a>
               </li>
               <li class="nav-group-task">
-                <a href="../Global%20Variables.html#/s:7Emu651012MaxPageCounts6UInt16Vvp">MaxPageCount</a>
+                <a href="../Global%20Variables.html#/s:7Emu651016Mos6502opcodeMapSDys5UInt8VAA0B4InfoCGvp">Mos6502opcodeMap</a>
               </li>
             </ul>
           </li>
@@ -84,13 +84,13 @@
                 <a href="../Enums/MOS65xxFamily.html">MOS65xxFamily</a>
               </li>
               <li class="nav-group-task">
-                <a href="../Enums/Mos6502AddressModes.html">Mos6502AddressModes</a>
+                <a href="../Enums/Mos6502addressModes.html">Mos6502addressModes</a>
               </li>
               <li class="nav-group-task">
-                <a href="../Enums/Mos6502Flags.html">Mos6502Flags</a>
+                <a href="../Enums/Mos6502flags.html">Mos6502flags</a>
               </li>
               <li class="nav-group-task">
-                <a href="../Enums/Mos6502Opcodes.html">Mos6502Opcodes</a>
+                <a href="../Enums/Mos6502opcodes.html">Mos6502opcodes</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Enums/VideoStandard.html">VideoStandard</a>
@@ -105,6 +105,9 @@
               </li>
               <li class="nav-group-task">
                 <a href="../Extensions/StringProtocol.html">StringProtocol</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/UnsignedInteger.html">UnsignedInteger</a>
               </li>
             </ul>
           </li>
@@ -140,6 +143,14 @@
             </ul>
           </li>
           <li class="nav-group-name">
+            <a href="../Structs.html">Structures</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Structs/Mos6502status.html">Mos6502status</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
             <a href="../Typealiases.html">Type Aliases</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
@@ -152,10 +163,10 @@
       <article class="main-content">
         <section>
           <section class="section">
-            <h1>Mos6502Opcodes</h1>
+            <h1>Mos6502opcodes</h1>
               <div class="declaration">
                 <div class="language">
-                  <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">enum</span> <span class="kt">Mos6502Opcodes</span> <span class="p">:</span> <span class="kt">UInt8</span><span class="p">,</span> <span class="kt">CustomStringConvertible</span></code></pre>
+                  <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">enum</span> <span class="kt">Mos6502opcodes</span> <span class="p">:</span> <span class="kt">UInt8</span><span class="p">,</span> <span class="kt">CustomStringConvertible</span></code></pre>
 
                 </div>
               </div>
@@ -167,9 +178,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:7Emu651014Mos6502OpcodesO3ADCyA2CmF"></a>
+                    <a name="/s:7Emu651014Mos6502opcodesO3ADCyA2CmF"></a>
                     <a name="//apple_ref/swift/Element/ADC" class="dashAnchor"></a>
-                    <a class="token" href="#/s:7Emu651014Mos6502OpcodesO3ADCyA2CmF">ADC</a>
+                    <a class="token" href="#/s:7Emu651014Mos6502opcodesO3ADCyA2CmF">ADC</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -196,9 +207,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:7Emu651014Mos6502OpcodesO3ANDyA2CmF"></a>
+                    <a name="/s:7Emu651014Mos6502opcodesO3ANDyA2CmF"></a>
                     <a name="//apple_ref/swift/Element/AND" class="dashAnchor"></a>
-                    <a class="token" href="#/s:7Emu651014Mos6502OpcodesO3ANDyA2CmF">AND</a>
+                    <a class="token" href="#/s:7Emu651014Mos6502opcodesO3ANDyA2CmF">AND</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -225,9 +236,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:7Emu651014Mos6502OpcodesO3ASLyA2CmF"></a>
+                    <a name="/s:7Emu651014Mos6502opcodesO3ASLyA2CmF"></a>
                     <a name="//apple_ref/swift/Element/ASL" class="dashAnchor"></a>
-                    <a class="token" href="#/s:7Emu651014Mos6502OpcodesO3ASLyA2CmF">ASL</a>
+                    <a class="token" href="#/s:7Emu651014Mos6502opcodesO3ASLyA2CmF">ASL</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -254,9 +265,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:7Emu651014Mos6502OpcodesO3BCCyA2CmF"></a>
+                    <a name="/s:7Emu651014Mos6502opcodesO3BCCyA2CmF"></a>
                     <a name="//apple_ref/swift/Element/BCC" class="dashAnchor"></a>
-                    <a class="token" href="#/s:7Emu651014Mos6502OpcodesO3BCCyA2CmF">BCC</a>
+                    <a class="token" href="#/s:7Emu651014Mos6502opcodesO3BCCyA2CmF">BCC</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -283,9 +294,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:7Emu651014Mos6502OpcodesO3BCSyA2CmF"></a>
+                    <a name="/s:7Emu651014Mos6502opcodesO3BCSyA2CmF"></a>
                     <a name="//apple_ref/swift/Element/BCS" class="dashAnchor"></a>
-                    <a class="token" href="#/s:7Emu651014Mos6502OpcodesO3BCSyA2CmF">BCS</a>
+                    <a class="token" href="#/s:7Emu651014Mos6502opcodesO3BCSyA2CmF">BCS</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -312,9 +323,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:7Emu651014Mos6502OpcodesO3BEQyA2CmF"></a>
+                    <a name="/s:7Emu651014Mos6502opcodesO3BEQyA2CmF"></a>
                     <a name="//apple_ref/swift/Element/BEQ" class="dashAnchor"></a>
-                    <a class="token" href="#/s:7Emu651014Mos6502OpcodesO3BEQyA2CmF">BEQ</a>
+                    <a class="token" href="#/s:7Emu651014Mos6502opcodesO3BEQyA2CmF">BEQ</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -341,9 +352,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:7Emu651014Mos6502OpcodesO3BITyA2CmF"></a>
+                    <a name="/s:7Emu651014Mos6502opcodesO3BITyA2CmF"></a>
                     <a name="//apple_ref/swift/Element/BIT" class="dashAnchor"></a>
-                    <a class="token" href="#/s:7Emu651014Mos6502OpcodesO3BITyA2CmF">BIT</a>
+                    <a class="token" href="#/s:7Emu651014Mos6502opcodesO3BITyA2CmF">BIT</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -370,9 +381,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:7Emu651014Mos6502OpcodesO3BMIyA2CmF"></a>
+                    <a name="/s:7Emu651014Mos6502opcodesO3BMIyA2CmF"></a>
                     <a name="//apple_ref/swift/Element/BMI" class="dashAnchor"></a>
-                    <a class="token" href="#/s:7Emu651014Mos6502OpcodesO3BMIyA2CmF">BMI</a>
+                    <a class="token" href="#/s:7Emu651014Mos6502opcodesO3BMIyA2CmF">BMI</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -399,9 +410,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:7Emu651014Mos6502OpcodesO3BNEyA2CmF"></a>
+                    <a name="/s:7Emu651014Mos6502opcodesO3BNEyA2CmF"></a>
                     <a name="//apple_ref/swift/Element/BNE" class="dashAnchor"></a>
-                    <a class="token" href="#/s:7Emu651014Mos6502OpcodesO3BNEyA2CmF">BNE</a>
+                    <a class="token" href="#/s:7Emu651014Mos6502opcodesO3BNEyA2CmF">BNE</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -428,9 +439,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:7Emu651014Mos6502OpcodesO3BPLyA2CmF"></a>
+                    <a name="/s:7Emu651014Mos6502opcodesO3BPLyA2CmF"></a>
                     <a name="//apple_ref/swift/Element/BPL" class="dashAnchor"></a>
-                    <a class="token" href="#/s:7Emu651014Mos6502OpcodesO3BPLyA2CmF">BPL</a>
+                    <a class="token" href="#/s:7Emu651014Mos6502opcodesO3BPLyA2CmF">BPL</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -457,9 +468,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:7Emu651014Mos6502OpcodesO3BRKyA2CmF"></a>
+                    <a name="/s:7Emu651014Mos6502opcodesO3BRKyA2CmF"></a>
                     <a name="//apple_ref/swift/Element/BRK" class="dashAnchor"></a>
-                    <a class="token" href="#/s:7Emu651014Mos6502OpcodesO3BRKyA2CmF">BRK</a>
+                    <a class="token" href="#/s:7Emu651014Mos6502opcodesO3BRKyA2CmF">BRK</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -486,9 +497,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:7Emu651014Mos6502OpcodesO3BVCyA2CmF"></a>
+                    <a name="/s:7Emu651014Mos6502opcodesO3BVCyA2CmF"></a>
                     <a name="//apple_ref/swift/Element/BVC" class="dashAnchor"></a>
-                    <a class="token" href="#/s:7Emu651014Mos6502OpcodesO3BVCyA2CmF">BVC</a>
+                    <a class="token" href="#/s:7Emu651014Mos6502opcodesO3BVCyA2CmF">BVC</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -515,9 +526,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:7Emu651014Mos6502OpcodesO3BVSyA2CmF"></a>
+                    <a name="/s:7Emu651014Mos6502opcodesO3BVSyA2CmF"></a>
                     <a name="//apple_ref/swift/Element/BVS" class="dashAnchor"></a>
-                    <a class="token" href="#/s:7Emu651014Mos6502OpcodesO3BVSyA2CmF">BVS</a>
+                    <a class="token" href="#/s:7Emu651014Mos6502opcodesO3BVSyA2CmF">BVS</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -544,9 +555,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:7Emu651014Mos6502OpcodesO3CLCyA2CmF"></a>
+                    <a name="/s:7Emu651014Mos6502opcodesO3CLCyA2CmF"></a>
                     <a name="//apple_ref/swift/Element/CLC" class="dashAnchor"></a>
-                    <a class="token" href="#/s:7Emu651014Mos6502OpcodesO3CLCyA2CmF">CLC</a>
+                    <a class="token" href="#/s:7Emu651014Mos6502opcodesO3CLCyA2CmF">CLC</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -573,9 +584,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:7Emu651014Mos6502OpcodesO3CLDyA2CmF"></a>
+                    <a name="/s:7Emu651014Mos6502opcodesO3CLDyA2CmF"></a>
                     <a name="//apple_ref/swift/Element/CLD" class="dashAnchor"></a>
-                    <a class="token" href="#/s:7Emu651014Mos6502OpcodesO3CLDyA2CmF">CLD</a>
+                    <a class="token" href="#/s:7Emu651014Mos6502opcodesO3CLDyA2CmF">CLD</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -602,9 +613,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:7Emu651014Mos6502OpcodesO3CLIyA2CmF"></a>
+                    <a name="/s:7Emu651014Mos6502opcodesO3CLIyA2CmF"></a>
                     <a name="//apple_ref/swift/Element/CLI" class="dashAnchor"></a>
-                    <a class="token" href="#/s:7Emu651014Mos6502OpcodesO3CLIyA2CmF">CLI</a>
+                    <a class="token" href="#/s:7Emu651014Mos6502opcodesO3CLIyA2CmF">CLI</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -631,9 +642,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:7Emu651014Mos6502OpcodesO3CLVyA2CmF"></a>
+                    <a name="/s:7Emu651014Mos6502opcodesO3CLVyA2CmF"></a>
                     <a name="//apple_ref/swift/Element/CLV" class="dashAnchor"></a>
-                    <a class="token" href="#/s:7Emu651014Mos6502OpcodesO3CLVyA2CmF">CLV</a>
+                    <a class="token" href="#/s:7Emu651014Mos6502opcodesO3CLVyA2CmF">CLV</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -660,9 +671,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:7Emu651014Mos6502OpcodesO3CMPyA2CmF"></a>
+                    <a name="/s:7Emu651014Mos6502opcodesO3CMPyA2CmF"></a>
                     <a name="//apple_ref/swift/Element/CMP" class="dashAnchor"></a>
-                    <a class="token" href="#/s:7Emu651014Mos6502OpcodesO3CMPyA2CmF">CMP</a>
+                    <a class="token" href="#/s:7Emu651014Mos6502opcodesO3CMPyA2CmF">CMP</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -689,9 +700,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:7Emu651014Mos6502OpcodesO3CPXyA2CmF"></a>
+                    <a name="/s:7Emu651014Mos6502opcodesO3CPXyA2CmF"></a>
                     <a name="//apple_ref/swift/Element/CPX" class="dashAnchor"></a>
-                    <a class="token" href="#/s:7Emu651014Mos6502OpcodesO3CPXyA2CmF">CPX</a>
+                    <a class="token" href="#/s:7Emu651014Mos6502opcodesO3CPXyA2CmF">CPX</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -718,9 +729,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:7Emu651014Mos6502OpcodesO3CPYyA2CmF"></a>
+                    <a name="/s:7Emu651014Mos6502opcodesO3CPYyA2CmF"></a>
                     <a name="//apple_ref/swift/Element/CPY" class="dashAnchor"></a>
-                    <a class="token" href="#/s:7Emu651014Mos6502OpcodesO3CPYyA2CmF">CPY</a>
+                    <a class="token" href="#/s:7Emu651014Mos6502opcodesO3CPYyA2CmF">CPY</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -747,9 +758,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:7Emu651014Mos6502OpcodesO3DECyA2CmF"></a>
+                    <a name="/s:7Emu651014Mos6502opcodesO3DECyA2CmF"></a>
                     <a name="//apple_ref/swift/Element/DEC" class="dashAnchor"></a>
-                    <a class="token" href="#/s:7Emu651014Mos6502OpcodesO3DECyA2CmF">DEC</a>
+                    <a class="token" href="#/s:7Emu651014Mos6502opcodesO3DECyA2CmF">DEC</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -776,9 +787,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:7Emu651014Mos6502OpcodesO3DEXyA2CmF"></a>
+                    <a name="/s:7Emu651014Mos6502opcodesO3DEXyA2CmF"></a>
                     <a name="//apple_ref/swift/Element/DEX" class="dashAnchor"></a>
-                    <a class="token" href="#/s:7Emu651014Mos6502OpcodesO3DEXyA2CmF">DEX</a>
+                    <a class="token" href="#/s:7Emu651014Mos6502opcodesO3DEXyA2CmF">DEX</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -805,9 +816,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:7Emu651014Mos6502OpcodesO3DEYyA2CmF"></a>
+                    <a name="/s:7Emu651014Mos6502opcodesO3DEYyA2CmF"></a>
                     <a name="//apple_ref/swift/Element/DEY" class="dashAnchor"></a>
-                    <a class="token" href="#/s:7Emu651014Mos6502OpcodesO3DEYyA2CmF">DEY</a>
+                    <a class="token" href="#/s:7Emu651014Mos6502opcodesO3DEYyA2CmF">DEY</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -834,9 +845,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:7Emu651014Mos6502OpcodesO3EORyA2CmF"></a>
+                    <a name="/s:7Emu651014Mos6502opcodesO3EORyA2CmF"></a>
                     <a name="//apple_ref/swift/Element/EOR" class="dashAnchor"></a>
-                    <a class="token" href="#/s:7Emu651014Mos6502OpcodesO3EORyA2CmF">EOR</a>
+                    <a class="token" href="#/s:7Emu651014Mos6502opcodesO3EORyA2CmF">EOR</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -863,9 +874,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:7Emu651014Mos6502OpcodesO3INCyA2CmF"></a>
+                    <a name="/s:7Emu651014Mos6502opcodesO3INCyA2CmF"></a>
                     <a name="//apple_ref/swift/Element/INC" class="dashAnchor"></a>
-                    <a class="token" href="#/s:7Emu651014Mos6502OpcodesO3INCyA2CmF">INC</a>
+                    <a class="token" href="#/s:7Emu651014Mos6502opcodesO3INCyA2CmF">INC</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -892,9 +903,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:7Emu651014Mos6502OpcodesO3INXyA2CmF"></a>
+                    <a name="/s:7Emu651014Mos6502opcodesO3INXyA2CmF"></a>
                     <a name="//apple_ref/swift/Element/INX" class="dashAnchor"></a>
-                    <a class="token" href="#/s:7Emu651014Mos6502OpcodesO3INXyA2CmF">INX</a>
+                    <a class="token" href="#/s:7Emu651014Mos6502opcodesO3INXyA2CmF">INX</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -921,9 +932,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:7Emu651014Mos6502OpcodesO3INYyA2CmF"></a>
+                    <a name="/s:7Emu651014Mos6502opcodesO3INYyA2CmF"></a>
                     <a name="//apple_ref/swift/Element/INY" class="dashAnchor"></a>
-                    <a class="token" href="#/s:7Emu651014Mos6502OpcodesO3INYyA2CmF">INY</a>
+                    <a class="token" href="#/s:7Emu651014Mos6502opcodesO3INYyA2CmF">INY</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -950,9 +961,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:7Emu651014Mos6502OpcodesO3JMPyA2CmF"></a>
+                    <a name="/s:7Emu651014Mos6502opcodesO3JMPyA2CmF"></a>
                     <a name="//apple_ref/swift/Element/JMP" class="dashAnchor"></a>
-                    <a class="token" href="#/s:7Emu651014Mos6502OpcodesO3JMPyA2CmF">JMP</a>
+                    <a class="token" href="#/s:7Emu651014Mos6502opcodesO3JMPyA2CmF">JMP</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -979,9 +990,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:7Emu651014Mos6502OpcodesO3JSRyA2CmF"></a>
+                    <a name="/s:7Emu651014Mos6502opcodesO3JSRyA2CmF"></a>
                     <a name="//apple_ref/swift/Element/JSR" class="dashAnchor"></a>
-                    <a class="token" href="#/s:7Emu651014Mos6502OpcodesO3JSRyA2CmF">JSR</a>
+                    <a class="token" href="#/s:7Emu651014Mos6502opcodesO3JSRyA2CmF">JSR</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -1008,9 +1019,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:7Emu651014Mos6502OpcodesO3LDAyA2CmF"></a>
+                    <a name="/s:7Emu651014Mos6502opcodesO3LDAyA2CmF"></a>
                     <a name="//apple_ref/swift/Element/LDA" class="dashAnchor"></a>
-                    <a class="token" href="#/s:7Emu651014Mos6502OpcodesO3LDAyA2CmF">LDA</a>
+                    <a class="token" href="#/s:7Emu651014Mos6502opcodesO3LDAyA2CmF">LDA</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -1037,9 +1048,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:7Emu651014Mos6502OpcodesO3LDXyA2CmF"></a>
+                    <a name="/s:7Emu651014Mos6502opcodesO3LDXyA2CmF"></a>
                     <a name="//apple_ref/swift/Element/LDX" class="dashAnchor"></a>
-                    <a class="token" href="#/s:7Emu651014Mos6502OpcodesO3LDXyA2CmF">LDX</a>
+                    <a class="token" href="#/s:7Emu651014Mos6502opcodesO3LDXyA2CmF">LDX</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -1066,9 +1077,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:7Emu651014Mos6502OpcodesO3LDYyA2CmF"></a>
+                    <a name="/s:7Emu651014Mos6502opcodesO3LDYyA2CmF"></a>
                     <a name="//apple_ref/swift/Element/LDY" class="dashAnchor"></a>
-                    <a class="token" href="#/s:7Emu651014Mos6502OpcodesO3LDYyA2CmF">LDY</a>
+                    <a class="token" href="#/s:7Emu651014Mos6502opcodesO3LDYyA2CmF">LDY</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -1095,9 +1106,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:7Emu651014Mos6502OpcodesO3LSRyA2CmF"></a>
+                    <a name="/s:7Emu651014Mos6502opcodesO3LSRyA2CmF"></a>
                     <a name="//apple_ref/swift/Element/LSR" class="dashAnchor"></a>
-                    <a class="token" href="#/s:7Emu651014Mos6502OpcodesO3LSRyA2CmF">LSR</a>
+                    <a class="token" href="#/s:7Emu651014Mos6502opcodesO3LSRyA2CmF">LSR</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -1124,9 +1135,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:7Emu651014Mos6502OpcodesO3NOPyA2CmF"></a>
+                    <a name="/s:7Emu651014Mos6502opcodesO3NOPyA2CmF"></a>
                     <a name="//apple_ref/swift/Element/NOP" class="dashAnchor"></a>
-                    <a class="token" href="#/s:7Emu651014Mos6502OpcodesO3NOPyA2CmF">NOP</a>
+                    <a class="token" href="#/s:7Emu651014Mos6502opcodesO3NOPyA2CmF">NOP</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -1153,9 +1164,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:7Emu651014Mos6502OpcodesO3ORAyA2CmF"></a>
+                    <a name="/s:7Emu651014Mos6502opcodesO3ORAyA2CmF"></a>
                     <a name="//apple_ref/swift/Element/ORA" class="dashAnchor"></a>
-                    <a class="token" href="#/s:7Emu651014Mos6502OpcodesO3ORAyA2CmF">ORA</a>
+                    <a class="token" href="#/s:7Emu651014Mos6502opcodesO3ORAyA2CmF">ORA</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -1182,9 +1193,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:7Emu651014Mos6502OpcodesO3PHAyA2CmF"></a>
+                    <a name="/s:7Emu651014Mos6502opcodesO3PHAyA2CmF"></a>
                     <a name="//apple_ref/swift/Element/PHA" class="dashAnchor"></a>
-                    <a class="token" href="#/s:7Emu651014Mos6502OpcodesO3PHAyA2CmF">PHA</a>
+                    <a class="token" href="#/s:7Emu651014Mos6502opcodesO3PHAyA2CmF">PHA</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -1211,9 +1222,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:7Emu651014Mos6502OpcodesO3PHPyA2CmF"></a>
+                    <a name="/s:7Emu651014Mos6502opcodesO3PHPyA2CmF"></a>
                     <a name="//apple_ref/swift/Element/PHP" class="dashAnchor"></a>
-                    <a class="token" href="#/s:7Emu651014Mos6502OpcodesO3PHPyA2CmF">PHP</a>
+                    <a class="token" href="#/s:7Emu651014Mos6502opcodesO3PHPyA2CmF">PHP</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -1240,9 +1251,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:7Emu651014Mos6502OpcodesO3PLAyA2CmF"></a>
+                    <a name="/s:7Emu651014Mos6502opcodesO3PLAyA2CmF"></a>
                     <a name="//apple_ref/swift/Element/PLA" class="dashAnchor"></a>
-                    <a class="token" href="#/s:7Emu651014Mos6502OpcodesO3PLAyA2CmF">PLA</a>
+                    <a class="token" href="#/s:7Emu651014Mos6502opcodesO3PLAyA2CmF">PLA</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -1269,9 +1280,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:7Emu651014Mos6502OpcodesO3PLPyA2CmF"></a>
+                    <a name="/s:7Emu651014Mos6502opcodesO3PLPyA2CmF"></a>
                     <a name="//apple_ref/swift/Element/PLP" class="dashAnchor"></a>
-                    <a class="token" href="#/s:7Emu651014Mos6502OpcodesO3PLPyA2CmF">PLP</a>
+                    <a class="token" href="#/s:7Emu651014Mos6502opcodesO3PLPyA2CmF">PLP</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -1298,9 +1309,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:7Emu651014Mos6502OpcodesO3ROLyA2CmF"></a>
+                    <a name="/s:7Emu651014Mos6502opcodesO3ROLyA2CmF"></a>
                     <a name="//apple_ref/swift/Element/ROL" class="dashAnchor"></a>
-                    <a class="token" href="#/s:7Emu651014Mos6502OpcodesO3ROLyA2CmF">ROL</a>
+                    <a class="token" href="#/s:7Emu651014Mos6502opcodesO3ROLyA2CmF">ROL</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -1327,9 +1338,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:7Emu651014Mos6502OpcodesO3RORyA2CmF"></a>
+                    <a name="/s:7Emu651014Mos6502opcodesO3RORyA2CmF"></a>
                     <a name="//apple_ref/swift/Element/ROR" class="dashAnchor"></a>
-                    <a class="token" href="#/s:7Emu651014Mos6502OpcodesO3RORyA2CmF">ROR</a>
+                    <a class="token" href="#/s:7Emu651014Mos6502opcodesO3RORyA2CmF">ROR</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -1356,9 +1367,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:7Emu651014Mos6502OpcodesO3RTIyA2CmF"></a>
+                    <a name="/s:7Emu651014Mos6502opcodesO3RTIyA2CmF"></a>
                     <a name="//apple_ref/swift/Element/RTI" class="dashAnchor"></a>
-                    <a class="token" href="#/s:7Emu651014Mos6502OpcodesO3RTIyA2CmF">RTI</a>
+                    <a class="token" href="#/s:7Emu651014Mos6502opcodesO3RTIyA2CmF">RTI</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -1385,9 +1396,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:7Emu651014Mos6502OpcodesO3RTSyA2CmF"></a>
+                    <a name="/s:7Emu651014Mos6502opcodesO3RTSyA2CmF"></a>
                     <a name="//apple_ref/swift/Element/RTS" class="dashAnchor"></a>
-                    <a class="token" href="#/s:7Emu651014Mos6502OpcodesO3RTSyA2CmF">RTS</a>
+                    <a class="token" href="#/s:7Emu651014Mos6502opcodesO3RTSyA2CmF">RTS</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -1414,9 +1425,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:7Emu651014Mos6502OpcodesO3SBCyA2CmF"></a>
+                    <a name="/s:7Emu651014Mos6502opcodesO3SBCyA2CmF"></a>
                     <a name="//apple_ref/swift/Element/SBC" class="dashAnchor"></a>
-                    <a class="token" href="#/s:7Emu651014Mos6502OpcodesO3SBCyA2CmF">SBC</a>
+                    <a class="token" href="#/s:7Emu651014Mos6502opcodesO3SBCyA2CmF">SBC</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -1443,9 +1454,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:7Emu651014Mos6502OpcodesO3SECyA2CmF"></a>
+                    <a name="/s:7Emu651014Mos6502opcodesO3SECyA2CmF"></a>
                     <a name="//apple_ref/swift/Element/SEC" class="dashAnchor"></a>
-                    <a class="token" href="#/s:7Emu651014Mos6502OpcodesO3SECyA2CmF">SEC</a>
+                    <a class="token" href="#/s:7Emu651014Mos6502opcodesO3SECyA2CmF">SEC</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -1472,9 +1483,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:7Emu651014Mos6502OpcodesO3SEDyA2CmF"></a>
+                    <a name="/s:7Emu651014Mos6502opcodesO3SEDyA2CmF"></a>
                     <a name="//apple_ref/swift/Element/SED" class="dashAnchor"></a>
-                    <a class="token" href="#/s:7Emu651014Mos6502OpcodesO3SEDyA2CmF">SED</a>
+                    <a class="token" href="#/s:7Emu651014Mos6502opcodesO3SEDyA2CmF">SED</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -1501,9 +1512,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:7Emu651014Mos6502OpcodesO3SEIyA2CmF"></a>
+                    <a name="/s:7Emu651014Mos6502opcodesO3SEIyA2CmF"></a>
                     <a name="//apple_ref/swift/Element/SEI" class="dashAnchor"></a>
-                    <a class="token" href="#/s:7Emu651014Mos6502OpcodesO3SEIyA2CmF">SEI</a>
+                    <a class="token" href="#/s:7Emu651014Mos6502opcodesO3SEIyA2CmF">SEI</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -1530,9 +1541,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:7Emu651014Mos6502OpcodesO3STAyA2CmF"></a>
+                    <a name="/s:7Emu651014Mos6502opcodesO3STAyA2CmF"></a>
                     <a name="//apple_ref/swift/Element/STA" class="dashAnchor"></a>
-                    <a class="token" href="#/s:7Emu651014Mos6502OpcodesO3STAyA2CmF">STA</a>
+                    <a class="token" href="#/s:7Emu651014Mos6502opcodesO3STAyA2CmF">STA</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -1559,9 +1570,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:7Emu651014Mos6502OpcodesO3STXyA2CmF"></a>
+                    <a name="/s:7Emu651014Mos6502opcodesO3STXyA2CmF"></a>
                     <a name="//apple_ref/swift/Element/STX" class="dashAnchor"></a>
-                    <a class="token" href="#/s:7Emu651014Mos6502OpcodesO3STXyA2CmF">STX</a>
+                    <a class="token" href="#/s:7Emu651014Mos6502opcodesO3STXyA2CmF">STX</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -1588,9 +1599,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:7Emu651014Mos6502OpcodesO3STYyA2CmF"></a>
+                    <a name="/s:7Emu651014Mos6502opcodesO3STYyA2CmF"></a>
                     <a name="//apple_ref/swift/Element/STY" class="dashAnchor"></a>
-                    <a class="token" href="#/s:7Emu651014Mos6502OpcodesO3STYyA2CmF">STY</a>
+                    <a class="token" href="#/s:7Emu651014Mos6502opcodesO3STYyA2CmF">STY</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -1617,9 +1628,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:7Emu651014Mos6502OpcodesO3TAXyA2CmF"></a>
+                    <a name="/s:7Emu651014Mos6502opcodesO3TAXyA2CmF"></a>
                     <a name="//apple_ref/swift/Element/TAX" class="dashAnchor"></a>
-                    <a class="token" href="#/s:7Emu651014Mos6502OpcodesO3TAXyA2CmF">TAX</a>
+                    <a class="token" href="#/s:7Emu651014Mos6502opcodesO3TAXyA2CmF">TAX</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -1646,9 +1657,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:7Emu651014Mos6502OpcodesO3TAYyA2CmF"></a>
+                    <a name="/s:7Emu651014Mos6502opcodesO3TAYyA2CmF"></a>
                     <a name="//apple_ref/swift/Element/TAY" class="dashAnchor"></a>
-                    <a class="token" href="#/s:7Emu651014Mos6502OpcodesO3TAYyA2CmF">TAY</a>
+                    <a class="token" href="#/s:7Emu651014Mos6502opcodesO3TAYyA2CmF">TAY</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -1675,9 +1686,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:7Emu651014Mos6502OpcodesO3TSXyA2CmF"></a>
+                    <a name="/s:7Emu651014Mos6502opcodesO3TSXyA2CmF"></a>
                     <a name="//apple_ref/swift/Element/TSX" class="dashAnchor"></a>
-                    <a class="token" href="#/s:7Emu651014Mos6502OpcodesO3TSXyA2CmF">TSX</a>
+                    <a class="token" href="#/s:7Emu651014Mos6502opcodesO3TSXyA2CmF">TSX</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -1704,9 +1715,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:7Emu651014Mos6502OpcodesO3TXAyA2CmF"></a>
+                    <a name="/s:7Emu651014Mos6502opcodesO3TXAyA2CmF"></a>
                     <a name="//apple_ref/swift/Element/TXA" class="dashAnchor"></a>
-                    <a class="token" href="#/s:7Emu651014Mos6502OpcodesO3TXAyA2CmF">TXA</a>
+                    <a class="token" href="#/s:7Emu651014Mos6502opcodesO3TXAyA2CmF">TXA</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -1733,9 +1744,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:7Emu651014Mos6502OpcodesO3TXSyA2CmF"></a>
+                    <a name="/s:7Emu651014Mos6502opcodesO3TXSyA2CmF"></a>
                     <a name="//apple_ref/swift/Element/TXS" class="dashAnchor"></a>
-                    <a class="token" href="#/s:7Emu651014Mos6502OpcodesO3TXSyA2CmF">TXS</a>
+                    <a class="token" href="#/s:7Emu651014Mos6502opcodesO3TXSyA2CmF">TXS</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -1762,9 +1773,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:7Emu651014Mos6502OpcodesO3TYAyA2CmF"></a>
+                    <a name="/s:7Emu651014Mos6502opcodesO3TYAyA2CmF"></a>
                     <a name="//apple_ref/swift/Element/TYA" class="dashAnchor"></a>
-                    <a class="token" href="#/s:7Emu651014Mos6502OpcodesO3TYAyA2CmF">TYA</a>
+                    <a class="token" href="#/s:7Emu651014Mos6502opcodesO3TYAyA2CmF">TYA</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -1791,9 +1802,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:7Emu651014Mos6502OpcodesO7bitMasks5UInt8Vvp"></a>
+                    <a name="/s:7Emu651014Mos6502opcodesO7bitMasks5UInt8Vvp"></a>
                     <a name="//apple_ref/swift/Property/bitMask" class="dashAnchor"></a>
-                    <a class="token" href="#/s:7Emu651014Mos6502OpcodesO7bitMasks5UInt8Vvp">bitMask</a>
+                    <a class="token" href="#/s:7Emu651014Mos6502opcodesO7bitMasks5UInt8Vvp">bitMask</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -1807,7 +1818,8 @@
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">bitMask</span><span class="p">:</span> <span class="kt">UInt8</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">@inlinable</span>
+<span class="kd">public</span> <span class="k">var</span> <span class="nv">bitMask</span><span class="p">:</span> <span class="kt">UInt8</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
 
                         </div>
                       </div>
@@ -1836,7 +1848,8 @@
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">description</span><span class="p">:</span> <span class="kt">String</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">@inlinable</span>
+<span class="kd">public</span> <span class="k">var</span> <span class="nv">description</span><span class="p">:</span> <span class="kt">String</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
 
                         </div>
                       </div>
@@ -1849,9 +1862,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:7Emu651014Mos6502OpcodesO8mnemonicSSvp"></a>
+                    <a name="/s:7Emu651014Mos6502opcodesO8mnemonicSSvp"></a>
                     <a name="//apple_ref/swift/Property/mnemonic" class="dashAnchor"></a>
-                    <a class="token" href="#/s:7Emu651014Mos6502OpcodesO8mnemonicSSvp">mnemonic</a>
+                    <a class="token" href="#/s:7Emu651014Mos6502opcodesO8mnemonicSSvp">mnemonic</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -1865,12 +1878,13 @@
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">mnemonic</span><span class="p">:</span> <span class="kt">String</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">@inlinable</span>
+<span class="kd">public</span> <span class="k">var</span> <span class="nv">mnemonic</span><span class="p">:</span> <span class="kt">String</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
 
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Emu6510/OpcodeData.swift#L190-L249">Show on GitHub</a>
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Emu6510/OpcodeData.swift#L242-L301">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -1880,7 +1894,7 @@
           </section>
         </section>
         <section id="footer">
-          <p>&copy; 2020 <a class="link" href="https://blog.projectgalen.com" target="_blank" rel="external">Galen Rhodes</a>. All rights reserved. (Last updated: 2020-06-24)</p>
+          <p>&copy; 2020 <a class="link" href="https://blog.projectgalen.com" target="_blank" rel="external">Galen Rhodes</a>. All rights reserved. (Last updated: 2020-06-25)</p>
           <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.13.1</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
         </section>
       </article>
