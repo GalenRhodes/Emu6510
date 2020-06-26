@@ -10,9 +10,7 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3ae2fece-92e6-442e-bb74-eaf7ffffdd6a" name="Default Changelist" comment="Clean up">
-      <change afterPath="$PROJECT_DIR$/Emu6510.xcodeproj/project.xcworkspace/xcuserdata/grhodes.xcuserdatad/UserInterfaceState.xcuserstate" afterDir="false" />
-    </list>
+    <list default="true" id="3ae2fece-92e6-442e-bb74-eaf7ffffdd6a" name="Default Changelist" comment="Clean up" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -99,7 +97,7 @@
       <workItem from="1592826692723" duration="19321000" />
       <workItem from="1592927899342" duration="38389000" />
       <workItem from="1593023291052" duration="2716000" />
-      <workItem from="1593107775940" duration="4856000" />
+      <workItem from="1593107775940" duration="5102000" />
     </task>
     <task id="LOCAL-00001" summary="More...">
       <created>1589817846091</created>
@@ -213,7 +211,14 @@
       <option name="project" value="LOCAL" />
       <updated>1593185803650</updated>
     </task>
-    <option name="localTasksCounter" value="17" />
+    <task id="LOCAL-00017" summary="Clean up">
+      <created>1593186175601</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1593186175601</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -335,11 +340,11 @@
       <screen x="0" y="0" width="2560" height="1080" />
     </state>
     <state x="1171" y="463" key="VCS.EditChangelistDialog/0.0.2560.1080@0.0.2560.1080" timestamp="1593185948781" />
-    <state x="880" y="267" key="Vcs.Push.Dialog.v2" timestamp="1593185805354">
+    <state x="880" y="267" key="Vcs.Push.Dialog.v2" timestamp="1593186178250">
       <screen x="0" y="0" width="2560" height="1080" />
     </state>
     <state x="578" y="260" key="Vcs.Push.Dialog.v2/0.0.1680.1050@0.0.1680.1050" timestamp="1593111581430" />
-    <state x="880" y="267" key="Vcs.Push.Dialog.v2/0.0.2560.1080@0.0.2560.1080" timestamp="1593185805354" />
+    <state x="880" y="267" key="Vcs.Push.Dialog.v2/0.0.2560.1080@0.0.2560.1080" timestamp="1593186178250" />
     <state x="757" y="134" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser" timestamp="1592837830651">
       <screen x="0" y="0" width="2560" height="1080" />
     </state>
