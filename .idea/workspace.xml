@@ -10,12 +10,8 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3ae2fece-92e6-442e-bb74-eaf7ffffdd6a" name="Default Changelist" comment="Made sure github knows this project is a Swift project.">
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    <list default="true" id="3ae2fece-92e6-442e-bb74-eaf7ffffdd6a" name="Default Changelist" comment="Clean up">
       <change afterPath="$PROJECT_DIR$/Emu6510.xcodeproj/project.xcworkspace/xcuserdata/grhodes.xcuserdatad/UserInterfaceState.xcuserstate" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Emu6510.xcodeproj/project.pbxproj" beforeDir="false" afterPath="$PROJECT_DIR$/Emu6510.xcodeproj/project.pbxproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docfixer.sh" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -103,7 +99,7 @@
       <workItem from="1592826692723" duration="19321000" />
       <workItem from="1592927899342" duration="38389000" />
       <workItem from="1593023291052" duration="2716000" />
-      <workItem from="1593107775940" duration="4308000" />
+      <workItem from="1593107775940" duration="4856000" />
     </task>
     <task id="LOCAL-00001" summary="More...">
       <created>1589817846091</created>
@@ -203,7 +199,21 @@
       <option name="project" value="LOCAL" />
       <updated>1593111578266</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="Clean up">
+      <created>1593185750111</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1593185750111</updated>
+    </task>
+    <task id="LOCAL-00016" summary="Clean up">
+      <created>1593185803650</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1593185803650</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -228,7 +238,8 @@
     <MESSAGE value="Made dispatch(opcode:ops:) public so it can be overridden." />
     <MESSAGE value="Updated README.md" />
     <MESSAGE value="Made sure github knows this project is a Swift project." />
-    <option name="LAST_COMMIT_MESSAGE" value="Made sure github knows this project is a Swift project." />
+    <MESSAGE value="Clean up" />
+    <option name="LAST_COMMIT_MESSAGE" value="Clean up" />
   </component>
   <component name="WindowStateProjectService">
     <state x="880" y="189" key="#Plugins" timestamp="1590856442787">
@@ -320,11 +331,15 @@
       <screen x="0" y="0" width="2560" height="1080" />
     </state>
     <state x="1037" y="360" key="StringManipulation.SortTypeDialog/0.0.2560.1080@0.0.2560.1080" timestamp="1593002381644" />
-    <state x="578" y="260" key="Vcs.Push.Dialog.v2" timestamp="1593111581430">
-      <screen x="0" y="0" width="1680" height="1050" />
+    <state x="1171" y="463" key="VCS.EditChangelistDialog" timestamp="1593185948781">
+      <screen x="0" y="0" width="2560" height="1080" />
+    </state>
+    <state x="1171" y="463" key="VCS.EditChangelistDialog/0.0.2560.1080@0.0.2560.1080" timestamp="1593185948781" />
+    <state x="880" y="267" key="Vcs.Push.Dialog.v2" timestamp="1593185805354">
+      <screen x="0" y="0" width="2560" height="1080" />
     </state>
     <state x="578" y="260" key="Vcs.Push.Dialog.v2/0.0.1680.1050@0.0.1680.1050" timestamp="1593111581430" />
-    <state x="880" y="267" key="Vcs.Push.Dialog.v2/0.0.2560.1080@0.0.2560.1080" timestamp="1593008546874" />
+    <state x="880" y="267" key="Vcs.Push.Dialog.v2/0.0.2560.1080@0.0.2560.1080" timestamp="1593185805354" />
     <state x="757" y="134" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser" timestamp="1592837830651">
       <screen x="0" y="0" width="2560" height="1080" />
     </state>
