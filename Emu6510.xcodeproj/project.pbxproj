@@ -106,6 +106,7 @@
 		1117D636D4937809886E7D57 /* carat.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = carat.png; sourceTree = "<group>"; };
 		1117D647B31C92834D7397B4 /* jquery.min.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = jquery.min.js; sourceTree = "<group>"; };
 		1117D6693AEB8AB879A75AFF /* IOPortListener.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = IOPortListener.html; sourceTree = "<group>"; };
+		1117D690E993D0C17BEADBA5 /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = file.gitignore; path = .gitignore; sourceTree = "<group>"; };
 		1117D69D8662392D2CD9EC0A /* StringProtocol.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = StringProtocol.html; sourceTree = "<group>"; };
 		1117D6B968143CA6956CD707 /* Mos6502Opcodes.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = Mos6502Opcodes.html; sourceTree = "<group>"; };
 		1117D6E023C7B91490D4797B /* Memory.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = Memory.html; sourceTree = "<group>"; };
@@ -468,6 +469,7 @@
 				8338267824891AB7005013C4 /* Other */,
 				83A899252472E6D7002F2121 /* README.md */,
 				1117D5835C54C86B057D819A /* .gitattributes */,
+				1117D690E993D0C17BEADBA5 /* .gitignore */,
 			);
 			sourceTree = "<group>";
 		};
