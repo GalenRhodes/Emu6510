@@ -1,0 +1,8 @@
+opcode,mnemonic,addressing mode,bytes,flags
+0x07,SLO,ZP,2
+0x17,SLO,ZPX,2
+0x03,SLO,INDX,2
+0x13,SLO,INDY,2
+0x0f,SLO,ABS,3
+0x1f,SLO,ABSX,3
+0x1b,SLO,ABSY,3

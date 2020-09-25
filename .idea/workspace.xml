@@ -1,59 +1,284 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
   <component name="BranchesTreeState">
     <expand>
       <path>
         <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
         <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
       </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:github" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
     </expand>
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3ae2fece-92e6-442e-bb74-eaf7ffffdd6a" name="Default Changelist" comment="Clean up" />
+    <list default="true" id="87075da3-fef8-4e0e-a558-4c45fa2c2b82" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/runConfigurations/DocFixer.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/runConfigurations/Emu6510.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/runConfigurations/Emu6510_Tests.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/runConfigurations/Emu6510___All.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/runConfigurations/Tools.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Emu6510.xcodeproj/xcshareddata/xcschemes/Emu6510 - All.xcscheme" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Emu6510.xcodeproj/xcshareddata/xcschemes/Emu6510 Tests.xcscheme" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Emu6510.xcodeproj/xcshareddata/xcschemes/Emu6510.xcscheme" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Emu6510.xcodeproj/xcshareddata/xcschemes/Tools.xcscheme" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/LICENSE" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Other/65c02_invalid.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Package.swift" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Sources/Emu6510/Info.plist" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Sources/Emu6510/OpcodeInfo.swift" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Sources/Emu6510/ProcessorFlags.swift" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Sources/Tools/main.swift" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Tests/Emu6510Tests/Emu6510Tests.swift" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Tests/LinuxMain.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/$CACHE_FILE$" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/Emu6510.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Emu6510.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.jazzy.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/.jazzy.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/65c02.csv" beforeDir="false" afterPath="$PROJECT_DIR$/Other/65c02.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/API/Classes.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/API/Classes/C64MemoryManager.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/API/Classes/CPU65xx.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/API/Classes/CPUClock.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/API/Classes/Memory.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/API/Classes/Mos6502OpcodeInfo.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/API/Classes/RAMmemory.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/API/Classes/ROMmemory.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/API/Enums.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/API/Enums/Alignment.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/API/Enums/Bits8.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/API/Enums/InterruptType.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/API/Enums/MOS65xxFamily.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/API/Enums/Mos6502AddressModes.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/API/Enums/Mos6502Opcodes.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/API/Enums/VideoStandard.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/API/Extensions.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/API/Extensions/String.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/API/Extensions/StringProtocol.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/API/Functions.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/API/Global Variables.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/API/Protocols.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/API/Protocols/AddressBusListener.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/API/Protocols/IOPortControler.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/API/Protocols/IOPortListener.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/API/Protocols/MOS65xxCPU.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/API/Typealiases.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/API/badge.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/API/css/highlight.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/API/css/jazzy.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/API/docsets/.docset/Contents/Info.plist" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/API/docsets/.docset/Contents/Resources/Documents/Classes.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/API/docsets/.docset/Contents/Resources/Documents/Classes/C64MemoryManager.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/API/docsets/.docset/Contents/Resources/Documents/Classes/CPU65xx.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/API/docsets/.docset/Contents/Resources/Documents/Classes/CPUClock.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/API/docsets/.docset/Contents/Resources/Documents/Classes/Memory.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/API/docsets/.docset/Contents/Resources/Documents/Classes/Mos6502OpcodeInfo.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/API/docsets/.docset/Contents/Resources/Documents/Classes/RAMmemory.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/API/docsets/.docset/Contents/Resources/Documents/Classes/ROMmemory.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/API/docsets/.docset/Contents/Resources/Documents/Enums.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/API/docsets/.docset/Contents/Resources/Documents/Enums/Alignment.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/API/docsets/.docset/Contents/Resources/Documents/Enums/Bits8.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/API/docsets/.docset/Contents/Resources/Documents/Enums/InterruptType.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/API/docsets/.docset/Contents/Resources/Documents/Enums/MOS65xxFamily.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/API/docsets/.docset/Contents/Resources/Documents/Enums/Mos6502AddressModes.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/API/docsets/.docset/Contents/Resources/Documents/Enums/Mos6502Opcodes.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/API/docsets/.docset/Contents/Resources/Documents/Enums/VideoStandard.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/API/docsets/.docset/Contents/Resources/Documents/Extensions.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/API/docsets/.docset/Contents/Resources/Documents/Extensions/String.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/API/docsets/.docset/Contents/Resources/Documents/Extensions/StringProtocol.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/API/docsets/.docset/Contents/Resources/Documents/Functions.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/API/docsets/.docset/Contents/Resources/Documents/Global Variables.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/API/docsets/.docset/Contents/Resources/Documents/Protocols.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/API/docsets/.docset/Contents/Resources/Documents/Protocols/AddressBusListener.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/API/docsets/.docset/Contents/Resources/Documents/Protocols/IOPortControler.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/API/docsets/.docset/Contents/Resources/Documents/Protocols/IOPortListener.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/API/docsets/.docset/Contents/Resources/Documents/Protocols/MOS65xxCPU.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/API/docsets/.docset/Contents/Resources/Documents/Typealiases.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/API/docsets/.docset/Contents/Resources/Documents/css/highlight.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/API/docsets/.docset/Contents/Resources/Documents/css/jazzy.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/API/docsets/.docset/Contents/Resources/Documents/img/carat.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/API/docsets/.docset/Contents/Resources/Documents/img/dash.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/API/docsets/.docset/Contents/Resources/Documents/img/gh.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/API/docsets/.docset/Contents/Resources/Documents/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/API/docsets/.docset/Contents/Resources/Documents/js/jazzy.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/API/docsets/.docset/Contents/Resources/Documents/js/jquery.min.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/API/docsets/.docset/Contents/Resources/Documents/search.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/API/docsets/.docset/Contents/Resources/docSet.dsidx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/API/docsets/.tgz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/API/img/carat.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/API/img/dash.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/API/img/gh.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/API/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/API/js/jazzy.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/API/js/jquery.min.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/API/search.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/API/undocumented.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/DocFixer/main.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Sources/DocFixer/main.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Emu6510.xcodeproj/project.pbxproj" beforeDir="false" afterPath="$PROJECT_DIR$/Emu6510.xcodeproj/project.pbxproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Emu6510.xcodeproj/project.xcworkspace/contents.xcworkspacedata" beforeDir="false" afterPath="$PROJECT_DIR$/Emu6510.xcodeproj/project.xcworkspace/contents.xcworkspacedata" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Emu6510.xcodeproj/xcuserdata/grhodes.xcuserdatad/xcschemes/All Tests.xcscheme" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Emu6510.xcodeproj/xcuserdata/grhodes.xcuserdatad/xcschemes/xcschememanagement.plist" beforeDir="false" afterPath="$PROJECT_DIR$/Emu6510.xcodeproj/xcuserdata/grhodes.xcuserdatad/xcschemes/xcschememanagement.plist" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Emu6510/AddressBus.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Sources/Emu6510/AddressModes.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Emu6510/CPU65xx.swift" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Emu6510/Emu6510.h" beforeDir="false" afterPath="$PROJECT_DIR$/Sources/Emu6510/Emu6510.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Emu6510/Emu6510.swift" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Emu6510/Info.plist" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Emu6510/MemoryManager.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Sources/Emu6510/Emu6510.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Emu6510/OpcodeData.swift" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Emu6510/Tools.swift" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Emu6510Tests/Emu6510Tests.swift" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Emu6510Tests/Info.plist" beforeDir="false" afterPath="$PROJECT_DIR$/Tests/Emu6510Tests/Info.plist" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Emu6510Tests/OpCodes.swift" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build.sh" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/Classes.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/Classes/C64MemoryManager.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/Classes/CPU65xx.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/Classes/Memory.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/Classes/Mos6502OpcodeInfo.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/Classes/RAMmemory.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/Classes/ROMmemory.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/Enums.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/Enums/Alignment.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/Enums/Bits8.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/Enums/InterruptType.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/Enums/MOS65xxFamily.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/Enums/Mos6502AddressModes.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/Enums/Mos6502Flags.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/Enums/Mos6502Opcodes.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/Enums/VideoStandard.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/Extensions.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/Extensions/String.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/Extensions/StringProtocol.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/Extensions/UnsignedInteger.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/Functions.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/Global Variables.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/Protocols.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/Protocols/AddressBusListener.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/Protocols/IOPortControler.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/Protocols/IOPortListener.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/Structs.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/Structs/Mos6502status.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/Typealiases.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/badge.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/css/highlight.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/css/jazzy.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Info.plist" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Classes.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Classes/C64MemoryManager.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Classes/CPU65xx.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Classes/Memory.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Classes/Mos6502OpcodeInfo.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Classes/RAMmemory.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Classes/ROMmemory.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Enums.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Enums/Alignment.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Enums/Bits8.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Enums/InterruptType.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Enums/MOS65xxFamily.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Enums/Mos6502AddressModes.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Enums/Mos6502Flags.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Enums/Mos6502Opcodes.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Enums/VideoStandard.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Extensions.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Extensions/String.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Extensions/StringProtocol.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Extensions/UnsignedInteger.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Functions.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Global Variables.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Protocols.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Protocols/AddressBusListener.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Protocols/IOPortControler.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Protocols/IOPortListener.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Structs.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Structs/Mos6502status.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Typealiases.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/css/highlight.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/css/jazzy.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/img/carat.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/img/dash.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/img/gh.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/js/jazzy.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/js/jquery.min.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/search.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/docSet.dsidx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docsets/.tgz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/img/carat.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/img/dash.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/img/gh.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/js/jazzy.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/js/jquery.min.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/search.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/undocumented.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/jazzy.conf.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/opcodes.txt" beforeDir="false" afterPath="$PROJECT_DIR$/Other/opcodes.txt" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="ChangesViewManager" show_ignored="true">
-    <option name="groupingKeys">
-      <option value="directory" />
-    </option>
-  </component>
   <component name="ExecutionTargetManager" SELECTED_TARGET="macos_macos_x86_64" />
+  <component name="ExternalProjectsData">
+    <projectState path="$PROJECT_DIR$">
+      <ProjectState />
+    </projectState>
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="ProjectId" id="1c5U80ligqwdox6tXE4PEmE7J9x" />
+  <component name="MacroExpansionManager">
+    <option name="directoryName" value="6l84l83d" />
+  </component>
+  <component name="ProjectId" id="1hy49GEgUiztfxRE1UR65V3lngz" />
   <component name="ProjectLevelVcsManager">
     <ConfirmationsSetting value="2" id="Add" />
   </component>
   <component name="ProjectViewState">
     <option name="autoscrollFromSource" value="true" />
+    <option name="flattenPackages" value="true" />
     <option name="hideEmptyMiddlePackages" value="true" />
-    <option name="manualOrder" value="true" />
     <option name="showLibraryContents" value="true" />
     <option name="showMembers" value="true" />
     <option name="showVisibilityIcons" value="true" />
+    <option name="sortByType" value="true" />
   </component>
   <component name="PropertiesComponent">
     <property name="OBJC.PRESERVED_TARGET_SELECTION" value="" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
-    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="dart.analysis.tool.window.visible" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/Emu6510.xcodeproj" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
     <property name="node.js.path.for.package.tslint" value="project" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
-    <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
-    <property name="nodejs_npm_path_reset_for_default_project" value="true" />
-    <property name="settings.editor.selected.configurable" value="reference.settingsdialog.IDE.editor.colors.General" />
   </component>
-  <component name="RunManager" selected="XCTest.All Tests">
-    <configuration name="Emu6510" type="AppleRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="Emu6510" TARGET_NAME="Emu6510" CONFIG_NAME="Debug" SCHEME_NAME="Emu6510" IS_LOCATION_SIMULATION_ALLOWED="true" APPLICATION_LANGUAGE="IDELaunchSchemeLanguageUseSystemLanguage" APPLICATION_REGION="" MAKE_ACTIVE="TRUE" SHOULD_DEBUG_EXTENSIONS="false">
+  <component name="RunManager" selected="Application.Tools">
+    <configuration default="true" type="AppleRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" PASS_PARENT_ENVS_2="true" IS_LOCATION_SIMULATION_ALLOWED="true" APPLICATION_LANGUAGE="IDELaunchSchemeLanguageUseSystemLanguage" APPLICATION_REGION="" MAKE_ACTIVE="TRUE" SHOULD_DEBUG_EXTENSIONS="false">
       <EXTENSION ID="org.jetbrains.appcode.reveal.RevealRunConfigurationExtension">
         <REVEAL_SETTINGS autoInject="false" autoInstall="true" askToEnableAutoInstall="true" />
       </EXTENSION>
@@ -62,167 +287,31 @@
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
       </method>
     </configuration>
-    <configuration name="All Tests" type="OCUnitRunConfiguration" factoryName="XCTest/Kiwi" nameIsGenerated="true" REDIRECT_INPUT="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="Emu6510" TARGET_NAME="Emu6510Tests" CONFIG_NAME="Debug" SCHEME_NAME="All Tests" IS_LOCATION_SIMULATION_ALLOWED="true" LOCATION_SCENARIO_ID="com.apple.dt.IDEFoundation.CurrentLocationScenarioIdentifier" LOCATION_SCENARIO_TYPE="1" APPLICATION_LANGUAGE="IDELaunchSchemeLanguageUseSystemLanguage" APPLICATION_REGION="" TEST_MODE="SUITE_TEST" XCODE_TESTS_HASH_CODE="0">
-      <method v="2">
-        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
-      </method>
-    </configuration>
     <list>
+      <item itemvalue="Application.Emu6510 - All" />
       <item itemvalue="Application.Emu6510" />
-      <item itemvalue="XCTest.All Tests" />
+      <item itemvalue="Application.DocFixer" />
+      <item itemvalue="Application.Tools" />
+      <item itemvalue="XCTest.Emu6510 Tests" />
     </list>
   </component>
-  <component name="SvnConfiguration">
-    <configuration />
-  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="3ae2fece-92e6-442e-bb74-eaf7ffffdd6a" name="Default Changelist" comment="" />
-      <created>1589817784477</created>
+      <changelist id="87075da3-fef8-4e0e-a558-4c45fa2c2b82" name="Default Changelist" comment="" />
+      <created>1600969844488</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1589817784477</updated>
-      <workItem from="1589817786858" duration="7267000" />
-      <workItem from="1590344910146" duration="17179000" />
-      <workItem from="1590495017099" duration="3115000" />
-      <workItem from="1590762303232" duration="10725000" />
-      <workItem from="1590783447598" duration="6386000" />
-      <workItem from="1590856457948" duration="1576000" />
-      <workItem from="1591007554458" duration="38522000" />
-      <workItem from="1591156072105" duration="21864000" />
-      <workItem from="1591902382035" duration="10885000" />
-      <workItem from="1592586469591" duration="782000" />
-      <workItem from="1592738603780" duration="6280000" />
-      <workItem from="1592824706245" duration="1579000" />
-      <workItem from="1592826692723" duration="19321000" />
-      <workItem from="1592927899342" duration="38389000" />
-      <workItem from="1593023291052" duration="2716000" />
-      <workItem from="1593107775940" duration="5102000" />
+      <updated>1600969844488</updated>
+      <workItem from="1600969845619" duration="805000" />
+      <workItem from="1600970710628" duration="772000" />
+      <workItem from="1600971505582" duration="1191000" />
+      <workItem from="1600973014032" duration="8017000" />
     </task>
-    <task id="LOCAL-00001" summary="More...">
-      <created>1589817846091</created>
-      <option name="number" value="00001" />
-      <option name="presentableId" value="LOCAL-00001" />
-      <option name="project" value="LOCAL" />
-      <updated>1589817846091</updated>
-    </task>
-    <task id="LOCAL-00002" summary="More...">
-      <created>1591214082877</created>
-      <option name="number" value="00002" />
-      <option name="presentableId" value="LOCAL-00002" />
-      <option name="project" value="LOCAL" />
-      <updated>1591214082877</updated>
-    </task>
-    <task id="LOCAL-00003" summary="More...">
-      <created>1591268564360</created>
-      <option name="number" value="00003" />
-      <option name="presentableId" value="LOCAL-00003" />
-      <option name="project" value="LOCAL" />
-      <updated>1591268564360</updated>
-    </task>
-    <task id="LOCAL-00004" summary="Added API Documentation.">
-      <created>1591273189793</created>
-      <option name="number" value="00004" />
-      <option name="presentableId" value="LOCAL-00004" />
-      <option name="project" value="LOCAL" />
-      <updated>1591273189793</updated>
-    </task>
-    <task id="LOCAL-00005" summary="Added API Documentation.">
-      <created>1592928114000</created>
-      <option name="number" value="00005" />
-      <option name="presentableId" value="LOCAL-00005" />
-      <option name="project" value="LOCAL" />
-      <updated>1592928114000</updated>
-    </task>
-    <task id="LOCAL-00006" summary="Added API Documentation.">
-      <created>1592928440946</created>
-      <option name="number" value="00006" />
-      <option name="presentableId" value="LOCAL-00006" />
-      <option name="project" value="LOCAL" />
-      <updated>1592928440946</updated>
-    </task>
-    <task id="LOCAL-00007" summary="Added API Documentation.">
-      <created>1593001106078</created>
-      <option name="number" value="00007" />
-      <option name="presentableId" value="LOCAL-00007" />
-      <option name="project" value="LOCAL" />
-      <updated>1593001106078</updated>
-    </task>
-    <task id="LOCAL-00008" summary="Streamlined instruction dispatch.">
-      <created>1593002571409</created>
-      <option name="number" value="00008" />
-      <option name="presentableId" value="LOCAL-00008" />
-      <option name="project" value="LOCAL" />
-      <updated>1593002571409</updated>
-    </task>
-    <task id="LOCAL-00009" summary="Streamlined instruction dispatch.">
-      <created>1593007301139</created>
-      <option name="number" value="00009" />
-      <option name="presentableId" value="LOCAL-00009" />
-      <option name="project" value="LOCAL" />
-      <updated>1593007301139</updated>
-    </task>
-    <task id="LOCAL-00010" summary="Streamlined instruction dispatch.">
-      <created>1593007525298</created>
-      <option name="number" value="00010" />
-      <option name="presentableId" value="LOCAL-00010" />
-      <option name="project" value="LOCAL" />
-      <updated>1593007525298</updated>
-    </task>
-    <task id="LOCAL-00011" summary="Made dispatch(opcode:ops:) public so it can be overridden.">
-      <created>1593008160920</created>
-      <option name="number" value="00011" />
-      <option name="presentableId" value="LOCAL-00011" />
-      <option name="project" value="LOCAL" />
-      <updated>1593008160920</updated>
-    </task>
-    <task id="LOCAL-00012" summary="Updated README.md">
-      <created>1593008543682</created>
-      <option name="number" value="00012" />
-      <option name="presentableId" value="LOCAL-00012" />
-      <option name="project" value="LOCAL" />
-      <updated>1593008543682</updated>
-    </task>
-    <task id="LOCAL-00013" summary="Updated README.md">
-      <created>1593111067119</created>
-      <option name="number" value="00013" />
-      <option name="presentableId" value="LOCAL-00013" />
-      <option name="project" value="LOCAL" />
-      <updated>1593111067119</updated>
-    </task>
-    <task id="LOCAL-00014" summary="Made sure github knows this project is a Swift project.">
-      <created>1593111578266</created>
-      <option name="number" value="00014" />
-      <option name="presentableId" value="LOCAL-00014" />
-      <option name="project" value="LOCAL" />
-      <updated>1593111578266</updated>
-    </task>
-    <task id="LOCAL-00015" summary="Clean up">
-      <created>1593185750111</created>
-      <option name="number" value="00015" />
-      <option name="presentableId" value="LOCAL-00015" />
-      <option name="project" value="LOCAL" />
-      <updated>1593185750111</updated>
-    </task>
-    <task id="LOCAL-00016" summary="Clean up">
-      <created>1593185803650</created>
-      <option name="number" value="00016" />
-      <option name="presentableId" value="LOCAL-00016" />
-      <option name="project" value="LOCAL" />
-      <updated>1593185803650</updated>
-    </task>
-    <task id="LOCAL-00017" summary="Clean up">
-      <created>1593186175601</created>
-      <option name="number" value="00017" />
-      <option name="presentableId" value="LOCAL-00017" />
-      <option name="project" value="LOCAL" />
-      <updated>1593186175601</updated>
-    </task>
-    <option name="localTasksCounter" value="18" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
-    <option name="version" value="2" />
+    <option name="version" value="3" />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
@@ -236,131 +325,38 @@
     </option>
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
-  <component name="VcsManagerConfiguration">
-    <MESSAGE value="More..." />
-    <MESSAGE value="Added API Documentation." />
-    <MESSAGE value="Streamlined instruction dispatch." />
-    <MESSAGE value="Made dispatch(opcode:ops:) public so it can be overridden." />
-    <MESSAGE value="Updated README.md" />
-    <MESSAGE value="Made sure github knows this project is a Swift project." />
-    <MESSAGE value="Clean up" />
-    <option name="LAST_COMMIT_MESSAGE" value="Clean up" />
-  </component>
   <component name="WindowStateProjectService">
-    <state x="880" y="189" key="#Plugins" timestamp="1590856442787">
+    <state x="744" y="202" width="1071" height="724" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1600972269152">
       <screen x="0" y="0" width="2560" height="1080" />
     </state>
-    <state x="880" y="189" key="#Plugins/0.0.2560.1080@0.0.2560.1080" timestamp="1590856442787" />
-    <state x="304" y="188" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1590375920324">
-      <screen x="0" y="0" width="1680" height="1050" />
-    </state>
-    <state x="304" y="188" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1680.1050@0.0.1680.1050" timestamp="1590375920324" />
-    <state x="1056" y="264" key="#com.intellij.ide.util.MemberChooser" timestamp="1593013135158">
+    <state x="744" y="202" width="1071" height="724" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.2560.1080@0.0.2560.1080" timestamp="1600972269152" />
+    <state width="1797" height="679" key="GridCell.Tab.0.bottom" timestamp="1600980058647">
       <screen x="0" y="0" width="2560" height="1080" />
     </state>
-    <state x="693" y="257" key="#com.intellij.ide.util.MemberChooser/0.0.1680.1050@0.0.1680.1050" timestamp="1590374761914" />
-    <state x="1056" y="264" key="#com.intellij.ide.util.MemberChooser/0.0.2560.1080@0.0.2560.1080" timestamp="1593013135158" />
-    <state x="100" y="100" width="2360" height="880" key="DiffContextDialog" timestamp="1592928638710">
+    <state width="1797" height="679" key="GridCell.Tab.0.bottom/0.0.2560.1080@0.0.2560.1080" timestamp="1600980058647" />
+    <state width="1797" height="679" key="GridCell.Tab.0.center" timestamp="1600980058646">
       <screen x="0" y="0" width="2560" height="1080" />
     </state>
-    <state x="100" y="100" width="2360" height="880" key="DiffContextDialog/0.0.2560.1080@0.0.2560.1080" timestamp="1592928638710" />
-    <state x="1157" y="448" key="Github.ShareDialog" timestamp="1591214198268">
+    <state width="1797" height="679" key="GridCell.Tab.0.center/0.0.2560.1080@0.0.2560.1080" timestamp="1600980058646" />
+    <state width="1797" height="679" key="GridCell.Tab.0.left" timestamp="1600980058645">
       <screen x="0" y="0" width="2560" height="1080" />
     </state>
-    <state x="1157" y="448" key="Github.ShareDialog/0.0.2560.1080@0.0.2560.1080" timestamp="1591214198268" />
-    <state width="1243" height="852" key="GridCell.Tab.0.bottom" timestamp="1592826512173">
+    <state width="1797" height="679" key="GridCell.Tab.0.left/0.0.2560.1080@0.0.2560.1080" timestamp="1600980058645" />
+    <state width="1797" height="679" key="GridCell.Tab.0.right" timestamp="1600980058647">
       <screen x="0" y="0" width="2560" height="1080" />
     </state>
-    <state width="1146" height="341" key="GridCell.Tab.0.bottom/0.0.1680.1050@0.0.1680.1050" timestamp="1590379407366" />
-    <state width="1243" height="852" key="GridCell.Tab.0.bottom/0.0.2560.1080@0.0.2560.1080" timestamp="1592826512173" />
-    <state width="1146" height="263" key="GridCell.Tab.0.bottom/0.23.1680.1002@0.23.1680.1002" timestamp="1590425790179" />
-    <state width="1519" height="761" key="GridCell.Tab.0.bottom/0.23.2560.1032@0.23.2560.1032" timestamp="1591155086948" />
-    <state width="1243" height="852" key="GridCell.Tab.0.center" timestamp="1592826512172">
+    <state width="1797" height="679" key="GridCell.Tab.0.right/0.0.2560.1080@0.0.2560.1080" timestamp="1600980058647" />
+    <state x="818" y="202" key="StringManipulation.AlignToColumnsAction" timestamp="1600980334658">
       <screen x="0" y="0" width="2560" height="1080" />
     </state>
-    <state width="1146" height="341" key="GridCell.Tab.0.center/0.0.1680.1050@0.0.1680.1050" timestamp="1590379407364" />
-    <state width="1243" height="852" key="GridCell.Tab.0.center/0.0.2560.1080@0.0.2560.1080" timestamp="1592826512172" />
-    <state width="1146" height="263" key="GridCell.Tab.0.center/0.23.1680.1002@0.23.1680.1002" timestamp="1590425790179" />
-    <state width="1519" height="761" key="GridCell.Tab.0.center/0.23.2560.1032@0.23.2560.1032" timestamp="1591155086946" />
-    <state width="1243" height="852" key="GridCell.Tab.0.left" timestamp="1592826512171">
+    <state x="818" y="202" key="StringManipulation.AlignToColumnsAction/0.0.2560.1080@0.0.2560.1080" timestamp="1600980334658" />
+    <state x="968" y="152" width="874" height="866" key="StringManipulation.SortTypeDialog" timestamp="1600980207486">
       <screen x="0" y="0" width="2560" height="1080" />
     </state>
-    <state width="1146" height="341" key="GridCell.Tab.0.left/0.0.1680.1050@0.0.1680.1050" timestamp="1590379407362" />
-    <state width="1243" height="852" key="GridCell.Tab.0.left/0.0.2560.1080@0.0.2560.1080" timestamp="1592826512171" />
-    <state width="1146" height="263" key="GridCell.Tab.0.left/0.23.1680.1002@0.23.1680.1002" timestamp="1590425790178" />
-    <state width="1519" height="761" key="GridCell.Tab.0.left/0.23.2560.1032@0.23.2560.1032" timestamp="1591155086945" />
-    <state width="1243" height="852" key="GridCell.Tab.0.right" timestamp="1592826512172">
+    <state x="968" y="152" width="874" height="866" key="StringManipulation.SortTypeDialog/0.0.2560.1080@0.0.2560.1080" timestamp="1600980207486" />
+    <state x="1010" y="459" key="vcs.readOnlyHandler.ReadOnlyStatusDialog" timestamp="1600970791655">
       <screen x="0" y="0" width="2560" height="1080" />
     </state>
-    <state width="1146" height="341" key="GridCell.Tab.0.right/0.0.1680.1050@0.0.1680.1050" timestamp="1590379407365" />
-    <state width="1243" height="852" key="GridCell.Tab.0.right/0.0.2560.1080@0.0.2560.1080" timestamp="1592826512172" />
-    <state width="1146" height="263" key="GridCell.Tab.0.right/0.23.1680.1002@0.23.1680.1002" timestamp="1590425790179" />
-    <state width="1519" height="761" key="GridCell.Tab.0.right/0.23.2560.1032@0.23.2560.1032" timestamp="1591155086948" />
-    <state width="1243" height="852" key="GridCell.Tab.1.bottom" timestamp="1592826512170">
-      <screen x="0" y="0" width="2560" height="1080" />
-    </state>
-    <state width="1146" height="341" key="GridCell.Tab.1.bottom/0.0.1680.1050@0.0.1680.1050" timestamp="1590379407221" />
-    <state width="1243" height="852" key="GridCell.Tab.1.bottom/0.0.2560.1080@0.0.2560.1080" timestamp="1592826512170" />
-    <state width="1146" height="341" key="GridCell.Tab.1.bottom/0.23.1680.1002@0.23.1680.1002" timestamp="1590425790175" />
-    <state width="1519" height="761" key="GridCell.Tab.1.bottom/0.23.2560.1032@0.23.2560.1032" timestamp="1591155086952" />
-    <state width="1243" height="852" key="GridCell.Tab.1.center" timestamp="1592826512012">
-      <screen x="0" y="0" width="2560" height="1080" />
-    </state>
-    <state width="1146" height="341" key="GridCell.Tab.1.center/0.0.1680.1050@0.0.1680.1050" timestamp="1590379407220" />
-    <state width="1243" height="852" key="GridCell.Tab.1.center/0.0.2560.1080@0.0.2560.1080" timestamp="1592826512012" />
-    <state width="1146" height="341" key="GridCell.Tab.1.center/0.23.1680.1002@0.23.1680.1002" timestamp="1590425790174" />
-    <state width="1519" height="761" key="GridCell.Tab.1.center/0.23.2560.1032@0.23.2560.1032" timestamp="1591155086950" />
-    <state width="1243" height="852" key="GridCell.Tab.1.left" timestamp="1592826511997">
-      <screen x="0" y="0" width="2560" height="1080" />
-    </state>
-    <state width="1146" height="341" key="GridCell.Tab.1.left/0.0.1680.1050@0.0.1680.1050" timestamp="1590379407220" />
-    <state width="1243" height="852" key="GridCell.Tab.1.left/0.0.2560.1080@0.0.2560.1080" timestamp="1592826511997" />
-    <state width="1146" height="341" key="GridCell.Tab.1.left/0.23.1680.1002@0.23.1680.1002" timestamp="1590425790174" />
-    <state width="1519" height="761" key="GridCell.Tab.1.left/0.23.2560.1032@0.23.2560.1032" timestamp="1591155086949" />
-    <state width="1243" height="852" key="GridCell.Tab.1.right" timestamp="1592826512169">
-      <screen x="0" y="0" width="2560" height="1080" />
-    </state>
-    <state width="1146" height="341" key="GridCell.Tab.1.right/0.0.1680.1050@0.0.1680.1050" timestamp="1590379407221" />
-    <state width="1243" height="852" key="GridCell.Tab.1.right/0.0.2560.1080@0.0.2560.1080" timestamp="1592826512169" />
-    <state width="1146" height="341" key="GridCell.Tab.1.right/0.23.1680.1002@0.23.1680.1002" timestamp="1590425790175" />
-    <state width="1519" height="761" key="GridCell.Tab.1.right/0.23.2560.1032@0.23.2560.1032" timestamp="1591155086951" />
-    <state x="1038" y="250" key="RollbackChangesDialog" timestamp="1593002492062">
-      <screen x="0" y="0" width="2560" height="1080" />
-    </state>
-    <state x="1038" y="250" key="RollbackChangesDialog/0.0.2560.1080@0.0.2560.1080" timestamp="1593002492062" />
-    <state x="1097" y="72" key="SettingsEditor" timestamp="1592998384254">
-      <screen x="0" y="0" width="2560" height="1080" />
-    </state>
-    <state x="1097" y="72" key="SettingsEditor/0.0.2560.1080@0.0.2560.1080" timestamp="1592998384254" />
-    <state x="1037" y="360" key="StringManipulation.SortTypeDialog" timestamp="1593002381644">
-      <screen x="0" y="0" width="2560" height="1080" />
-    </state>
-    <state x="1037" y="360" key="StringManipulation.SortTypeDialog/0.0.2560.1080@0.0.2560.1080" timestamp="1593002381644" />
-    <state x="1171" y="463" key="VCS.EditChangelistDialog" timestamp="1593185948781">
-      <screen x="0" y="0" width="2560" height="1080" />
-    </state>
-    <state x="1171" y="463" key="VCS.EditChangelistDialog/0.0.2560.1080@0.0.2560.1080" timestamp="1593185948781" />
-    <state x="880" y="267" key="Vcs.Push.Dialog.v2" timestamp="1593186178250">
-      <screen x="0" y="0" width="2560" height="1080" />
-    </state>
-    <state x="578" y="260" key="Vcs.Push.Dialog.v2/0.0.1680.1050@0.0.1680.1050" timestamp="1593111581430" />
-    <state x="880" y="267" key="Vcs.Push.Dialog.v2/0.0.2560.1080@0.0.2560.1080" timestamp="1593186178250" />
-    <state x="757" y="134" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser" timestamp="1592837830651">
-      <screen x="0" y="0" width="2560" height="1080" />
-    </state>
-    <state x="757" y="134" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser/0.0.2560.1080@0.0.2560.1080" timestamp="1592837830651" />
-    <state x="497" y="147" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser/0.23.1680.1002@0.23.1680.1002" timestamp="1590380338381" />
-    <state x="1093" y="462" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1592838908200">
-      <screen x="0" y="0" width="2560" height="1080" />
-    </state>
-    <state x="1093" y="462" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.2560.1080@0.0.2560.1080" timestamp="1592838908200" />
-    <state x="843" y="277" key="com.intellij.xdebugger.impl.breakpoints.ui.BreakpointsDialogFactory$2" timestamp="1590845417042">
-      <screen x="0" y="0" width="2560" height="1080" />
-    </state>
-    <state x="843" y="277" key="com.intellij.xdebugger.impl.breakpoints.ui.BreakpointsDialogFactory$2/0.0.2560.1080@0.0.2560.1080" timestamp="1590845417042" />
-    <state x="992" y="282" width="576" height="516" key="find.popup" timestamp="1592839833839">
-      <screen x="0" y="0" width="2560" height="1080" />
-    </state>
-    <state x="992" y="282" width="576" height="516" key="find.popup/0.0.2560.1080@0.0.2560.1080" timestamp="1592839833839" />
+    <state x="1010" y="459" key="vcs.readOnlyHandler.ReadOnlyStatusDialog/0.0.2560.1080@0.0.2560.1080" timestamp="1600970791655" />
   </component>
 </project>

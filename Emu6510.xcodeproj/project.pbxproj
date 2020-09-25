@@ -3,50 +3,70 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
+/* Begin PBXAggregateTarget section */
+		836379D1251D1CA400657A3B /* Emu6510-All */ = {
+			isa = PBXAggregateTarget;
+			buildConfigurationList = 836379D2251D1CA400657A3B /* Build configuration list for PBXAggregateTarget "Emu6510-All" */;
+			buildPhases = (
+			);
+			dependencies = (
+				836379E1251D1CD000657A3B /* PBXTargetDependency */,
+				836379DB251D1CD000657A3B /* PBXTargetDependency */,
+				836379DF251D1CD000657A3B /* PBXTargetDependency */,
+			);
+			name = "Emu6510-All";
+			productName = "Emu6510-All";
+		};
+/* End PBXAggregateTarget section */
+
 /* Begin PBXBuildFile section */
-		1117D62FA795B332DD3383E8 /* AddressBus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1117D0213EB88437379F4E3D /* AddressBus.swift */; };
-		1117D8723BB2A3B6F23ED73C /* OpcodeData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1117D82A51262B865038707F /* OpcodeData.swift */; };
-		1117DE6990D80E8F250579E0 /* Tools.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1117D350304371409338CF99 /* Tools.swift */; };
-		1117DF76F074C10606826202 /* OpCodes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1117DD88DC95C4D095ADA633 /* OpCodes.swift */; };
-		83A898FF2472E617002F2121 /* Emu6510.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83A898F52472E617002F2121 /* Emu6510.framework */; };
-		83A899042472E617002F2121 /* Emu6510Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83A899032472E617002F2121 /* Emu6510Tests.swift */; };
-		83A899062472E617002F2121 /* Emu6510.h in Headers */ = {isa = PBXBuildFile; fileRef = 83A898F82472E617002F2121 /* Emu6510.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		83A899112472E64A002F2121 /* Rubicon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83A899102472E64A002F2121 /* Rubicon.framework */; };
-		83A899122472E64A002F2121 /* Rubicon.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 83A899102472E64A002F2121 /* Rubicon.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		83A8991B2472E678002F2121 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83A8991A2472E678002F2121 /* main.swift */; };
-		83A899202472E688002F2121 /* PGDocFixer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83A8991F2472E688002F2121 /* PGDocFixer.framework */; };
-		83A899212472E688002F2121 /* PGDocFixer.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 83A8991F2472E688002F2121 /* PGDocFixer.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		83A8992A2472E7EE002F2121 /* CPU65xx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83A899262472E7EE002F2121 /* CPU65xx.swift */; };
-		83A8992C2472E7EE002F2121 /* Emu6510.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83A899282472E7EE002F2121 /* Emu6510.swift */; };
-		83A8992D2472E7EE002F2121 /* MemoryManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83A899292472E7EE002F2121 /* MemoryManager.swift */; };
+		1117D1DF2F51DF1DC7732233 /* Emu6510.h in Headers */ = {isa = PBXBuildFile; fileRef = 1117D6B20123D0B3661713BB /* Emu6510.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		1117D660A3AC70277DF53E12 /* ProcessorFlags.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1117DFD6209082494BE4A2FA /* ProcessorFlags.swift */; };
+		1117DD710247E03BDD56E86A /* AddressModes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1117D02BFDB374D44731C71F /* AddressModes.swift */; };
+		1117DF93B9095EB7544D42ED /* OpcodeInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1117D0103545E799DBEBF12A /* OpcodeInfo.swift */; };
+		1117DFED64E12C54915B2CD0 /* Emu6510.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1117D61580286ACD06863950 /* Emu6510.swift */; };
+		83637968251CF5D100657A3B /* Emu6510.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8363795E251CF5D000657A3B /* Emu6510.framework */; };
+		8363796D251CF5D100657A3B /* Emu6510Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8363796C251CF5D100657A3B /* Emu6510Tests.swift */; };
+		836379A0251CF98300657A3B /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8363798E251CF95E00657A3B /* main.swift */; };
+		836379BC251D14F600657A3B /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 836379BB251D14F600657A3B /* main.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		83A899002472E617002F2121 /* PBXContainerItemProxy */ = {
+		83637969251CF5D100657A3B /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 83A898EC2472E617002F2121 /* Project object */;
+			containerPortal = 83637955251CF5D000657A3B /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = 83A898F42472E617002F2121;
+			remoteGlobalIDString = 8363795D251CF5D000657A3B;
 			remoteInfo = Emu6510;
+		};
+		836379DA251D1CD000657A3B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 83637955251CF5D000657A3B /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 83637992251CF97300657A3B;
+			remoteInfo = DocFixer;
+		};
+		836379DE251D1CD000657A3B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 83637955251CF5D000657A3B /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 83637966251CF5D100657A3B;
+			remoteInfo = Emu6510Tests;
+		};
+		836379E0251D1CD000657A3B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 83637955251CF5D000657A3B /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 836379B8251D14F600657A3B;
+			remoteInfo = Tools;
 		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		83A899132472E64A002F2121 /* Embed Frameworks */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-				83A899122472E64A002F2121 /* Rubicon.framework in Embed Frameworks */,
-			);
-			name = "Embed Frameworks";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		83A899162472E678002F2121 /* CopyFiles */ = {
+		83637991251CF97300657A3B /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = /usr/share/man/man1/;
@@ -55,568 +75,309 @@
 			);
 			runOnlyForDeploymentPostprocessing = 1;
 		};
-		83A899222472E688002F2121 /* Embed Frameworks */ = {
+		836379B7251D14F600657A3B /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
+			dstPath = /usr/share/man/man1/;
+			dstSubfolderSpec = 0;
 			files = (
-				83A899212472E688002F2121 /* PGDocFixer.framework in Embed Frameworks */,
 			);
-			name = "Embed Frameworks";
-			runOnlyForDeploymentPostprocessing = 0;
+			runOnlyForDeploymentPostprocessing = 1;
 		};
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		1117D0213EB88437379F4E3D /* AddressBus.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddressBus.swift; sourceTree = "<group>"; };
-		1117D027303F0990E72383B7 /* dash.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dash.png; sourceTree = "<group>"; };
-		1117D073729E935563743D59 /* .jazzy.yaml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.yaml; path = .jazzy.yaml; sourceTree = "<group>"; };
-		1117D0782B9E76ABE0BBB0F4 /* MOS65xxCPU.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = MOS65xxCPU.html; sourceTree = "<group>"; };
-		1117D0D75662FE313972BFA2 /* C64MemoryManager.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = C64MemoryManager.html; sourceTree = "<group>"; };
-		1117D0F37EC0DF57309FC2A3 /* String.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = String.html; sourceTree = "<group>"; };
-		1117D11988EDE2C82CBA39AC /* jazzy.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = jazzy.js; sourceTree = "<group>"; };
-		1117D156AC1A6A0E57FE838F /* badge.svg */ = {isa = PBXFileReference; lastKnownFileType = file.svg; path = badge.svg; sourceTree = "<group>"; };
-		1117D171D250AE580B285B90 /* IOPortControler.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = IOPortControler.html; sourceTree = "<group>"; };
-		1117D183671527584354BDA5 /* Mos6502AddressModes.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = Mos6502AddressModes.html; sourceTree = "<group>"; };
-		1117D1945AC1A76850826070 /* Bits8.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = Bits8.html; sourceTree = "<group>"; };
-		1117D1EEB0817B0DC17ECFDF /* Functions.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = Functions.html; sourceTree = "<group>"; };
-		1117D21B30982ED2137FE1D8 /* C64MemoryManager.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = C64MemoryManager.html; sourceTree = "<group>"; };
-		1117D23369A4B7ED92919506 /* gh.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = gh.png; sourceTree = "<group>"; };
-		1117D243ED001DAD3D0A6C57 /* Global Variables.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = "Global Variables.html"; sourceTree = "<group>"; };
-		1117D24A0834EC0D8857A3CA /* IOPortListener.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = IOPortListener.html; sourceTree = "<group>"; };
-		1117D2F86D80F51466422366 /* VideoStandard.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = VideoStandard.html; sourceTree = "<group>"; };
-		1117D3301BCDE9B82BDFF1BD /* Protocols.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = Protocols.html; sourceTree = "<group>"; };
-		1117D33A14E1D50BEDE25C23 /* Enums.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = Enums.html; sourceTree = "<group>"; };
-		1117D350304371409338CF99 /* Tools.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tools.swift; sourceTree = "<group>"; };
-		1117D36243B16AFD97DF916E /* gh.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = gh.png; sourceTree = "<group>"; };
-		1117D3B567F3875A92222017 /* Alignment.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = Alignment.html; sourceTree = "<group>"; };
-		1117D3CD4AFCD05A16F46473 /* highlight.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = highlight.css; sourceTree = "<group>"; };
-		1117D459D1658BE369C7ABC1 /* highlight.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = highlight.css; sourceTree = "<group>"; };
-		1117D4647DF7FF31D7075DA0 /* Mos6502AddressModes.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = Mos6502AddressModes.html; sourceTree = "<group>"; };
-		1117D49957A1C6CFD2768C6D /* CPUClock.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = CPUClock.html; sourceTree = "<group>"; };
-		1117D4A7CBAF2318BDCB3AEE /* MOS65xxFamily.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = MOS65xxFamily.html; sourceTree = "<group>"; };
-		1117D4A9B86B461FCC77801D /* Mos6502OpcodeInfo.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = Mos6502OpcodeInfo.html; sourceTree = "<group>"; };
-		1117D4C204091585B81060FD /* ROMmemory.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = ROMmemory.html; sourceTree = "<group>"; };
-		1117D4C21471A1189FA22C82 /* opcodes.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = opcodes.txt; sourceTree = "<group>"; };
-		1117D4D09BF907CF07ECB7FB /* docSet.dsidx */ = {isa = PBXFileReference; lastKnownFileType = file.dsidx; path = docSet.dsidx; sourceTree = "<group>"; };
-		1117D4F0D371892DEC012801 /* AddressBusListener.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = AddressBusListener.html; sourceTree = "<group>"; };
-		1117D5835C54C86B057D819A /* .gitattributes */ = {isa = PBXFileReference; lastKnownFileType = file.gitattributes; path = .gitattributes; sourceTree = "<group>"; };
-		1117D5D0B5FF0410E2D7984C /* .tgz */ = {isa = PBXFileReference; lastKnownFileType = file.tgz; path = .tgz; sourceTree = "<group>"; };
-		1117D636D4937809886E7D57 /* carat.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = carat.png; sourceTree = "<group>"; };
-		1117D647B31C92834D7397B4 /* jquery.min.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = jquery.min.js; sourceTree = "<group>"; };
-		1117D6693AEB8AB879A75AFF /* IOPortListener.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = IOPortListener.html; sourceTree = "<group>"; };
-		1117D690E993D0C17BEADBA5 /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = file.gitignore; path = .gitignore; sourceTree = "<group>"; };
-		1117D69D8662392D2CD9EC0A /* StringProtocol.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = StringProtocol.html; sourceTree = "<group>"; };
-		1117D6B968143CA6956CD707 /* Mos6502Opcodes.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = Mos6502Opcodes.html; sourceTree = "<group>"; };
-		1117D6E023C7B91490D4797B /* Memory.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = Memory.html; sourceTree = "<group>"; };
-		1117D714DF8E0F342E6B1A9D /* AddressBusListener.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = AddressBusListener.html; sourceTree = "<group>"; };
-		1117D77A28F54364832CF496 /* ROMmemory.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = ROMmemory.html; sourceTree = "<group>"; };
-		1117D7BDBEEE15B305DDBE55 /* Typealiases.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = Typealiases.html; sourceTree = "<group>"; };
-		1117D7C57CD8BB8818FD83C1 /* RAMmemory.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = RAMmemory.html; sourceTree = "<group>"; };
-		1117D7DF15EC0BC48B1395C8 /* IOPortControler.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = IOPortControler.html; sourceTree = "<group>"; };
-		1117D7E4CA5BBFFE02E62E56 /* MOS65xxFamily.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = MOS65xxFamily.html; sourceTree = "<group>"; };
-		1117D7EEC9299B233A43D010 /* jazzy.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = jazzy.css; sourceTree = "<group>"; };
-		1117D82A51262B865038707F /* OpcodeData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OpcodeData.swift; sourceTree = "<group>"; };
-		1117D91488A6A37221731A31 /* CPUClock.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = CPUClock.html; sourceTree = "<group>"; };
-		1117D93715C6F8682538CB7F /* InterruptType.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = InterruptType.html; sourceTree = "<group>"; };
-		1117D948A5892A9EB05838EF /* VideoStandard.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = VideoStandard.html; sourceTree = "<group>"; };
-		1117D9738285E7D5778209E1 /* Global Variables.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = "Global Variables.html"; sourceTree = "<group>"; };
-		1117D975AB67C5F03E54DC23 /* index.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = index.html; sourceTree = "<group>"; };
-		1117D975E0363E19A6FA12D7 /* CPU65xx.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = CPU65xx.html; sourceTree = "<group>"; };
-		1117D9BA0965A431169059D3 /* undocumented.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = undocumented.json; sourceTree = "<group>"; };
-		1117DA4C32EFB074B64614C7 /* Mos6502Opcodes.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = Mos6502Opcodes.html; sourceTree = "<group>"; };
-		1117DA7A03DC7C4A4C6750DD /* Bits8.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = Bits8.html; sourceTree = "<group>"; };
-		1117DA81293B3A44FB3C551D /* search.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = search.json; sourceTree = "<group>"; };
-		1117DAC83D18B64F5116319B /* Typealiases.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = Typealiases.html; sourceTree = "<group>"; };
-		1117DAF68EF4F44279C4C60E /* Extensions.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = Extensions.html; sourceTree = "<group>"; };
-		1117DAFE394C9903EEEA7041 /* Classes.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = Classes.html; sourceTree = "<group>"; };
-		1117DB0BD2CC46658F0EF785 /* Protocols.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = Protocols.html; sourceTree = "<group>"; };
-		1117DB58E1D756E1B4B7B315 /* jazzy.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = jazzy.css; sourceTree = "<group>"; };
-		1117DB64976A7CDA510D6F20 /* jazzy.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = jazzy.js; sourceTree = "<group>"; };
-		1117DBEB9F53812DFA819BF6 /* MOS65xxCPU.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = MOS65xxCPU.html; sourceTree = "<group>"; };
-		1117DC04D685C3C2E046F73A /* carat.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = carat.png; sourceTree = "<group>"; };
-		1117DC56F2E485B64ECD924A /* 65c02.csv */ = {isa = PBXFileReference; lastKnownFileType = file.csv; path = 65c02.csv; sourceTree = "<group>"; };
-		1117DCA15E7057AF086AF733 /* Enums.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = Enums.html; sourceTree = "<group>"; };
-		1117DCCDD78E07F6C2387227 /* Classes.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = Classes.html; sourceTree = "<group>"; };
-		1117DCE593F31C17F5306364 /* Alignment.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = Alignment.html; sourceTree = "<group>"; };
-		1117DD1BD31C1C086C34000E /* InterruptType.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = InterruptType.html; sourceTree = "<group>"; };
-		1117DD238971677AD77D4750 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.info; path = Info.plist; sourceTree = "<group>"; };
-		1117DD4D65C4FE06CD32AEC0 /* CPU65xx.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = CPU65xx.html; sourceTree = "<group>"; };
-		1117DD54FA68275BFE9AD36D /* Functions.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = Functions.html; sourceTree = "<group>"; };
-		1117DD88DC95C4D095ADA633 /* OpCodes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OpCodes.swift; sourceTree = "<group>"; };
-		1117DDB13F7D8E443BB70176 /* Extensions.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = Extensions.html; sourceTree = "<group>"; };
-		1117DDDC0755E6FD7E21CE02 /* StringProtocol.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = StringProtocol.html; sourceTree = "<group>"; };
-		1117DDE4EF9ECC664A4BC103 /* Mos6502OpcodeInfo.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = Mos6502OpcodeInfo.html; sourceTree = "<group>"; };
-		1117DE1506B689793A9A45C3 /* jquery.min.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = jquery.min.js; sourceTree = "<group>"; };
-		1117DE2B78B5ACDD7CA35BE2 /* RAMmemory.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = RAMmemory.html; sourceTree = "<group>"; };
-		1117DE658FB4FB2AF6AF79EC /* String.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = String.html; sourceTree = "<group>"; };
-		1117DED5A1BFDD96A7DA9F96 /* Memory.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = Memory.html; sourceTree = "<group>"; };
-		1117DFA980E6930A76EE75AC /* dash.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dash.png; sourceTree = "<group>"; };
-		1117DFAD6DAFB738BAAB74EF /* index.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = index.html; sourceTree = "<group>"; };
-		1117DFC5F3174BA16418829E /* search.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = search.json; sourceTree = "<group>"; };
-		83A898F52472E617002F2121 /* Emu6510.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Emu6510.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		83A898F82472E617002F2121 /* Emu6510.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Emu6510.h; sourceTree = "<group>"; };
-		83A898F92472E617002F2121 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		83A898FE2472E617002F2121 /* Emu6510Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Emu6510Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		83A899032472E617002F2121 /* Emu6510Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Emu6510Tests.swift; sourceTree = "<group>"; };
-		83A899052472E617002F2121 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		83A899102472E64A002F2121 /* Rubicon.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Rubicon.framework; path = ../../../../Library/Frameworks/Rubicon.framework; sourceTree = "<group>"; };
-		83A899182472E678002F2121 /* DocFixer */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = DocFixer; sourceTree = BUILT_PRODUCTS_DIR; };
-		83A8991A2472E678002F2121 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
-		83A8991F2472E688002F2121 /* PGDocFixer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PGDocFixer.framework; path = ../../../../Library/Frameworks/PGDocFixer.framework; sourceTree = "<group>"; };
-		83A899232472E6D7002F2121 /* build.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = build.sh; sourceTree = "<group>"; };
-		83A899242472E6D7002F2121 /* docfixer.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = docfixer.sh; sourceTree = "<group>"; };
-		83A899252472E6D7002F2121 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
-		83A899262472E7EE002F2121 /* CPU65xx.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CPU65xx.swift; sourceTree = "<group>"; };
-		83A899282472E7EE002F2121 /* Emu6510.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Emu6510.swift; sourceTree = "<group>"; };
-		83A899292472E7EE002F2121 /* MemoryManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MemoryManager.swift; sourceTree = "<group>"; };
+		1117D0103545E799DBEBF12A /* OpcodeInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OpcodeInfo.swift; sourceTree = "<group>"; };
+		1117D02BFDB374D44731C71F /* AddressModes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddressModes.swift; sourceTree = "<group>"; };
+		1117D3274BCB596FEA6024F4 /* 65c02_invalid.csv */ = {isa = PBXFileReference; lastKnownFileType = file.csv; path = 65c02_invalid.csv; sourceTree = "<group>"; };
+		1117D3E72888D0903471B65D /* opcodes.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = opcodes.txt; sourceTree = "<group>"; };
+		1117D434C092A48EAD21ED33 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.info; path = Info.plist; sourceTree = "<group>"; };
+		1117D61580286ACD06863950 /* Emu6510.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Emu6510.swift; sourceTree = "<group>"; };
+		1117D6B20123D0B3661713BB /* Emu6510.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Emu6510.h; sourceTree = "<group>"; };
+		1117D9EBF4A6A241D0594F6B /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.info; path = Info.plist; sourceTree = "<group>"; };
+		1117DA37B1AFF1AC08ED37F7 /* 65c02.csv */ = {isa = PBXFileReference; lastKnownFileType = file.csv; path = 65c02.csv; sourceTree = "<group>"; };
+		1117DFD6209082494BE4A2FA /* ProcessorFlags.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProcessorFlags.swift; sourceTree = "<group>"; };
+		8363795E251CF5D000657A3B /* Emu6510.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Emu6510.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		83637967251CF5D100657A3B /* Emu6510Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Emu6510Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		8363796C251CF5D100657A3B /* Emu6510Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Emu6510Tests.swift; sourceTree = "<group>"; };
+		8363797C251CF6D500657A3B /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		8363797F251CF6FE00657A3B /* Package.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Package.swift; sourceTree = "<group>"; };
+		83637980251CF6FE00657A3B /* LICENSE */ = {isa = PBXFileReference; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
+		83637981251CF71800657A3B /* LinuxMain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinuxMain.swift; sourceTree = "<group>"; };
+		8363798E251CF95E00657A3B /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
+		83637993251CF97300657A3B /* DocFixer */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = DocFixer; sourceTree = BUILT_PRODUCTS_DIR; };
+		836379B9251D14F600657A3B /* Tools */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = Tools; sourceTree = BUILT_PRODUCTS_DIR; };
+		836379BB251D14F600657A3B /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		83A898F22472E617002F2121 /* Frameworks */ = {
+		8363795B251CF5D000657A3B /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				83A899112472E64A002F2121 /* Rubicon.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		83A898FB2472E617002F2121 /* Frameworks */ = {
+		83637964251CF5D100657A3B /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				83A898FF2472E617002F2121 /* Emu6510.framework in Frameworks */,
+				83637968251CF5D100657A3B /* Emu6510.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		83A899152472E678002F2121 /* Frameworks */ = {
+		83637990251CF97300657A3B /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				83A899202472E688002F2121 /* PGDocFixer.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		836379B6251D14F600657A3B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		1117D09E8E44A5E30C5FCF14 /* Resources */ = {
+		1117D56EA0509E14A948147D /* Other */ = {
 			isa = PBXGroup;
 			children = (
-				1117DDE1B55FDF430EFCECAB /* Documents */,
-				1117D4D09BF907CF07ECB7FB /* docSet.dsidx */,
+				1117D3E72888D0903471B65D /* opcodes.txt */,
+				1117D3274BCB596FEA6024F4 /* 65c02_invalid.csv */,
+				1117DA37B1AFF1AC08ED37F7 /* 65c02.csv */,
 			);
-			path = Resources;
+			path = Other;
 			sourceTree = "<group>";
 		};
-		1117D1040571D3855D5D1EB9 /* API */ = {
+		1117D77ACDB8D2CFA454A496 /* Other */ = {
 			isa = PBXGroup;
 			children = (
-				1117DD7BB727CB27B642DC77 /* js */,
-				1117D7397570561C26FC7E26 /* css */,
-				1117D6909292E9ACAAB5EF98 /* img */,
-				1117D6E70EDCFB845A2AA5D5 /* Enums */,
-				1117D53A3110AA458D375B40 /* Classes */,
-				1117DF08597A284B045199D9 /* docsets */,
-				1117D156AC1A6A0E57FE838F /* badge.svg */,
-				1117DD7E07F8EC5D2F2EE1C9 /* Protocols */,
-				1117D33A14E1D50BEDE25C23 /* Enums.html */,
-				1117DB7E05E5815F245829B4 /* Extensions */,
-				1117DFAD6DAFB738BAAB74EF /* index.html */,
-				1117DFC5F3174BA16418829E /* search.json */,
-				1117DCCDD78E07F6C2387227 /* Classes.html */,
-				1117DD54FA68275BFE9AD36D /* Functions.html */,
-				1117D3301BCDE9B82BDFF1BD /* Protocols.html */,
-				1117DAF68EF4F44279C4C60E /* Extensions.html */,
-				1117DAC83D18B64F5116319B /* Typealiases.html */,
-				1117D9BA0965A431169059D3 /* undocumented.json */,
-				1117D243ED001DAD3D0A6C57 /* Global Variables.html */,
-			);
-			path = API;
-			sourceTree = "<group>";
-		};
-		1117D19DCD0DEC0F009AC453 /* .docset */ = {
-			isa = PBXGroup;
-			children = (
-				1117DBFC0E1CA5430E3C480A /* Contents */,
-			);
-			path = .docset;
-			sourceTree = "<group>";
-		};
-		1117D3F2FBD6DFB2FE650056 /* css */ = {
-			isa = PBXGroup;
-			children = (
-				1117D7EEC9299B233A43D010 /* jazzy.css */,
-				1117D3CD4AFCD05A16F46473 /* highlight.css */,
-			);
-			path = css;
-			sourceTree = "<group>";
-		};
-		1117D53A3110AA458D375B40 /* Classes */ = {
-			isa = PBXGroup;
-			children = (
-				1117D6E023C7B91490D4797B /* Memory.html */,
-				1117D975E0363E19A6FA12D7 /* CPU65xx.html */,
-				1117D49957A1C6CFD2768C6D /* CPUClock.html */,
-				1117D7C57CD8BB8818FD83C1 /* RAMmemory.html */,
-				1117D4C204091585B81060FD /* ROMmemory.html */,
-				1117D0D75662FE313972BFA2 /* C64MemoryManager.html */,
-				1117DDE4EF9ECC664A4BC103 /* Mos6502OpcodeInfo.html */,
-			);
-			path = Classes;
-			sourceTree = "<group>";
-		};
-		1117D65B2A486D5ED24E5A38 /* Enums */ = {
-			isa = PBXGroup;
-			children = (
-				1117D1945AC1A76850826070 /* Bits8.html */,
-				1117D3B567F3875A92222017 /* Alignment.html */,
-				1117D93715C6F8682538CB7F /* InterruptType.html */,
-				1117D7E4CA5BBFFE02E62E56 /* MOS65xxFamily.html */,
-				1117D948A5892A9EB05838EF /* VideoStandard.html */,
-				1117DA4C32EFB074B64614C7 /* Mos6502Opcodes.html */,
-				1117D183671527584354BDA5 /* Mos6502AddressModes.html */,
-			);
-			path = Enums;
-			sourceTree = "<group>";
-		};
-		1117D6909292E9ACAAB5EF98 /* img */ = {
-			isa = PBXGroup;
-			children = (
-				1117D23369A4B7ED92919506 /* gh.png */,
-				1117D027303F0990E72383B7 /* dash.png */,
-				1117D636D4937809886E7D57 /* carat.png */,
-			);
-			path = img;
-			sourceTree = "<group>";
-		};
-		1117D6E70EDCFB845A2AA5D5 /* Enums */ = {
-			isa = PBXGroup;
-			children = (
-				1117DA7A03DC7C4A4C6750DD /* Bits8.html */,
-				1117DCE593F31C17F5306364 /* Alignment.html */,
-				1117DD1BD31C1C086C34000E /* InterruptType.html */,
-				1117D4A7CBAF2318BDCB3AEE /* MOS65xxFamily.html */,
-				1117D2F86D80F51466422366 /* VideoStandard.html */,
-				1117D6B968143CA6956CD707 /* Mos6502Opcodes.html */,
-				1117D4647DF7FF31D7075DA0 /* Mos6502AddressModes.html */,
-			);
-			path = Enums;
-			sourceTree = "<group>";
-		};
-		1117D7397570561C26FC7E26 /* css */ = {
-			isa = PBXGroup;
-			children = (
-				1117DB58E1D756E1B4B7B315 /* jazzy.css */,
-				1117D459D1658BE369C7ABC1 /* highlight.css */,
-			);
-			path = css;
-			sourceTree = "<group>";
-		};
-		1117D8C9AF63A2DA060573E9 /* Classes */ = {
-			isa = PBXGroup;
-			children = (
-				1117DED5A1BFDD96A7DA9F96 /* Memory.html */,
-				1117DD4D65C4FE06CD32AEC0 /* CPU65xx.html */,
-				1117D91488A6A37221731A31 /* CPUClock.html */,
-				1117DE2B78B5ACDD7CA35BE2 /* RAMmemory.html */,
-				1117D77A28F54364832CF496 /* ROMmemory.html */,
-				1117D21B30982ED2137FE1D8 /* C64MemoryManager.html */,
-				1117D4A9B86B461FCC77801D /* Mos6502OpcodeInfo.html */,
-			);
-			path = Classes;
-			sourceTree = "<group>";
-		};
-		1117D9BEDC88BEE928CCD378 /* img */ = {
-			isa = PBXGroup;
-			children = (
-				1117D36243B16AFD97DF916E /* gh.png */,
-				1117DFA980E6930A76EE75AC /* dash.png */,
-				1117DC04D685C3C2E046F73A /* carat.png */,
-			);
-			path = img;
-			sourceTree = "<group>";
-		};
-		1117DA2B5472F5FBC92A6491 /* js */ = {
-			isa = PBXGroup;
-			children = (
-				1117D11988EDE2C82CBA39AC /* jazzy.js */,
-				1117DE1506B689793A9A45C3 /* jquery.min.js */,
-			);
-			path = js;
-			sourceTree = "<group>";
-		};
-		1117DAF3A879D0E67AB2D605 /* Protocols */ = {
-			isa = PBXGroup;
-			children = (
-				1117DBEB9F53812DFA819BF6 /* MOS65xxCPU.html */,
-				1117D24A0834EC0D8857A3CA /* IOPortListener.html */,
-				1117D7DF15EC0BC48B1395C8 /* IOPortControler.html */,
-				1117D714DF8E0F342E6B1A9D /* AddressBusListener.html */,
-			);
-			path = Protocols;
-			sourceTree = "<group>";
-		};
-		1117DB5A582B4AB621FF00E1 /* Extensions */ = {
-			isa = PBXGroup;
-			children = (
-				1117D0F37EC0DF57309FC2A3 /* String.html */,
-				1117D69D8662392D2CD9EC0A /* StringProtocol.html */,
-			);
-			path = Extensions;
-			sourceTree = "<group>";
-		};
-		1117DB7E05E5815F245829B4 /* Extensions */ = {
-			isa = PBXGroup;
-			children = (
-				1117DE658FB4FB2AF6AF79EC /* String.html */,
-				1117DDDC0755E6FD7E21CE02 /* StringProtocol.html */,
-			);
-			path = Extensions;
-			sourceTree = "<group>";
-		};
-		1117DBFC0E1CA5430E3C480A /* Contents */ = {
-			isa = PBXGroup;
-			children = (
-				1117D09E8E44A5E30C5FCF14 /* Resources */,
-				1117DD238971677AD77D4750 /* Info.plist */,
-			);
-			path = Contents;
-			sourceTree = "<group>";
-		};
-		1117DD7BB727CB27B642DC77 /* js */ = {
-			isa = PBXGroup;
-			children = (
-				1117DB64976A7CDA510D6F20 /* jazzy.js */,
-				1117D647B31C92834D7397B4 /* jquery.min.js */,
-			);
-			path = js;
-			sourceTree = "<group>";
-		};
-		1117DD7E07F8EC5D2F2EE1C9 /* Protocols */ = {
-			isa = PBXGroup;
-			children = (
-				1117D0782B9E76ABE0BBB0F4 /* MOS65xxCPU.html */,
-				1117D6693AEB8AB879A75AFF /* IOPortListener.html */,
-				1117D171D250AE580B285B90 /* IOPortControler.html */,
-				1117D4F0D371892DEC012801 /* AddressBusListener.html */,
-			);
-			path = Protocols;
-			sourceTree = "<group>";
-		};
-		1117DDE1B55FDF430EFCECAB /* Documents */ = {
-			isa = PBXGroup;
-			children = (
-				1117DA2B5472F5FBC92A6491 /* js */,
-				1117D3F2FBD6DFB2FE650056 /* css */,
-				1117D9BEDC88BEE928CCD378 /* img */,
-				1117D65B2A486D5ED24E5A38 /* Enums */,
-				1117D8C9AF63A2DA060573E9 /* Classes */,
-				1117DAF3A879D0E67AB2D605 /* Protocols */,
-				1117DCA15E7057AF086AF733 /* Enums.html */,
-				1117DB5A582B4AB621FF00E1 /* Extensions */,
-				1117D975AB67C5F03E54DC23 /* index.html */,
-				1117DA81293B3A44FB3C551D /* search.json */,
-				1117DAFE394C9903EEEA7041 /* Classes.html */,
-				1117D1EEB0817B0DC17ECFDF /* Functions.html */,
-				1117DB0BD2CC46658F0EF785 /* Protocols.html */,
-				1117DDB13F7D8E443BB70176 /* Extensions.html */,
-				1117D7BDBEEE15B305DDBE55 /* Typealiases.html */,
-				1117D9738285E7D5778209E1 /* Global Variables.html */,
-			);
-			path = Documents;
-			sourceTree = "<group>";
-		};
-		1117DF08597A284B045199D9 /* docsets */ = {
-			isa = PBXGroup;
-			children = (
-				1117D5D0B5FF0410E2D7984C /* .tgz */,
-				1117D19DCD0DEC0F009AC453 /* .docset */,
-			);
-			path = docsets;
-			sourceTree = "<group>";
-		};
-		8338267824891AB7005013C4 /* Other */ = {
-			isa = PBXGroup;
-			children = (
-				83A899232472E6D7002F2121 /* build.sh */,
-				83A899242472E6D7002F2121 /* docfixer.sh */,
-				1117D073729E935563743D59 /* .jazzy.yaml */,
+				1117D434C092A48EAD21ED33 /* Info.plist */,
 			);
 			name = Other;
 			sourceTree = "<group>";
 		};
-		8338267924891AF5005013C4 /* Supporting Documentation */ = {
+		1117D90193736727595875C8 /* Other */ = {
 			isa = PBXGroup;
 			children = (
-				1117D1040571D3855D5D1EB9 /* API */,
-				1117DC56F2E485B64ECD924A /* 65c02.csv */,
-				1117D4C21471A1189FA22C82 /* opcodes.txt */,
+				1117D6B20123D0B3661713BB /* Emu6510.h */,
+				1117D9EBF4A6A241D0594F6B /* Info.plist */,
 			);
-			name = "Supporting Documentation";
+			name = Other;
 			sourceTree = "<group>";
 		};
-		83A898EB2472E617002F2121 = {
+		83637954251CF5D000657A3B = {
 			isa = PBXGroup;
 			children = (
-				83A898F72472E617002F2121 /* Emu6510 */,
-				83A899022472E617002F2121 /* Emu6510Tests */,
-				83A899192472E678002F2121 /* DocFixer */,
-				83A898F62472E617002F2121 /* Products */,
-				83A8990F2472E64A002F2121 /* Frameworks */,
-				8338267924891AF5005013C4 /* Supporting Documentation */,
-				8338267824891AB7005013C4 /* Other */,
-				83A899252472E6D7002F2121 /* README.md */,
-				1117D5835C54C86B057D819A /* .gitattributes */,
-				1117D690E993D0C17BEADBA5 /* .gitignore */,
+				83637980251CF6FE00657A3B /* LICENSE */,
+				8363797F251CF6FE00657A3B /* Package.swift */,
+				8363797C251CF6D500657A3B /* README.md */,
+				8363797B251CF6AC00657A3B /* Tests */,
+				8363797A251CF69C00657A3B /* Sources */,
+				8363795F251CF5D000657A3B /* Products */,
+				836379C4251D150A00657A3B /* Frameworks */,
+				1117D56EA0509E14A948147D /* Other */,
 			);
 			sourceTree = "<group>";
 		};
-		83A898F62472E617002F2121 /* Products */ = {
+		8363795F251CF5D000657A3B /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				83A898F52472E617002F2121 /* Emu6510.framework */,
-				83A898FE2472E617002F2121 /* Emu6510Tests.xctest */,
-				83A899182472E678002F2121 /* DocFixer */,
+				8363795E251CF5D000657A3B /* Emu6510.framework */,
+				83637967251CF5D100657A3B /* Emu6510Tests.xctest */,
+				83637993251CF97300657A3B /* DocFixer */,
+				836379B9251D14F600657A3B /* Tools */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		83A898F72472E617002F2121 /* Emu6510 */ = {
+		83637960251CF5D000657A3B /* Emu6510 */ = {
 			isa = PBXGroup;
 			children = (
-				83A899282472E7EE002F2121 /* Emu6510.swift */,
-				1117D0213EB88437379F4E3D /* AddressBus.swift */,
-				83A899292472E7EE002F2121 /* MemoryManager.swift */,
-				1117D82A51262B865038707F /* OpcodeData.swift */,
-				83A899262472E7EE002F2121 /* CPU65xx.swift */,
-				1117D350304371409338CF99 /* Tools.swift */,
-				83A898F82472E617002F2121 /* Emu6510.h */,
-				83A898F92472E617002F2121 /* Info.plist */,
+				1117D02BFDB374D44731C71F /* AddressModes.swift */,
+				1117D0103545E799DBEBF12A /* OpcodeInfo.swift */,
+				1117DFD6209082494BE4A2FA /* ProcessorFlags.swift */,
+				1117D61580286ACD06863950 /* Emu6510.swift */,
+				1117D90193736727595875C8 /* Other */,
 			);
 			path = Emu6510;
 			sourceTree = "<group>";
 		};
-		83A899022472E617002F2121 /* Emu6510Tests */ = {
+		8363796B251CF5D100657A3B /* Emu6510Tests */ = {
 			isa = PBXGroup;
 			children = (
-				1117DD88DC95C4D095ADA633 /* OpCodes.swift */,
-				83A899032472E617002F2121 /* Emu6510Tests.swift */,
-				83A899052472E617002F2121 /* Info.plist */,
+				8363796C251CF5D100657A3B /* Emu6510Tests.swift */,
+				1117D77ACDB8D2CFA454A496 /* Other */,
 			);
 			path = Emu6510Tests;
 			sourceTree = "<group>";
 		};
-		83A8990F2472E64A002F2121 /* Frameworks */ = {
+		8363797A251CF69C00657A3B /* Sources */ = {
 			isa = PBXGroup;
 			children = (
-				83A8991F2472E688002F2121 /* PGDocFixer.framework */,
-				83A899102472E64A002F2121 /* Rubicon.framework */,
+				836379BA251D14F600657A3B /* Tools */,
+				8363798D251CF93F00657A3B /* DocFixer */,
+				83637960251CF5D000657A3B /* Emu6510 */,
 			);
-			name = Frameworks;
+			path = Sources;
 			sourceTree = "<group>";
 		};
-		83A899192472E678002F2121 /* DocFixer */ = {
+		8363797B251CF6AC00657A3B /* Tests */ = {
 			isa = PBXGroup;
 			children = (
-				83A8991A2472E678002F2121 /* main.swift */,
+				83637981251CF71800657A3B /* LinuxMain.swift */,
+				8363796B251CF5D100657A3B /* Emu6510Tests */,
+			);
+			path = Tests;
+			sourceTree = "<group>";
+		};
+		8363798D251CF93F00657A3B /* DocFixer */ = {
+			isa = PBXGroup;
+			children = (
+				8363798E251CF95E00657A3B /* main.swift */,
 			);
 			path = DocFixer;
+			sourceTree = "<group>";
+		};
+		836379BA251D14F600657A3B /* Tools */ = {
+			isa = PBXGroup;
+			children = (
+				836379BB251D14F600657A3B /* main.swift */,
+			);
+			path = Tools;
+			sourceTree = "<group>";
+		};
+		836379C4251D150A00657A3B /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
-		83A898F02472E617002F2121 /* Headers */ = {
+		83637959251CF5D000657A3B /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				83A899062472E617002F2121 /* Emu6510.h in Headers */,
+				1117D1DF2F51DF1DC7732233 /* Emu6510.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		83A898F42472E617002F2121 /* Emu6510 */ = {
+		8363795D251CF5D000657A3B /* Emu6510 */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 83A899092472E617002F2121 /* Build configuration list for PBXNativeTarget "Emu6510" */;
+			buildConfigurationList = 83637972251CF5D100657A3B /* Build configuration list for PBXNativeTarget "Emu6510" */;
 			buildPhases = (
-				83A898F02472E617002F2121 /* Headers */,
-				83A898F12472E617002F2121 /* Sources */,
-				83A898F22472E617002F2121 /* Frameworks */,
-				83A898F32472E617002F2121 /* Resources */,
-				83A899132472E64A002F2121 /* Embed Frameworks */,
+				83637959251CF5D000657A3B /* Headers */,
+				8363795A251CF5D000657A3B /* Sources */,
+				8363795B251CF5D000657A3B /* Frameworks */,
+				8363795C251CF5D000657A3B /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
 			name = Emu6510;
+			packageProductDependencies = (
+				83637983251CF7F000657A3B,
+			);
 			productName = Emu6510;
-			productReference = 83A898F52472E617002F2121 /* Emu6510.framework */;
+			productReference = 8363795E251CF5D000657A3B /* Emu6510.framework */;
 			productType = "com.apple.product-type.framework";
 		};
-		83A898FD2472E617002F2121 /* Emu6510Tests */ = {
+		83637966251CF5D100657A3B /* Emu6510Tests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 83A8990C2472E617002F2121 /* Build configuration list for PBXNativeTarget "Emu6510Tests" */;
+			buildConfigurationList = 83637975251CF5D100657A3B /* Build configuration list for PBXNativeTarget "Emu6510Tests" */;
 			buildPhases = (
-				83A898FA2472E617002F2121 /* Sources */,
-				83A898FB2472E617002F2121 /* Frameworks */,
-				83A898FC2472E617002F2121 /* Resources */,
+				83637963251CF5D100657A3B /* Sources */,
+				83637964251CF5D100657A3B /* Frameworks */,
+				83637965251CF5D100657A3B /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				83A899012472E617002F2121 /* PBXTargetDependency */,
+				8363796A251CF5D100657A3B /* PBXTargetDependency */,
 			);
 			name = Emu6510Tests;
 			productName = Emu6510Tests;
-			productReference = 83A898FE2472E617002F2121 /* Emu6510Tests.xctest */;
+			productReference = 83637967251CF5D100657A3B /* Emu6510Tests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		83A899172472E678002F2121 /* DocFixer */ = {
+		83637992251CF97300657A3B /* DocFixer */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 83A8991C2472E678002F2121 /* Build configuration list for PBXNativeTarget "DocFixer" */;
+			buildConfigurationList = 83637997251CF97300657A3B /* Build configuration list for PBXNativeTarget "DocFixer" */;
 			buildPhases = (
-				83A899142472E678002F2121 /* Sources */,
-				83A899152472E678002F2121 /* Frameworks */,
-				83A899162472E678002F2121 /* CopyFiles */,
-				83A899222472E688002F2121 /* Embed Frameworks */,
+				8363798F251CF97300657A3B /* Sources */,
+				83637990251CF97300657A3B /* Frameworks */,
+				83637991251CF97300657A3B /* CopyFiles */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
 			name = DocFixer;
+			packageProductDependencies = (
+				836379A5251CF9B500657A3B,
+			);
 			productName = DocFixer;
-			productReference = 83A899182472E678002F2121 /* DocFixer */;
+			productReference = 83637993251CF97300657A3B /* DocFixer */;
+			productType = "com.apple.product-type.tool";
+		};
+		836379B8251D14F600657A3B /* Tools */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 836379BD251D14F600657A3B /* Build configuration list for PBXNativeTarget "Tools" */;
+			buildPhases = (
+				836379B5251D14F600657A3B /* Sources */,
+				836379B6251D14F600657A3B /* Frameworks */,
+				836379B7251D14F600657A3B /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Tools;
+			packageProductDependencies = (
+				836379C5251D150A00657A3B,
+			);
+			productName = Tools;
+			productReference = 836379B9251D14F600657A3B /* Tools */;
 			productType = "com.apple.product-type.tool";
 		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
-		83A898EC2472E617002F2121 /* Project object */ = {
+		83637955251CF5D000657A3B /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 1140;
-				LastUpgradeCheck = 1140;
-				ORGANIZATIONNAME = "Project Galen";
+				LastSwiftUpdateCheck = 1200;
+				LastUpgradeCheck = 1200;
 				TargetAttributes = {
-					83A898F42472E617002F2121 = {
-						CreatedOnToolsVersion = 11.4.1;
-						LastSwiftMigration = 1140;
+					8363795D251CF5D000657A3B = {
+						CreatedOnToolsVersion = 12.0;
 					};
-					83A898FD2472E617002F2121 = {
-						CreatedOnToolsVersion = 11.4.1;
+					83637966251CF5D100657A3B = {
+						CreatedOnToolsVersion = 12.0;
 					};
-					83A899172472E678002F2121 = {
-						CreatedOnToolsVersion = 11.4.1;
+					83637992251CF97300657A3B = {
+						CreatedOnToolsVersion = 12.0;
+					};
+					836379B8251D14F600657A3B = {
+						CreatedOnToolsVersion = 12.0;
+					};
+					836379D1251D1CA400657A3B = {
+						CreatedOnToolsVersion = 12.0;
 					};
 				};
 			};
-			buildConfigurationList = 83A898EF2472E617002F2121 /* Build configuration list for PBXProject "Emu6510" */;
+			buildConfigurationList = 83637958251CF5D000657A3B /* Build configuration list for PBXProject "Emu6510" */;
 			compatibilityVersion = "Xcode 9.3";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -624,27 +385,33 @@
 				en,
 				Base,
 			);
-			mainGroup = 83A898EB2472E617002F2121;
-			productRefGroup = 83A898F62472E617002F2121 /* Products */;
+			mainGroup = 83637954251CF5D000657A3B;
+			packageReferences = (
+				83637982251CF7F000657A3B,
+				836379A4251CF9B500657A3B,
+			);
+			productRefGroup = 8363795F251CF5D000657A3B /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				83A898F42472E617002F2121 /* Emu6510 */,
-				83A898FD2472E617002F2121 /* Emu6510Tests */,
-				83A899172472E678002F2121 /* DocFixer */,
+				8363795D251CF5D000657A3B /* Emu6510 */,
+				83637966251CF5D100657A3B /* Emu6510Tests */,
+				83637992251CF97300657A3B /* DocFixer */,
+				836379B8251D14F600657A3B /* Tools */,
+				836379D1251D1CA400657A3B /* Emu6510-All */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		83A898F32472E617002F2121 /* Resources */ = {
+		8363795C251CF5D000657A3B /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		83A898FC2472E617002F2121 /* Resources */ = {
+		83637965251CF5D100657A3B /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -654,48 +421,68 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		83A898F12472E617002F2121 /* Sources */ = {
+		8363795A251CF5D000657A3B /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				83A8992A2472E7EE002F2121 /* CPU65xx.swift in Sources */,
-				83A8992C2472E7EE002F2121 /* Emu6510.swift in Sources */,
-				83A8992D2472E7EE002F2121 /* MemoryManager.swift in Sources */,
-				1117DE6990D80E8F250579E0 /* Tools.swift in Sources */,
-				1117D8723BB2A3B6F23ED73C /* OpcodeData.swift in Sources */,
-				1117D62FA795B332DD3383E8 /* AddressBus.swift in Sources */,
+				1117DF93B9095EB7544D42ED /* OpcodeInfo.swift in Sources */,
+				1117DD710247E03BDD56E86A /* AddressModes.swift in Sources */,
+				1117D660A3AC70277DF53E12 /* ProcessorFlags.swift in Sources */,
+				1117DFED64E12C54915B2CD0 /* Emu6510.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		83A898FA2472E617002F2121 /* Sources */ = {
+		83637963251CF5D100657A3B /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				83A899042472E617002F2121 /* Emu6510Tests.swift in Sources */,
-				1117DF76F074C10606826202 /* OpCodes.swift in Sources */,
+				8363796D251CF5D100657A3B /* Emu6510Tests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		83A899142472E678002F2121 /* Sources */ = {
+		8363798F251CF97300657A3B /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				83A8991B2472E678002F2121 /* main.swift in Sources */,
+				836379A0251CF98300657A3B /* main.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		836379B5251D14F600657A3B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				836379BC251D14F600657A3B /* main.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		83A899012472E617002F2121 /* PBXTargetDependency */ = {
+		8363796A251CF5D100657A3B /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 83A898F42472E617002F2121 /* Emu6510 */;
-			targetProxy = 83A899002472E617002F2121 /* PBXContainerItemProxy */;
+			target = 8363795D251CF5D000657A3B /* Emu6510 */;
+			targetProxy = 83637969251CF5D100657A3B /* PBXContainerItemProxy */;
+		};
+		836379DB251D1CD000657A3B /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 83637992251CF97300657A3B /* DocFixer */;
+			targetProxy = 836379DA251D1CD000657A3B /* PBXContainerItemProxy */;
+		};
+		836379DF251D1CD000657A3B /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 83637966251CF5D100657A3B /* Emu6510Tests */;
+			targetProxy = 836379DE251D1CD000657A3B /* PBXContainerItemProxy */;
+		};
+		836379E1251D1CD000657A3B /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 836379B8251D14F600657A3B /* Tools */;
+			targetProxy = 836379E0251D1CD000657A3B /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
-		83A899072472E617002F2121 /* Debug */ = {
+		83637970251CF5D100657A3B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -721,6 +508,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -752,14 +540,13 @@
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = macosx;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
-				SWIFT_COMPILATION_MODE = wholemodule;
-				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
 			};
 			name = Debug;
 		};
-		83A899082472E617002F2121 /* Release */ = {
+		83637971251CF5D100657A3B /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -785,6 +572,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -815,10 +603,9 @@
 			};
 			name = Release;
 		};
-		83A8990A2472E617002F2121 /* Debug */ = {
+		83637973251CF5D100657A3B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEFINES_MODULE = YES;
@@ -826,16 +613,13 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(USER_LIBRARY_DIR)/Frameworks",
-				);
-				INFOPLIST_FILE = Emu6510/Info.plist;
+				INFOPLIST_FILE = Sources/Emu6510/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 					"@loader_path/Frameworks",
+					"~/Library/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.projectgalen.Emu6510;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
@@ -844,10 +628,9 @@
 			};
 			name = Debug;
 		};
-		83A8990B2472E617002F2121 /* Release */ = {
+		83637974251CF5D100657A3B /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEFINES_MODULE = YES;
@@ -855,16 +638,13 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(USER_LIBRARY_DIR)/Frameworks",
-				);
-				INFOPLIST_FILE = Emu6510/Info.plist;
+				INFOPLIST_FILE = Sources/Emu6510/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 					"@loader_path/Frameworks",
+					"~/Library/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.projectgalen.Emu6510;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
@@ -873,18 +653,13 @@
 			};
 			name = Release;
 		};
-		83A8990D2472E617002F2121 /* Debug */ = {
+		83637976251CF5D100657A3B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = Q5XWZ7S7E9;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(USER_LIBRARY_DIR)/Frameworks",
-				);
-				INFOPLIST_FILE = Emu6510Tests/Info.plist;
+				INFOPLIST_FILE = Tests/Emu6510Tests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
@@ -896,18 +671,13 @@
 			};
 			name = Debug;
 		};
-		83A8990E2472E617002F2121 /* Release */ = {
+		83637977251CF5D100657A3B /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = Q5XWZ7S7E9;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(USER_LIBRARY_DIR)/Frameworks",
-				);
-				INFOPLIST_FILE = Emu6510Tests/Info.plist;
+				INFOPLIST_FILE = Tests/Emu6510Tests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
@@ -919,80 +689,167 @@
 			};
 			name = Release;
 		};
-		83A8991D2472E678002F2121 /* Debug */ = {
+		83637998251CF97300657A3B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = Q5XWZ7S7E9;
 				ENABLE_HARDENED_RUNTIME = YES;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(USER_LIBRARY_DIR)/Frameworks",
-				);
-				LD_RUNPATH_SEARCH_PATHS = "@executable_path";
-				PRODUCT_BUNDLE_IDENTIFIER = com.projectgalen.DocFixer;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
 		};
-		83A8991E2472E678002F2121 /* Release */ = {
+		83637999251CF97300657A3B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "-";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = Q5XWZ7S7E9;
+				ENABLE_HARDENED_RUNTIME = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+		836379BE251D14F600657A3B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "-";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = Q5XWZ7S7E9;
+				ENABLE_HARDENED_RUNTIME = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		836379BF251D14F600657A3B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "-";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = Q5XWZ7S7E9;
+				ENABLE_HARDENED_RUNTIME = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+		836379D3251D1CA400657A3B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = Q5XWZ7S7E9;
-				ENABLE_HARDENED_RUNTIME = YES;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(USER_LIBRARY_DIR)/Frameworks",
-				);
-				LD_RUNPATH_SEARCH_PATHS = "@executable_path";
-				PRODUCT_BUNDLE_IDENTIFIER = com.projectgalen.DocFixer;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		836379D4251D1CA400657A3B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = Q5XWZ7S7E9;
+				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
 		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		83A898EF2472E617002F2121 /* Build configuration list for PBXProject "Emu6510" */ = {
+		83637958251CF5D000657A3B /* Build configuration list for PBXProject "Emu6510" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				83A899072472E617002F2121 /* Debug */,
-				83A899082472E617002F2121 /* Release */,
+				83637970251CF5D100657A3B /* Debug */,
+				83637971251CF5D100657A3B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		83A899092472E617002F2121 /* Build configuration list for PBXNativeTarget "Emu6510" */ = {
+		83637972251CF5D100657A3B /* Build configuration list for PBXNativeTarget "Emu6510" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				83A8990A2472E617002F2121 /* Debug */,
-				83A8990B2472E617002F2121 /* Release */,
+				83637973251CF5D100657A3B /* Debug */,
+				83637974251CF5D100657A3B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		83A8990C2472E617002F2121 /* Build configuration list for PBXNativeTarget "Emu6510Tests" */ = {
+		83637975251CF5D100657A3B /* Build configuration list for PBXNativeTarget "Emu6510Tests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				83A8990D2472E617002F2121 /* Debug */,
-				83A8990E2472E617002F2121 /* Release */,
+				83637976251CF5D100657A3B /* Debug */,
+				83637977251CF5D100657A3B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		83A8991C2472E678002F2121 /* Build configuration list for PBXNativeTarget "DocFixer" */ = {
+		83637997251CF97300657A3B /* Build configuration list for PBXNativeTarget "DocFixer" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				83A8991D2472E678002F2121 /* Debug */,
-				83A8991E2472E678002F2121 /* Release */,
+				83637998251CF97300657A3B /* Debug */,
+				83637999251CF97300657A3B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		836379BD251D14F600657A3B /* Build configuration list for PBXNativeTarget "Tools" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				836379BE251D14F600657A3B /* Debug */,
+				836379BF251D14F600657A3B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		836379D2251D1CA400657A3B /* Build configuration list for PBXAggregateTarget "Emu6510-All" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				836379D3251D1CA400657A3B /* Debug */,
+				836379D4251D1CA400657A3B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		83637982251CF7F000657A3B = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/GalenRhodes/Rubicon.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.2.7;
+			};
+		};
+		836379A4251CF9B500657A3B = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/GalenRhodes/PGDocFixer.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.1;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		83637983251CF7F000657A3B = {
+			isa = XCSwiftPackageProductDependency;
+			package = 83637982251CF7F000657A3B;
+			productName = Rubicon;
+		};
+		836379A5251CF9B500657A3B = {
+			isa = XCSwiftPackageProductDependency;
+			package = 836379A4251CF9B500657A3B;
+			productName = PGDocFixer;
+		};
+		836379C5251D150A00657A3B = {
+			isa = XCSwiftPackageProductDependency;
+			package = 83637982251CF7F000657A3B;
+			productName = Rubicon;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
-	rootObject = 83A898EC2472E617002F2121 /* Project object */;
+	rootObject = 83637955251CF5D000657A3B /* Project object */;
 }

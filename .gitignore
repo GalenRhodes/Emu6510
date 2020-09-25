@@ -1,5 +1,7 @@
 /bin/
 /build/
-/docfixer.sh
-/Emu6510.xcodeproj/xcuserdata/grhodes.xcuserdatad/
-/Emu6510.xcodeproj/project.xcworkspace/xcuserdata/grhodes.xcuserdatad/
+**/xcuserdata/
+**/grhodes.xcuserdatad/
+**/.DS_Store
+/.build
+**/*.sh
