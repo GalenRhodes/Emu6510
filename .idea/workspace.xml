@@ -27,216 +27,16 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="87075da3-fef8-4e0e-a558-4c45fa2c2b82" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/runConfigurations/DocFixer.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/runConfigurations/Emu6510.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/runConfigurations/Emu6510_Tests.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/runConfigurations/Emu6510___All.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/runConfigurations/Tools.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Emu6510.xcodeproj/xcshareddata/xcschemes/Emu6510 - All.xcscheme" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Emu6510.xcodeproj/xcshareddata/xcschemes/Emu6510 Tests.xcscheme" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Emu6510.xcodeproj/xcshareddata/xcschemes/Emu6510.xcscheme" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Emu6510.xcodeproj/xcshareddata/xcschemes/Tools.xcscheme" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/LICENSE" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Other/65c02_invalid.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Package.swift" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Sources/Emu6510/Info.plist" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Sources/Emu6510/OpcodeInfo.swift" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Sources/Emu6510/ProcessorFlags.swift" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Sources/Tools/main.swift" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Tests/Emu6510Tests/Emu6510Tests.swift" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Tests/LinuxMain.swift" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/$CACHE_FILE$" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/Emu6510.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Emu6510.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.jazzy.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/.jazzy.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/65c02.csv" beforeDir="false" afterPath="$PROJECT_DIR$/Other/65c02.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/API/Classes.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/API/Classes/C64MemoryManager.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/API/Classes/CPU65xx.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/API/Classes/CPUClock.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/API/Classes/Memory.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/API/Classes/Mos6502OpcodeInfo.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/API/Classes/RAMmemory.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/API/Classes/ROMmemory.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/API/Enums.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/API/Enums/Alignment.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/API/Enums/Bits8.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/API/Enums/InterruptType.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/API/Enums/MOS65xxFamily.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/API/Enums/Mos6502AddressModes.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/API/Enums/Mos6502Opcodes.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/API/Enums/VideoStandard.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/API/Extensions.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/API/Extensions/String.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/API/Extensions/StringProtocol.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/API/Functions.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/API/Global Variables.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/API/Protocols.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/API/Protocols/AddressBusListener.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/API/Protocols/IOPortControler.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/API/Protocols/IOPortListener.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/API/Protocols/MOS65xxCPU.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/API/Typealiases.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/API/badge.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/API/css/highlight.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/API/css/jazzy.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/API/docsets/.docset/Contents/Info.plist" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/API/docsets/.docset/Contents/Resources/Documents/Classes.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/API/docsets/.docset/Contents/Resources/Documents/Classes/C64MemoryManager.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/API/docsets/.docset/Contents/Resources/Documents/Classes/CPU65xx.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/API/docsets/.docset/Contents/Resources/Documents/Classes/CPUClock.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/API/docsets/.docset/Contents/Resources/Documents/Classes/Memory.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/API/docsets/.docset/Contents/Resources/Documents/Classes/Mos6502OpcodeInfo.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/API/docsets/.docset/Contents/Resources/Documents/Classes/RAMmemory.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/API/docsets/.docset/Contents/Resources/Documents/Classes/ROMmemory.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/API/docsets/.docset/Contents/Resources/Documents/Enums.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/API/docsets/.docset/Contents/Resources/Documents/Enums/Alignment.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/API/docsets/.docset/Contents/Resources/Documents/Enums/Bits8.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/API/docsets/.docset/Contents/Resources/Documents/Enums/InterruptType.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/API/docsets/.docset/Contents/Resources/Documents/Enums/MOS65xxFamily.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/API/docsets/.docset/Contents/Resources/Documents/Enums/Mos6502AddressModes.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/API/docsets/.docset/Contents/Resources/Documents/Enums/Mos6502Opcodes.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/API/docsets/.docset/Contents/Resources/Documents/Enums/VideoStandard.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/API/docsets/.docset/Contents/Resources/Documents/Extensions.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/API/docsets/.docset/Contents/Resources/Documents/Extensions/String.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/API/docsets/.docset/Contents/Resources/Documents/Extensions/StringProtocol.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/API/docsets/.docset/Contents/Resources/Documents/Functions.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/API/docsets/.docset/Contents/Resources/Documents/Global Variables.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/API/docsets/.docset/Contents/Resources/Documents/Protocols.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/API/docsets/.docset/Contents/Resources/Documents/Protocols/AddressBusListener.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/API/docsets/.docset/Contents/Resources/Documents/Protocols/IOPortControler.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/API/docsets/.docset/Contents/Resources/Documents/Protocols/IOPortListener.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/API/docsets/.docset/Contents/Resources/Documents/Protocols/MOS65xxCPU.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/API/docsets/.docset/Contents/Resources/Documents/Typealiases.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/API/docsets/.docset/Contents/Resources/Documents/css/highlight.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/API/docsets/.docset/Contents/Resources/Documents/css/jazzy.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/API/docsets/.docset/Contents/Resources/Documents/img/carat.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/API/docsets/.docset/Contents/Resources/Documents/img/dash.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/API/docsets/.docset/Contents/Resources/Documents/img/gh.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/API/docsets/.docset/Contents/Resources/Documents/index.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/API/docsets/.docset/Contents/Resources/Documents/js/jazzy.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/API/docsets/.docset/Contents/Resources/Documents/js/jquery.min.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/API/docsets/.docset/Contents/Resources/Documents/search.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/API/docsets/.docset/Contents/Resources/docSet.dsidx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/API/docsets/.tgz" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/API/img/carat.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/API/img/dash.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/API/img/gh.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/API/index.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/API/js/jazzy.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/API/js/jquery.min.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/API/search.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/API/undocumented.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/DocFixer/main.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Sources/DocFixer/main.swift" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Emu6510.xcodeproj/project.pbxproj" beforeDir="false" afterPath="$PROJECT_DIR$/Emu6510.xcodeproj/project.pbxproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Emu6510.xcodeproj/project.xcworkspace/contents.xcworkspacedata" beforeDir="false" afterPath="$PROJECT_DIR$/Emu6510.xcodeproj/project.xcworkspace/contents.xcworkspacedata" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Emu6510.xcodeproj/xcuserdata/grhodes.xcuserdatad/xcschemes/All Tests.xcscheme" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Emu6510.xcodeproj/xcuserdata/grhodes.xcuserdatad/xcschemes/xcschememanagement.plist" beforeDir="false" afterPath="$PROJECT_DIR$/Emu6510.xcodeproj/xcuserdata/grhodes.xcuserdatad/xcschemes/xcschememanagement.plist" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Emu6510/AddressBus.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Sources/Emu6510/AddressModes.swift" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Emu6510/CPU65xx.swift" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Emu6510/Emu6510.h" beforeDir="false" afterPath="$PROJECT_DIR$/Sources/Emu6510/Emu6510.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Emu6510/Emu6510.swift" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Emu6510/Info.plist" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Emu6510/MemoryManager.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Sources/Emu6510/Emu6510.swift" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Emu6510/OpcodeData.swift" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Emu6510/Tools.swift" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Emu6510Tests/Emu6510Tests.swift" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Emu6510Tests/Info.plist" beforeDir="false" afterPath="$PROJECT_DIR$/Tests/Emu6510Tests/Info.plist" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Emu6510Tests/OpCodes.swift" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build.sh" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/Classes.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/Classes/C64MemoryManager.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/Classes/CPU65xx.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/Classes/Memory.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/Classes/Mos6502OpcodeInfo.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/Classes/RAMmemory.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/Classes/ROMmemory.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/Enums.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/Enums/Alignment.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/Enums/Bits8.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/Enums/InterruptType.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/Enums/MOS65xxFamily.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/Enums/Mos6502AddressModes.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/Enums/Mos6502Flags.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/Enums/Mos6502Opcodes.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/Enums/VideoStandard.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/Extensions.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/Extensions/String.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/Extensions/StringProtocol.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/Extensions/UnsignedInteger.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/Functions.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/Global Variables.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/Protocols.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/Protocols/AddressBusListener.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/Protocols/IOPortControler.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/Protocols/IOPortListener.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/Structs.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/Structs/Mos6502status.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/Typealiases.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/badge.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/css/highlight.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/css/jazzy.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Info.plist" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Classes.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Classes/C64MemoryManager.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Classes/CPU65xx.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Classes/Memory.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Classes/Mos6502OpcodeInfo.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Classes/RAMmemory.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Classes/ROMmemory.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Enums.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Enums/Alignment.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Enums/Bits8.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Enums/InterruptType.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Enums/MOS65xxFamily.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Enums/Mos6502AddressModes.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Enums/Mos6502Flags.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Enums/Mos6502Opcodes.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Enums/VideoStandard.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Extensions.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Extensions/String.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Extensions/StringProtocol.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Extensions/UnsignedInteger.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Functions.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Global Variables.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Protocols.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Protocols/AddressBusListener.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Protocols/IOPortControler.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Protocols/IOPortListener.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Structs.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Structs/Mos6502status.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Typealiases.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/css/highlight.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/css/jazzy.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/img/carat.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/img/dash.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/img/gh.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/index.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/js/jazzy.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/js/jquery.min.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/search.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/docSet.dsidx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/docsets/.tgz" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/img/carat.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/img/dash.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/img/gh.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/index.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/js/jazzy.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/js/jquery.min.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/search.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/undocumented.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jazzy.conf.yaml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/opcodes.txt" beforeDir="false" afterPath="$PROJECT_DIR$/Other/opcodes.txt" afterDir="false" />
-    </list>
+    <list default="true" id="87075da3-fef8-4e0e-a558-4c45fa2c2b82" name="Default Changelist" comment="Redo" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ChangesViewManager">
+    <option name="groupingKeys">
+      <option value="directory" />
+    </option>
   </component>
   <component name="ExecutionTargetManager" SELECTED_TARGET="macos_macos_x86_64" />
   <component name="ExternalProjectsData">
@@ -245,6 +45,12 @@
     </projectState>
   </component>
   <component name="Git.Settings">
+    <option name="PUSH_TAGS">
+      <GitPushTagMode>
+        <option name="argument" value="--tags" />
+        <option name="title" value="All" />
+      </GitPushTagMode>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="MacroExpansionManager">
@@ -306,8 +112,16 @@
       <workItem from="1600969845619" duration="805000" />
       <workItem from="1600970710628" duration="772000" />
       <workItem from="1600971505582" duration="1191000" />
-      <workItem from="1600973014032" duration="8017000" />
+      <workItem from="1600973014032" duration="8505000" />
     </task>
+    <task id="LOCAL-00001" summary="Redo">
+      <created>1600997267219</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1600997267219</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -324,6 +138,10 @@
       </map>
     </option>
     <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Redo" />
+    <option name="LAST_COMMIT_MESSAGE" value="Redo" />
   </component>
   <component name="WindowStateProjectService">
     <state x="744" y="202" width="1071" height="724" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1600972269152">
@@ -354,6 +172,10 @@
       <screen x="0" y="0" width="2560" height="1080" />
     </state>
     <state x="968" y="152" width="874" height="866" key="StringManipulation.SortTypeDialog/0.0.2560.1080@0.0.2560.1080" timestamp="1600980207486" />
+    <state x="440" y="265" key="Vcs.Push.Dialog.v2" timestamp="1600997353420">
+      <screen x="0" y="0" width="1680" height="1050" />
+    </state>
+    <state x="440" y="265" key="Vcs.Push.Dialog.v2/0.0.1680.1050@0.0.1680.1050" timestamp="1600997353420" />
     <state x="1010" y="459" key="vcs.readOnlyHandler.ReadOnlyStatusDialog" timestamp="1600970791655">
       <screen x="0" y="0" width="2560" height="1080" />
     </state>
