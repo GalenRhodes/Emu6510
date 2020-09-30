@@ -24,10 +24,32 @@
         <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
       </path>
     </expand>
-    <select />
+    <select>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="BRANCH:origin/master" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </select>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="87075da3-fef8-4e0e-a558-4c45fa2c2b82" name="Default Changelist" comment="Redo" />
+    <list default="true" id="87075da3-fef8-4e0e-a558-4c45fa2c2b82" name="Default Changelist" comment="Redo">
+      <change afterPath="$PROJECT_DIR$/Sources/Emu6510/CPU.swift" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Sources/Emu6510/CPUClock.swift" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Sources/Emu6510/ClockFrequencies.swift" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Sources/Emu6510/ClockWatcher.swift" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Sources/Emu6510/Emu6510Errors.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Emu6510.xcodeproj/project.pbxproj" beforeDir="false" afterPath="$PROJECT_DIR$/Emu6510.xcodeproj/project.pbxproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Other/65c02.csv" beforeDir="false" afterPath="$PROJECT_DIR$/Other/65c02.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Other/65c02_invalid.csv" beforeDir="false" afterPath="$PROJECT_DIR$/Other/65c02_invalid.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Sources/Emu6510/AddressModes.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Sources/Emu6510/AddressModes.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Sources/Emu6510/Emu6510.swift" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Sources/Emu6510/OpcodeInfo.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Sources/Emu6510/OpcodeInfo.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Sources/Emu6510/ProcessorFlags.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Sources/Emu6510/ProcessorFlags.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Sources/Tools/main.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Sources/Tools/main.swift" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -51,7 +73,13 @@
         <option name="title" value="All" />
       </GitPushTagMode>
     </option>
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="master" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="RESET_MODE" value="HARD" />
   </component>
   <component name="MacroExpansionManager">
     <option name="directoryName" value="6l84l83d" />
@@ -70,7 +98,7 @@
     <option name="sortByType" value="true" />
   </component>
   <component name="PropertiesComponent">
-    <property name="OBJC.PRESERVED_TARGET_SELECTION" value="" />
+    <property name="OBJC.PRESERVED_TARGET_SELECTION" value="Emu6510" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
@@ -83,16 +111,7 @@
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
   </component>
-  <component name="RunManager" selected="Application.Tools">
-    <configuration default="true" type="AppleRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" PASS_PARENT_ENVS_2="true" IS_LOCATION_SIMULATION_ALLOWED="true" APPLICATION_LANGUAGE="IDELaunchSchemeLanguageUseSystemLanguage" APPLICATION_REGION="" MAKE_ACTIVE="TRUE" SHOULD_DEBUG_EXTENSIONS="false">
-      <EXTENSION ID="org.jetbrains.appcode.reveal.RevealRunConfigurationExtension">
-        <REVEAL_SETTINGS autoInject="false" autoInstall="true" askToEnableAutoInstall="true" />
-      </EXTENSION>
-      <embedded_app_extension_list />
-      <method v="2">
-        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
-      </method>
-    </configuration>
+  <component name="RunManager" selected="Application.Emu6510">
     <list>
       <item itemvalue="Application.Emu6510 - All" />
       <item itemvalue="Application.Emu6510" />
@@ -112,7 +131,15 @@
       <workItem from="1600969845619" duration="805000" />
       <workItem from="1600970710628" duration="772000" />
       <workItem from="1600971505582" duration="1191000" />
-      <workItem from="1600973014032" duration="8505000" />
+      <workItem from="1600973014032" duration="16899000" />
+      <workItem from="1601038300411" duration="9312000" />
+      <workItem from="1601049015293" duration="13308000" />
+      <workItem from="1601137553836" duration="2103000" />
+      <workItem from="1601162388517" duration="7354000" />
+      <workItem from="1601213350087" duration="381000" />
+      <workItem from="1601219120068" duration="1719000" />
+      <workItem from="1601334227211" duration="575000" />
+      <workItem from="1601428951078" duration="323000" />
     </task>
     <task id="LOCAL-00001" summary="Redo">
       <created>1600997267219</created>
@@ -121,7 +148,14 @@
       <option name="project" value="LOCAL" />
       <updated>1600997267219</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Redo">
+      <created>1600997428966</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1600997428966</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -132,7 +166,20 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="BEK_SORT_TYPE" value="1" />
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="origin/master" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
           </value>
         </entry>
       </map>
@@ -148,37 +195,70 @@
       <screen x="0" y="0" width="2560" height="1080" />
     </state>
     <state x="744" y="202" width="1071" height="724" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.2560.1080@0.0.2560.1080" timestamp="1600972269152" />
-    <state width="1797" height="679" key="GridCell.Tab.0.bottom" timestamp="1600980058647">
+    <state x="1062" y="263" key="#com.intellij.ide.util.MemberChooser" timestamp="1601068301858">
       <screen x="0" y="0" width="2560" height="1080" />
     </state>
-    <state width="1797" height="679" key="GridCell.Tab.0.bottom/0.0.2560.1080@0.0.2560.1080" timestamp="1600980058647" />
-    <state width="1797" height="679" key="GridCell.Tab.0.center" timestamp="1600980058646">
-      <screen x="0" y="0" width="2560" height="1080" />
-    </state>
-    <state width="1797" height="679" key="GridCell.Tab.0.center/0.0.2560.1080@0.0.2560.1080" timestamp="1600980058646" />
-    <state width="1797" height="679" key="GridCell.Tab.0.left" timestamp="1600980058645">
-      <screen x="0" y="0" width="2560" height="1080" />
-    </state>
-    <state width="1797" height="679" key="GridCell.Tab.0.left/0.0.2560.1080@0.0.2560.1080" timestamp="1600980058645" />
-    <state width="1797" height="679" key="GridCell.Tab.0.right" timestamp="1600980058647">
-      <screen x="0" y="0" width="2560" height="1080" />
-    </state>
-    <state width="1797" height="679" key="GridCell.Tab.0.right/0.0.2560.1080@0.0.2560.1080" timestamp="1600980058647" />
-    <state x="818" y="202" key="StringManipulation.AlignToColumnsAction" timestamp="1600980334658">
-      <screen x="0" y="0" width="2560" height="1080" />
-    </state>
-    <state x="818" y="202" key="StringManipulation.AlignToColumnsAction/0.0.2560.1080@0.0.2560.1080" timestamp="1600980334658" />
-    <state x="968" y="152" width="874" height="866" key="StringManipulation.SortTypeDialog" timestamp="1600980207486">
-      <screen x="0" y="0" width="2560" height="1080" />
-    </state>
-    <state x="968" y="152" width="874" height="866" key="StringManipulation.SortTypeDialog/0.0.2560.1080@0.0.2560.1080" timestamp="1600980207486" />
-    <state x="440" y="265" key="Vcs.Push.Dialog.v2" timestamp="1600997353420">
+    <state x="1062" y="263" key="#com.intellij.ide.util.MemberChooser/0.0.2560.1080@0.0.2560.1080" timestamp="1601068301858" />
+    <state width="1572" height="793" key="GridCell.Tab.0.bottom" timestamp="1601124250916">
       <screen x="0" y="0" width="1680" height="1050" />
     </state>
-    <state x="440" y="265" key="Vcs.Push.Dialog.v2/0.0.1680.1050@0.0.1680.1050" timestamp="1600997353420" />
-    <state x="1010" y="459" key="vcs.readOnlyHandler.ReadOnlyStatusDialog" timestamp="1600970791655">
+    <state width="1572" height="793" key="GridCell.Tab.0.bottom/0.0.1680.1050@0.0.1680.1050" timestamp="1601124250916" />
+    <state width="1572" height="793" key="GridCell.Tab.0.bottom/0.0.2560.1080@0.0.2560.1080" timestamp="1601054977677" />
+    <state width="1572" height="793" key="GridCell.Tab.0.center" timestamp="1601124250913">
+      <screen x="0" y="0" width="1680" height="1050" />
+    </state>
+    <state width="1572" height="793" key="GridCell.Tab.0.center/0.0.1680.1050@0.0.1680.1050" timestamp="1601124250913" />
+    <state width="1572" height="793" key="GridCell.Tab.0.center/0.0.2560.1080@0.0.2560.1080" timestamp="1601054977676" />
+    <state width="1572" height="793" key="GridCell.Tab.0.left" timestamp="1601124250911">
+      <screen x="0" y="0" width="1680" height="1050" />
+    </state>
+    <state width="1572" height="793" key="GridCell.Tab.0.left/0.0.1680.1050@0.0.1680.1050" timestamp="1601124250911" />
+    <state width="1572" height="793" key="GridCell.Tab.0.left/0.0.2560.1080@0.0.2560.1080" timestamp="1601054977675" />
+    <state width="1572" height="793" key="GridCell.Tab.0.right" timestamp="1601124250915">
+      <screen x="0" y="0" width="1680" height="1050" />
+    </state>
+    <state width="1572" height="793" key="GridCell.Tab.0.right/0.0.1680.1050@0.0.1680.1050" timestamp="1601124250915" />
+    <state width="1572" height="793" key="GridCell.Tab.0.right/0.0.2560.1080@0.0.2560.1080" timestamp="1601054977677" />
+    <state width="1586" height="391" key="GridCell.Tab.1.bottom" timestamp="1601048991947">
       <screen x="0" y="0" width="2560" height="1080" />
     </state>
-    <state x="1010" y="459" key="vcs.readOnlyHandler.ReadOnlyStatusDialog/0.0.2560.1080@0.0.2560.1080" timestamp="1600970791655" />
+    <state width="1586" height="391" key="GridCell.Tab.1.bottom/0.0.2560.1080@0.0.2560.1080" timestamp="1601048991947" />
+    <state width="1586" height="391" key="GridCell.Tab.1.center" timestamp="1601048991946">
+      <screen x="0" y="0" width="2560" height="1080" />
+    </state>
+    <state width="1586" height="391" key="GridCell.Tab.1.center/0.0.2560.1080@0.0.2560.1080" timestamp="1601048991946" />
+    <state width="1586" height="391" key="GridCell.Tab.1.left" timestamp="1601048991945">
+      <screen x="0" y="0" width="2560" height="1080" />
+    </state>
+    <state width="1586" height="391" key="GridCell.Tab.1.left/0.0.2560.1080@0.0.2560.1080" timestamp="1601048991945" />
+    <state width="1586" height="391" key="GridCell.Tab.1.right" timestamp="1601048991946">
+      <screen x="0" y="0" width="2560" height="1080" />
+    </state>
+    <state width="1586" height="391" key="GridCell.Tab.1.right/0.0.2560.1080@0.0.2560.1080" timestamp="1601048991946" />
+    <state x="989" y="158" width="1056" height="836" key="StringManipulation.AlignToColumnsAction" timestamp="1601048803362">
+      <screen x="0" y="0" width="2560" height="1080" />
+    </state>
+    <state x="537" y="196" key="StringManipulation.AlignToColumnsAction/0.0.1680.1050@0.0.1680.1050" timestamp="1601003974607" />
+    <state x="989" y="158" width="1056" height="836" key="StringManipulation.AlignToColumnsAction/0.0.2560.1080@0.0.2560.1080" timestamp="1601048803362" />
+    <state x="968" y="152" key="StringManipulation.SortLinesBySubSelection" timestamp="1601044115203">
+      <screen x="0" y="0" width="2560" height="1080" />
+    </state>
+    <state x="968" y="152" key="StringManipulation.SortLinesBySubSelection/0.0.2560.1080@0.0.2560.1080" timestamp="1601044115203" />
+    <state x="918" y="152" key="StringManipulation.SortTokensDialog" timestamp="1601043647370">
+      <screen x="0" y="0" width="2560" height="1080" />
+    </state>
+    <state x="918" y="152" key="StringManipulation.SortTokensDialog/0.0.2560.1080@0.0.2560.1080" timestamp="1601043647370" />
+    <state x="968" y="152" width="874" height="866" key="StringManipulation.SortTypeDialog" timestamp="1601043624691">
+      <screen x="0" y="0" width="2560" height="1080" />
+    </state>
+    <state x="968" y="152" width="874" height="866" key="StringManipulation.SortTypeDialog/0.0.2560.1080@0.0.2560.1080" timestamp="1601043624691" />
+    <state x="440" y="265" key="Vcs.Push.Dialog.v2" timestamp="1600997898793">
+      <screen x="0" y="0" width="1680" height="1050" />
+    </state>
+    <state x="440" y="265" key="Vcs.Push.Dialog.v2/0.0.1680.1050@0.0.1680.1050" timestamp="1600997898793" />
+    <state x="1010" y="459" key="vcs.readOnlyHandler.ReadOnlyStatusDialog" timestamp="1601060537237">
+      <screen x="0" y="0" width="2560" height="1080" />
+    </state>
+    <state x="1010" y="459" key="vcs.readOnlyHandler.ReadOnlyStatusDialog/0.0.2560.1080@0.0.2560.1080" timestamp="1601060537237" />
   </component>
 </project>

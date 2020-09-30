@@ -5,3 +5,4 @@
 **/.DS_Store
 /.build
 **/*.sh
+/Emu6510.xcodeproj/project.xcworkspace/xcshareddata/swiftpm/Package.resolved

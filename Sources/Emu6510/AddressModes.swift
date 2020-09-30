@@ -22,18 +22,54 @@
 
 import Foundation
 
-public enum AddressModes: String {
-    case ABS  = "Absolute"
-    case ABSX = "AbsoluteX"
-    case ABSY = "AbsoluteY"
-    case ACC  = "Accumulator"
-    case IMM  = "Immediate"
-    case IMP  = "Implied"
-    case IND  = "Indirect"
-    case INDX = "IndirectX"
-    case INDY = "IndirectY"
-    case REL  = "Relative"
-    case ZP   = "ZeroPage"
-    case ZPX  = "ZeroPageX"
-    case ZPY  = "ZeroPageY"
+public enum AddressModes: CustomStringConvertible {
+    case ABS
+    case ABX
+    case ABY
+    case ACC
+    case IMM
+    case IMP
+    case IND
+    case IZX
+    case IZY
+    case REL
+    case ZPG
+    case ZPX
+    case ZPY
+
+    @inlinable public var description: String {
+        switch self {
+            case .ABS: return "ABS"
+            case .ABX: return "ABX"
+            case .ABY: return "ABY"
+            case .ACC: return "ACC"
+            case .IMM: return "IMM"
+            case .IMP: return "IMP"
+            case .IND: return "IND"
+            case .IZX: return "IZX"
+            case .IZY: return "IZY"
+            case .REL: return "REL"
+            case .ZPG: return "ZPG"
+            case .ZPX: return "ZPX"
+            case .ZPY: return "ZPY"
+        }
+    }
+
+    @inlinable public var byteCount: UInt8 {
+        switch self {
+            case .ABS: return 3
+            case .ABX: return 3
+            case .ABY: return 3
+            case .ACC: return 1
+            case .IMM: return 2
+            case .IMP: return 1
+            case .IND: return 3
+            case .IZX: return 2
+            case .IZY: return 2
+            case .REL: return 2
+            case .ZPG: return 2
+            case .ZPX: return 2
+            case .ZPY: return 2
+        }
+    }
 }

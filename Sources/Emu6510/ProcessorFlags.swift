@@ -22,6 +22,10 @@
 
 import Foundation
 
+infix operator ?=: ComparisonPrecedence
+
+@usableFromInline typealias PF = ProcessorFlags
+
 public enum ProcessorFlags: UInt8 {
     case Carry     = 1
     case Zero      = 2
@@ -30,4 +34,26 @@ public enum ProcessorFlags: UInt8 {
     case Break     = 16
     case Overflow  = 64
     case Negative  = 128
+
+    @inlinable public static func ?= <T: BinaryInteger>(lhs: T, rhs: ProcessorFlags) -> Bool {
+        ((UInt8(truncatingIfNeeded: lhs) & rhs.rawValue) == rhs.rawValue)
+    }
+
+    @inlinable var idChar: String {
+        switch self {
+            case .Carry: return "C"
+            case .Zero: return "Z"
+            case .Interrupt: return "I"
+            case .Decimal: return "D"
+            case .Break: return "B"
+            case .Overflow: return "O"
+            case .Negative: return "N"
+        }
+    }
+
+    @inlinable func s(_ flags: UInt8) -> String { ((flags ?= self) ? idChar : "_") }
+
+    @inlinable public static func flagsList(flags: UInt8) -> String {
+        PF.Negative.s(flags) + PF.Overflow.s(flags) + PF.Break.s(flags) + PF.Decimal.s(flags) + PF.Interrupt.s(flags) + PF.Zero.s(flags) + PF.Carry.s(flags)
+    }
 }
