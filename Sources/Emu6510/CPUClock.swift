@@ -21,66 +21,86 @@
  *//************************************************************************/
 
 import Foundation
-import Rubicon
 
-public class CPUClock {
+/*===============================================================================================================================*/
+/// The clock run modes.
+///
+@frozen public enum RunStatus: Int8 {
+    /*===========================================================================================================================*/
+    /// The clock has not yet been started.
+    ///
+    case NeverStarted = -1
+    /*===========================================================================================================================*/
+    /// The clock has been hard stopped and cannot be restarted.
+    ///
+    case Stopped = 0
+    /*===========================================================================================================================*/
+    /// The clock is running.
+    ///
+    case Running = 1
+    /*===========================================================================================================================*/
+    /// The clock is paused.
+    ///
+    case Paused  = 2
+}
 
-    public internal (set) var running: Bool = false
+public protocol CPUClock {
+    /*===========================================================================================================================*/
+    /// The clock frequency.
+    ///
+    var clockFrequency: ClockFrequencies { get set }
 
-    public let clock:    ClockFrequencies
-    public var isPaused: Bool = false
+    /*===========================================================================================================================*/
+    /// `true` if the clock is running. Read-only.
+    ///
+    var runStatus: RunStatus { get }
 
-    var watchers: Set<ClockWatcher> = []
-    var thread:   Thread?           = nil
-    let lock:     RecursiveLock     = RecursiveLock()
+    /*===========================================================================================================================*/
+    /// Starts the clock.
+    /// 
+    /// - Throws: `CPUErrors.AlreadyRunning` if the clock is already running.
+    /// - Throws: `CPUErrors.AlreadyStopped` if the clock has already been stopped.
+    ///
+    func start() throws
 
-    public init(clock: ClockFrequencies = .C64_NTSC) {
-        self.clock = clock
-    }
+    /*===========================================================================================================================*/
+    /// Pauses the clock.
+    /// 
+    /// - Throws: `CPUErrors.AlreadyPaused` if the clock is already paused.
+    /// - Throws: `CPUErrors.NotStarted` if the clock has never been started.
+    ///
+    func pause() throws
 
-    public func start() throws {
-        try lock.withLock {
-            guard thread == nil else { throw Emu6510Errors.AlreadyRunning }
-            guard !watchers.isEmpty else { throw Emu6510Errors.NoWatchers }
-            running = true
-            isPaused = false
-            thread = Thread { self.main() }
-            thread?.start()
-        }
-    }
+    /*===========================================================================================================================*/
+    /// Un-pauses the clock.
+    /// 
+    /// - Throws: `CPUErrors.NotPaused` if the clock is not paused.
+    /// - Throws: `CPUErrors.NotStarted` if the clock has never been started.
+    ///
+    func unPause() throws
 
-    public func stop() throws {
-        try lock.withLock {
-            guard thread != nil else { throw Emu6510Errors.NotRunning }
-            running = false
-            while thread?.isExecuting ?? false {}
-            thread = nil
-        }
-    }
+    /*===========================================================================================================================*/
+    /// Stops the clock permanently. After this call all of the resources have been released, the watchers have been removed, and
+    /// the clock CANNOT be restarted.
+    /// 
+    /// - Throws: `CPUErrors.AlreadyStopped` if the clock has already been stopped.
+    /// - Throws: `CPUErrors.NotStarted` if the clock has never been started.
+    ///
+    func stop() throws
 
-    open func main() {
-        let period:   UInt64 = clock.clockTick
-        var nextTick: UInt64 = (getSysTime() + period)
+    /*===========================================================================================================================*/
+    /// Adds a watcher to this clock.
+    /// 
+    /// - Parameter watcher: the watcher to add. If the watcher is already watching this clock then calling this method has no
+    ///                      effect.
+    ///
+    func addWatcher(_ watcher: ClockWatcher)
 
-        while running {
-            if !isPaused && getSysTime() >= nextTick {
-                for watcher: ClockWatcher in watchers { watcher.trigger = false }
-                nextTick += period
-            }
-        }
-    }
-
-    public func addWatcher(_ watcher: ClockWatcher) throws {
-        try lock.withLock {
-            guard !running else { throw Emu6510Errors.AlreadyRunning }
-            watchers.insert(watcher)
-        }
-    }
-
-    public func removeWatcher(_ watcher: ClockWatcher) throws {
-        try lock.withLock {
-            guard !running else { throw Emu6510Errors.AlreadyRunning }
-            watchers.remove(watcher)
-        }
-    }
+    /*===========================================================================================================================*/
+    /// Removes a watcher from this clock.
+    /// 
+    /// - Parameter watcher: the watcher to remove. If the watcher is not actually watching this clock then calling this method has
+    ///                      no effect.
+    ///
+    func removeWatcher(_ watcher: ClockWatcher)
 }

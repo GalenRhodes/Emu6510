@@ -22,7 +22,7 @@
 
 import Foundation
 
-public enum ClockFrequencies {
+@frozen public enum ClockFrequencies {
     case C64_NTSC
     case C64_PAL
     case C128_NTSC
@@ -39,7 +39,5 @@ public enum ClockFrequencies {
         }
     }
 
-    @inlinable public var clockTick: UInt64 {
-        UInt64((1000000000.0 / Double(frequency)) + 0.5)
-    }
+    @inlinable public var clockCycle: UInt64 { (1000000000 / UInt64(frequency)) }
 }

@@ -27,25 +27,37 @@
     <select>
       <path>
         <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
-        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
-        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
-        <item name="BRANCH:origin/master" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="BRANCH:master" type="e8cecc67:BranchNodeDescriptor" />
       </path>
     </select>
   </component>
   <component name="ChangeListManager">
     <list default="true" id="87075da3-fef8-4e0e-a558-4c45fa2c2b82" name="Default Changelist" comment="Redo">
-      <change afterPath="$PROJECT_DIR$/Sources/Emu6510/CPU.swift" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Sources/Emu6510/CPUClock.swift" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Sources/Emu6510/ClockFrequencies.swift" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Sources/Emu6510/ClockWatcher.swift" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Sources/Emu6510/Emu6510Errors.swift" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Sources/Emu6510/AddressBuss.swift" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Sources/Emu6510/CPU6502.swift" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Sources/Emu6510/CPU6510.swift" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Sources/Emu6510/CPU65xx.swift" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Sources/Emu6510/Memory.swift" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Sources/Emu6510/Utils.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/runConfigurations/DocFixer.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/runConfigurations/DocFixer.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/runConfigurations/Tools.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/runConfigurations/Tools.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Emu6510.xcodeproj/project.pbxproj" beforeDir="false" afterPath="$PROJECT_DIR$/Emu6510.xcodeproj/project.pbxproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Other/65c02.csv" beforeDir="false" afterPath="$PROJECT_DIR$/Other/65c02.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Other/65c02_invalid.csv" beforeDir="false" afterPath="$PROJECT_DIR$/Other/65c02_invalid.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Emu6510.xcodeproj/xcshareddata/xcschemes/DocFixer.xcscheme" beforeDir="false" afterPath="$PROJECT_DIR$/Emu6510.xcodeproj/xcshareddata/xcschemes/DocFixer.xcscheme" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Emu6510.xcodeproj/xcshareddata/xcschemes/Emu6510 - All.xcscheme" beforeDir="false" afterPath="$PROJECT_DIR$/Emu6510.xcodeproj/xcshareddata/xcschemes/Emu6510 - All.xcscheme" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Emu6510.xcodeproj/xcshareddata/xcschemes/Emu6510 Tests.xcscheme" beforeDir="false" afterPath="$PROJECT_DIR$/Emu6510.xcodeproj/xcshareddata/xcschemes/Emu6510 Tests.xcscheme" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Emu6510.xcodeproj/xcshareddata/xcschemes/Emu6510.xcscheme" beforeDir="false" afterPath="$PROJECT_DIR$/Emu6510.xcodeproj/xcshareddata/xcschemes/Emu6510.xcscheme" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Emu6510.xcodeproj/xcshareddata/xcschemes/Tools.xcscheme" beforeDir="false" afterPath="$PROJECT_DIR$/Emu6510.xcodeproj/xcshareddata/xcschemes/Tools.xcscheme" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Emu6510.xcodeproj/xcuserdata/grhodes.xcuserdatad/xcschemes/xcschememanagement.plist" beforeDir="false" afterPath="$PROJECT_DIR$/Emu6510.xcodeproj/xcuserdata/grhodes.xcuserdatad/xcschemes/xcschememanagement.plist" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Sources/DocFixer/main.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Sources/DocFixer/main.swift" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Sources/Emu6510/AddressModes.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Sources/Emu6510/AddressModes.swift" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Sources/Emu6510/Emu6510.swift" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Sources/Emu6510/CPU.swift" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Sources/Emu6510/CPUClock.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Sources/Emu6510/CPUClock.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Sources/Emu6510/ClockFrequencies.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Sources/Emu6510/ClockFrequencies.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Sources/Emu6510/ClockWatcher.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Sources/Emu6510/ClockWatcher.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Sources/Emu6510/Emu6510Errors.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Sources/Emu6510/CPUErrors.swift" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Sources/Emu6510/OpcodeInfo.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Sources/Emu6510/OpcodeInfo.swift" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Sources/Emu6510/ProcessorFlags.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Sources/Emu6510/ProcessorFlags.swift" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Sources/Tools/main.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Sources/Tools/main.swift" afterDir="false" />
@@ -81,6 +93,9 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
     <option name="RESET_MODE" value="HARD" />
   </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/Sources/Emu6510/CPU6502.swift" root0="SKIP_INSPECTION" />
+  </component>
   <component name="MacroExpansionManager">
     <option name="directoryName" value="6l84l83d" />
   </component>
@@ -102,6 +117,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="com.intellij.ide.scratch.LRUPopupBuilder$1/New Scratch File" value="TEXT" />
     <property name="dart.analysis.tool.window.visible" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/Emu6510.xcodeproj" />
     <property name="node.js.detected.package.eslint" value="true" />
@@ -110,13 +126,20 @@
     <property name="node.js.path.for.package.tslint" value="project" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
+    <property name="nodejs_package_manager_path" value="npm" />
+    <property name="settings.editor.selected.configurable" value="editor.preferences.appearance" />
   </component>
-  <component name="RunManager" selected="Application.Emu6510">
+  <component name="RunManager" selected="Application.DocFixer">
+    <configuration default="true" type="Application" factoryName="Application">
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <list>
-      <item itemvalue="Application.Emu6510 - All" />
       <item itemvalue="Application.Emu6510" />
-      <item itemvalue="Application.DocFixer" />
       <item itemvalue="Application.Tools" />
+      <item itemvalue="Application.Emu6510 - All" />
+      <item itemvalue="Application.DocFixer" />
       <item itemvalue="XCTest.Emu6510 Tests" />
     </list>
   </component>
@@ -139,7 +162,25 @@
       <workItem from="1601213350087" duration="381000" />
       <workItem from="1601219120068" duration="1719000" />
       <workItem from="1601334227211" duration="575000" />
-      <workItem from="1601428951078" duration="323000" />
+      <workItem from="1601428951078" duration="1404000" />
+      <workItem from="1601470930781" duration="598000" />
+      <workItem from="1601479361341" duration="99000" />
+      <workItem from="1601479533471" duration="93000" />
+      <workItem from="1601578061511" duration="4488000" />
+      <workItem from="1601595163098" duration="11208000" />
+      <workItem from="1601647671910" duration="2227000" />
+      <workItem from="1601652072844" duration="18192000" />
+      <workItem from="1601726714854" duration="21574000" />
+      <workItem from="1601903343938" duration="441000" />
+      <workItem from="1601911594539" duration="4202000" />
+      <workItem from="1601917967566" duration="29000" />
+      <workItem from="1601918132244" duration="15223000" />
+      <workItem from="1601984700176" duration="22978000" />
+      <workItem from="1602082277634" duration="13084000" />
+      <workItem from="1602097880405" duration="2583000" />
+      <workItem from="1602164435472" duration="14362000" />
+      <workItem from="1602182220400" duration="2945000" />
+      <workItem from="1602209710451" duration="680000" />
     </task>
     <task id="LOCAL-00001" summary="Redo">
       <created>1600997267219</created>
@@ -155,7 +196,14 @@
       <option name="project" value="LOCAL" />
       <updated>1600997428966</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Redo">
+      <created>1601429373274</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1601429373274</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -173,7 +221,7 @@
                   <entry key="branch">
                     <value>
                       <list>
-                        <option value="origin/master" />
+                        <option value="master" />
                       </list>
                     </value>
                   </entry>
@@ -187,78 +235,13 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
+    <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
+    <option name="CHECK_CODE_CLEANUP_BEFORE_PROJECT_COMMIT" value="true" />
+    <option name="CHECK_NEW_TODO" value="false" />
     <MESSAGE value="Redo" />
     <option name="LAST_COMMIT_MESSAGE" value="Redo" />
-  </component>
-  <component name="WindowStateProjectService">
-    <state x="744" y="202" width="1071" height="724" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1600972269152">
-      <screen x="0" y="0" width="2560" height="1080" />
-    </state>
-    <state x="744" y="202" width="1071" height="724" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.2560.1080@0.0.2560.1080" timestamp="1600972269152" />
-    <state x="1062" y="263" key="#com.intellij.ide.util.MemberChooser" timestamp="1601068301858">
-      <screen x="0" y="0" width="2560" height="1080" />
-    </state>
-    <state x="1062" y="263" key="#com.intellij.ide.util.MemberChooser/0.0.2560.1080@0.0.2560.1080" timestamp="1601068301858" />
-    <state width="1572" height="793" key="GridCell.Tab.0.bottom" timestamp="1601124250916">
-      <screen x="0" y="0" width="1680" height="1050" />
-    </state>
-    <state width="1572" height="793" key="GridCell.Tab.0.bottom/0.0.1680.1050@0.0.1680.1050" timestamp="1601124250916" />
-    <state width="1572" height="793" key="GridCell.Tab.0.bottom/0.0.2560.1080@0.0.2560.1080" timestamp="1601054977677" />
-    <state width="1572" height="793" key="GridCell.Tab.0.center" timestamp="1601124250913">
-      <screen x="0" y="0" width="1680" height="1050" />
-    </state>
-    <state width="1572" height="793" key="GridCell.Tab.0.center/0.0.1680.1050@0.0.1680.1050" timestamp="1601124250913" />
-    <state width="1572" height="793" key="GridCell.Tab.0.center/0.0.2560.1080@0.0.2560.1080" timestamp="1601054977676" />
-    <state width="1572" height="793" key="GridCell.Tab.0.left" timestamp="1601124250911">
-      <screen x="0" y="0" width="1680" height="1050" />
-    </state>
-    <state width="1572" height="793" key="GridCell.Tab.0.left/0.0.1680.1050@0.0.1680.1050" timestamp="1601124250911" />
-    <state width="1572" height="793" key="GridCell.Tab.0.left/0.0.2560.1080@0.0.2560.1080" timestamp="1601054977675" />
-    <state width="1572" height="793" key="GridCell.Tab.0.right" timestamp="1601124250915">
-      <screen x="0" y="0" width="1680" height="1050" />
-    </state>
-    <state width="1572" height="793" key="GridCell.Tab.0.right/0.0.1680.1050@0.0.1680.1050" timestamp="1601124250915" />
-    <state width="1572" height="793" key="GridCell.Tab.0.right/0.0.2560.1080@0.0.2560.1080" timestamp="1601054977677" />
-    <state width="1586" height="391" key="GridCell.Tab.1.bottom" timestamp="1601048991947">
-      <screen x="0" y="0" width="2560" height="1080" />
-    </state>
-    <state width="1586" height="391" key="GridCell.Tab.1.bottom/0.0.2560.1080@0.0.2560.1080" timestamp="1601048991947" />
-    <state width="1586" height="391" key="GridCell.Tab.1.center" timestamp="1601048991946">
-      <screen x="0" y="0" width="2560" height="1080" />
-    </state>
-    <state width="1586" height="391" key="GridCell.Tab.1.center/0.0.2560.1080@0.0.2560.1080" timestamp="1601048991946" />
-    <state width="1586" height="391" key="GridCell.Tab.1.left" timestamp="1601048991945">
-      <screen x="0" y="0" width="2560" height="1080" />
-    </state>
-    <state width="1586" height="391" key="GridCell.Tab.1.left/0.0.2560.1080@0.0.2560.1080" timestamp="1601048991945" />
-    <state width="1586" height="391" key="GridCell.Tab.1.right" timestamp="1601048991946">
-      <screen x="0" y="0" width="2560" height="1080" />
-    </state>
-    <state width="1586" height="391" key="GridCell.Tab.1.right/0.0.2560.1080@0.0.2560.1080" timestamp="1601048991946" />
-    <state x="989" y="158" width="1056" height="836" key="StringManipulation.AlignToColumnsAction" timestamp="1601048803362">
-      <screen x="0" y="0" width="2560" height="1080" />
-    </state>
-    <state x="537" y="196" key="StringManipulation.AlignToColumnsAction/0.0.1680.1050@0.0.1680.1050" timestamp="1601003974607" />
-    <state x="989" y="158" width="1056" height="836" key="StringManipulation.AlignToColumnsAction/0.0.2560.1080@0.0.2560.1080" timestamp="1601048803362" />
-    <state x="968" y="152" key="StringManipulation.SortLinesBySubSelection" timestamp="1601044115203">
-      <screen x="0" y="0" width="2560" height="1080" />
-    </state>
-    <state x="968" y="152" key="StringManipulation.SortLinesBySubSelection/0.0.2560.1080@0.0.2560.1080" timestamp="1601044115203" />
-    <state x="918" y="152" key="StringManipulation.SortTokensDialog" timestamp="1601043647370">
-      <screen x="0" y="0" width="2560" height="1080" />
-    </state>
-    <state x="918" y="152" key="StringManipulation.SortTokensDialog/0.0.2560.1080@0.0.2560.1080" timestamp="1601043647370" />
-    <state x="968" y="152" width="874" height="866" key="StringManipulation.SortTypeDialog" timestamp="1601043624691">
-      <screen x="0" y="0" width="2560" height="1080" />
-    </state>
-    <state x="968" y="152" width="874" height="866" key="StringManipulation.SortTypeDialog/0.0.2560.1080@0.0.2560.1080" timestamp="1601043624691" />
-    <state x="440" y="265" key="Vcs.Push.Dialog.v2" timestamp="1600997898793">
-      <screen x="0" y="0" width="1680" height="1050" />
-    </state>
-    <state x="440" y="265" key="Vcs.Push.Dialog.v2/0.0.1680.1050@0.0.1680.1050" timestamp="1600997898793" />
-    <state x="1010" y="459" key="vcs.readOnlyHandler.ReadOnlyStatusDialog" timestamp="1601060537237">
-      <screen x="0" y="0" width="2560" height="1080" />
-    </state>
-    <state x="1010" y="459" key="vcs.readOnlyHandler.ReadOnlyStatusDialog/0.0.2560.1080@0.0.2560.1080" timestamp="1601060537237" />
+    <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
+    <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
+    <option name="REARRANGE_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
 </project>

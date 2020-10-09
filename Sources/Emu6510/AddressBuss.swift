@@ -1,9 +1,9 @@
 /************************************************************************//**
  *     PROJECT: Emu6510
- *    FILENAME: Emu6510Errors.swift
+ *    FILENAME: AddressBuss.swift
  *         IDE: AppCode
  *      AUTHOR: Galen Rhodes
- *        DATE: 9/26/20
+ *        DATE: 10/2/20
  *
  * Copyright © 2020 Galen Rhodes. All rights reserved.
  *
@@ -21,11 +21,18 @@
  *//************************************************************************/
 
 import Foundation
+import Rubicon
 
-public enum Emu6510Errors: Error {
-    case AlreadyRunning
-    case NotRunning
-    case NoWatchers
-    case NoClosure
+public protocol AddressBuss: AnyObject {
+
+    subscript(address: UInt16) -> UInt8 { get set }
 }
 
+public extension AddressBuss {
+
+    @inlinable subscript(address: UInt8) -> UInt8 {
+        get { self[UInt16(address)] }
+        set { self[UInt16(address)] = newValue }
+    }
+
+}

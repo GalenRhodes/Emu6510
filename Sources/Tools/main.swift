@@ -18,27 +18,11 @@ let rxCycles: RegEx = try! RegEx(pattern: "/")
 var shouldBe: UInt8 = 0
 
 extension OpcodeInfo {
-    @inlinable var cyclesList: String {
-        var str:   String = ""
-        var first: Bool   = true
-
-        for cc: UInt8 in cycleCount {
-            if first {
-                first = false
-                str += "\(cc)"
-            }
-            else {
-                str += ", \(cc)"
-            }
-        }
-        return str
-    }
-
     @inlinable var handlerName: String { "process\(mnemonic)" }
     @inlinable var opcodeAsHex: String { ((opcode < 16) ? "0x0\(String(opcode, radix: 16, uppercase: false))" : "0x\(String(opcode, radix: 16, uppercase: false))") }
 
     func printInit() {
-        print("OpcodeInfo(opcode: \(opcodeAsHex), mnemonic: \"\(mnemonic)\", addrMode: .\(addressingMode), isInvalid: \(isInvalid), cycleCount: [ \(cyclesList) ]", terminator: "")
+        print("OpcodeInfo(opcode: \(opcodeAsHex), mnemonic: \"\(mnemonic)\", addrMode: .\(addressingMode), isInvalid: \(isInvalid), cycleCount: \(cycleCount)", terminator: "")
         if affectedFlags == 0 { print("),") }
         else { print(", affectedFlags: \(ProcessorFlags.flagsList(flags: affectedFlags))),") }
     }

@@ -21,54 +21,45 @@
  *//************************************************************************/
 
 import Foundation
-import Rubicon
 
-public class ClockWatcher: Hashable {
+public protocol _ClockWatcher: AnyObject {
 
-    let uuid:    String         = UUID().uuidString
-    let lock:    RecursiveLock  = RecursiveLock()
-    var thread:  Thread?        = nil
-    var closure: PGThreadBlock? = nil
+    var isRunning: Bool { get }
+    var isPaused:  Bool { get set }
+    var isStopped: Bool { get }
+    var trigger:   Bool { get set }
+    var skip:      UInt8 { get }
 
-    public internal(set) var running: Bool = false
-    public var trigger: Bool = false
+    func hardStop()
 
-    public init() {
-    }
+    func start() throws
 
-    public func start() throws {
-        try lock.withLock {
-            guard thread == nil else { throw Emu6510Errors.AlreadyRunning }
-            guard closure != nil else { throw Emu6510Errors.NoClosure }
-            trigger = true
-            running = true
-            thread = Thread { self.main() }
-            thread!.start()
-        }
-    }
-
-    public func stop() throws {
-        try lock.withLock {
-            guard thread != nil else { throw Emu6510Errors.NotRunning }
-            running = false
-            trigger = false
-            while thread?.isExecuting ?? false {}
-            thread = nil
-        }
-    }
-
-    func main() {
-        while running {
-            while running && trigger {}
-            if let closure: PGThreadBlock = closure, running {
-                trigger = true
-                closure()
-            }
-        }
-    }
-
-    public func hash(into hasher: inout Hasher) { hasher.combine(uuid) }
-
-    public static func == (lhs: ClockWatcher, rhs: ClockWatcher) -> Bool { lhs === rhs }
+    func stop() throws
 }
 
+open class ClockWatcher: _ClockWatcher, Hashable {
+
+    open var isPaused:  Bool {
+        get { false }
+        set {}
+    }
+    open var trigger:   Bool {
+        get { false }
+        set {}
+    }
+    open var isRunning: Bool { false }
+    open var isStopped: Bool { false }
+    open var skip:      UInt8 { 0 }
+
+    open func hardStop() {}
+
+    open func start() throws {}
+
+    open func stop() throws {}
+
+    @usableFromInline let uuid: String = UUID().uuidString
+
+    @inlinable open func hash(into hasher: inout Hasher) { hasher.combine(uuid) }
+
+    @inlinable public static func == (lhs: ClockWatcher, rhs: ClockWatcher) -> Bool { lhs === rhs }
+}
