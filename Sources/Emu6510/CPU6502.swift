@@ -596,7 +596,7 @@ public class CPU6502: CPU65xx {
     @inlinable func doBranchOnCondition(offset: UInt8, cond: Bool) {
         if cond {
             let pc: UInt16 = (_pc &+ 2)
-            let ad: UInt16 = ((offset < 128) ? (pc + UInt16(offset)) : (pc - UInt16(~(offset - 1))))
+            let ad: UInt16 = ((offset < 128) ? (pc + UInt16(offset)) : (pc - UInt16(~~offset)))
             _nextOpTime &+= (onSamePage(pc, ad) ? _cycle : (_cycle * 2))
         }
     }

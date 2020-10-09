@@ -34,33 +34,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="87075da3-fef8-4e0e-a558-4c45fa2c2b82" name="Default Changelist" comment="Redo">
-      <change afterPath="$PROJECT_DIR$/Sources/Emu6510/AddressBuss.swift" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Sources/Emu6510/CPU6502.swift" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Sources/Emu6510/CPU6510.swift" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Sources/Emu6510/CPU65xx.swift" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Sources/Emu6510/Memory.swift" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Sources/Emu6510/Utils.swift" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/runConfigurations/DocFixer.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/runConfigurations/DocFixer.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/runConfigurations/Tools.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/runConfigurations/Tools.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Emu6510.xcodeproj/project.pbxproj" beforeDir="false" afterPath="$PROJECT_DIR$/Emu6510.xcodeproj/project.pbxproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Emu6510.xcodeproj/xcshareddata/xcschemes/DocFixer.xcscheme" beforeDir="false" afterPath="$PROJECT_DIR$/Emu6510.xcodeproj/xcshareddata/xcschemes/DocFixer.xcscheme" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Emu6510.xcodeproj/xcshareddata/xcschemes/Emu6510 - All.xcscheme" beforeDir="false" afterPath="$PROJECT_DIR$/Emu6510.xcodeproj/xcshareddata/xcschemes/Emu6510 - All.xcscheme" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Emu6510.xcodeproj/xcshareddata/xcschemes/Emu6510 Tests.xcscheme" beforeDir="false" afterPath="$PROJECT_DIR$/Emu6510.xcodeproj/xcshareddata/xcschemes/Emu6510 Tests.xcscheme" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Emu6510.xcodeproj/xcshareddata/xcschemes/Emu6510.xcscheme" beforeDir="false" afterPath="$PROJECT_DIR$/Emu6510.xcodeproj/xcshareddata/xcschemes/Emu6510.xcscheme" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Emu6510.xcodeproj/xcshareddata/xcschemes/Tools.xcscheme" beforeDir="false" afterPath="$PROJECT_DIR$/Emu6510.xcodeproj/xcshareddata/xcschemes/Tools.xcscheme" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Emu6510.xcodeproj/xcuserdata/grhodes.xcuserdatad/xcschemes/xcschememanagement.plist" beforeDir="false" afterPath="$PROJECT_DIR$/Emu6510.xcodeproj/xcuserdata/grhodes.xcuserdatad/xcschemes/xcschememanagement.plist" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Sources/DocFixer/main.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Sources/DocFixer/main.swift" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Sources/Emu6510/AddressModes.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Sources/Emu6510/AddressModes.swift" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Sources/Emu6510/CPU.swift" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Sources/Emu6510/CPUClock.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Sources/Emu6510/CPUClock.swift" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Sources/Emu6510/ClockFrequencies.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Sources/Emu6510/ClockFrequencies.swift" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Sources/Emu6510/ClockWatcher.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Sources/Emu6510/ClockWatcher.swift" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Sources/Emu6510/Emu6510Errors.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Sources/Emu6510/CPUErrors.swift" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Sources/Emu6510/OpcodeInfo.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Sources/Emu6510/OpcodeInfo.swift" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Sources/Emu6510/ProcessorFlags.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Sources/Emu6510/ProcessorFlags.swift" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Sources/Tools/main.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Sources/Tools/main.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Sources/Emu6510/CPU6502.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Sources/Emu6510/CPU6502.swift" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -180,7 +155,7 @@
       <workItem from="1602097880405" duration="2583000" />
       <workItem from="1602164435472" duration="14362000" />
       <workItem from="1602182220400" duration="2945000" />
-      <workItem from="1602209710451" duration="680000" />
+      <workItem from="1602209710451" duration="2437000" />
     </task>
     <task id="LOCAL-00001" summary="Redo">
       <created>1600997267219</created>
@@ -203,7 +178,14 @@
       <option name="project" value="LOCAL" />
       <updated>1601429373274</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Redo">
+      <created>1602210661922</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1602210661922</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -215,6 +197,11 @@
         <entry key="MAIN">
           <value>
             <State>
+              <option name="CUSTOM_BOOLEAN_PROPERTIES">
+                <map>
+                  <entry key="Show.Git.Branches" value="true" />
+                </map>
+              </option>
               <option name="BEK_SORT_TYPE" value="1" />
               <option name="FILTERS">
                 <map>
