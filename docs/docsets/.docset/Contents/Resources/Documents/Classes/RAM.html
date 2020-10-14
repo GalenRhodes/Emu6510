@@ -14,7 +14,7 @@
     <a title="RAM Class Reference"></a>
     <header>
       <div class="content-wrapper">
-        <p><a href="../index.html">Emu6510©</a> (42% documented)</p>
+        <p><a href="../index.html">Emu6510©</a> (40% documented)</p>
         <p class="header-right"><a href="https://github.com/GalenRhodes/Emu6510"><img src="../img/gh.png"/>View on GitHub</a></p>
       </div>
     </header>
@@ -38,9 +38,6 @@
                 <a href="../Classes/CPU6510.html">CPU6510</a>
               </li>
               <li class="nav-group-task">
-                <a href="../Classes/ClockWatcher.html">ClockWatcher</a>
-              </li>
-              <li class="nav-group-task">
                 <a href="../Classes/OpcodeInfo.html">OpcodeInfo</a>
               </li>
               <li class="nav-group-task">
@@ -48,14 +45,6 @@
               </li>
               <li class="nav-group-task">
                 <a href="../Classes/ROM.html">ROM</a>
-              </li>
-            </ul>
-          </li>
-          <li class="nav-group-name">
-            <a href="../Global%20Variables.html">Global Variables</a>
-            <ul class="nav-group-tasks">
-              <li class="nav-group-task">
-                <a href="../Global%20Variables.html#/s:7Emu65100A7OpcodesSayAA10OpcodeInfoCGvp">Emu6510Opcodes</a>
               </li>
             </ul>
           </li>
@@ -80,6 +69,17 @@
             </ul>
           </li>
           <li class="nav-group-name">
+            <a href="../Extensions.html">Extensions</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Extensions/Array.html">Array</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/Dictionary.html">Dictionary</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
             <a href="../Functions.html">Functions</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
@@ -93,9 +93,6 @@
               </li>
               <li class="nav-group-task">
                 <a href="../Functions.html#/s:7Emu65108makeWord2lo2hi6offsetSb19pageBoundaryCrossed_s6UInt16V7addressts5UInt8V_A2KtF">makeWord(lo:hi:offset:)</a>
-              </li>
-              <li class="nav-group-task">
-                <a href="../Functions.html#/s:7Emu651010onSamePageySbs6UInt16V_ADtF">onSamePage(_:_:)</a>
               </li>
             </ul>
           </li>
@@ -112,10 +109,27 @@
                 <a href="../Protocols/CPUClock.html">CPUClock</a>
               </li>
               <li class="nav-group-task">
-                <a href="../Protocols/RandomAccessMemory.html">RandomAccessMemory</a>
+                <a href="../Protocols/ClockWatcher.html">ClockWatcher</a>
               </li>
               <li class="nav-group-task">
-                <a href="../Protocols/_5FClockWatcher.html">_ClockWatcher</a>
+                <a href="../Protocols/RandomAccessMemory.html">RandomAccessMemory</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Structs.html">Structures</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Structs/AnyAddressBuss.html">AnyAddressBuss</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/AnyCPU65xx.html">AnyCPU65xx</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/AnyCPUClock.html">AnyCPUClock</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/AnyClockWatcher.html">AnyClockWatcher</a>
               </li>
             </ul>
           </li>
@@ -179,9 +193,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:7Emu65103RAMC15startingAddresss6UInt16Vvp"></a>
-                    <a class="dashAnchor" name="//apple_ref/swift/Property/startingAddress"></a>
-                    <a class="token" href="#/s:7Emu65103RAMC15startingAddresss6UInt16Vvp">startingAddress</a>
+                    <a name="/s:7Emu65103RAMC12startAddressSivp"></a>
+                    <a class="dashAnchor" name="//apple_ref/swift/Property/startAddress"></a>
+                    <a class="token" href="#/s:7Emu65103RAMC12startAddressSivp">startAddress</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -195,7 +209,7 @@
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">let</span> <span class="nv">startingAddress</span><span class="p">:</span> <span class="kt">UInt16</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">let</span> <span class="nv">startAddress</span><span class="p">:</span> <span class="kt">Int</span></code></pre>
 
                         </div>
                       </div>
@@ -208,9 +222,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:7Emu65103RAMC13endingAddresss6UInt16Vvp"></a>
-                    <a class="dashAnchor" name="//apple_ref/swift/Property/endingAddress"></a>
-                    <a class="token" href="#/s:7Emu65103RAMC13endingAddresss6UInt16Vvp">endingAddress</a>
+                    <a name="/s:7Emu65103RAMC10endAddressSivp"></a>
+                    <a class="dashAnchor" name="//apple_ref/swift/Property/endAddress"></a>
+                    <a class="token" href="#/s:7Emu65103RAMC10endAddressSivp">endAddress</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -224,7 +238,7 @@
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">let</span> <span class="nv">endingAddress</span><span class="p">:</span> <span class="kt">UInt16</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">let</span> <span class="nv">endAddress</span><span class="p">:</span> <span class="kt">Int</span></code></pre>
 
                         </div>
                       </div>
@@ -237,9 +251,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:7Emu65103RAMC4sizeSivp"></a>
-                    <a class="dashAnchor" name="//apple_ref/swift/Property/size"></a>
-                    <a class="token" href="#/s:7Emu65103RAMC4sizeSivp">size</a>
+                    <a name="/s:7Emu65103RAMC5countSivp"></a>
+                    <a class="dashAnchor" name="//apple_ref/swift/Property/count"></a>
+                    <a class="token" href="#/s:7Emu65103RAMC5countSivp">count</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -253,7 +267,8 @@
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">let</span> <span class="nv">size</span><span class="p">:</span> <span class="kt">Int</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">@inlinable</span>
+<span class="kd">public</span> <span class="k">var</span> <span class="nv">count</span><span class="p">:</span> <span class="kt">Int</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
 
                         </div>
                       </div>
@@ -266,9 +281,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:7Emu65103RAMC5start3endACs6UInt16V_AGtcfc"></a>
+                    <a name="/s:7Emu65103RAMC5start3endACSi_Sitcfc"></a>
                     <a class="dashAnchor" name="//apple_ref/swift/Method/init(start:end:)"></a>
-                    <a class="token" href="#/s:7Emu65103RAMC5start3endACs6UInt16V_AGtcfc">init(start:end:)</a>
+                    <a class="token" href="#/s:7Emu65103RAMC5start3endACSi_Sitcfc">init(start:end:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -282,12 +297,12 @@
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">convenience</span> <span class="nf">init</span><span class="p">(</span><span class="nv">start</span><span class="p">:</span> <span class="kt">UInt16</span><span class="p">,</span> <span class="nv">end</span><span class="p">:</span> <span class="kt">UInt16</span><span class="p">)</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">convenience</span> <span class="nf">init</span><span class="p">(</span><span class="nv">start</span><span class="p">:</span> <span class="kt">Int</span><span class="p">,</span> <span class="nv">end</span><span class="p">:</span> <span class="kt">Int</span><span class="p">)</span></code></pre>
 
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/GalenRhodes/Emu6510/blob/master/Sources/Emu6510/Memory.swift#L58-L60">Show on GitHub</a>
+                        <a href="https://github.com/GalenRhodes/Emu6510/blob/master/Sources/Emu6510/Memory.swift#L69-L71">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -316,7 +331,7 @@
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/GalenRhodes/Emu6510/blob/master/Sources/Emu6510/Memory.swift#L67-L72">Show on GitHub</a>
+                        <a href="https://github.com/GalenRhodes/Emu6510/blob/master/Sources/Emu6510/Memory.swift#L78-L83">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -345,7 +360,7 @@
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/GalenRhodes/Emu6510/blob/master/Sources/Emu6510/Memory.swift#L74-L79">Show on GitHub</a>
+                        <a href="https://github.com/GalenRhodes/Emu6510/blob/master/Sources/Emu6510/Memory.swift#L85-L90">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -353,9 +368,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:7Emu65103RAMCys5UInt8Vs6UInt16Vcip"></a>
+                    <a name="/s:7Emu65103RAMCys5UInt8VSicip"></a>
                     <a class="dashAnchor" name="//apple_ref/swift/Method/subscript(_:)"></a>
-                    <a class="token" href="#/s:7Emu65103RAMCys5UInt8Vs6UInt16Vcip">subscript(_:)</a>
+                    <a class="token" href="#/s:7Emu65103RAMCys5UInt8VSicip">subscript(_:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -369,12 +384,12 @@
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">open</span> <span class="nf">subscript</span><span class="p">(</span><span class="nv">address</span><span class="p">:</span> <span class="kt">UInt16</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">UInt8</span> <span class="p">{</span> <span class="k">get</span> <span class="k">set</span> <span class="p">}</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="nf">subscript</span><span class="p">(</span><span class="nv">position</span><span class="p">:</span> <span class="kt">Int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">UInt8</span> <span class="p">{</span> <span class="k">get</span> <span class="k">set</span> <span class="p">}</span></code></pre>
 
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/GalenRhodes/Emu6510/blob/master/Sources/Emu6510/Memory.swift#L81-L91">Show on GitHub</a>
+                        <a href="https://github.com/GalenRhodes/Emu6510/blob/master/Sources/Emu6510/Memory.swift#L92-L101">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -384,7 +399,7 @@
           </section>
         </section>
         <section id="footer">
-          <p>&copy; 2020 <a class="link" href="https://blog.projectgalen.com" rel="external" target="_blank">Galen Rhodes</a>. All rights reserved. (Last updated: 2020-10-08)</p>
+          <p>&copy; 2020 <a class="link" href="https://blog.projectgalen.com" rel="external" target="_blank">Galen Rhodes</a>. All rights reserved. (Last updated: 2020-10-14)</p>
           <p>Generated by <a class="link" href="https://github.com/realm/jazzy" rel="external" target="_blank">jazzy ♪♫ v0.13.1</a>, a <a class="link" href="https://realm.io" rel="external" target="_blank">Realm</a> project.</p>
         </section>
       </article>

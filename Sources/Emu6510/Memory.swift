@@ -22,77 +22,87 @@
 
 import Foundation
 
-public protocol RandomAccessMemory {
+public protocol RandomAccessMemory: AnyObject {
 
-    var readOnly:        Bool { get }
-    var startingAddress: UInt16 { get }
-    var endingAddress:   UInt16 { get }
-    var size:            Int { get }
+    var readOnly:     Bool { get }
+    var startAddress: Int { get }
+    var endAddress:   Int { get }
+    var count:        Int { get }
 
     func load(from data: UnsafeMutablePointer<UInt8>, offset: UInt16, length: Int) -> Int
 
     func load(to data: UnsafeMutablePointer<UInt8>, offset: UInt16, length: Int) -> Int
 
-    subscript(_ address: UInt16) -> UInt8 { get set }
+    subscript(_ addr: Int) -> UInt8 { get set }
+}
+
+extension RandomAccessMemory {
+    @inlinable public subscript(_ zpAddr: UInt8) -> UInt8 {
+        get { self[Int(zpAddr)] }
+        set { self[Int(zpAddr)] = newValue }
+    }
+    @inlinable public subscript(_ addr: UInt16) -> UInt8 {
+        get { self[Int(addr)] }
+        set { self[Int(addr)] = newValue }
+    }
 }
 
 open class RAM: RandomAccessMemory {
 
-    public let readOnly:        Bool
-    public let startingAddress: UInt16
-    public let endingAddress:   UInt16
-    public let size:            Int
+    public let readOnly:     Bool
+    public let startAddress: Int
+    public let endAddress:   Int
+
+    @inlinable public var count: Int { endAddress - startAddress }
 
     let data: UnsafeMutablePointer<UInt8>
 
-    init(readOnly: Bool, start: UInt16, end: UInt16) {
+    init(readOnly: Bool, start: Int, end: Int) {
         guard start <= end else { fatalError("Starting address must be less than or equal to the ending address.") }
         self.readOnly = readOnly
-        startingAddress = start
-        endingAddress = end
-        size = Int((end - start) + 1)
-        data = UnsafeMutablePointer<UInt8>.allocate(capacity: size)
-        data.initialize(repeating: 0, count: size)
+        startAddress = start
+        endAddress = end
+        data = UnsafeMutablePointer<UInt8>.allocate(capacity: end - start)
+        data.initialize(repeating: 0, count: count)
     }
 
-    public convenience init(start: UInt16, end: UInt16) {
+    public convenience init(start: Int, end: Int) {
         self.init(readOnly: false, start: start, end: end)
     }
 
     deinit {
-        data.deinitialize(count: size)
+        data.deinitialize(count: count)
         data.deallocate()
     }
 
     open func load(from data: UnsafeMutablePointer<UInt8>, offset: UInt16 = 0, length: Int) -> Int {
-        guard offset <= size else { return 0 }
-        let len: Int = min((size - Int(offset)), length)
+        guard offset <= count else { return 0 }
+        let len: Int = min((count - Int(offset)), length)
         if len > 0 { (self.data + Int(offset)).moveAssign(from: data, count: len) }
         return len
     }
 
     open func load(to data: UnsafeMutablePointer<UInt8>, offset: UInt16, length: Int) -> Int {
-        guard offset <= size else { return 0 }
-        let len: Int = min((size - Int(offset)), length)
+        guard offset <= count else { return 0 }
+        let len: Int = min((count - Int(offset)), length)
         if len > 0 { data.moveAssign(from: (self.data + Int(offset)), count: len) }
         return len
     }
 
-    open subscript(_ address: UInt16) -> UInt8 {
+    public subscript(position: Int) -> UInt8 {
         get {
-            guard address >= startingAddress && address <= endingAddress else { return 0 }
-            return data[Int(address - startingAddress)]
+            guard position >= startAddress && position < endAddress else { fatalError("Index out of bounds") }
+            return data[(position - startAddress)]
         }
         set {
-            if !readOnly && address >= startingAddress && address <= endingAddress {
-                data[Int(address - startingAddress)] = newValue
-            }
+            guard position >= startAddress && position < endAddress else { fatalError("Index out of bounds") }
+            if !readOnly { data[(position - startAddress)] = newValue }
         }
     }
 }
 
 open class ROM: RAM {
-    public convenience init(start: UInt16, end: UInt16) {
+    public convenience init(start: Int, end: Int) {
         self.init(readOnly: true, start: start, end: end)
     }
 }

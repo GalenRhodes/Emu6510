@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>AddressModes Enumeration Reference</title>
+    <title>ClockWatcher Protocol Reference</title>
     <link href="../css/jazzy.css" rel="stylesheet" type="text/css" />
     <link href="../css/highlight.css" rel="stylesheet" type="text/css" />
     <meta charset='utf-8'>
@@ -10,8 +10,8 @@
 
   </head>
   <body>
-    <a class="dashAnchor" name="//apple_ref/swift/Enum/AddressModes"></a>
-    <a title="AddressModes Enumeration Reference"></a>
+    <a class="dashAnchor" name="//apple_ref/swift/Protocol/ClockWatcher"></a>
+    <a title="ClockWatcher Protocol Reference"></a>
     <header>
       <div class="content-wrapper">
         <p><a href="../index.html">Emu6510©</a> (40% documented)</p>
@@ -22,7 +22,7 @@
       <p id="breadcrumbs">
         <a href="../index.html"> Reference</a>
         <img id="carat" src="../img/carat.png" />
-        AddressModes Enumeration Reference
+        ClockWatcher Protocol Reference
       </p>
     </div>
     <div class="content-wrapper">
@@ -149,19 +149,13 @@
       <article class="main-content">
         <section>
           <section class="section">
-            <h1>AddressModes</h1>
+            <h1>ClockWatcher</h1>
               <div class="declaration">
                 <div class="language">
-                  <pre class="highlight swift"><code><span class="kd">@frozen</span>
-<span class="kd">public</span> <span class="kd">enum</span> <span class="kt">AddressModes</span> <span class="p">:</span> <span class="kt">CustomStringConvertible</span></code></pre>
+                  <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">protocol</span> <span class="kt">ClockWatcher</span></code></pre>
 
                 </div>
               </div>
-            <p>Here are some notes on the addressing modes.</p>
-
-<p>1) The instructions that are implied (IMP) or relative (REL) have no other addressing mode. 2) ROL, ROR, ASL, and LSR are the
-only opcodes that have the Accumulator (ACC) addressing mode. 3) JMP is the only instruction to have the Absolute Indirect
-(IND) addressing mode. 4) LDX and STX are the only instructions that have the ZeroPage,Y (ZPY) addressing mode.</p>
 
           </section>
           <section class="section task-group-section">
@@ -170,9 +164,9 @@ only opcodes that have the Accumulator (ACC) addressing mode. 3) JMP is the only
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:7Emu651012AddressModesO3ABSyA2CmF"></a>
-                    <a class="dashAnchor" name="//apple_ref/swift/Element/ABS"></a>
-                    <a class="token" href="#/s:7Emu651012AddressModesO3ABSyA2CmF">ABS</a>
+                    <a name="/s:7Emu651012ClockWatcherP9isRunningSbvp"></a>
+                    <a class="dashAnchor" name="//apple_ref/swift/Property/isRunning"></a>
+                    <a class="token" href="#/s:7Emu651012ClockWatcherP9isRunningSbvp">isRunning</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -186,12 +180,12 @@ only opcodes that have the Accumulator (ACC) addressing mode. 3) JMP is the only
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="k">case</span> <span class="kt">ABS</span></code></pre>
+                          <pre class="highlight swift"><code><span class="k">var</span> <span class="nv">isRunning</span><span class="p">:</span> <span class="kt">Bool</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
 
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/GalenRhodes/Emu6510/blob/master/Sources/Emu6510/AddressModes.swift#L">Show on GitHub</a>
+                        <a href="https://github.com/GalenRhodes/Emu6510/blob/master/Sources/Emu6510/ClockWatcher.swift#L">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -199,9 +193,9 @@ only opcodes that have the Accumulator (ACC) addressing mode. 3) JMP is the only
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:7Emu651012AddressModesO3ABXyA2CmF"></a>
-                    <a class="dashAnchor" name="//apple_ref/swift/Element/ABX"></a>
-                    <a class="token" href="#/s:7Emu651012AddressModesO3ABXyA2CmF">ABX</a>
+                    <a name="/s:7Emu651012ClockWatcherP8isPausedSbvp"></a>
+                    <a class="dashAnchor" name="//apple_ref/swift/Property/isPaused"></a>
+                    <a class="token" href="#/s:7Emu651012ClockWatcherP8isPausedSbvp">isPaused</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -215,12 +209,12 @@ only opcodes that have the Accumulator (ACC) addressing mode. 3) JMP is the only
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="k">case</span> <span class="kt">ABX</span></code></pre>
+                          <pre class="highlight swift"><code><span class="k">var</span> <span class="nv">isPaused</span><span class="p">:</span> <span class="kt">Bool</span> <span class="p">{</span> <span class="k">get</span> <span class="k">set</span> <span class="p">}</span></code></pre>
 
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/GalenRhodes/Emu6510/blob/master/Sources/Emu6510/AddressModes.swift#L">Show on GitHub</a>
+                        <a href="https://github.com/GalenRhodes/Emu6510/blob/master/Sources/Emu6510/ClockWatcher.swift#L">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -228,9 +222,9 @@ only opcodes that have the Accumulator (ACC) addressing mode. 3) JMP is the only
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:7Emu651012AddressModesO3ABYyA2CmF"></a>
-                    <a class="dashAnchor" name="//apple_ref/swift/Element/ABY"></a>
-                    <a class="token" href="#/s:7Emu651012AddressModesO3ABYyA2CmF">ABY</a>
+                    <a name="/s:7Emu651012ClockWatcherP9isStoppedSbvp"></a>
+                    <a class="dashAnchor" name="//apple_ref/swift/Property/isStopped"></a>
+                    <a class="token" href="#/s:7Emu651012ClockWatcherP9isStoppedSbvp">isStopped</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -244,12 +238,12 @@ only opcodes that have the Accumulator (ACC) addressing mode. 3) JMP is the only
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="k">case</span> <span class="kt">ABY</span></code></pre>
+                          <pre class="highlight swift"><code><span class="k">var</span> <span class="nv">isStopped</span><span class="p">:</span> <span class="kt">Bool</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
 
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/GalenRhodes/Emu6510/blob/master/Sources/Emu6510/AddressModes.swift#L">Show on GitHub</a>
+                        <a href="https://github.com/GalenRhodes/Emu6510/blob/master/Sources/Emu6510/ClockWatcher.swift#L">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -257,9 +251,9 @@ only opcodes that have the Accumulator (ACC) addressing mode. 3) JMP is the only
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:7Emu651012AddressModesO3ACCyA2CmF"></a>
-                    <a class="dashAnchor" name="//apple_ref/swift/Element/ACC"></a>
-                    <a class="token" href="#/s:7Emu651012AddressModesO3ACCyA2CmF">ACC</a>
+                    <a name="/s:7Emu651012ClockWatcherP4skips5UInt8Vvp"></a>
+                    <a class="dashAnchor" name="//apple_ref/swift/Property/skip"></a>
+                    <a class="token" href="#/s:7Emu651012ClockWatcherP4skips5UInt8Vvp">skip</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -273,12 +267,12 @@ only opcodes that have the Accumulator (ACC) addressing mode. 3) JMP is the only
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="k">case</span> <span class="kt">ACC</span></code></pre>
+                          <pre class="highlight swift"><code><span class="k">var</span> <span class="nv">skip</span><span class="p">:</span> <span class="kt">UInt8</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
 
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/GalenRhodes/Emu6510/blob/master/Sources/Emu6510/AddressModes.swift#L">Show on GitHub</a>
+                        <a href="https://github.com/GalenRhodes/Emu6510/blob/master/Sources/Emu6510/ClockWatcher.swift#L">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -286,9 +280,9 @@ only opcodes that have the Accumulator (ACC) addressing mode. 3) JMP is the only
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:7Emu651012AddressModesO3IMMyA2CmF"></a>
-                    <a class="dashAnchor" name="//apple_ref/swift/Element/IMM"></a>
-                    <a class="token" href="#/s:7Emu651012AddressModesO3IMMyA2CmF">IMM</a>
+                    <a name="/s:7Emu651012ClockWatcherP8hardStopyyF"></a>
+                    <a class="dashAnchor" name="//apple_ref/swift/Method/hardStop()"></a>
+                    <a class="token" href="#/s:7Emu651012ClockWatcherP8hardStopyyF">hardStop()</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -302,12 +296,12 @@ only opcodes that have the Accumulator (ACC) addressing mode. 3) JMP is the only
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="k">case</span> <span class="kt">IMM</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">hardStop</span><span class="p">()</span></code></pre>
 
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/GalenRhodes/Emu6510/blob/master/Sources/Emu6510/AddressModes.swift#L">Show on GitHub</a>
+                        <a href="https://github.com/GalenRhodes/Emu6510/blob/master/Sources/Emu6510/ClockWatcher.swift#L">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -315,9 +309,9 @@ only opcodes that have the Accumulator (ACC) addressing mode. 3) JMP is the only
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:7Emu651012AddressModesO3IMPyA2CmF"></a>
-                    <a class="dashAnchor" name="//apple_ref/swift/Element/IMP"></a>
-                    <a class="token" href="#/s:7Emu651012AddressModesO3IMPyA2CmF">IMP</a>
+                    <a name="/s:7Emu651012ClockWatcherP5startyyKF"></a>
+                    <a class="dashAnchor" name="//apple_ref/swift/Method/start()"></a>
+                    <a class="token" href="#/s:7Emu651012ClockWatcherP5startyyKF">start()</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -331,12 +325,12 @@ only opcodes that have the Accumulator (ACC) addressing mode. 3) JMP is the only
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="k">case</span> <span class="kt">IMP</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">start</span><span class="p">()</span> <span class="k">throws</span></code></pre>
 
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/GalenRhodes/Emu6510/blob/master/Sources/Emu6510/AddressModes.swift#L">Show on GitHub</a>
+                        <a href="https://github.com/GalenRhodes/Emu6510/blob/master/Sources/Emu6510/ClockWatcher.swift#L">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -344,9 +338,9 @@ only opcodes that have the Accumulator (ACC) addressing mode. 3) JMP is the only
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:7Emu651012AddressModesO3INDyA2CmF"></a>
-                    <a class="dashAnchor" name="//apple_ref/swift/Element/IND"></a>
-                    <a class="token" href="#/s:7Emu651012AddressModesO3INDyA2CmF">IND</a>
+                    <a name="/s:7Emu651012ClockWatcherP4stopyyKF"></a>
+                    <a class="dashAnchor" name="//apple_ref/swift/Method/stop()"></a>
+                    <a class="token" href="#/s:7Emu651012ClockWatcherP4stopyyKF">stop()</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -360,12 +354,12 @@ only opcodes that have the Accumulator (ACC) addressing mode. 3) JMP is the only
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="k">case</span> <span class="kt">IND</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">stop</span><span class="p">()</span> <span class="k">throws</span></code></pre>
 
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/GalenRhodes/Emu6510/blob/master/Sources/Emu6510/AddressModes.swift#L">Show on GitHub</a>
+                        <a href="https://github.com/GalenRhodes/Emu6510/blob/master/Sources/Emu6510/ClockWatcher.swift#L">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -373,9 +367,9 @@ only opcodes that have the Accumulator (ACC) addressing mode. 3) JMP is the only
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:7Emu651012AddressModesO3INXyA2CmF"></a>
-                    <a class="dashAnchor" name="//apple_ref/swift/Element/INX"></a>
-                    <a class="token" href="#/s:7Emu651012AddressModesO3INXyA2CmF">INX</a>
+                    <a name="/s:7Emu651012ClockWatcherP9isEqualToySbAaB_pF"></a>
+                    <a class="dashAnchor" name="//apple_ref/swift/Method/isEqualTo(_:)"></a>
+                    <a class="token" href="#/s:7Emu651012ClockWatcherP9isEqualToySbAaB_pF">isEqualTo(_:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -389,12 +383,12 @@ only opcodes that have the Accumulator (ACC) addressing mode. 3) JMP is the only
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="k">case</span> <span class="kt">INX</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">isEqualTo</span><span class="p">(</span><span class="n">_</span> <span class="nv">other</span><span class="p">:</span> <span class="kt">ClockWatcher</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Bool</span></code></pre>
 
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/GalenRhodes/Emu6510/blob/master/Sources/Emu6510/AddressModes.swift#L">Show on GitHub</a>
+                        <a href="https://github.com/GalenRhodes/Emu6510/blob/master/Sources/Emu6510/ClockWatcher.swift#L">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -402,9 +396,9 @@ only opcodes that have the Accumulator (ACC) addressing mode. 3) JMP is the only
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:7Emu651012AddressModesO3INYyA2CmF"></a>
-                    <a class="dashAnchor" name="//apple_ref/swift/Element/INY"></a>
-                    <a class="token" href="#/s:7Emu651012AddressModesO3INYyA2CmF">INY</a>
+                    <a name="/s:7Emu651012ClockWatcherP11asEquatableAA03AnybC0VyF"></a>
+                    <a class="dashAnchor" name="//apple_ref/swift/Method/asEquatable()"></a>
+                    <a class="token" href="#/s:7Emu651012ClockWatcherP11asEquatableAA03AnybC0VyF">asEquatable()</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -418,12 +412,12 @@ only opcodes that have the Accumulator (ACC) addressing mode. 3) JMP is the only
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="k">case</span> <span class="kt">INY</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">asEquatable</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Structs/AnyClockWatcher.html">AnyClockWatcher</a></span></code></pre>
 
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/GalenRhodes/Emu6510/blob/master/Sources/Emu6510/AddressModes.swift#L">Show on GitHub</a>
+                        <a href="https://github.com/GalenRhodes/Emu6510/blob/master/Sources/Emu6510/ClockWatcher.swift#L">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -431,9 +425,9 @@ only opcodes that have the Accumulator (ACC) addressing mode. 3) JMP is the only
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:7Emu651012AddressModesO3RELyA2CmF"></a>
-                    <a class="dashAnchor" name="//apple_ref/swift/Element/REL"></a>
-                    <a class="token" href="#/s:7Emu651012AddressModesO3RELyA2CmF">REL</a>
+                    <a name="/s:7Emu651012ClockWatcherP7getHash4intoys6HasherVz_tF"></a>
+                    <a class="dashAnchor" name="//apple_ref/swift/Method/getHash(into:)"></a>
+                    <a class="token" href="#/s:7Emu651012ClockWatcherP7getHash4intoys6HasherVz_tF">getHash(into:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -447,12 +441,12 @@ only opcodes that have the Accumulator (ACC) addressing mode. 3) JMP is the only
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="k">case</span> <span class="kt">REL</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">getHash</span><span class="p">(</span><span class="n">into</span> <span class="nv">hasher</span><span class="p">:</span> <span class="k">inout</span> <span class="kt">Hasher</span><span class="p">)</span></code></pre>
 
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/GalenRhodes/Emu6510/blob/master/Sources/Emu6510/AddressModes.swift#L">Show on GitHub</a>
+                        <a href="https://github.com/GalenRhodes/Emu6510/blob/master/Sources/Emu6510/ClockWatcher.swift#L">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -460,9 +454,9 @@ only opcodes that have the Accumulator (ACC) addressing mode. 3) JMP is the only
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:7Emu651012AddressModesO3ZPGyA2CmF"></a>
-                    <a class="dashAnchor" name="//apple_ref/swift/Element/ZPG"></a>
-                    <a class="token" href="#/s:7Emu651012AddressModesO3ZPGyA2CmF">ZPG</a>
+                    <a name="/s:7Emu651012ClockWatcherP4fireyyF"></a>
+                    <a class="dashAnchor" name="//apple_ref/swift/Method/fire()"></a>
+                    <a class="token" href="#/s:7Emu651012ClockWatcherP4fireyyF">fire()</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -476,23 +470,39 @@ only opcodes that have the Accumulator (ACC) addressing mode. 3) JMP is the only
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="k">case</span> <span class="kt">ZPG</span></code></pre>
+                          <pre class="highlight swift"><code><span class="k">mutating</span> <span class="kd">func</span> <span class="nf">fire</span><span class="p">()</span></code></pre>
 
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/GalenRhodes/Emu6510/blob/master/Sources/Emu6510/AddressModes.swift#L">Show on GitHub</a>
+                        <a href="https://github.com/GalenRhodes/Emu6510/blob/master/Sources/Emu6510/ClockWatcher.swift#L">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
                 </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <div class="task-name-container">
+                <a name="/Available%20where%20%60Self%60:%20%60Equatable%60"></a>
+                <a class="dashAnchor" name="//apple_ref/swift/Section/Available where `Self`: `Equatable`"></a>
+                <div class="section-name-container">
+                  <a class="section-name-link" href="#/Available%20where%20%60Self%60:%20%60Equatable%60"></a>
+                  <h3 class="section-name"><p>Available where <code>Self</code>: <code>Equatable</code></p>
+</h3>
+                </div>
+              </div>
+              <ul>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:7Emu651012AddressModesO3ZPXyA2CmF"></a>
-                    <a class="dashAnchor" name="//apple_ref/swift/Element/ZPX"></a>
-                    <a class="token" href="#/s:7Emu651012AddressModesO3ZPXyA2CmF">ZPX</a>
+                    <a name="/s:7Emu651012ClockWatcherPAASQRzrlE11asEquatableAA03AnybC0VyF"></a>
+                    <a class="dashAnchor" name="//apple_ref/swift/Method/asEquatable()"></a>
+                    <a class="token" href="#/s:7Emu651012ClockWatcherPAASQRzrlE11asEquatableAA03AnybC0VyF">asEquatable()</a>
                     </code>
+                      <span class="declaration-note">
+                        Default implementation
+                      </span>
                   </div>
                   <div class="height-container">
                     <div class="pointer-container"></div>
@@ -501,62 +511,8 @@ only opcodes that have the Accumulator (ACC) addressing mode. 3) JMP is the only
                       <div class="abstract">
 
                       </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="k">case</span> <span class="kt">ZPX</span></code></pre>
-
-                        </div>
-                      </div>
-                      <div class="slightly-smaller">
-                        <a href="https://github.com/GalenRhodes/Emu6510/blob/master/Sources/Emu6510/AddressModes.swift#L">Show on GitHub</a>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:7Emu651012AddressModesO3ZPYyA2CmF"></a>
-                    <a class="dashAnchor" name="//apple_ref/swift/Element/ZPY"></a>
-                    <a class="token" href="#/s:7Emu651012AddressModesO3ZPYyA2CmF">ZPY</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="k">case</span> <span class="kt">ZPY</span></code></pre>
-
-                        </div>
-                      </div>
-                      <div class="slightly-smaller">
-                        <a href="https://github.com/GalenRhodes/Emu6510/blob/master/Sources/Emu6510/AddressModes.swift#L">Show on GitHub</a>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:7Emu651012AddressModesO15longDescriptionSSvp"></a>
-                    <a class="dashAnchor" name="//apple_ref/swift/Property/longDescription"></a>
-                    <a class="token" href="#/s:7Emu651012AddressModesO15longDescriptionSSvp">longDescription</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
+                      <h4>Default Implementation</h4>
+                      <div class="default_impl abstract">
 
                       </div>
                       <div class="declaration">
@@ -564,12 +520,12 @@ only opcodes that have the Accumulator (ACC) addressing mode. 3) JMP is the only
                         <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight swift"><code><span class="kd">@inlinable</span>
-<span class="kd">public</span> <span class="k">var</span> <span class="nv">longDescription</span><span class="p">:</span> <span class="kt">String</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+<span class="kd">public</span> <span class="kd">func</span> <span class="nf">asEquatable</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Structs/AnyClockWatcher.html">AnyClockWatcher</a></span></code></pre>
 
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/GalenRhodes/Emu6510/blob/master/Sources/Emu6510/AddressModes.swift#L47-L63">Show on GitHub</a>
+                        <a href="https://github.com/GalenRhodes/Emu6510/blob/master/Sources/Emu6510/ClockWatcher.swift#L">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -577,10 +533,13 @@ only opcodes that have the Accumulator (ACC) addressing mode. 3) JMP is the only
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:s23CustomStringConvertibleP11descriptionSSvp"></a>
-                    <a class="dashAnchor" name="//apple_ref/swift/Property/description"></a>
-                    <a class="token" href="#/s:s23CustomStringConvertibleP11descriptionSSvp">description</a>
+                    <a name="/s:7Emu651012ClockWatcherPAASQRzrlE9isEqualToySbAaB_pF"></a>
+                    <a class="dashAnchor" name="//apple_ref/swift/Method/isEqualTo(_:)"></a>
+                    <a class="token" href="#/s:7Emu651012ClockWatcherPAASQRzrlE9isEqualToySbAaB_pF">isEqualTo(_:)</a>
                     </code>
+                      <span class="declaration-note">
+                        Default implementation
+                      </span>
                   </div>
                   <div class="height-container">
                     <div class="pointer-container"></div>
@@ -589,28 +548,48 @@ only opcodes that have the Accumulator (ACC) addressing mode. 3) JMP is the only
                       <div class="abstract">
 
                       </div>
+                      <h4>Default Implementation</h4>
+                      <div class="default_impl abstract">
+
+                      </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight swift"><code><span class="kd">@inlinable</span>
-<span class="kd">public</span> <span class="k">var</span> <span class="nv">description</span><span class="p">:</span> <span class="kt">String</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+<span class="kd">public</span> <span class="kd">func</span> <span class="nf">isEqualTo</span><span class="p">(</span><span class="n">_</span> <span class="nv">other</span><span class="p">:</span> <span class="kt">ClockWatcher</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Bool</span></code></pre>
 
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/GalenRhodes/Emu6510/blob/master/Sources/Emu6510/AddressModes.swift#L65-L81">Show on GitHub</a>
+                        <a href="https://github.com/GalenRhodes/Emu6510/blob/master/Sources/Emu6510/ClockWatcher.swift#L">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
                 </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <div class="task-name-container">
+                <a name="/Available%20where%20%60Self%60:%20%60Hashable%60"></a>
+                <a class="dashAnchor" name="//apple_ref/swift/Section/Available where `Self`: `Hashable`"></a>
+                <div class="section-name-container">
+                  <a class="section-name-link" href="#/Available%20where%20%60Self%60:%20%60Hashable%60"></a>
+                  <h3 class="section-name"><p>Available where <code>Self</code>: <code>Hashable</code></p>
+</h3>
+                </div>
+              </div>
+              <ul>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:7Emu651012AddressModesO9byteCounts5UInt8Vvp"></a>
-                    <a class="dashAnchor" name="//apple_ref/swift/Property/byteCount"></a>
-                    <a class="token" href="#/s:7Emu651012AddressModesO9byteCounts5UInt8Vvp">byteCount</a>
+                    <a name="/s:7Emu651012ClockWatcherPAASHRzrlE7getHash4intoys6HasherVz_tF"></a>
+                    <a class="dashAnchor" name="//apple_ref/swift/Method/getHash(into:)"></a>
+                    <a class="token" href="#/s:7Emu651012ClockWatcherPAASHRzrlE7getHash4intoys6HasherVz_tF">getHash(into:)</a>
                     </code>
+                      <span class="declaration-note">
+                        Default implementation
+                      </span>
                   </div>
                   <div class="height-container">
                     <div class="pointer-container"></div>
@@ -619,17 +598,21 @@ only opcodes that have the Accumulator (ACC) addressing mode. 3) JMP is the only
                       <div class="abstract">
 
                       </div>
+                      <h4>Default Implementation</h4>
+                      <div class="default_impl abstract">
+
+                      </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight swift"><code><span class="kd">@inlinable</span>
-<span class="kd">public</span> <span class="k">var</span> <span class="nv">byteCount</span><span class="p">:</span> <span class="kt">UInt8</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+<span class="kd">public</span> <span class="kd">func</span> <span class="nf">getHash</span><span class="p">(</span><span class="n">into</span> <span class="nv">hasher</span><span class="p">:</span> <span class="k">inout</span> <span class="kt">Hasher</span><span class="p">)</span></code></pre>
 
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/GalenRhodes/Emu6510/blob/master/Sources/Emu6510/AddressModes.swift#L83-L99">Show on GitHub</a>
+                        <a href="https://github.com/GalenRhodes/Emu6510/blob/master/Sources/Emu6510/ClockWatcher.swift#L">Show on GitHub</a>
                       </div>
                     </section>
                   </div>

@@ -14,7 +14,7 @@
     <a title="CPUClock Protocol Reference"></a>
     <header>
       <div class="content-wrapper">
-        <p><a href="../index.html">Emu6510©</a> (42% documented)</p>
+        <p><a href="../index.html">Emu6510©</a> (40% documented)</p>
         <p class="header-right"><a href="https://github.com/GalenRhodes/Emu6510"><img src="../img/gh.png"/>View on GitHub</a></p>
       </div>
     </header>
@@ -38,9 +38,6 @@
                 <a href="../Classes/CPU6510.html">CPU6510</a>
               </li>
               <li class="nav-group-task">
-                <a href="../Classes/ClockWatcher.html">ClockWatcher</a>
-              </li>
-              <li class="nav-group-task">
                 <a href="../Classes/OpcodeInfo.html">OpcodeInfo</a>
               </li>
               <li class="nav-group-task">
@@ -48,14 +45,6 @@
               </li>
               <li class="nav-group-task">
                 <a href="../Classes/ROM.html">ROM</a>
-              </li>
-            </ul>
-          </li>
-          <li class="nav-group-name">
-            <a href="../Global%20Variables.html">Global Variables</a>
-            <ul class="nav-group-tasks">
-              <li class="nav-group-task">
-                <a href="../Global%20Variables.html#/s:7Emu65100A7OpcodesSayAA10OpcodeInfoCGvp">Emu6510Opcodes</a>
               </li>
             </ul>
           </li>
@@ -80,6 +69,17 @@
             </ul>
           </li>
           <li class="nav-group-name">
+            <a href="../Extensions.html">Extensions</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Extensions/Array.html">Array</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/Dictionary.html">Dictionary</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
             <a href="../Functions.html">Functions</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
@@ -93,9 +93,6 @@
               </li>
               <li class="nav-group-task">
                 <a href="../Functions.html#/s:7Emu65108makeWord2lo2hi6offsetSb19pageBoundaryCrossed_s6UInt16V7addressts5UInt8V_A2KtF">makeWord(lo:hi:offset:)</a>
-              </li>
-              <li class="nav-group-task">
-                <a href="../Functions.html#/s:7Emu651010onSamePageySbs6UInt16V_ADtF">onSamePage(_:_:)</a>
               </li>
             </ul>
           </li>
@@ -112,10 +109,27 @@
                 <a href="../Protocols/CPUClock.html">CPUClock</a>
               </li>
               <li class="nav-group-task">
-                <a href="../Protocols/RandomAccessMemory.html">RandomAccessMemory</a>
+                <a href="../Protocols/ClockWatcher.html">ClockWatcher</a>
               </li>
               <li class="nav-group-task">
-                <a href="../Protocols/_5FClockWatcher.html">_ClockWatcher</a>
+                <a href="../Protocols/RandomAccessMemory.html">RandomAccessMemory</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Structs.html">Structures</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Structs/AnyAddressBuss.html">AnyAddressBuss</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/AnyCPU65xx.html">AnyCPU65xx</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/AnyCPUClock.html">AnyCPUClock</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/AnyClockWatcher.html">AnyClockWatcher</a>
               </li>
             </ul>
           </li>
@@ -367,9 +381,9 @@ the clock CANNOT be restarted.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:7Emu65108CPUClockP10addWatcheryyAA05ClockD0CF"></a>
+                    <a name="/s:7Emu65108CPUClockP10addWatcheryyAA05ClockD0_pF"></a>
                     <a class="dashAnchor" name="//apple_ref/swift/Method/addWatcher(_:)"></a>
-                    <a class="token" href="#/s:7Emu65108CPUClockP10addWatcheryyAA05ClockD0CF">addWatcher(_:)</a>
+                    <a class="token" href="#/s:7Emu65108CPUClockP10addWatcheryyAA05ClockD0_pF">addWatcher(_:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -384,7 +398,7 @@ the clock CANNOT be restarted.</p>
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">addWatcher</span><span class="p">(</span><span class="n">_</span> <span class="nv">watcher</span><span class="p">:</span> <span class="kt"><a href="../Classes/ClockWatcher.html">ClockWatcher</a></span><span class="p">)</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">addWatcher</span><span class="p">(</span><span class="n">_</span> <span class="nv">watcher</span><span class="p">:</span> <span class="kt"><a href="../Protocols/ClockWatcher.html">ClockWatcher</a></span><span class="p">)</span></code></pre>
 
                         </div>
                       </div>
@@ -417,9 +431,9 @@ the clock CANNOT be restarted.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:7Emu65108CPUClockP13removeWatcheryyAA05ClockD0CF"></a>
+                    <a name="/s:7Emu65108CPUClockP13removeWatcheryyAA05ClockD0_pF"></a>
                     <a class="dashAnchor" name="//apple_ref/swift/Method/removeWatcher(_:)"></a>
-                    <a class="token" href="#/s:7Emu65108CPUClockP13removeWatcheryyAA05ClockD0CF">removeWatcher(_:)</a>
+                    <a class="token" href="#/s:7Emu65108CPUClockP13removeWatcheryyAA05ClockD0_pF">removeWatcher(_:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -434,7 +448,7 @@ the clock CANNOT be restarted.</p>
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">removeWatcher</span><span class="p">(</span><span class="n">_</span> <span class="nv">watcher</span><span class="p">:</span> <span class="kt"><a href="../Classes/ClockWatcher.html">ClockWatcher</a></span><span class="p">)</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">removeWatcher</span><span class="p">(</span><span class="n">_</span> <span class="nv">watcher</span><span class="p">:</span> <span class="kt"><a href="../Protocols/ClockWatcher.html">ClockWatcher</a></span><span class="p">)</span></code></pre>
 
                         </div>
                       </div>
@@ -464,12 +478,157 @@ the clock CANNOT be restarted.</p>
                     </section>
                   </div>
                 </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7Emu65108CPUClockP9isEqualToySbAaB_pF"></a>
+                    <a class="dashAnchor" name="//apple_ref/swift/Method/isEqualTo(_:)"></a>
+                    <a class="token" href="#/s:7Emu65108CPUClockP9isEqualToySbAaB_pF">isEqualTo(_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">isEqualTo</span><span class="p">(</span><span class="n">_</span> <span class="nv">other</span><span class="p">:</span> <span class="kt">CPUClock</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Bool</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/GalenRhodes/Emu6510/blob/master/Sources/Emu6510/CPUClock.swift#L">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7Emu65108CPUClockP05asAnyB0AA0dB0VyF"></a>
+                    <a class="dashAnchor" name="//apple_ref/swift/Method/asAnyCPUClock()"></a>
+                    <a class="token" href="#/s:7Emu65108CPUClockP05asAnyB0AA0dB0VyF">asAnyCPUClock()</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">asAnyCPUClock</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Structs/AnyCPUClock.html">AnyCPUClock</a></span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/GalenRhodes/Emu6510/blob/master/Sources/Emu6510/CPUClock.swift#L">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <div class="task-name-container">
+                <a name="/Available%20where%20%60Self%60:%20%60Equatable%60"></a>
+                <a class="dashAnchor" name="//apple_ref/swift/Section/Available where `Self`: `Equatable`"></a>
+                <div class="section-name-container">
+                  <a class="section-name-link" href="#/Available%20where%20%60Self%60:%20%60Equatable%60"></a>
+                  <h3 class="section-name"><p>Available where <code>Self</code>: <code>Equatable</code></p>
+</h3>
+                </div>
+              </div>
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7Emu65108CPUClockPAASQRzrlE05asAnyB0AA0dB0VyF"></a>
+                    <a class="dashAnchor" name="//apple_ref/swift/Method/asAnyCPUClock()"></a>
+                    <a class="token" href="#/s:7Emu65108CPUClockPAASQRzrlE05asAnyB0AA0dB0VyF">asAnyCPUClock()</a>
+                    </code>
+                      <span class="declaration-note">
+                        Default implementation
+                      </span>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+
+                      </div>
+                      <h4>Default Implementation</h4>
+                      <div class="default_impl abstract">
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@inlinable</span>
+<span class="kd">func</span> <span class="nf">asAnyCPUClock</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Structs/AnyCPUClock.html">AnyCPUClock</a></span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/GalenRhodes/Emu6510/blob/master/Sources/Emu6510/CPUClock.swift#L">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7Emu65108CPUClockPAASQRzrlE9isEqualToySbAaB_pF"></a>
+                    <a class="dashAnchor" name="//apple_ref/swift/Method/isEqualTo(_:)"></a>
+                    <a class="token" href="#/s:7Emu65108CPUClockPAASQRzrlE9isEqualToySbAaB_pF">isEqualTo(_:)</a>
+                    </code>
+                      <span class="declaration-note">
+                        Default implementation
+                      </span>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+
+                      </div>
+                      <h4>Default Implementation</h4>
+                      <div class="default_impl abstract">
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@inlinable</span>
+<span class="kd">func</span> <span class="nf">isEqualTo</span><span class="p">(</span><span class="n">_</span> <span class="nv">other</span><span class="p">:</span> <span class="kt">CPUClock</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Bool</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/GalenRhodes/Emu6510/blob/master/Sources/Emu6510/CPUClock.swift#L115-L118">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
               </ul>
             </div>
           </section>
         </section>
         <section id="footer">
-          <p>&copy; 2020 <a class="link" href="https://blog.projectgalen.com" rel="external" target="_blank">Galen Rhodes</a>. All rights reserved. (Last updated: 2020-10-08)</p>
+          <p>&copy; 2020 <a class="link" href="https://blog.projectgalen.com" rel="external" target="_blank">Galen Rhodes</a>. All rights reserved. (Last updated: 2020-10-14)</p>
           <p>Generated by <a class="link" href="https://github.com/realm/jazzy" rel="external" target="_blank">jazzy ♪♫ v0.13.1</a>, a <a class="link" href="https://realm.io" rel="external" target="_blank">Realm</a> project.</p>
         </section>
       </article>

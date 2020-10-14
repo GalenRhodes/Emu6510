@@ -23,7 +23,7 @@
 import Foundation
 import Rubicon
 
-public class CPU6502: CPU65xx {
+public class CPU6502: CPU65xx, Equatable {
 
     @usableFromInline @frozen enum SpinLock {
         case Free
@@ -31,7 +31,7 @@ public class CPU6502: CPU65xx {
         case Locked
     }
 
-    public let addressBuss:    AddressBuss
+    public var addressBuss:    AnyAddressBuss
     public var clockFrequency: ClockFrequencies { willSet { _cycle = newValue.clockCycle } }
 
     public internal(set) var runStatus: RunStatus = .NeverStarted
@@ -52,23 +52,40 @@ public class CPU6502: CPU65xx {
     @usableFromInline var _yreg:      UInt8  = 0x00
     @usableFromInline var _st:        UInt8  = 0x20
 
-    @usableFromInline let _cond:         Conditional       = Conditional()
-    @usableFromInline var _tickWait:     Int               = 0
-    @usableFromInline var _irqTriggered: Bool              = false
-    @usableFromInline var _nmiTriggered: Bool              = false
-    @usableFromInline var _watchers:     Set<ClockWatcher> = []
-    @usableFromInline var _nextOpTime:   UInt64            = 0
-    @usableFromInline var _nextWTime:    UInt64            = 0
-    @usableFromInline var _spinLock:     SpinLock          = .Free
-    @usableFromInline var _tstime:       timespec          = timespec(tv_sec: 0, tv_nsec: 0)
+    @usableFromInline let _cond:         Conditional          = Conditional()
+    @usableFromInline var _tickWait:     Int                  = 0
+    @usableFromInline var _irqTriggered: Bool                 = false
+    @usableFromInline var _nmiTriggered: Bool                 = false
+    @usableFromInline var _brkTriggered: Bool                 = false
+    @usableFromInline var _watchers:     Set<AnyClockWatcher> = []
+    @usableFromInline var _nextOpTime:   UInt64               = 0
+    @usableFromInline var _nextWTime:    UInt64               = 0
+    @usableFromInline var _spinLock:     SpinLock             = .Free
+    @usableFromInline var _tstime:       timespec             = timespec(tv_sec: 0, tv_nsec: 0)
 
     public init(clockFrequency: ClockFrequencies = .C64_NTSC, addressBuss: AddressBuss) {
-        self.addressBuss = addressBuss
+        self.addressBuss = addressBuss.asEquatable()
         self.clockFrequency = clockFrequency
         _cycle = self.clockFrequency.clockCycle
     }
 
     deinit { _cond.withLock { runStatus = .Stopped } }
+
+    @inlinable public func asAnyCPU65xx() -> AnyCPU65xx { AnyCPU65xx(self) }
+
+    @inlinable public func asAnyCPUClock() -> AnyCPUClock { AnyCPUClock(self) }
+
+    @inlinable public func isEqualTo(_ other: CPUClock) -> Bool {
+        guard let other: CPU6502 = other as? CPU6502 else { return false }
+        return self === other
+    }
+
+    @inlinable public func isEqualTo(_ other: CPU65xx) -> Bool {
+        guard type(of: other) == CPU6502.self else { return false }
+        return self == (other as! CPU6502)
+    }
+
+    @inlinable public static func == (lhs: CPU6502, rhs: CPU6502) -> Bool { lhs === rhs }
 
     @inlinable func getSysTime() -> UInt64 {
         #if os(macOS) || os(iOS) || os(tvOS) || os(watchOS)
@@ -79,38 +96,75 @@ public class CPU6502: CPU65xx {
         #endif
     }
 
+    @inlinable func performInterrupt(vector: UInt16) {
+        push(word: _pc &+ 1)
+        push(byte: _st)
+        _st &= ~(PF.Interrupt | PF.Break)
+        _pc = (makeWord(lo: addressBuss[vector], hi: addressBuss[vector + 1]) &- 1)
+        _nextOpTime &+= 6
+    }
+
     @inlinable func notifyWatchers() {
         _nextWTime &+= _cycle
-        for w: ClockWatcher in _watchers { w.trigger = true }
+        for var w in _watchers { w.fire() }
     }
 
     @inlinable func doNextInstruction() {
-        let opcode: OpcodeInfo = Emu6510Opcodes[Int(addressBuss[_pc + 1])]
-        _nextOpTime &+= (_cycle * opcode.cycleCount)
-        dispatchOpcode(opcode: opcode)
-    }
-
-    @inlinable func handleNextTick(_ thisTime: UInt64) {
-        if thisTime >= _nextOpTime {
-            notifyWatchers()
-            doNextInstruction()
+        notifyWatchers()
+        //
+        // Non-maskable Interrupts have the highest priority...
+        //
+        if _nmiTriggered {
+            _nmiTriggered = false
+            performInterrupt(vector: 0xfffa)
         }
-        else if thisTime >= _nextWTime {
-            notifyWatchers()
+        //
+        // ...Followed by BRK...
+        //
+        else if _brkTriggered {
+            _brkTriggered = false
+            _irqTriggered = false
+            _st |= PF.Break
+            performInterrupt(vector: 0xfffe)
+        }
+        //
+        // ...Followed by IRQ.
+        //
+        else if _irqTriggered && !(_st &== PF.Interrupt) {
+            _brkTriggered = false
+            _irqTriggered = false
+            performInterrupt(vector: 0xfffe)
+        }
+        else {
+            let opcode: OpcodeInfo = opcodes[Int(addressBuss[_pc + 1])]
+            _nextOpTime &+= (_cycle * opcode.cycleCount)
+            dispatchOpcode(opcode: opcode)
+            // Update the program counter.
+            _pc &+= UInt16(opcode.addressingMode.byteCount)
         }
     }
 
     private func _run() {
+        performReset()
         _nextOpTime = (getSysTime() + _cycle)
         _nextWTime = _nextOpTime
 
         while runStatus != .Stopped {
-            if _spinLock == .Free {
-                if runStatus == .Paused { _cond.withLockWait { runStatus != .Paused } }
-                else { handleNextTick(getSysTime()) }
-            }
-            else if _spinLock == .Locking {
-                _spinLock = .Locked
+            switch _spinLock {
+                case .Free:
+                    if runStatus == .Paused {
+                        _cond.withLockWait { runStatus != .Paused }
+                    }
+                    else {
+                        let thisTime: UInt64 = getSysTime()
+                        if thisTime >= _nextOpTime { doNextInstruction() }
+                        else if thisTime >= _nextWTime { notifyWatchers() }
+                    }
+                case .Locking:
+                    _spinLock = .Locked
+                    fallthrough
+                case .Locked:
+                    while runStatus != .Stopped && _spinLock == .Locked {}
             }
         }
     }
@@ -180,6 +234,7 @@ public class CPU6502: CPU65xx {
 
     open func addWatcher(_ watcher: ClockWatcher) {
         _cond.withLock {
+            let watcher: AnyClockWatcher = watcher.asEquatable()
             if !_watchers.contains(watcher) {
                 _spinLock = .Locking
                 while runStatus == .Running && _spinLock != .Locked {}
@@ -191,6 +246,7 @@ public class CPU6502: CPU65xx {
 
     open func removeWatcher(_ watcher: ClockWatcher) {
         _cond.withLock {
+            let watcher: AnyClockWatcher = watcher.asEquatable()
             if _watchers.contains(watcher) {
                 _spinLock = .Locking
                 while runStatus == .Running && _spinLock != .Locked {}
@@ -198,6 +254,15 @@ public class CPU6502: CPU65xx {
                 _spinLock = .Free
             }
         }
+    }
+
+    open func performReset() {
+        _accu = 0xaa
+        _xreg = 0
+        _yreg = 0
+        _st = (0x16 | 0x20)
+        _sp = 0xfd
+        _pc = (makeWord(lo: addressBuss[0xfffc], hi: addressBuss[0xfffd]) &- 1)
     }
 
     open func dispatchOpcode(opcode: OpcodeInfo) {
@@ -458,11 +523,8 @@ public class CPU6502: CPU65xx {
             case 0xfd: processSBC(opcode: opcode)
             case 0xfe: processINC(opcode: opcode)
             case 0xff: processISC(opcode: opcode)
-            default:   processKIL(opcode: Emu6510Opcodes[0x02])
+            default:   processKIL(opcode: opcodes[0x02])
         }
-
-        // Update the program counter.
-        _pc &+= UInt16(opcode.addressingMode.byteCount)
     }
 
     @inlinable func addrFromIndirectAddr(address: UInt16) -> AddressInfo {
@@ -471,71 +533,47 @@ public class CPU6502: CPU65xx {
         return (false, makeWord(lo: addressBuss[a], hi: addressBuss[b]))
     }
 
-    @inlinable func addrFromAddr(address: UInt16, offset: UInt8) -> AddressInfo {
-        makeWord(lo: addressBuss[address], hi: addressBuss[address &+ 1], offset: offset)
-    }
-
     @inlinable func addrFromAddr(address: UInt16) -> AddressInfo {
         (false, makeWord(lo: addressBuss[address], hi: addressBuss[address &+ 1]))
     }
 
-    @inlinable func addrFromAddr(address: UInt8) -> AddressInfo {
-        (false, makeWord(lo: addressBuss[address], hi: addressBuss[address &+ 1]))
-    }
-
-    @inlinable func addrFromAddr(address: UInt8, offset: UInt8) -> AddressInfo {
+    @inlinable func addrFromAddr(address: UInt16, offset: UInt8) -> AddressInfo {
         makeWord(lo: addressBuss[address], hi: addressBuss[address &+ 1], offset: offset)
     }
 
-    /*===========================================================================================================================*/
-    /// This method calculates the effective address based on the opcode's addressing mode. Also, if the address mode is valid, it
-    /// advances the program counter to the next opcode.
-    /// 
-    /// - Parameter mode: the addressing mode.
-    /// - Returns: returns `nil` if the address mode is either `AddressModes.ACC` or `AddressModes.IMP` or it returns `AddressInfo`
-    ///            with the address and whether or not the operation might suffer a clock cycle penalty.
-    ///
-    @inlinable func getEffectiveAddress(mode: AddressModes) -> AddressInfo? {
+    public func doWithEffectiveAddress(mode: AddressModes, block: (AddressInfo) -> Void) {
         let __ad: UInt16 = (_pc &+ 2)
 
         if mode == .IMM || mode == .REL {
-            return (false, __ad)
+            block((false, __ad))
         }
         else {
             switch mode {
-                case .ABS: return addrFromAddr(address: __ad)
-                case .ABX: return addrFromAddr(address: __ad, offset: _xreg)
-                case .ABY: return addrFromAddr(address: __ad, offset: _yreg)
-                case .IND: return addrFromIndirectAddr(address: __ad)
-                case .INX: return addrFromAddr(address: addressBuss[__ad] &+ _xreg)
-                case .INY: return addrFromAddr(address: addressBuss[__ad], offset: _yreg)
-                case .ZPG: return (false, UInt16(addressBuss[__ad]))
-                case .ZPX: return (false, UInt16(addressBuss[__ad] &+ _xreg))
-                case .ZPY: return (false, UInt16(addressBuss[__ad] &+ _yreg))
-                default:   return nil
+                case .ABS: block(addrFromAddr(address: __ad))
+                case .ABX: block(addrFromAddr(address: __ad, offset: _xreg))
+                case .ABY: block(addrFromAddr(address: __ad, offset: _yreg))
+                case .IND: block(addrFromIndirectAddr(address: __ad))
+                case .INX: block(addrFromAddr(address: UInt16(addressBuss[__ad] &+ _xreg)))
+                case .INY: block(addrFromAddr(address: UInt16(addressBuss[__ad]), offset: _yreg))
+                case .ZPG: block((false, UInt16(addressBuss[__ad])))
+                case .ZPX: block((false, UInt16(addressBuss[__ad] &+ _xreg)))
+                case .ZPY: block((false, UInt16(addressBuss[__ad] &+ _yreg)))
+                default:   try? stop()
             }
         }
     }
 
-    /*===========================================================================================================================*/
-    /// This method is for opcodes that take a single byte operand.
-    /// 
-    /// - Parameters:
-    ///   - mode: the addressing mode.
-    /// - Returns: `OperandInfo` containing the single byte operand or `nil` if the addressing mode is `AddressModes.IMP` (Implied).
-    ///
-    @inlinable func getOperand(mode: AddressModes) -> OperandInfo? {
-        if mode == .ACC { return (false, _accu) }
-        else if let ea: AddressInfo = getEffectiveAddress(mode: mode) { return (ea.pageBoundaryCrossed, addressBuss[ea.address]) }
-        else { return nil }
-    }
-
-    @inlinable func getOperand(opcode: OpcodeInfo) -> OperandInfo? {
-        if let opInfo: OperandInfo = getOperand(mode: opcode.addressingMode) {
-            if opcode.mayBePenalty && opInfo.pageBoundaryCrossed { _nextOpTime += _cycle }
-            return opInfo
+    public func doWithOperand(opcode: OpcodeInfo, block: (OperandInfo) -> Void) {
+        if opcode.addressingMode == .ACC {
+            block((false, _accu))
         }
-        return nil
+        else {
+            doWithEffectiveAddress(mode: opcode.addressingMode) {
+                (ai: AddressInfo) in
+                if opcode.mayBePenalty && ai.pageBoundaryCrossed { _nextOpTime += _cycle }
+                block((ai.pageBoundaryCrossed, addressBuss[ai.address]))
+            }
+        }
     }
 
     /*===========================================================================================================================*/
@@ -545,22 +583,10 @@ public class CPU6502: CPU65xx {
     /// - Parameters:
     ///   - value: the value to store.
     ///   - mode: the addressing mode.
-    /// - Returns: `OperandInfo` or `nil` if the addressing mode is `AddressModes.IMP` (Implied).
     ///
-    @inlinable @discardableResult func storeResults(value: UInt8, mode: AddressModes) -> OperandInfo? {
-        switch mode {
-            case .ACC:
-                _accu = value
-                return (false, value)
-            case .ABS, .ABX, .ABY, .IND, .INX, .INY, .ZPG, .ZPX, .ZPY:
-                if let ea: AddressInfo = getEffectiveAddress(mode: mode) {
-                    addressBuss[ea.address] = value
-                    return (ea.pageBoundaryCrossed, value)
-                }
-            default:
-                break
-        }
-        return nil
+    @inlinable public func storeResults(value: UInt8, mode: AddressModes) {
+        if mode == .ACC { _accu = value }
+        else { doWithEffectiveAddress(mode: mode) { (ea: AddressInfo) in addressBuss[ea.address] = value } }
     }
 
     @inlinable func decSP() -> UInt16 {
@@ -574,36 +600,36 @@ public class CPU6502: CPU65xx {
         return v
     }
 
-    @inlinable func pullByte() -> UInt8 {
+    @inlinable public func pullByte() -> UInt8 {
         addressBuss[_stackAddr + decSP()]
     }
 
-    @inlinable func pullWord() -> UInt16 {
+    @inlinable public func pullWord() -> UInt16 {
         let lo: UInt8 = pullByte()
         let hi: UInt8 = pullByte()
         return makeWord(lo: lo, hi: hi)
     }
 
-    @inlinable func push(byte: UInt8) {
+    @inlinable public func push(byte: UInt8) {
         addressBuss[_stackAddr + incSP()] = byte
     }
 
-    @inlinable func push(word: UInt16) {
+    @inlinable public func push(word: UInt16) {
         push(byte: UInt8(word >> 8))   // hi
         push(byte: UInt8(word & 0xff)) // lo
     }
 
-    @inlinable func doBranchOnCondition(offset: UInt8, cond: Bool) {
+    @inlinable public func doBranchOnCondition(offset: UInt8, cond: Bool) {
         if cond {
             let pc: UInt16 = (_pc &+ 2)
             let ad: UInt16 = ((offset < 128) ? (pc + UInt16(offset)) : (pc - UInt16(~~offset)))
-            _nextOpTime &+= (onSamePage(pc, ad) ? _cycle : (_cycle * 2))
+            _nextOpTime &+= ((((pc ^ ad) & 0xff00) == 0) ? _cycle : (_cycle * 2))
         }
     }
 
-    @inlinable func doJump(mode: AddressModes) {
-        if (mode == .IND || mode == .ABS), let eAddr: AddressInfo = getEffectiveAddress(mode: mode) { _pc = (eAddr.address &- 1) }
-        else { processKIL(opcode: Emu6510Opcodes[0x02]) }
+    @inlinable @discardableResult func updateStatus(N: Bool, Z: Bool, C: Bool) -> UInt8 {
+        _st = ((_st & ~(PF.Negative | PF.Zero | PF.Carry)) | (C ? PF.Carry.rawValue : 0) | (Z ? PF.Zero.rawValue : 0) | (N ? PF.Negative.rawValue : 0))
+        return _st
     }
 
     /*===========================================================================================================================*/
@@ -616,20 +642,16 @@ public class CPU6502: CPU65xx {
     ///               flag will be let as is.
     /// - Returns: the updated value of the status register.
     ///
-    @inlinable @discardableResult func updateNZCstatus(ans: UInt8, c: Bool? = nil) -> UInt8 {
-        PF.Negative.set(status: &_st, when: (ans &== PF.Negative))
-        PF.Zero.set(status: &_st, when: (ans == 0))
-        if let c: Bool = c { PF.Carry.set(status: &_st, when: c) }
-        return _st
-    }
+    @inlinable @discardableResult func updateNZCstatus(ans: UInt8, c: Bool) -> UInt8 { updateStatus(N: ans &== 0x80, Z: ans == 0, C: c) }
 
     /*===========================================================================================================================*/
-    /// Convienience method for setting or clearing the carry flag.
+    /// The setting of the N and Z status register flags is something that occurs very often so I wrapped it into it's own method
+    /// for convienience.
     /// 
-    /// - Parameter carrySet: `true` to set the carry flag or `false` to clear it.
+    /// - Parameter value: the value being tested for being negative or zero.
     /// - Returns: the updated value of the status register.
     ///
-    @inlinable @discardableResult func updateCStatus(carrySet: Bool) -> UInt8 { PF.Carry.set(status: &_st, when: carrySet) }
+    @inlinable @discardableResult func updateNZstatus(ans: UInt8) -> UInt8 { updateStatus(N: ans &== 0x80, Z: ans == 0, C: _st &== PF.Carry) }
 
     /*===========================================================================================================================*/
     /// Update the overflow flag. See: [The 6502 overflow flag explained
@@ -676,12 +698,8 @@ public class CPU6502: CPU65xx {
         let a3: UInt16 = ((a2 > 0x90) ? (a2 &+ 0x60) : a2)
 
         _accu = UInt8(a3 & 0xff)
-
         updateVstatus(ans: a2, lhs: lhs, rhs: rhs)
-        PF.Negative.set(status: &_st, when: a2 &== 0x80)
-        PF.Zero.set(status: &_st, when: ((lhs + rhs + c) & 0xff) == 0)
-        PF.Carry.set(status: &_st, when: a3 > 0xff)
-
+        updateStatus(N: a2 &== 0x80, Z: ((lhs + rhs + c) & 0xff) == 0, C: a3 > 0xff)
         return _accu
     }
 
@@ -693,17 +711,27 @@ public class CPU6502: CPU65xx {
     ///   - rhs: The right-hand operand in BCD.
     /// - Returns: The result of the subtraction in BCD.
     ///
-    @inlinable @discardableResult func decimalSBC(lhs: Int16, rhs: Int16) -> UInt8 {
+    @inlinable func decimalSBC(lhs: Int16, rhs: Int16) {
         // REVISIT: May need to be adjusted.
-        let c: Int16 = (Int16(_st & PF.Carry) - 1)
-        let x: Int16 = ((lhs & 0x0f) - (rhs & 0x0f) + c)
-        let y: Int16 = ((lhs & 0xf0) - (rhs & 0xf0) + ((x < 0) ? (((x - 0x06) & 0x0f) - 0x10) : x))
-        let z: Int16 = (lhs - rhs + c)
+        _decimalSBC(lhs: lhs, rhs: rhs, c: (_st &== PF.Carry ? 0 : -1))
+    }
 
+    @inlinable func _decimalSBC(lhs: Int16, rhs: Int16, c: Int16) {
+        _decimalSBC(lhs: lhs, rhs: rhs, x: ((lhs & 0x0f) - (rhs & 0x0f) + c), c: c)
+    }
+
+    @inlinable func _decimalSBC(lhs: Int16, rhs: Int16, x: Int16, c: Int16) {
+        _decimalSBC(lhs: lhs, rhs: rhs, y: ((lhs & 0xf0) - (rhs & 0xf0) + ((x < 0) ? (((x - 0x06) & 0x0f) - 0x10) : x)), c: c)
+    }
+
+    @inlinable func _decimalSBC(lhs: Int16, rhs: Int16, y: Int16, c: Int16) {
+        _decimalSBC(lhs: lhs, rhs: rhs, y: y, z: (lhs - rhs + c))
+    }
+
+    @inlinable func _decimalSBC(lhs: Int16, rhs: Int16, y: Int16, z: Int16) {
         _accu = UInt8(bitPattern: Int8(((y < 0) ? (y - 0x60) : y) & 0xff))
         updateNZCstatus(ans: _accu, c: z > 255)
         updateVstatus(ans: UInt16(bitPattern: z), lhs: UInt16(bitPattern: lhs), rhs: UInt16(bitPattern: rhs))
-        return _accu
     }
 
     /*===========================================================================================================================*/
@@ -712,12 +740,10 @@ public class CPU6502: CPU65xx {
     /// - Parameter opcode: The opcode information.
     ///
     @inlinable open func processADC(opcode: OpcodeInfo) {
-        if let opInfo: OperandInfo = getOperand(opcode: opcode) {
+        doWithOperand(opcode: opcode) {
+            (opInfo: OperandInfo) in
             if _st &== PF.Decimal { decimalADC(lhs: UInt16(_accu), rhs: UInt16(opInfo.operand)) }
             else { binaryADC(lhs: UInt16(_accu), rhs: UInt16(opInfo.operand)) }
-        }
-        else {
-            processKIL()
         }
     }
 
@@ -754,12 +780,10 @@ public class CPU6502: CPU65xx {
     /// - Parameter opcode: The opcode information.
     ///
     @inlinable open func processAND(opcode: OpcodeInfo) {
-        if let opInfo: OperandInfo = getOperand(opcode: opcode) {
+        doWithOperand(opcode: opcode) {
+            (opInfo: OperandInfo) in
             _accu &= opInfo.operand
-            updateNZCstatus(ans: _accu)
-        }
-        else {
-            processKIL()
+            updateNZstatus(ans: _accu)
         }
     }
 
@@ -778,13 +802,11 @@ public class CPU6502: CPU65xx {
     /// - Parameter opcode: The opcode information.
     ///
     @inlinable open func processASL(opcode: OpcodeInfo) {
-        if let opInfo: OperandInfo = getOperand(opcode: opcode) {
+        doWithOperand(opcode: opcode) {
+            (opInfo: OperandInfo) in
             let r: UInt8 = (opInfo.operand << 1)
             storeResults(value: r, mode: opcode.addressingMode)
             updateNZCstatus(ans: r, c: (opInfo.operand &== 0x80))
-        }
-        else {
-            processKIL()
         }
     }
 
@@ -803,8 +825,7 @@ public class CPU6502: CPU65xx {
     /// - Parameter opcode: The opcode information.
     ///
     @inlinable open func processBCC(opcode: OpcodeInfo) {
-        if let opInfo: OperandInfo = getOperand(mode: opcode.addressingMode) { doBranchOnCondition(offset: opInfo.operand, cond: (_st &!= PF.Carry)) }
-        else { processKIL() }
+        doWithOperand(opcode: opcode) { (opInfo: OperandInfo) in doBranchOnCondition(offset: opInfo.operand, cond: (_st &!= PF.Carry)) }
     }
 
     /*===========================================================================================================================*/
@@ -813,8 +834,7 @@ public class CPU6502: CPU65xx {
     /// - Parameter opcode: The opcode information.
     ///
     @inlinable open func processBCS(opcode: OpcodeInfo) {
-        if let opInfo: OperandInfo = getOperand(mode: opcode.addressingMode) { doBranchOnCondition(offset: opInfo.operand, cond: (_st &== PF.Carry)) }
-        else { processKIL() }
+        doWithOperand(opcode: opcode) { (opInfo: OperandInfo) in doBranchOnCondition(offset: opInfo.operand, cond: (_st &== PF.Carry)) }
     }
 
     /*===========================================================================================================================*/
@@ -823,8 +843,7 @@ public class CPU6502: CPU65xx {
     /// - Parameter opcode: The opcode information.
     ///
     @inlinable open func processBEQ(opcode: OpcodeInfo) {
-        if let opInfo: OperandInfo = getOperand(mode: opcode.addressingMode) { doBranchOnCondition(offset: opInfo.operand, cond: (_st &== PF.Zero)) }
-        else { processKIL() }
+        doWithOperand(opcode: opcode) { (opInfo: OperandInfo) in doBranchOnCondition(offset: opInfo.operand, cond: (_st &== PF.Zero)) }
     }
 
     /*===========================================================================================================================*/
@@ -833,13 +852,10 @@ public class CPU6502: CPU65xx {
     /// - Parameter opcode: The opcode information.
     ///
     @inlinable open func processBIT(opcode: OpcodeInfo) {
-        if let opInfo: OperandInfo = getOperand(mode: opcode.addressingMode) {
+        doWithOperand(opcode: opcode) {
+            (opInfo: OperandInfo) in
             PF.Zero.set(status: &_st, when: (_accu & opInfo.operand) == 0)
-            let f: UInt8 = (PF.Negative | PF.Overflow)
-            _st = ((_st & ~f) | (opInfo.operand & f))
-        }
-        else {
-            processKIL()
+            _st = ((_st & ~(PF.Negative | PF.Overflow)) | (opInfo.operand & (PF.Negative | PF.Overflow)))
         }
     }
 
@@ -849,8 +865,7 @@ public class CPU6502: CPU65xx {
     /// - Parameter opcode: The opcode information.
     ///
     @inlinable open func processBMI(opcode: OpcodeInfo) {
-        if let opInfo: OperandInfo = getOperand(mode: opcode.addressingMode) { doBranchOnCondition(offset: opInfo.operand, cond: (_st &== PF.Negative)) }
-        else { processKIL() }
+        doWithOperand(opcode: opcode) { (opInfo: OperandInfo) in doBranchOnCondition(offset: opInfo.operand, cond: (_st &== PF.Negative)) }
     }
 
     /*===========================================================================================================================*/
@@ -859,8 +874,7 @@ public class CPU6502: CPU65xx {
     /// - Parameter opcode: The opcode information.
     ///
     @inlinable open func processBNE(opcode: OpcodeInfo) {
-        if let opInfo: OperandInfo = getOperand(mode: opcode.addressingMode) { doBranchOnCondition(offset: opInfo.operand, cond: (_st &!= PF.Zero)) }
-        else { processKIL() }
+        doWithOperand(opcode: opcode) { (opInfo: OperandInfo) in doBranchOnCondition(offset: opInfo.operand, cond: (_st &!= PF.Zero)) }
     }
 
     /*===========================================================================================================================*/
@@ -869,8 +883,7 @@ public class CPU6502: CPU65xx {
     /// - Parameter opcode: The opcode information.
     ///
     @inlinable open func processBPL(opcode: OpcodeInfo) {
-        if let opInfo: OperandInfo = getOperand(mode: opcode.addressingMode) { doBranchOnCondition(offset: opInfo.operand, cond: (_st &!= PF.Negative)) }
-        else { processKIL() }
+        doWithOperand(opcode: opcode) { (opInfo: OperandInfo) in doBranchOnCondition(offset: opInfo.operand, cond: (_st &!= PF.Negative)) }
     }
 
     /*===========================================================================================================================*/
@@ -879,8 +892,7 @@ public class CPU6502: CPU65xx {
     /// - Parameter opcode: The opcode information.
     ///
     @inlinable open func processBRK(opcode: OpcodeInfo) {
-        _pc++
-        _nmiTriggered = true
+        _brkTriggered = true
     }
 
     /*===========================================================================================================================*/
@@ -889,8 +901,7 @@ public class CPU6502: CPU65xx {
     /// - Parameter opcode: The opcode information.
     ///
     @inlinable open func processBVC(opcode: OpcodeInfo) {
-        if let opInfo: OperandInfo = getOperand(mode: opcode.addressingMode) { doBranchOnCondition(offset: opInfo.operand, cond: (_st &!= PF.Overflow)) }
-        else { processKIL() }
+        doWithOperand(opcode: opcode) { (opInfo: OperandInfo) in doBranchOnCondition(offset: opInfo.operand, cond: (_st &!= PF.Overflow)) }
     }
 
     /*===========================================================================================================================*/
@@ -899,8 +910,7 @@ public class CPU6502: CPU65xx {
     /// - Parameter opcode: The opcode information.
     ///
     @inlinable open func processBVS(opcode: OpcodeInfo) {
-        if let opInfo: OperandInfo = getOperand(mode: opcode.addressingMode) { doBranchOnCondition(offset: opInfo.operand, cond: (_st &== PF.Overflow)) }
-        else { processKIL() }
+        doWithOperand(opcode: opcode) { (opInfo: OperandInfo) in doBranchOnCondition(offset: opInfo.operand, cond: (_st &== PF.Overflow)) }
     }
 
     /*===========================================================================================================================*/
@@ -939,22 +949,13 @@ public class CPU6502: CPU65xx {
         _st &= ~PF.Overflow
     }
 
-    @inlinable func compare(_ r: UInt8, _ o: UInt8) {
-        PF.Carry.set(status: &_st, when: r >= o)
-        PF.Negative.set(status: &_st, when: r >= 128)
-        PF.Zero.set(status: &_st, when: r == o)
-    }
-
     /*===========================================================================================================================*/
     /// Handles the CMP opcode.
     /// 
     /// - Parameter opcode: The opcode information.
     ///
     @inlinable open func processCMP(opcode: OpcodeInfo) {
-        if let opInfo: OperandInfo = getOperand(opcode: opcode) {
-            compare(_accu, opInfo.operand)
-        }
-        else { processKIL() }
+        doWithOperand(opcode: opcode) { (opInfo: OperandInfo) in updateStatus(N: _accu &== 0x80, Z: _accu == 0, C: _accu >= opInfo.operand) }
     }
 
     /*===========================================================================================================================*/
@@ -963,10 +964,7 @@ public class CPU6502: CPU65xx {
     /// - Parameter opcode: The opcode information.
     ///
     @inlinable open func processCPX(opcode: OpcodeInfo) {
-        if let opInfo: OperandInfo = getOperand(opcode: opcode) {
-            compare(_xreg, opInfo.operand)
-        }
-        else { processKIL() }
+        doWithOperand(opcode: opcode) { (opInfo: OperandInfo) in updateStatus(N: _xreg &== 0x80, Z: _xreg == 0, C: _xreg >= opInfo.operand) }
     }
 
     /*===========================================================================================================================*/
@@ -975,10 +973,7 @@ public class CPU6502: CPU65xx {
     /// - Parameter opcode: The opcode information.
     ///
     @inlinable open func processCPY(opcode: OpcodeInfo) {
-        if let opInfo: OperandInfo = getOperand(opcode: opcode) {
-            compare(_yreg, opInfo.operand)
-        }
-        else { processKIL() }
+        doWithOperand(opcode: opcode) { (opInfo: OperandInfo) in updateStatus(N: _yreg &== 0x80, Z: _yreg == 0, C: _yreg >= opInfo.operand) }
     }
 
     /*===========================================================================================================================*/
@@ -996,13 +991,11 @@ public class CPU6502: CPU65xx {
     /// - Parameter opcode: The opcode information.
     ///
     @inlinable open func processDEC(opcode: OpcodeInfo) {
-        if let opInfo: OperandInfo = getOperand(opcode: opcode) {
+        doWithOperand(opcode: opcode) {
+            (opInfo: OperandInfo) in
             let r: UInt8 = (opInfo.operand &- 1)
-            updateNZCstatus(ans: r)
+            updateNZstatus(ans: r)
             storeResults(value: r, mode: opcode.addressingMode)
-        }
-        else {
-            processKIL()
         }
     }
 
@@ -1012,7 +1005,7 @@ public class CPU6502: CPU65xx {
     /// - Parameter opcode: The opcode information.
     ///
     @inlinable open func processDEX(opcode: OpcodeInfo) {
-        updateNZCstatus(ans: ---_xreg)
+        updateNZstatus(ans: ---_xreg)
     }
 
     /*===========================================================================================================================*/
@@ -1021,7 +1014,7 @@ public class CPU6502: CPU65xx {
     /// - Parameter opcode: The opcode information.
     ///
     @inlinable open func processDEY(opcode: OpcodeInfo) {
-        updateNZCstatus(ans: ---_yreg)
+        updateNZstatus(ans: ---_yreg)
     }
 
     /*===========================================================================================================================*/
@@ -1030,12 +1023,10 @@ public class CPU6502: CPU65xx {
     /// - Parameter opcode: The opcode information.
     ///
     @inlinable open func processEOR(opcode: OpcodeInfo) {
-        if let oi: OperandInfo = getOperand(opcode: opcode) {
+        doWithOperand(opcode: opcode) {
+            (oi: OperandInfo) in
             _accu = (_accu ^ oi.operand)
-            updateNZCstatus(ans: _accu)
-        }
-        else {
-            processKIL()
+            updateNZstatus(ans: _accu)
         }
     }
 
@@ -1045,13 +1036,11 @@ public class CPU6502: CPU65xx {
     /// - Parameter opcode: The opcode information.
     ///
     @inlinable open func processINC(opcode: OpcodeInfo) {
-        if let opInfo: OperandInfo = getOperand(opcode: opcode) {
+        doWithOperand(opcode: opcode) {
+            (opInfo: OperandInfo) in
             let r: UInt8 = (opInfo.operand &+ 1)
-            updateNZCstatus(ans: r)
+            updateNZstatus(ans: r)
             storeResults(value: r, mode: opcode.addressingMode)
-        }
-        else {
-            processKIL()
         }
     }
 
@@ -1061,7 +1050,7 @@ public class CPU6502: CPU65xx {
     /// - Parameter opcode: The opcode information.
     ///
     @inlinable open func processINX(opcode: OpcodeInfo) {
-        updateNZCstatus(ans: +++_xreg)
+        updateNZstatus(ans: +++_xreg)
     }
 
     /*===========================================================================================================================*/
@@ -1070,7 +1059,7 @@ public class CPU6502: CPU65xx {
     /// - Parameter opcode: The opcode information.
     ///
     @inlinable open func processINY(opcode: OpcodeInfo) {
-        updateNZCstatus(ans: +++_yreg)
+        updateNZstatus(ans: +++_yreg)
     }
 
     /*===========================================================================================================================*/
@@ -1088,7 +1077,10 @@ public class CPU6502: CPU65xx {
     /// - Parameter opcode: The opcode information.
     ///
     @inlinable open func processJMP(opcode: OpcodeInfo) {
-        doJump(mode: opcode.addressingMode)
+        doWithEffectiveAddress(mode: opcode.addressingMode) {
+            (ea: AddressInfo) in
+            _pc = (ea.address &- 1) &- UInt16(opcode.addressingMode.byteCount)
+        }
     }
 
     /*===========================================================================================================================*/
@@ -1097,8 +1089,12 @@ public class CPU6502: CPU65xx {
     /// - Parameter opcode: The opcode information.
     ///
     @inlinable open func processJSR(opcode: OpcodeInfo) {
-        push(word: _pc + 2)
-        doJump(mode: opcode.addressingMode)
+        doWithEffectiveAddress(mode: opcode.addressingMode) {
+            (ea: AddressInfo) in
+            let bc: UInt16 = UInt16(opcode.addressingMode.byteCount)
+            push(word: _pc + bc)
+            _pc = (ea.address &- 1 &- bc)
+        }
     }
 
     /*===========================================================================================================================*/
@@ -1107,10 +1103,6 @@ public class CPU6502: CPU65xx {
     /// - Parameter opcode: The opcode information.
     ///
     open func processKIL(opcode: OpcodeInfo) {
-        processKIL()
-    }
-
-    @inlinable open func processKIL() {
         try? stop()
     }
 
@@ -1138,12 +1130,10 @@ public class CPU6502: CPU65xx {
     /// - Parameter opcode: The opcode information.
     ///
     @inlinable open func processLDA(opcode: OpcodeInfo) {
-        if let oi: OperandInfo = getOperand(opcode: opcode) {
+        doWithOperand(opcode: opcode) {
+            (oi: OperandInfo) in
             _accu = oi.operand
-            updateNZCstatus(ans: _accu)
-        }
-        else {
-            processKIL()
+            updateNZstatus(ans: _accu)
         }
     }
 
@@ -1153,12 +1143,10 @@ public class CPU6502: CPU65xx {
     /// - Parameter opcode: The opcode information.
     ///
     @inlinable open func processLDX(opcode: OpcodeInfo) {
-        if let oi: OperandInfo = getOperand(opcode: opcode) {
+        doWithOperand(opcode: opcode) {
+            (oi: OperandInfo) in
             _xreg = oi.operand
-            updateNZCstatus(ans: _xreg)
-        }
-        else {
-            processKIL()
+            updateNZstatus(ans: _xreg)
         }
     }
 
@@ -1168,12 +1156,10 @@ public class CPU6502: CPU65xx {
     /// - Parameter opcode: The opcode information.
     ///
     @inlinable open func processLDY(opcode: OpcodeInfo) {
-        if let oi: OperandInfo = getOperand(opcode: opcode) {
+        doWithOperand(opcode: opcode) {
+            (oi: OperandInfo) in
             _yreg = oi.operand
-            updateNZCstatus(ans: _yreg)
-        }
-        else {
-            processKIL()
+            updateNZstatus(ans: _yreg)
         }
     }
 
@@ -1183,13 +1169,11 @@ public class CPU6502: CPU65xx {
     /// - Parameter opcode: The opcode information.
     ///
     @inlinable open func processLSR(opcode: OpcodeInfo) {
-        if let oi: OperandInfo = getOperand(opcode: opcode) {
+        doWithOperand(opcode: opcode) {
+            (oi: OperandInfo) in
             let r: UInt8 = (oi.operand >> 1)
             updateNZCstatus(ans: r, c: oi.operand &== 1)
             storeResults(value: r, mode: opcode.addressingMode)
-        }
-        else {
-            processKIL()
         }
     }
 
@@ -1208,12 +1192,10 @@ public class CPU6502: CPU65xx {
     /// - Parameter opcode: The opcode information.
     ///
     @inlinable open func processORA(opcode: OpcodeInfo) {
-        if let opInfo: OperandInfo = getOperand(opcode: opcode) {
+        doWithOperand(opcode: opcode) {
+            (opInfo: OperandInfo) in
             _accu |= opInfo.operand
-            updateNZCstatus(ans: _accu)
-        }
-        else {
-            processKIL()
+            updateNZstatus(ans: _accu)
         }
     }
 
@@ -1242,7 +1224,7 @@ public class CPU6502: CPU65xx {
     ///
     @inlinable open func processPLA(opcode: OpcodeInfo) {
         _accu = pullByte()
-        updateNZCstatus(ans: _accu)
+        updateNZstatus(ans: _accu)
     }
 
     /*===========================================================================================================================*/
@@ -1269,13 +1251,11 @@ public class CPU6502: CPU65xx {
     /// - Parameter opcode: The opcode information.
     ///
     @inlinable open func processROL(opcode: OpcodeInfo) {
-        if let opInfo: OperandInfo = getOperand(opcode: opcode) {
+        doWithOperand(opcode: opcode) {
+            (opInfo: OperandInfo) in
             let result: UInt8 = ((opInfo.operand << 1) | (_st & PF.Carry))
             storeResults(value: result, mode: opcode.addressingMode)
             updateNZCstatus(ans: result, c: opInfo.operand &== PF.Negative)
-        }
-        else {
-            processKIL()
         }
     }
 
@@ -1285,13 +1265,11 @@ public class CPU6502: CPU65xx {
     /// - Parameter opcode: The opcode information.
     ///
     @inlinable open func processROR(opcode: OpcodeInfo) {
-        if let opInfo: OperandInfo = getOperand(opcode: opcode) {
+        doWithOperand(opcode: opcode) {
+            (opInfo: OperandInfo) in
             let result: UInt8 = ((opInfo.operand >> 1) | ((_st & PF.Carry) << 7))
             storeResults(value: result, mode: opcode.addressingMode)
             updateNZCstatus(ans: result, c: opInfo.operand &== 1)
-        }
-        else {
-            processKIL()
         }
     }
 
@@ -1338,12 +1316,10 @@ public class CPU6502: CPU65xx {
     /// - Parameter opcode: The opcode information.
     ///
     @inlinable open func processSBC(opcode: OpcodeInfo) {
-        if let opInfo: OperandInfo = getOperand(opcode: opcode) {
+        doWithOperand(opcode: opcode) {
+            (opInfo: OperandInfo) in
             if (_st &== PF.Decimal) { decimalSBC(lhs: Int16(bitPattern: UInt16(_accu)), rhs: Int16(bitPattern: UInt16(opInfo.operand))) }
             else { binaryADC(lhs: UInt16(_accu), rhs: UInt16(255 &- opInfo.operand)) /* Subtraction is nothing but addition with the 1's complement of operand. */ }
-        }
-        else {
-            processKIL()
         }
     }
 
@@ -1453,7 +1429,7 @@ public class CPU6502: CPU65xx {
     ///
     @inlinable open func processTAX(opcode: OpcodeInfo) {
         _xreg = _accu
-        updateNZCstatus(ans: _xreg)
+        updateNZstatus(ans: _xreg)
     }
 
     /*===========================================================================================================================*/
@@ -1463,7 +1439,7 @@ public class CPU6502: CPU65xx {
     ///
     @inlinable open func processTAY(opcode: OpcodeInfo) {
         _yreg = _accu
-        updateNZCstatus(ans: _yreg)
+        updateNZstatus(ans: _yreg)
     }
 
     /*===========================================================================================================================*/
@@ -1473,7 +1449,7 @@ public class CPU6502: CPU65xx {
     ///
     @inlinable open func processTSX(opcode: OpcodeInfo) {
         _xreg = UInt8(_sp & 0xff)
-        updateNZCstatus(ans: _xreg)
+        updateNZstatus(ans: _xreg)
     }
 
     /*===========================================================================================================================*/
@@ -1483,7 +1459,7 @@ public class CPU6502: CPU65xx {
     ///
     @inlinable open func processTXA(opcode: OpcodeInfo) {
         _accu = _xreg
-        updateNZCstatus(ans: _accu)
+        updateNZstatus(ans: _accu)
     }
 
     /*===========================================================================================================================*/
@@ -1502,7 +1478,7 @@ public class CPU6502: CPU65xx {
     ///
     @inlinable open func processTYA(opcode: OpcodeInfo) {
         _accu = _yreg
-        updateNZCstatus(ans: _accu)
+        updateNZstatus(ans: _accu)
     }
 
     /*===========================================================================================================================*/
@@ -1513,4 +1489,265 @@ public class CPU6502: CPU65xx {
     @inlinable open func processXAA(opcode: OpcodeInfo) {
         // TODO: processXAA opcode
     }
+
+//@f:0
+    public let opcodes: [OpcodeInfo] = [
+        OpcodeInfo(opcode: 0x00, mnemonic: "BRK", addrMode: .IMP, isInvalid: false, cycleCount: 7, penalty: false, affectedFlags: XXXXXXX),
+        OpcodeInfo(opcode: 0x01, mnemonic: "ORA", addrMode: .INX, isInvalid: false, cycleCount: 6, penalty: false, affectedFlags: N____Z_),
+        OpcodeInfo(opcode: 0x02, mnemonic: "KIL", addrMode: .IMP, isInvalid: true,  cycleCount: 2, penalty: false, affectedFlags: XXXXXXX),
+        OpcodeInfo(opcode: 0x03, mnemonic: "SLO", addrMode: .INX, isInvalid: true,  cycleCount: 3, penalty: false, affectedFlags: N____ZC),
+        OpcodeInfo(opcode: 0x04, mnemonic: "NOP", addrMode: .ZPG, isInvalid: true,  cycleCount: 2, penalty: false, affectedFlags: XXXXXXX),
+        OpcodeInfo(opcode: 0x05, mnemonic: "ORA", addrMode: .ZPG, isInvalid: false, cycleCount: 3, penalty: false, affectedFlags: N____Z_),
+        OpcodeInfo(opcode: 0x06, mnemonic: "ASL", addrMode: .ZPG, isInvalid: false, cycleCount: 5, penalty: false, affectedFlags: N____ZC),
+        OpcodeInfo(opcode: 0x07, mnemonic: "SLO", addrMode: .ZPG, isInvalid: true,  cycleCount: 3, penalty: false, affectedFlags: N____ZC),
+        OpcodeInfo(opcode: 0x08, mnemonic: "PHP", addrMode: .IMP, isInvalid: false, cycleCount: 3, penalty: false, affectedFlags: XXXXXXX),
+        OpcodeInfo(opcode: 0x09, mnemonic: "ORA", addrMode: .IMM, isInvalid: false, cycleCount: 2, penalty: false, affectedFlags: N____Z_),
+        OpcodeInfo(opcode: 0x0a, mnemonic: "ASL", addrMode: .ACC, isInvalid: false, cycleCount: 2, penalty: false, affectedFlags: N____ZC),
+        OpcodeInfo(opcode: 0x0b, mnemonic: "ANC", addrMode: .IMM, isInvalid: true,  cycleCount: 3, penalty: false, affectedFlags: N____ZC),
+        OpcodeInfo(opcode: 0x0c, mnemonic: "NOP", addrMode: .ABS, isInvalid: true,  cycleCount: 2, penalty: false, affectedFlags: XXXXXXX),
+        OpcodeInfo(opcode: 0x0d, mnemonic: "ORA", addrMode: .ABS, isInvalid: false, cycleCount: 4, penalty: false, affectedFlags: N____Z_),
+        OpcodeInfo(opcode: 0x0e, mnemonic: "ASL", addrMode: .ABS, isInvalid: false, cycleCount: 6, penalty: false, affectedFlags: N____ZC),
+        OpcodeInfo(opcode: 0x0f, mnemonic: "SLO", addrMode: .ABS, isInvalid: true,  cycleCount: 3, penalty: false, affectedFlags: N____ZC),
+        OpcodeInfo(opcode: 0x10, mnemonic: "BPL", addrMode: .REL, isInvalid: false, cycleCount: 2, penalty: true,  affectedFlags: XXXXXXX),
+        OpcodeInfo(opcode: 0x11, mnemonic: "ORA", addrMode: .INY, isInvalid: false, cycleCount: 5, penalty: true,  affectedFlags: N____Z_),
+        OpcodeInfo(opcode: 0x12, mnemonic: "KIL", addrMode: .IMP, isInvalid: true,  cycleCount: 2, penalty: false, affectedFlags: XXXXXXX),
+        OpcodeInfo(opcode: 0x13, mnemonic: "SLO", addrMode: .INY, isInvalid: true,  cycleCount: 3, penalty: true,  affectedFlags: N____ZC),
+        OpcodeInfo(opcode: 0x14, mnemonic: "NOP", addrMode: .ZPX, isInvalid: true,  cycleCount: 2, penalty: false, affectedFlags: XXXXXXX),
+        OpcodeInfo(opcode: 0x15, mnemonic: "ORA", addrMode: .ZPX, isInvalid: false, cycleCount: 4, penalty: false, affectedFlags: N____Z_),
+        OpcodeInfo(opcode: 0x16, mnemonic: "ASL", addrMode: .ZPX, isInvalid: false, cycleCount: 6, penalty: false, affectedFlags: N____ZC),
+        OpcodeInfo(opcode: 0x17, mnemonic: "SLO", addrMode: .ZPX, isInvalid: true,  cycleCount: 3, penalty: false, affectedFlags: N____ZC),
+        OpcodeInfo(opcode: 0x18, mnemonic: "CLC", addrMode: .IMP, isInvalid: false, cycleCount: 2, penalty: false, affectedFlags: ______C),
+        OpcodeInfo(opcode: 0x19, mnemonic: "ORA", addrMode: .ABY, isInvalid: false, cycleCount: 4, penalty: true,  affectedFlags: N____Z_),
+        OpcodeInfo(opcode: 0x1a, mnemonic: "NOP", addrMode: .IMP, isInvalid: true,  cycleCount: 2, penalty: false, affectedFlags: XXXXXXX),
+        OpcodeInfo(opcode: 0x1b, mnemonic: "SLO", addrMode: .ABY, isInvalid: true,  cycleCount: 3, penalty: true,  affectedFlags: N____ZC),
+        OpcodeInfo(opcode: 0x1c, mnemonic: "NOP", addrMode: .ABX, isInvalid: true,  cycleCount: 2, penalty: false, affectedFlags: XXXXXXX),
+        OpcodeInfo(opcode: 0x1d, mnemonic: "ORA", addrMode: .ABX, isInvalid: false, cycleCount: 4, penalty: true,  affectedFlags: N____Z_),
+        OpcodeInfo(opcode: 0x1e, mnemonic: "ASL", addrMode: .ABX, isInvalid: false, cycleCount: 7, penalty: false, affectedFlags: N____ZC),
+        OpcodeInfo(opcode: 0x1f, mnemonic: "SLO", addrMode: .ABX, isInvalid: true,  cycleCount: 3, penalty: false, affectedFlags: N____ZC),
+        OpcodeInfo(opcode: 0x20, mnemonic: "JSR", addrMode: .ABS, isInvalid: false, cycleCount: 6, penalty: false, affectedFlags: XXXXXXX),
+        OpcodeInfo(opcode: 0x21, mnemonic: "AND", addrMode: .INX, isInvalid: false, cycleCount: 6, penalty: false, affectedFlags: N____Z_),
+        OpcodeInfo(opcode: 0x22, mnemonic: "KIL", addrMode: .IMP, isInvalid: true,  cycleCount: 2, penalty: false, affectedFlags: XXXXXXX),
+        OpcodeInfo(opcode: 0x23, mnemonic: "RLA", addrMode: .INX, isInvalid: true,  cycleCount: 3, penalty: false, affectedFlags: N____ZC),
+        OpcodeInfo(opcode: 0x24, mnemonic: "BIT", addrMode: .ZPG, isInvalid: false, cycleCount: 3, penalty: false, affectedFlags: NO___Z_),
+        OpcodeInfo(opcode: 0x25, mnemonic: "AND", addrMode: .ZPG, isInvalid: false, cycleCount: 3, penalty: false, affectedFlags: N____Z_),
+        OpcodeInfo(opcode: 0x26, mnemonic: "ROL", addrMode: .ZPG, isInvalid: false, cycleCount: 5, penalty: false, affectedFlags: N____ZC),
+        OpcodeInfo(opcode: 0x27, mnemonic: "RLA", addrMode: .ZPG, isInvalid: true,  cycleCount: 3, penalty: false, affectedFlags: N____ZC),
+        OpcodeInfo(opcode: 0x28, mnemonic: "PLP", addrMode: .IMP, isInvalid: false, cycleCount: 4, penalty: false, affectedFlags: NOBDIZC),
+        OpcodeInfo(opcode: 0x29, mnemonic: "AND", addrMode: .IMM, isInvalid: false, cycleCount: 2, penalty: false, affectedFlags: N____Z_),
+        OpcodeInfo(opcode: 0x2a, mnemonic: "ROL", addrMode: .ACC, isInvalid: false, cycleCount: 2, penalty: false, affectedFlags: N____ZC),
+        OpcodeInfo(opcode: 0x2b, mnemonic: "ANC", addrMode: .IMM, isInvalid: true,  cycleCount: 3, penalty: false, affectedFlags: N____ZC),
+        OpcodeInfo(opcode: 0x2c, mnemonic: "BIT", addrMode: .ABS, isInvalid: false, cycleCount: 4, penalty: false, affectedFlags: NO___Z_),
+        OpcodeInfo(opcode: 0x2d, mnemonic: "AND", addrMode: .ABS, isInvalid: false, cycleCount: 4, penalty: false, affectedFlags: N____Z_),
+        OpcodeInfo(opcode: 0x2e, mnemonic: "ROL", addrMode: .ABS, isInvalid: false, cycleCount: 6, penalty: false, affectedFlags: N____ZC),
+        OpcodeInfo(opcode: 0x2f, mnemonic: "RLA", addrMode: .ABS, isInvalid: true,  cycleCount: 3, penalty: false, affectedFlags: N____ZC),
+        OpcodeInfo(opcode: 0x30, mnemonic: "BMI", addrMode: .REL, isInvalid: false, cycleCount: 2, penalty: true,  affectedFlags: XXXXXXX),
+        OpcodeInfo(opcode: 0x31, mnemonic: "AND", addrMode: .INY, isInvalid: false, cycleCount: 5, penalty: true,  affectedFlags: N____Z_),
+        OpcodeInfo(opcode: 0x32, mnemonic: "KIL", addrMode: .IMP, isInvalid: true,  cycleCount: 2, penalty: false, affectedFlags: XXXXXXX),
+        OpcodeInfo(opcode: 0x33, mnemonic: "RLA", addrMode: .INY, isInvalid: true,  cycleCount: 3, penalty: true,  affectedFlags: N____ZC),
+        OpcodeInfo(opcode: 0x34, mnemonic: "NOP", addrMode: .ZPX, isInvalid: true,  cycleCount: 2, penalty: false, affectedFlags: XXXXXXX),
+        OpcodeInfo(opcode: 0x35, mnemonic: "AND", addrMode: .ZPX, isInvalid: false, cycleCount: 4, penalty: false, affectedFlags: N____Z_),
+        OpcodeInfo(opcode: 0x36, mnemonic: "ROL", addrMode: .ZPX, isInvalid: false, cycleCount: 6, penalty: false, affectedFlags: N____ZC),
+        OpcodeInfo(opcode: 0x37, mnemonic: "RLA", addrMode: .ZPX, isInvalid: true,  cycleCount: 3, penalty: false, affectedFlags: N____ZC),
+        OpcodeInfo(opcode: 0x38, mnemonic: "SEC", addrMode: .IMP, isInvalid: false, cycleCount: 2, penalty: false, affectedFlags: ______C),
+        OpcodeInfo(opcode: 0x39, mnemonic: "AND", addrMode: .ABY, isInvalid: false, cycleCount: 4, penalty: true,  affectedFlags: N____Z_),
+        OpcodeInfo(opcode: 0x3a, mnemonic: "NOP", addrMode: .IMP, isInvalid: true,  cycleCount: 2, penalty: false, affectedFlags: XXXXXXX),
+        OpcodeInfo(opcode: 0x3b, mnemonic: "RLA", addrMode: .ABY, isInvalid: true,  cycleCount: 3, penalty: true,  affectedFlags: N____ZC),
+        OpcodeInfo(opcode: 0x3c, mnemonic: "NOP", addrMode: .ABX, isInvalid: true,  cycleCount: 2, penalty: false, affectedFlags: XXXXXXX),
+        OpcodeInfo(opcode: 0x3d, mnemonic: "AND", addrMode: .ABX, isInvalid: false, cycleCount: 4, penalty: true,  affectedFlags: N____Z_),
+        OpcodeInfo(opcode: 0x3e, mnemonic: "ROL", addrMode: .ABX, isInvalid: false, cycleCount: 7, penalty: false, affectedFlags: N____ZC),
+        OpcodeInfo(opcode: 0x3f, mnemonic: "RLA", addrMode: .ABX, isInvalid: true,  cycleCount: 3, penalty: false, affectedFlags: N____ZC),
+        OpcodeInfo(opcode: 0x40, mnemonic: "RTI", addrMode: .IMP, isInvalid: false, cycleCount: 6, penalty: false, affectedFlags: XXXXXXX),
+        OpcodeInfo(opcode: 0x41, mnemonic: "EOR", addrMode: .INX, isInvalid: false, cycleCount: 6, penalty: false, affectedFlags: N____Z_),
+        OpcodeInfo(opcode: 0x42, mnemonic: "KIL", addrMode: .IMP, isInvalid: true,  cycleCount: 2, penalty: false, affectedFlags: XXXXXXX),
+        OpcodeInfo(opcode: 0x43, mnemonic: "SRE", addrMode: .INX, isInvalid: true,  cycleCount: 3, penalty: false, affectedFlags: N____ZC),
+        OpcodeInfo(opcode: 0x44, mnemonic: "NOP", addrMode: .ZPG, isInvalid: true,  cycleCount: 2, penalty: false, affectedFlags: XXXXXXX),
+        OpcodeInfo(opcode: 0x45, mnemonic: "EOR", addrMode: .ZPG, isInvalid: false, cycleCount: 3, penalty: false, affectedFlags: N____Z_),
+        OpcodeInfo(opcode: 0x46, mnemonic: "LSR", addrMode: .ZPG, isInvalid: false, cycleCount: 5, penalty: false, affectedFlags: N____ZC),
+        OpcodeInfo(opcode: 0x47, mnemonic: "SRE", addrMode: .ZPG, isInvalid: true,  cycleCount: 3, penalty: false, affectedFlags: N____ZC),
+        OpcodeInfo(opcode: 0x48, mnemonic: "PHA", addrMode: .IMP, isInvalid: false, cycleCount: 3, penalty: false, affectedFlags: XXXXXXX),
+        OpcodeInfo(opcode: 0x49, mnemonic: "EOR", addrMode: .IMM, isInvalid: false, cycleCount: 2, penalty: false, affectedFlags: N____Z_),
+        OpcodeInfo(opcode: 0x4a, mnemonic: "LSR", addrMode: .ACC, isInvalid: false, cycleCount: 2, penalty: false, affectedFlags: N____ZC),
+        OpcodeInfo(opcode: 0x4b, mnemonic: "ALR", addrMode: .IMM, isInvalid: true,  cycleCount: 3, penalty: false, affectedFlags: N____ZC),
+        OpcodeInfo(opcode: 0x4c, mnemonic: "JMP", addrMode: .ABS, isInvalid: false, cycleCount: 3, penalty: false, affectedFlags: XXXXXXX),
+        OpcodeInfo(opcode: 0x4d, mnemonic: "EOR", addrMode: .ABS, isInvalid: false, cycleCount: 4, penalty: false, affectedFlags: N____Z_),
+        OpcodeInfo(opcode: 0x4e, mnemonic: "LSR", addrMode: .ABS, isInvalid: false, cycleCount: 6, penalty: false, affectedFlags: N____ZC),
+        OpcodeInfo(opcode: 0x4f, mnemonic: "SRE", addrMode: .ABS, isInvalid: true,  cycleCount: 3, penalty: false, affectedFlags: N____ZC),
+        OpcodeInfo(opcode: 0x50, mnemonic: "BVC", addrMode: .REL, isInvalid: false, cycleCount: 2, penalty: true,  affectedFlags: XXXXXXX),
+        OpcodeInfo(opcode: 0x51, mnemonic: "EOR", addrMode: .INY, isInvalid: false, cycleCount: 5, penalty: true,  affectedFlags: N____Z_),
+        OpcodeInfo(opcode: 0x52, mnemonic: "KIL", addrMode: .IMP, isInvalid: true,  cycleCount: 2, penalty: false, affectedFlags: XXXXXXX),
+        OpcodeInfo(opcode: 0x53, mnemonic: "SRE", addrMode: .INY, isInvalid: true,  cycleCount: 3, penalty: true,  affectedFlags: N____ZC),
+        OpcodeInfo(opcode: 0x54, mnemonic: "NOP", addrMode: .ZPX, isInvalid: true,  cycleCount: 2, penalty: false, affectedFlags: XXXXXXX),
+        OpcodeInfo(opcode: 0x55, mnemonic: "EOR", addrMode: .ZPX, isInvalid: false, cycleCount: 4, penalty: false, affectedFlags: N____Z_),
+        OpcodeInfo(opcode: 0x56, mnemonic: "LSR", addrMode: .ZPX, isInvalid: false, cycleCount: 6, penalty: false, affectedFlags: N____ZC),
+        OpcodeInfo(opcode: 0x57, mnemonic: "SRE", addrMode: .ZPX, isInvalid: true,  cycleCount: 3, penalty: false, affectedFlags: N____ZC),
+        OpcodeInfo(opcode: 0x58, mnemonic: "CLI", addrMode: .IMP, isInvalid: false, cycleCount: 2, penalty: false, affectedFlags: ____I__),
+        OpcodeInfo(opcode: 0x59, mnemonic: "EOR", addrMode: .ABY, isInvalid: false, cycleCount: 4, penalty: true,  affectedFlags: N____Z_),
+        OpcodeInfo(opcode: 0x5a, mnemonic: "NOP", addrMode: .IMP, isInvalid: true,  cycleCount: 2, penalty: false, affectedFlags: XXXXXXX),
+        OpcodeInfo(opcode: 0x5b, mnemonic: "SRE", addrMode: .ABY, isInvalid: true,  cycleCount: 3, penalty: true,  affectedFlags: N____ZC),
+        OpcodeInfo(opcode: 0x5c, mnemonic: "NOP", addrMode: .ABX, isInvalid: true,  cycleCount: 2, penalty: false, affectedFlags: XXXXXXX),
+        OpcodeInfo(opcode: 0x5d, mnemonic: "EOR", addrMode: .ABX, isInvalid: false, cycleCount: 4, penalty: true,  affectedFlags: N____Z_),
+        OpcodeInfo(opcode: 0x5e, mnemonic: "LSR", addrMode: .ABX, isInvalid: false, cycleCount: 7, penalty: false, affectedFlags: N____ZC),
+        OpcodeInfo(opcode: 0x5f, mnemonic: "SRE", addrMode: .ABX, isInvalid: true,  cycleCount: 3, penalty: false, affectedFlags: N____ZC),
+        OpcodeInfo(opcode: 0x60, mnemonic: "RTS", addrMode: .IMP, isInvalid: false, cycleCount: 6, penalty: false, affectedFlags: XXXXXXX),
+        OpcodeInfo(opcode: 0x61, mnemonic: "ADC", addrMode: .INX, isInvalid: false, cycleCount: 6, penalty: false, affectedFlags: NO___ZC),
+        OpcodeInfo(opcode: 0x62, mnemonic: "KIL", addrMode: .IMP, isInvalid: true,  cycleCount: 2, penalty: false, affectedFlags: XXXXXXX),
+        OpcodeInfo(opcode: 0x63, mnemonic: "RRA", addrMode: .INX, isInvalid: true,  cycleCount: 3, penalty: false, affectedFlags: NO___ZC),
+        OpcodeInfo(opcode: 0x64, mnemonic: "NOP", addrMode: .ZPG, isInvalid: true,  cycleCount: 2, penalty: false, affectedFlags: XXXXXXX),
+        OpcodeInfo(opcode: 0x65, mnemonic: "ADC", addrMode: .ZPG, isInvalid: false, cycleCount: 3, penalty: false, affectedFlags: NO___ZC),
+        OpcodeInfo(opcode: 0x66, mnemonic: "ROR", addrMode: .ZPG, isInvalid: false, cycleCount: 5, penalty: false, affectedFlags: N____ZC),
+        OpcodeInfo(opcode: 0x67, mnemonic: "RRA", addrMode: .ZPG, isInvalid: true,  cycleCount: 3, penalty: false, affectedFlags: NO___ZC),
+        OpcodeInfo(opcode: 0x68, mnemonic: "PLA", addrMode: .IMP, isInvalid: false, cycleCount: 4, penalty: false, affectedFlags: N____Z_),
+        OpcodeInfo(opcode: 0x69, mnemonic: "ADC", addrMode: .IMM, isInvalid: false, cycleCount: 2, penalty: false, affectedFlags: NO___ZC),
+        OpcodeInfo(opcode: 0x6a, mnemonic: "ROR", addrMode: .ACC, isInvalid: false, cycleCount: 2, penalty: false, affectedFlags: N____ZC),
+        OpcodeInfo(opcode: 0x6b, mnemonic: "ARR", addrMode: .IMM, isInvalid: true,  cycleCount: 3, penalty: false, affectedFlags: NO___ZC),
+        OpcodeInfo(opcode: 0x6c, mnemonic: "JMP", addrMode: .IND, isInvalid: false, cycleCount: 5, penalty: false, affectedFlags: XXXXXXX),
+        OpcodeInfo(opcode: 0x6d, mnemonic: "ADC", addrMode: .ABS, isInvalid: false, cycleCount: 4, penalty: false, affectedFlags: NO___ZC),
+        OpcodeInfo(opcode: 0x6e, mnemonic: "ROR", addrMode: .ABX, isInvalid: false, cycleCount: 7, penalty: false, affectedFlags: N____ZC),
+        OpcodeInfo(opcode: 0x6f, mnemonic: "RRA", addrMode: .ABS, isInvalid: true,  cycleCount: 3, penalty: false, affectedFlags: NO___ZC),
+        OpcodeInfo(opcode: 0x70, mnemonic: "BVS", addrMode: .REL, isInvalid: false, cycleCount: 2, penalty: true,  affectedFlags: XXXXXXX),
+        OpcodeInfo(opcode: 0x71, mnemonic: "ADC", addrMode: .INY, isInvalid: false, cycleCount: 5, penalty: true,  affectedFlags: NO___ZC),
+        OpcodeInfo(opcode: 0x72, mnemonic: "KIL", addrMode: .IMP, isInvalid: true,  cycleCount: 2, penalty: false, affectedFlags: XXXXXXX),
+        OpcodeInfo(opcode: 0x73, mnemonic: "RRA", addrMode: .INY, isInvalid: true,  cycleCount: 3, penalty: true,  affectedFlags: NO___ZC),
+        OpcodeInfo(opcode: 0x74, mnemonic: "NOP", addrMode: .ZPX, isInvalid: true,  cycleCount: 2, penalty: false, affectedFlags: XXXXXXX),
+        OpcodeInfo(opcode: 0x75, mnemonic: "ADC", addrMode: .ZPX, isInvalid: false, cycleCount: 4, penalty: false, affectedFlags: NO___ZC),
+        OpcodeInfo(opcode: 0x76, mnemonic: "ROR", addrMode: .ZPX, isInvalid: false, cycleCount: 6, penalty: false, affectedFlags: N____ZC),
+        OpcodeInfo(opcode: 0x77, mnemonic: "RRA", addrMode: .ZPX, isInvalid: true,  cycleCount: 3, penalty: false, affectedFlags: NO___ZC),
+        OpcodeInfo(opcode: 0x78, mnemonic: "SEI", addrMode: .IMP, isInvalid: false, cycleCount: 2, penalty: false, affectedFlags: ____I__),
+        OpcodeInfo(opcode: 0x79, mnemonic: "ADC", addrMode: .ABY, isInvalid: false, cycleCount: 4, penalty: true,  affectedFlags: NO___ZC),
+        OpcodeInfo(opcode: 0x7a, mnemonic: "NOP", addrMode: .IMP, isInvalid: true,  cycleCount: 2, penalty: false, affectedFlags: XXXXXXX),
+        OpcodeInfo(opcode: 0x7b, mnemonic: "RRA", addrMode: .ABY, isInvalid: true,  cycleCount: 3, penalty: true,  affectedFlags: NO___ZC),
+        OpcodeInfo(opcode: 0x7c, mnemonic: "NOP", addrMode: .ABX, isInvalid: true,  cycleCount: 2, penalty: false, affectedFlags: XXXXXXX),
+        OpcodeInfo(opcode: 0x7d, mnemonic: "ADC", addrMode: .ABX, isInvalid: false, cycleCount: 4, penalty: true,  affectedFlags: NO___ZC),
+        OpcodeInfo(opcode: 0x7e, mnemonic: "ROR", addrMode: .ABS, isInvalid: false, cycleCount: 6, penalty: false, affectedFlags: N____ZC),
+        OpcodeInfo(opcode: 0x7f, mnemonic: "RRA", addrMode: .ABX, isInvalid: true,  cycleCount: 3, penalty: false, affectedFlags: NO___ZC),
+        OpcodeInfo(opcode: 0x80, mnemonic: "NOP", addrMode: .IMM, isInvalid: true,  cycleCount: 2, penalty: false, affectedFlags: XXXXXXX),
+        OpcodeInfo(opcode: 0x81, mnemonic: "STA", addrMode: .INX, isInvalid: false, cycleCount: 6, penalty: false, affectedFlags: XXXXXXX),
+        OpcodeInfo(opcode: 0x82, mnemonic: "NOP", addrMode: .IMM, isInvalid: true,  cycleCount: 2, penalty: false, affectedFlags: XXXXXXX),
+        OpcodeInfo(opcode: 0x83, mnemonic: "SAX", addrMode: .INX, isInvalid: true,  cycleCount: 3, penalty: false, affectedFlags: XXXXXXX),
+        OpcodeInfo(opcode: 0x84, mnemonic: "STY", addrMode: .ZPG, isInvalid: false, cycleCount: 3, penalty: false, affectedFlags: XXXXXXX),
+        OpcodeInfo(opcode: 0x85, mnemonic: "STA", addrMode: .ZPG, isInvalid: false, cycleCount: 3, penalty: false, affectedFlags: XXXXXXX),
+        OpcodeInfo(opcode: 0x86, mnemonic: "STX", addrMode: .ZPG, isInvalid: false, cycleCount: 3, penalty: false, affectedFlags: XXXXXXX),
+        OpcodeInfo(opcode: 0x87, mnemonic: "SAX", addrMode: .ZPG, isInvalid: true,  cycleCount: 3, penalty: false, affectedFlags: XXXXXXX),
+        OpcodeInfo(opcode: 0x88, mnemonic: "DEY", addrMode: .IMP, isInvalid: false, cycleCount: 2, penalty: false, affectedFlags: N____Z_),
+        OpcodeInfo(opcode: 0x89, mnemonic: "NOP", addrMode: .IMM, isInvalid: true,  cycleCount: 2, penalty: false, affectedFlags: XXXXXXX),
+        OpcodeInfo(opcode: 0x8a, mnemonic: "TXA", addrMode: .IMP, isInvalid: false, cycleCount: 2, penalty: false, affectedFlags: N____Z_),
+        OpcodeInfo(opcode: 0x8b, mnemonic: "XAA", addrMode: .IMM, isInvalid: true,  cycleCount: 3, penalty: false, affectedFlags: N____Z_),
+        OpcodeInfo(opcode: 0x8c, mnemonic: "STY", addrMode: .ABS, isInvalid: false, cycleCount: 4, penalty: false, affectedFlags: XXXXXXX),
+        OpcodeInfo(opcode: 0x8d, mnemonic: "STA", addrMode: .ABS, isInvalid: false, cycleCount: 4, penalty: false, affectedFlags: XXXXXXX),
+        OpcodeInfo(opcode: 0x8e, mnemonic: "STX", addrMode: .ABS, isInvalid: false, cycleCount: 4, penalty: false, affectedFlags: XXXXXXX),
+        OpcodeInfo(opcode: 0x8f, mnemonic: "SAX", addrMode: .ABS, isInvalid: true,  cycleCount: 3, penalty: false, affectedFlags: XXXXXXX),
+        OpcodeInfo(opcode: 0x90, mnemonic: "BCC", addrMode: .REL, isInvalid: false, cycleCount: 2, penalty: true,  affectedFlags: XXXXXXX),
+        OpcodeInfo(opcode: 0x91, mnemonic: "STA", addrMode: .INY, isInvalid: false, cycleCount: 6, penalty: false, affectedFlags: XXXXXXX),
+        OpcodeInfo(opcode: 0x92, mnemonic: "KIL", addrMode: .IMP, isInvalid: true,  cycleCount: 2, penalty: false, affectedFlags: XXXXXXX),
+        OpcodeInfo(opcode: 0x93, mnemonic: "AHX", addrMode: .INY, isInvalid: true,  cycleCount: 3, penalty: true,  affectedFlags: XXXXXXX),
+        OpcodeInfo(opcode: 0x94, mnemonic: "STY", addrMode: .ZPX, isInvalid: false, cycleCount: 4, penalty: false, affectedFlags: XXXXXXX),
+        OpcodeInfo(opcode: 0x95, mnemonic: "STA", addrMode: .ZPX, isInvalid: false, cycleCount: 4, penalty: false, affectedFlags: XXXXXXX),
+        OpcodeInfo(opcode: 0x96, mnemonic: "STX", addrMode: .ZPY, isInvalid: false, cycleCount: 4, penalty: false, affectedFlags: XXXXXXX),
+        OpcodeInfo(opcode: 0x97, mnemonic: "SAX", addrMode: .ZPY, isInvalid: true,  cycleCount: 3, penalty: false, affectedFlags: XXXXXXX),
+        OpcodeInfo(opcode: 0x98, mnemonic: "TYA", addrMode: .IMP, isInvalid: false, cycleCount: 2, penalty: false, affectedFlags: N____Z_),
+        OpcodeInfo(opcode: 0x99, mnemonic: "STA", addrMode: .ABY, isInvalid: false, cycleCount: 5, penalty: false, affectedFlags: XXXXXXX),
+        OpcodeInfo(opcode: 0x9a, mnemonic: "TXS", addrMode: .IMP, isInvalid: false, cycleCount: 2, penalty: false, affectedFlags: XXXXXXX),
+        OpcodeInfo(opcode: 0x9b, mnemonic: "TAS", addrMode: .ABY, isInvalid: true,  cycleCount: 3, penalty: true,  affectedFlags: XXXXXXX),
+        OpcodeInfo(opcode: 0x9c, mnemonic: "SHY", addrMode: .ABX, isInvalid: true,  cycleCount: 3, penalty: false, affectedFlags: XXXXXXX),
+        OpcodeInfo(opcode: 0x9d, mnemonic: "STA", addrMode: .ABX, isInvalid: false, cycleCount: 5, penalty: false, affectedFlags: XXXXXXX),
+        OpcodeInfo(opcode: 0x9e, mnemonic: "SHX", addrMode: .ABY, isInvalid: true,  cycleCount: 3, penalty: true,  affectedFlags: XXXXXXX),
+        OpcodeInfo(opcode: 0x9f, mnemonic: "AHX", addrMode: .ABY, isInvalid: true,  cycleCount: 3, penalty: true,  affectedFlags: XXXXXXX),
+        OpcodeInfo(opcode: 0xa0, mnemonic: "LDY", addrMode: .IMM, isInvalid: false, cycleCount: 2, penalty: false, affectedFlags: N____Z_),
+        OpcodeInfo(opcode: 0xa1, mnemonic: "LDA", addrMode: .INX, isInvalid: false, cycleCount: 6, penalty: false, affectedFlags: N____Z_),
+        OpcodeInfo(opcode: 0xa2, mnemonic: "LDX", addrMode: .IMM, isInvalid: false, cycleCount: 2, penalty: false, affectedFlags: N____Z_),
+        OpcodeInfo(opcode: 0xa3, mnemonic: "LAX", addrMode: .INX, isInvalid: true,  cycleCount: 3, penalty: false, affectedFlags: N____Z_),
+        OpcodeInfo(opcode: 0xa4, mnemonic: "LDY", addrMode: .ZPG, isInvalid: false, cycleCount: 3, penalty: false, affectedFlags: N____Z_),
+        OpcodeInfo(opcode: 0xa5, mnemonic: "LDA", addrMode: .ZPG, isInvalid: false, cycleCount: 3, penalty: false, affectedFlags: N____Z_),
+        OpcodeInfo(opcode: 0xa6, mnemonic: "LDX", addrMode: .ZPG, isInvalid: false, cycleCount: 3, penalty: false, affectedFlags: N____Z_),
+        OpcodeInfo(opcode: 0xa7, mnemonic: "LAX", addrMode: .ZPG, isInvalid: true,  cycleCount: 3, penalty: false, affectedFlags: N____Z_),
+        OpcodeInfo(opcode: 0xa8, mnemonic: "TAY", addrMode: .IMP, isInvalid: false, cycleCount: 2, penalty: false, affectedFlags: N____Z_),
+        OpcodeInfo(opcode: 0xa9, mnemonic: "LDA", addrMode: .IMM, isInvalid: false, cycleCount: 2, penalty: false, affectedFlags: N____Z_),
+        OpcodeInfo(opcode: 0xaa, mnemonic: "TAX", addrMode: .IMP, isInvalid: false, cycleCount: 2, penalty: false, affectedFlags: N____Z_),
+        OpcodeInfo(opcode: 0xab, mnemonic: "LAX", addrMode: .IMM, isInvalid: true,  cycleCount: 3, penalty: false, affectedFlags: N____Z_),
+        OpcodeInfo(opcode: 0xac, mnemonic: "LDY", addrMode: .ABS, isInvalid: false, cycleCount: 4, penalty: false, affectedFlags: N____Z_),
+        OpcodeInfo(opcode: 0xad, mnemonic: "LDA", addrMode: .ABS, isInvalid: false, cycleCount: 4, penalty: false, affectedFlags: N____Z_),
+        OpcodeInfo(opcode: 0xae, mnemonic: "LDX", addrMode: .ABS, isInvalid: false, cycleCount: 4, penalty: false, affectedFlags: N____Z_),
+        OpcodeInfo(opcode: 0xaf, mnemonic: "LAX", addrMode: .ABS, isInvalid: true,  cycleCount: 3, penalty: false, affectedFlags: N____Z_),
+        OpcodeInfo(opcode: 0xb0, mnemonic: "BCS", addrMode: .REL, isInvalid: false, cycleCount: 2, penalty: true,  affectedFlags: XXXXXXX),
+        OpcodeInfo(opcode: 0xb1, mnemonic: "LDA", addrMode: .INY, isInvalid: false, cycleCount: 5, penalty: true,  affectedFlags: N____Z_),
+        OpcodeInfo(opcode: 0xb2, mnemonic: "KIL", addrMode: .IMP, isInvalid: true,  cycleCount: 2, penalty: false, affectedFlags: XXXXXXX),
+        OpcodeInfo(opcode: 0xb3, mnemonic: "LAX", addrMode: .INY, isInvalid: true,  cycleCount: 3, penalty: true,  affectedFlags: N____Z_),
+        OpcodeInfo(opcode: 0xb4, mnemonic: "LDY", addrMode: .ZPX, isInvalid: false, cycleCount: 4, penalty: false, affectedFlags: N____Z_),
+        OpcodeInfo(opcode: 0xb5, mnemonic: "LDA", addrMode: .ZPX, isInvalid: false, cycleCount: 4, penalty: false, affectedFlags: N____Z_),
+        OpcodeInfo(opcode: 0xb6, mnemonic: "LDX", addrMode: .ZPY, isInvalid: false, cycleCount: 4, penalty: false, affectedFlags: N____Z_),
+        OpcodeInfo(opcode: 0xb7, mnemonic: "LAX", addrMode: .ZPY, isInvalid: true,  cycleCount: 3, penalty: false, affectedFlags: N____Z_),
+        OpcodeInfo(opcode: 0xb8, mnemonic: "CLV", addrMode: .IMP, isInvalid: false, cycleCount: 2, penalty: false, affectedFlags: _O_____),
+        OpcodeInfo(opcode: 0xb9, mnemonic: "LDA", addrMode: .ABY, isInvalid: false, cycleCount: 4, penalty: true,  affectedFlags: N____Z_),
+        OpcodeInfo(opcode: 0xba, mnemonic: "TSX", addrMode: .IMP, isInvalid: false, cycleCount: 2, penalty: false, affectedFlags: N____Z_),
+        OpcodeInfo(opcode: 0xbb, mnemonic: "LAS", addrMode: .ABY, isInvalid: true,  cycleCount: 3, penalty: true,  affectedFlags: N____Z_),
+        OpcodeInfo(opcode: 0xbc, mnemonic: "LDY", addrMode: .ABX, isInvalid: false, cycleCount: 4, penalty: true,  affectedFlags: N____Z_),
+        OpcodeInfo(opcode: 0xbd, mnemonic: "LDA", addrMode: .ABX, isInvalid: false, cycleCount: 4, penalty: true,  affectedFlags: N____Z_),
+        OpcodeInfo(opcode: 0xbe, mnemonic: "LDX", addrMode: .ABY, isInvalid: false, cycleCount: 4, penalty: true,  affectedFlags: N____Z_),
+        OpcodeInfo(opcode: 0xbf, mnemonic: "LAX", addrMode: .ABY, isInvalid: true,  cycleCount: 3, penalty: true,  affectedFlags: N____Z_),
+        OpcodeInfo(opcode: 0xc0, mnemonic: "CPY", addrMode: .IMM, isInvalid: false, cycleCount: 2, penalty: false, affectedFlags: N____ZC),
+        OpcodeInfo(opcode: 0xc1, mnemonic: "CMP", addrMode: .INX, isInvalid: false, cycleCount: 6, penalty: false, affectedFlags: N____ZC),
+        OpcodeInfo(opcode: 0xc2, mnemonic: "NOP", addrMode: .IMM, isInvalid: true,  cycleCount: 2, penalty: false, affectedFlags: XXXXXXX),
+        OpcodeInfo(opcode: 0xc3, mnemonic: "DCP", addrMode: .INX, isInvalid: true,  cycleCount: 3, penalty: false, affectedFlags: N____ZC),
+        OpcodeInfo(opcode: 0xc4, mnemonic: "CPY", addrMode: .ZPG, isInvalid: false, cycleCount: 3, penalty: false, affectedFlags: N____ZC),
+        OpcodeInfo(opcode: 0xc5, mnemonic: "CMP", addrMode: .ZPG, isInvalid: false, cycleCount: 3, penalty: false, affectedFlags: N____ZC),
+        OpcodeInfo(opcode: 0xc6, mnemonic: "DEC", addrMode: .ZPG, isInvalid: false, cycleCount: 5, penalty: false, affectedFlags: N____Z_),
+        OpcodeInfo(opcode: 0xc7, mnemonic: "DCP", addrMode: .ZPG, isInvalid: true,  cycleCount: 3, penalty: false, affectedFlags: N____ZC),
+        OpcodeInfo(opcode: 0xc8, mnemonic: "INY", addrMode: .IMP, isInvalid: false, cycleCount: 2, penalty: false, affectedFlags: N____Z_),
+        OpcodeInfo(opcode: 0xc9, mnemonic: "CMP", addrMode: .IMM, isInvalid: false, cycleCount: 2, penalty: false, affectedFlags: N____ZC),
+        OpcodeInfo(opcode: 0xca, mnemonic: "DEX", addrMode: .IMP, isInvalid: false, cycleCount: 2, penalty: false, affectedFlags: N____Z_),
+        OpcodeInfo(opcode: 0xcb, mnemonic: "AXS", addrMode: .IMM, isInvalid: true,  cycleCount: 3, penalty: false, affectedFlags: N____ZC),
+        OpcodeInfo(opcode: 0xcc, mnemonic: "CPY", addrMode: .ABS, isInvalid: false, cycleCount: 4, penalty: false, affectedFlags: N____ZC),
+        OpcodeInfo(opcode: 0xcd, mnemonic: "CMP", addrMode: .ABS, isInvalid: false, cycleCount: 4, penalty: false, affectedFlags: N____ZC),
+        OpcodeInfo(opcode: 0xce, mnemonic: "DEC", addrMode: .ABS, isInvalid: false, cycleCount: 6, penalty: false, affectedFlags: N____Z_),
+        OpcodeInfo(opcode: 0xcf, mnemonic: "DCP", addrMode: .ABS, isInvalid: true,  cycleCount: 3, penalty: false, affectedFlags: N____ZC),
+        OpcodeInfo(opcode: 0xd0, mnemonic: "BNE", addrMode: .REL, isInvalid: false, cycleCount: 2, penalty: true,  affectedFlags: XXXXXXX),
+        OpcodeInfo(opcode: 0xd1, mnemonic: "CMP", addrMode: .INY, isInvalid: false, cycleCount: 5, penalty: true,  affectedFlags: N____ZC),
+        OpcodeInfo(opcode: 0xd2, mnemonic: "KIL", addrMode: .IMP, isInvalid: true,  cycleCount: 2, penalty: false, affectedFlags: XXXXXXX),
+        OpcodeInfo(opcode: 0xd3, mnemonic: "DCP", addrMode: .INY, isInvalid: true,  cycleCount: 3, penalty: true,  affectedFlags: N____ZC),
+        OpcodeInfo(opcode: 0xd4, mnemonic: "NOP", addrMode: .ZPX, isInvalid: true,  cycleCount: 2, penalty: false, affectedFlags: XXXXXXX),
+        OpcodeInfo(opcode: 0xd5, mnemonic: "CMP", addrMode: .ZPX, isInvalid: false, cycleCount: 4, penalty: false, affectedFlags: N____ZC),
+        OpcodeInfo(opcode: 0xd6, mnemonic: "DEC", addrMode: .ZPX, isInvalid: false, cycleCount: 6, penalty: false, affectedFlags: N____Z_),
+        OpcodeInfo(opcode: 0xd7, mnemonic: "DCP", addrMode: .ZPX, isInvalid: true,  cycleCount: 3, penalty: false, affectedFlags: N____ZC),
+        OpcodeInfo(opcode: 0xd8, mnemonic: "CLD", addrMode: .IMP, isInvalid: false, cycleCount: 2, penalty: false, affectedFlags: ___D___),
+        OpcodeInfo(opcode: 0xd9, mnemonic: "CMP", addrMode: .ABY, isInvalid: false, cycleCount: 4, penalty: true,  affectedFlags: N____ZC),
+        OpcodeInfo(opcode: 0xda, mnemonic: "NOP", addrMode: .IMP, isInvalid: true,  cycleCount: 2, penalty: false, affectedFlags: XXXXXXX),
+        OpcodeInfo(opcode: 0xdb, mnemonic: "DCP", addrMode: .ABY, isInvalid: true,  cycleCount: 3, penalty: true,  affectedFlags: N____ZC),
+        OpcodeInfo(opcode: 0xdc, mnemonic: "NOP", addrMode: .ABX, isInvalid: true,  cycleCount: 2, penalty: false, affectedFlags: XXXXXXX),
+        OpcodeInfo(opcode: 0xdd, mnemonic: "CMP", addrMode: .ABX, isInvalid: false, cycleCount: 4, penalty: true,  affectedFlags: N____ZC),
+        OpcodeInfo(opcode: 0xde, mnemonic: "DEC", addrMode: .ABX, isInvalid: false, cycleCount: 7, penalty: false, affectedFlags: N____Z_),
+        OpcodeInfo(opcode: 0xdf, mnemonic: "DCP", addrMode: .ABX, isInvalid: true,  cycleCount: 3, penalty: false, affectedFlags: N____ZC),
+        OpcodeInfo(opcode: 0xe0, mnemonic: "CPX", addrMode: .IMM, isInvalid: false, cycleCount: 2, penalty: false, affectedFlags: N____ZC),
+        OpcodeInfo(opcode: 0xe1, mnemonic: "SBC", addrMode: .INX, isInvalid: false, cycleCount: 6, penalty: false, affectedFlags: NO___ZC),
+        OpcodeInfo(opcode: 0xe2, mnemonic: "NOP", addrMode: .IMM, isInvalid: true,  cycleCount: 2, penalty: false, affectedFlags: XXXXXXX),
+        OpcodeInfo(opcode: 0xe3, mnemonic: "ISC", addrMode: .INX, isInvalid: true,  cycleCount: 3, penalty: false, affectedFlags: NO___ZC),
+        OpcodeInfo(opcode: 0xe4, mnemonic: "CPX", addrMode: .ZPG, isInvalid: false, cycleCount: 3, penalty: false, affectedFlags: N____ZC),
+        OpcodeInfo(opcode: 0xe5, mnemonic: "SBC", addrMode: .ZPG, isInvalid: false, cycleCount: 3, penalty: false, affectedFlags: NO___ZC),
+        OpcodeInfo(opcode: 0xe6, mnemonic: "INC", addrMode: .ZPG, isInvalid: false, cycleCount: 5, penalty: false, affectedFlags: N____Z_),
+        OpcodeInfo(opcode: 0xe7, mnemonic: "ISC", addrMode: .ZPG, isInvalid: true,  cycleCount: 3, penalty: false, affectedFlags: NO___ZC),
+        OpcodeInfo(opcode: 0xe8, mnemonic: "INX", addrMode: .IMP, isInvalid: false, cycleCount: 2, penalty: false, affectedFlags: N____Z_),
+        OpcodeInfo(opcode: 0xe9, mnemonic: "SBC", addrMode: .IMM, isInvalid: false, cycleCount: 2, penalty: false, affectedFlags: NO___ZC),
+        OpcodeInfo(opcode: 0xea, mnemonic: "NOP", addrMode: .IMP, isInvalid: false, cycleCount: 2, penalty: false, affectedFlags: XXXXXXX),
+        OpcodeInfo(opcode: 0xeb, mnemonic: "SBC", addrMode: .IMM, isInvalid: true,  cycleCount: 3, penalty: false, affectedFlags: NO___ZC),
+        OpcodeInfo(opcode: 0xec, mnemonic: "CPX", addrMode: .ABS, isInvalid: false, cycleCount: 4, penalty: false, affectedFlags: N____ZC),
+        OpcodeInfo(opcode: 0xed, mnemonic: "SBC", addrMode: .ABS, isInvalid: false, cycleCount: 4, penalty: false, affectedFlags: NO___ZC),
+        OpcodeInfo(opcode: 0xee, mnemonic: "INC", addrMode: .ABS, isInvalid: false, cycleCount: 6, penalty: false, affectedFlags: N____Z_),
+        OpcodeInfo(opcode: 0xef, mnemonic: "ISC", addrMode: .ABS, isInvalid: true,  cycleCount: 3, penalty: false, affectedFlags: NO___ZC),
+        OpcodeInfo(opcode: 0xf0, mnemonic: "BEQ", addrMode: .REL, isInvalid: false, cycleCount: 2, penalty: true,  affectedFlags: XXXXXXX),
+        OpcodeInfo(opcode: 0xf1, mnemonic: "SBC", addrMode: .INY, isInvalid: false, cycleCount: 5, penalty: true,  affectedFlags: NO___ZC),
+        OpcodeInfo(opcode: 0xf2, mnemonic: "KIL", addrMode: .IMP, isInvalid: true,  cycleCount: 2, penalty: false, affectedFlags: XXXXXXX),
+        OpcodeInfo(opcode: 0xf3, mnemonic: "ISC", addrMode: .INY, isInvalid: true,  cycleCount: 3, penalty: true,  affectedFlags: NO___ZC),
+        OpcodeInfo(opcode: 0xf4, mnemonic: "NOP", addrMode: .ZPX, isInvalid: true,  cycleCount: 2, penalty: false, affectedFlags: XXXXXXX),
+        OpcodeInfo(opcode: 0xf5, mnemonic: "SBC", addrMode: .ZPX, isInvalid: false, cycleCount: 4, penalty: false, affectedFlags: NO___ZC),
+        OpcodeInfo(opcode: 0xf6, mnemonic: "INC", addrMode: .ZPX, isInvalid: false, cycleCount: 6, penalty: false, affectedFlags: N____Z_),
+        OpcodeInfo(opcode: 0xf7, mnemonic: "ISC", addrMode: .ZPX, isInvalid: true,  cycleCount: 3, penalty: false, affectedFlags: NO___ZC),
+        OpcodeInfo(opcode: 0xf8, mnemonic: "SED", addrMode: .IMP, isInvalid: false, cycleCount: 2, penalty: false, affectedFlags: ___D___),
+        OpcodeInfo(opcode: 0xf9, mnemonic: "SBC", addrMode: .ABY, isInvalid: false, cycleCount: 4, penalty: true,  affectedFlags: NO___ZC),
+        OpcodeInfo(opcode: 0xfa, mnemonic: "NOP", addrMode: .IMP, isInvalid: true,  cycleCount: 2, penalty: false, affectedFlags: XXXXXXX),
+        OpcodeInfo(opcode: 0xfb, mnemonic: "ISC", addrMode: .ABY, isInvalid: true,  cycleCount: 3, penalty: true,  affectedFlags: NO___ZC),
+        OpcodeInfo(opcode: 0xfc, mnemonic: "NOP", addrMode: .ABX, isInvalid: true,  cycleCount: 2, penalty: false, affectedFlags: XXXXXXX),
+        OpcodeInfo(opcode: 0xfd, mnemonic: "SBC", addrMode: .ABX, isInvalid: false, cycleCount: 4, penalty: true,  affectedFlags: NO___ZC),
+        OpcodeInfo(opcode: 0xfe, mnemonic: "INC", addrMode: .ABX, isInvalid: false, cycleCount: 7, penalty: false, affectedFlags: N____Z_),
+        OpcodeInfo(opcode: 0xff, mnemonic: "ISC", addrMode: .ABX, isInvalid: true,  cycleCount: 3, penalty: false, affectedFlags: NO___ZC),
+    ]
+//@f:1
 }

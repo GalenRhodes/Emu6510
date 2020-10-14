@@ -36,52 +36,53 @@ infix operator &!=: ComparisonPrecedence
     case Overflow  = 64
     case Negative  = 128
 
-    @inlinable public static prefix func ~ <T: BinaryInteger>(flg: ProcessorFlags) -> T { ~T(flg.rawValue) }
+//@f:0
+    @inlinable public static prefix func ~ <T: BinaryInteger>(flg: ProcessorFlags) -> T                { ~T(flg.rawValue)                                                 }
 
-    @inlinable public static func |= <T: BinaryInteger>(lhs: inout T, rhs: ProcessorFlags) { lhs = (lhs | rhs) }
+    @inlinable public static func |= <T: BinaryInteger>(lhs: inout T, rhs: ProcessorFlags)             { lhs = (lhs | rhs)                                                }
 
-    @inlinable public static func &= <T: BinaryInteger>(lhs: inout T, rhs: ProcessorFlags) { lhs = (lhs & rhs) }
+    @inlinable public static func &= <T: BinaryInteger>(lhs: inout T, rhs: ProcessorFlags)             { lhs = (lhs & rhs)                                                }
 
-    @inlinable public static func | <T: BinaryInteger>(lhs: T, rhs: ProcessorFlags) -> T { (lhs | T(rhs.rawValue)) }
+    @inlinable public static func | <T: BinaryInteger>(lhs: T, rhs: ProcessorFlags) -> T               { (lhs | T(rhs.rawValue))                                          }
 
-    @inlinable public static func & <T: BinaryInteger>(lhs: T, rhs: ProcessorFlags) -> T { (lhs & T(rhs.rawValue)) }
+    @inlinable public static func & <T: BinaryInteger>(lhs: T, rhs: ProcessorFlags) -> T               { (lhs & T(rhs.rawValue))                                          }
 
-    @inlinable public static func | <T: BinaryInteger>(lhs: ProcessorFlags, rhs: T) -> T { (T(lhs.rawValue) | rhs) }
+    @inlinable public static func | <T: BinaryInteger>(lhs: ProcessorFlags, rhs: T) -> T               { (T(lhs.rawValue) | rhs)                                          }
 
-    @inlinable public static func & <T: BinaryInteger>(lhs: ProcessorFlags, rhs: T) -> T { (T(lhs.rawValue) & rhs) }
+    @inlinable public static func & <T: BinaryInteger>(lhs: ProcessorFlags, rhs: T) -> T               { (T(lhs.rawValue) & rhs)                                          }
 
-    @inlinable public static func | <T: BinaryInteger>(lhs: ProcessorFlags, rhs: ProcessorFlags) -> T { T(lhs.rawValue | rhs.rawValue) }
+    @inlinable public static func | <T: BinaryInteger>(lhs: ProcessorFlags, rhs: ProcessorFlags) -> T  { T(lhs.rawValue | rhs.rawValue)                                   }
 
-    @inlinable public static func & <T: BinaryInteger>(lhs: ProcessorFlags, rhs: ProcessorFlags) -> T { T(lhs.rawValue & rhs.rawValue) }
+    @inlinable public static func & <T: BinaryInteger>(lhs: ProcessorFlags, rhs: ProcessorFlags) -> T  { T(lhs.rawValue & rhs.rawValue)                                   }
 
-    @inlinable public static func == <T: BinaryInteger>(lhs: T, rhs: ProcessorFlags) -> Bool { (lhs == T(rhs.rawValue)) }
+    @inlinable public static func == <T: BinaryInteger>(lhs: T, rhs: ProcessorFlags) -> Bool           { (lhs == T(rhs.rawValue))                                         }
 
-    @inlinable public static func == <T: BinaryInteger>(lhs: ProcessorFlags, rhs: T) -> Bool { (T(lhs.rawValue) == rhs) }
+    @inlinable public static func == <T: BinaryInteger>(lhs: ProcessorFlags, rhs: T) -> Bool           { (T(lhs.rawValue) == rhs)                                         }
 
-    @inlinable public static func != <T: BinaryInteger>(lhs: T, rhs: ProcessorFlags) -> Bool { (lhs != T(rhs.rawValue)) }
+    @inlinable public static func != <T: BinaryInteger>(lhs: T, rhs: ProcessorFlags) -> Bool           { (lhs != T(rhs.rawValue))                                         }
 
-    @inlinable public static func != <T: BinaryInteger>(lhs: ProcessorFlags, rhs: T) -> Bool { (T(lhs.rawValue) != rhs) }
+    @inlinable public static func != <T: BinaryInteger>(lhs: ProcessorFlags, rhs: T) -> Bool           { (T(lhs.rawValue) != rhs)                                         }
 
-    @inlinable public static func &== <T: BinaryInteger>(lhs: T, rhs: ProcessorFlags) -> Bool { let f: T = T(rhs.rawValue); return ((lhs & f) == f) }
+    @inlinable public static func &== <T: BinaryInteger>(lhs: T, rhs: ProcessorFlags) -> Bool          { let f: T = T(rhs.rawValue); return ((lhs & f) == f)              }
 
-    @inlinable public static func &!= <T: BinaryInteger>(lhs: T, rhs: ProcessorFlags) -> Bool { return ((lhs & T(rhs.rawValue)) == 0) }
+    @inlinable public static func &!= <T: BinaryInteger>(lhs: T, rhs: ProcessorFlags) -> Bool          { return ((lhs & T(rhs.rawValue)) == 0)                            }
 
-    @inlinable @discardableResult public func set(status: inout UInt8, when f: Bool) -> UInt8 { status = (f ? (status | self) : (status & ~self)); return status }
+    @inlinable @discardableResult public func set(status: inout UInt8, when f: Bool) -> UInt8          { status = (f ? (status | self) : (status & ~self)); return status }
 
-    @inlinable @discardableResult public func setIf(status: inout UInt8, _ block: () -> Bool) -> UInt8 { set(status: &status, when: block()) }
+    @inlinable @discardableResult public func setIf(status: inout UInt8, _ block: () -> Bool) -> UInt8 { set(status: &status, when: block())                              }
 
     @inlinable var idChar: String {
         switch self {
-            case .Carry: return "C"
-            case .Zero: return "Z"
+            case .Carry:     return "C"
+            case .Zero:      return "Z"
             case .Interrupt: return "I"
-            case .Decimal: return "D"
-            case .Break: return "B"
-            case .Overflow: return "O"
-            case .Negative: return "N"
+            case .Decimal:   return "D"
+            case .Break:     return "B"
+            case .Overflow:  return "O"
+            case .Negative:  return "N"
         }
     }
-
+//@f:1
     @inlinable func s(_ flags: UInt8) -> String { ((flags &== self) ? idChar : "_") }
 
     @inlinable public static func flagsList(flags: UInt8) -> String {

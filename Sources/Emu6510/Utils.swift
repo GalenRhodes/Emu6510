@@ -49,7 +49,5 @@ public typealias AddressInfo = (pageBoundaryCrossed: Bool, address: UInt16)
 @inlinable public func makeWord(lo: UInt8, hi: UInt8, offset: UInt8) -> AddressInfo {
     let a1: UInt16 = makeWord(lo: lo, hi: hi)
     let a2: UInt16 = (a1 &+ UInt16(offset))
-    return (!onSamePage(a1, a2), a2)
+    return (!(((a1 ^ a2) & 0xff00) == 0), a2)
 }
-
-@inlinable public func onSamePage(_ a: UInt16, _ b: UInt16) -> Bool { (((a ^ b) & 0xff00) == 0) }

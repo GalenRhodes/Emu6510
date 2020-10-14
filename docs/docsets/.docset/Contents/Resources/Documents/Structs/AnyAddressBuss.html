@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>RunStatus Enumeration Reference</title>
+    <title>AnyAddressBuss Structure Reference</title>
     <link href="../css/jazzy.css" rel="stylesheet" type="text/css" />
     <link href="../css/highlight.css" rel="stylesheet" type="text/css" />
     <meta charset='utf-8'>
@@ -10,8 +10,8 @@
 
   </head>
   <body>
-    <a class="dashAnchor" name="//apple_ref/swift/Enum/RunStatus"></a>
-    <a title="RunStatus Enumeration Reference"></a>
+    <a class="dashAnchor" name="//apple_ref/swift/Struct/AnyAddressBuss"></a>
+    <a title="AnyAddressBuss Structure Reference"></a>
     <header>
       <div class="content-wrapper">
         <p><a href="../index.html">Emu6510©</a> (40% documented)</p>
@@ -22,7 +22,7 @@
       <p id="breadcrumbs">
         <a href="../index.html"> Reference</a>
         <img id="carat" src="../img/carat.png" />
-        RunStatus Enumeration Reference
+        AnyAddressBuss Structure Reference
       </p>
     </div>
     <div class="content-wrapper">
@@ -149,15 +149,15 @@
       <article class="main-content">
         <section>
           <section class="section">
-            <h1>RunStatus</h1>
+            <h1>AnyAddressBuss</h1>
               <div class="declaration">
                 <div class="language">
-                  <pre class="highlight swift"><code><span class="kd">@frozen</span>
-<span class="kd">public</span> <span class="kd">enum</span> <span class="kt">RunStatus</span> <span class="p">:</span> <span class="kt">Int8</span></code></pre>
+                  <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">struct</span> <span class="kt">AnyAddressBuss</span> <span class="p">:</span> <span class="kt"><a href="../Protocols/AddressBuss.html">AddressBuss</a></span></code></pre>
+<pre class="highlight swift"><code><span class="kd">extension</span> <span class="kt">AnyAddressBuss</span><span class="p">:</span> <span class="kt">Equatable</span></code></pre>
+<pre class="highlight swift"><code><span class="kd">extension</span> <span class="kt">AnyAddressBuss</span><span class="p">:</span> <span class="kt">Hashable</span></code></pre>
 
                 </div>
               </div>
-            <p>The clock run modes.</p>
 
           </section>
           <section class="section task-group-section">
@@ -166,9 +166,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:7Emu65109RunStatusO12NeverStartedyA2CmF"></a>
-                    <a class="dashAnchor" name="//apple_ref/swift/Element/NeverStarted"></a>
-                    <a class="token" href="#/s:7Emu65109RunStatusO12NeverStartedyA2CmF">NeverStarted</a>
+                    <a name="/s:7Emu651014AnyAddressBussVyAcA0cD0_pcfc"></a>
+                    <a class="dashAnchor" name="//apple_ref/swift/Method/init(_:)"></a>
+                    <a class="token" href="#/s:7Emu651014AnyAddressBussVyAcA0cD0_pcfc">init(_:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -176,19 +176,18 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>The clock has not yet been started.</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="k">case</span> <span class="kt">NeverStarted</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="nf">init</span><span class="p">(</span><span class="n">_</span> <span class="nv">addrBuss</span><span class="p">:</span> <span class="kt"><a href="../Protocols/AddressBuss.html">AddressBuss</a></span><span class="p">)</span></code></pre>
 
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/GalenRhodes/Emu6510/blob/master/Sources/Emu6510/CPUClock.swift#L32">Show on GitHub</a>
+                        <a href="https://github.com/GalenRhodes/Emu6510/blob/master/Sources/Emu6510/AddressBuss.swift#L">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -196,9 +195,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:7Emu65109RunStatusO7StoppedyA2CmF"></a>
-                    <a class="dashAnchor" name="//apple_ref/swift/Element/Stopped"></a>
-                    <a class="token" href="#/s:7Emu65109RunStatusO7StoppedyA2CmF">Stopped</a>
+                    <a name="/s:7Emu651014AnyAddressBussVys5UInt8VSicip"></a>
+                    <a class="dashAnchor" name="//apple_ref/swift/Method/subscript(_:)"></a>
+                    <a class="token" href="#/s:7Emu651014AnyAddressBussVys5UInt8VSicip">subscript(_:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -206,19 +205,18 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>The clock has been hard stopped and cannot be restarted.</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="k">case</span> <span class="kt">Stopped</span> <span class="o">=</span> <span class="mi">0</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="nf">subscript</span><span class="p">(</span><span class="nv">position</span><span class="p">:</span> <span class="kt">Int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">UInt8</span> <span class="p">{</span> <span class="k">get</span> <span class="k">set</span> <span class="p">}</span></code></pre>
 
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/GalenRhodes/Emu6510/blob/master/Sources/Emu6510/CPUClock.swift#L36">Show on GitHub</a>
+                        <a href="https://github.com/GalenRhodes/Emu6510/blob/master/Sources/Emu6510/AddressBuss.swift#L60-L63">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -226,9 +224,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:7Emu65109RunStatusO7RunningyA2CmF"></a>
-                    <a class="dashAnchor" name="//apple_ref/swift/Element/Running"></a>
-                    <a class="token" href="#/s:7Emu65109RunStatusO7RunningyA2CmF">Running</a>
+                    <a name="/s:SQ2eeoiySbx_xtFZ"></a>
+                    <a class="dashAnchor" name="//apple_ref/swift/Method/==(_:_:)"></a>
+                    <a class="token" href="#/s:SQ2eeoiySbx_xtFZ">==(_:_:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -236,19 +234,18 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>The clock is running.</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="k">case</span> <span class="kt">Running</span> <span class="o">=</span> <span class="mi">1</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">static</span> <span class="kd">func</span> <span class="o">==</span> <span class="p">(</span><span class="nv">lhs</span><span class="p">:</span> <span class="kt">AnyAddressBuss</span><span class="p">,</span> <span class="nv">rhs</span><span class="p">:</span> <span class="kt">AnyAddressBuss</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Bool</span></code></pre>
 
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/GalenRhodes/Emu6510/blob/master/Sources/Emu6510/CPUClock.swift#L40">Show on GitHub</a>
+                        <a href="https://github.com/GalenRhodes/Emu6510/blob/master/Sources/Emu6510/AddressBuss.swift#L">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -256,9 +253,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:7Emu65109RunStatusO6PausedyA2CmF"></a>
-                    <a class="dashAnchor" name="//apple_ref/swift/Element/Paused"></a>
-                    <a class="token" href="#/s:7Emu65109RunStatusO6PausedyA2CmF">Paused</a>
+                    <a name="/s:SH4hash4intoys6HasherVz_tF"></a>
+                    <a class="dashAnchor" name="//apple_ref/swift/Method/hash(into:)"></a>
+                    <a class="token" href="#/s:SH4hash4intoys6HasherVz_tF">hash(into:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -266,19 +263,19 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>The clock is paused.</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="k">case</span> <span class="kt">Paused</span> <span class="o">=</span> <span class="mi">2</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">@inlinable</span>
+<span class="kd">public</span> <span class="kd">func</span> <span class="nf">hash</span><span class="p">(</span><span class="n">into</span> <span class="nv">hasher</span><span class="p">:</span> <span class="k">inout</span> <span class="kt">Hasher</span><span class="p">)</span></code></pre>
 
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/GalenRhodes/Emu6510/blob/master/Sources/Emu6510/CPUClock.swift#L44">Show on GitHub</a>
+                        <a href="https://github.com/GalenRhodes/Emu6510/blob/master/Sources/Emu6510/AddressBuss.swift#L">Show on GitHub</a>
                       </div>
                     </section>
                   </div>

@@ -21,18 +21,60 @@
  *//************************************************************************/
 
 import Foundation
-import Rubicon
 
-public protocol AddressBuss: AnyObject {
+public protocol AddressBuss {
 
-    subscript(address: UInt16) -> UInt8 { get set }
+    subscript(position: Int) -> UInt8 { get set }
+
+    func isEqualTo(_ other: AddressBuss) -> Bool
+
+    func asEquatable() -> AnyAddressBuss
+
+    func getHash(into hasher: inout Hasher)
 }
 
-public extension AddressBuss {
+extension AddressBuss where Self: Equatable {
+    @inlinable public func asEquatable() -> AnyAddressBuss { AnyAddressBuss(self) }
 
-    @inlinable subscript(address: UInt8) -> UInt8 {
-        get { self[UInt16(address)] }
-        set { self[UInt16(address)] = newValue }
+    @inlinable public func isEqualTo(_ other: AddressBuss) -> Bool { guard let other: Self = other as? Self else { return false }; return self == other }
+
+    @inlinable public subscript(_ zpAddr: UInt8) -> UInt8 {
+        get { self[Int(zpAddr)] }
+        set { self[Int(zpAddr)] = newValue }
     }
+    @inlinable public subscript(_ addr: UInt16) -> UInt8 {
+        get { self[Int(addr)] }
+        set { self[Int(addr)] = newValue }
+    }
+}
 
+extension AddressBuss where Self: Hashable {
+    @inlinable public func getHash(into hasher: inout Hasher) { self.hash(into: &hasher) }
+}
+
+public struct AnyAddressBuss: AddressBuss {
+    @usableFromInline var addrBuss: AddressBuss
+
+    public init(_ addrBuss: AddressBuss) { self.addrBuss = addrBuss }
+
+    public subscript(position: Int) -> UInt8 {
+        get { addrBuss[position] }
+        set { addrBuss[position] = newValue }
+    }
+}
+
+extension AnyAddressBuss: Equatable {
+    public static func == (lhs: AnyAddressBuss, rhs: AnyAddressBuss) -> Bool { lhs.addrBuss.isEqualTo(rhs.addrBuss) }
+}
+
+extension AnyAddressBuss: Hashable {
+    @inlinable public func hash(into hasher: inout Hasher) { addrBuss.getHash(into: &hasher) }
+}
+
+extension Array where Element: AddressBuss {
+    @inlinable public static func == (lhs: [AddressBuss], rhs: [AddressBuss]) -> Bool { lhs.map({ $0.asEquatable() }) == rhs.map({ $0.asEquatable() }) }
+}
+
+extension Dictionary where Value: AddressBuss {
+    @inlinable public static func == (lhs: [Key: AddressBuss], rhs: [Key: AddressBuss]) -> Bool { lhs.mapValues({ $0.asEquatable() }) == rhs.mapValues({ $0.asEquatable() }) }
 }

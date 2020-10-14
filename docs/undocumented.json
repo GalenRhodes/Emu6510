@@ -2,30 +2,135 @@
   "warnings": [
     {
       "file": "/Users/grhodes/Projects/2020/SwiftProjects/Emu6510/Sources/Emu6510/AddressBuss.swift",
-      "line": 26,
+      "line": 25,
       "symbol": "AddressBuss",
       "symbol_kind": "source.lang.swift.decl.protocol",
       "warning": "undocumented"
     },
     {
       "file": "/Users/grhodes/Projects/2020/SwiftProjects/Emu6510/Sources/Emu6510/AddressBuss.swift",
-      "line": 28,
+      "line": 27,
       "symbol": "AddressBuss.subscript(_:)",
       "symbol_kind": "source.lang.swift.decl.function.subscript",
       "warning": "undocumented"
     },
     {
       "file": "/Users/grhodes/Projects/2020/SwiftProjects/Emu6510/Sources/Emu6510/AddressBuss.swift",
+      "line": 29,
+      "symbol": "AddressBuss.isEqualTo(_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/grhodes/Projects/2020/SwiftProjects/Emu6510/Sources/Emu6510/AddressBuss.swift",
       "line": 31,
+      "symbol": "AddressBuss.asEquatable()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/grhodes/Projects/2020/SwiftProjects/Emu6510/Sources/Emu6510/AddressBuss.swift",
+      "line": 33,
+      "symbol": "AddressBuss.getHash(into:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/grhodes/Projects/2020/SwiftProjects/Emu6510/Sources/Emu6510/AddressBuss.swift",
+      "line": 36,
       "symbol": "AddressBuss",
       "symbol_kind": "source.lang.swift.decl.extension",
       "warning": "undocumented"
     },
     {
       "file": "/Users/grhodes/Projects/2020/SwiftProjects/Emu6510/Sources/Emu6510/AddressBuss.swift",
-      "line": 33,
+      "line": 37,
+      "symbol": "AddressBuss.asEquatable()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/grhodes/Projects/2020/SwiftProjects/Emu6510/Sources/Emu6510/AddressBuss.swift",
+      "line": 39,
+      "symbol": "AddressBuss.isEqualTo(_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/grhodes/Projects/2020/SwiftProjects/Emu6510/Sources/Emu6510/AddressBuss.swift",
+      "line": 41,
       "symbol": "AddressBuss.subscript(_:)",
       "symbol_kind": "source.lang.swift.decl.function.subscript",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/grhodes/Projects/2020/SwiftProjects/Emu6510/Sources/Emu6510/AddressBuss.swift",
+      "line": 45,
+      "symbol": "AddressBuss.subscript(_:)",
+      "symbol_kind": "source.lang.swift.decl.function.subscript",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/grhodes/Projects/2020/SwiftProjects/Emu6510/Sources/Emu6510/AddressBuss.swift",
+      "line": 51,
+      "symbol": "AddressBuss",
+      "symbol_kind": "source.lang.swift.decl.extension",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/grhodes/Projects/2020/SwiftProjects/Emu6510/Sources/Emu6510/AddressBuss.swift",
+      "line": 52,
+      "symbol": "AddressBuss.getHash(into:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/grhodes/Projects/2020/SwiftProjects/Emu6510/Sources/Emu6510/AddressBuss.swift",
+      "line": 55,
+      "symbol": "AnyAddressBuss",
+      "symbol_kind": "source.lang.swift.decl.struct",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/grhodes/Projects/2020/SwiftProjects/Emu6510/Sources/Emu6510/AddressBuss.swift",
+      "line": 58,
+      "symbol": "AnyAddressBuss.init(_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/grhodes/Projects/2020/SwiftProjects/Emu6510/Sources/Emu6510/AddressBuss.swift",
+      "line": 60,
+      "symbol": "AnyAddressBuss.subscript(_:)",
+      "symbol_kind": "source.lang.swift.decl.function.subscript",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/grhodes/Projects/2020/SwiftProjects/Emu6510/Sources/Emu6510/AddressBuss.swift",
+      "line": 66,
+      "symbol": "AnyAddressBuss",
+      "symbol_kind": "source.lang.swift.decl.extension",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/grhodes/Projects/2020/SwiftProjects/Emu6510/Sources/Emu6510/AddressBuss.swift",
+      "line": 70,
+      "symbol": "AnyAddressBuss",
+      "symbol_kind": "source.lang.swift.decl.extension",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/grhodes/Projects/2020/SwiftProjects/Emu6510/Sources/Emu6510/AddressBuss.swift",
+      "line": 75,
+      "symbol": "Array.==(_:_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/grhodes/Projects/2020/SwiftProjects/Emu6510/Sources/Emu6510/AddressBuss.swift",
+      "line": 79,
+      "symbol": "Dictionary.==(_:_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.static",
       "warning": "undocumented"
     },
     {
@@ -191,30 +296,100 @@
     },
     {
       "file": "/Users/grhodes/Projects/2020/SwiftProjects/Emu6510/Sources/Emu6510/CPU6502.swift",
-      "line": 65,
+      "line": 66,
       "symbol": "CPU6502.init(clockFrequency:addressBuss:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/grhodes/Projects/2020/SwiftProjects/Emu6510/Sources/Emu6510/CPU6502.swift",
-      "line": 118,
-      "symbol": "CPU6502.run()",
+      "line": 74,
+      "symbol": "CPU6502.asAnyCPU65xx()",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/grhodes/Projects/2020/SwiftProjects/Emu6510/Sources/Emu6510/CPU6502.swift",
-      "line": 203,
-      "symbol": "CPU6502.dispatchOpcode(opcode:)",
+      "line": 76,
+      "symbol": "CPU6502.asAnyCPUClock()",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/grhodes/Projects/2020/SwiftProjects/Emu6510/Sources/Emu6510/CPU6502.swift",
-      "line": 1113,
-      "symbol": "CPU6502.processKIL()",
+      "line": 78,
+      "symbol": "CPU6502.isEqualTo(_:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/grhodes/Projects/2020/SwiftProjects/Emu6510/Sources/Emu6510/CPU6502.swift",
+      "line": 83,
+      "symbol": "CPU6502.isEqualTo(_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/grhodes/Projects/2020/SwiftProjects/Emu6510/Sources/Emu6510/CPU6502.swift",
+      "line": 259,
+      "symbol": "CPU6502.performReset()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/grhodes/Projects/2020/SwiftProjects/Emu6510/Sources/Emu6510/CPU6502.swift",
+      "line": 544,
+      "symbol": "CPU6502.doWithEffectiveAddress(mode:block:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/grhodes/Projects/2020/SwiftProjects/Emu6510/Sources/Emu6510/CPU6502.swift",
+      "line": 566,
+      "symbol": "CPU6502.doWithOperand(opcode:block:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/grhodes/Projects/2020/SwiftProjects/Emu6510/Sources/Emu6510/CPU6502.swift",
+      "line": 603,
+      "symbol": "CPU6502.pullByte()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/grhodes/Projects/2020/SwiftProjects/Emu6510/Sources/Emu6510/CPU6502.swift",
+      "line": 607,
+      "symbol": "CPU6502.pullWord()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/grhodes/Projects/2020/SwiftProjects/Emu6510/Sources/Emu6510/CPU6502.swift",
+      "line": 613,
+      "symbol": "CPU6502.push(byte:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/grhodes/Projects/2020/SwiftProjects/Emu6510/Sources/Emu6510/CPU6502.swift",
+      "line": 617,
+      "symbol": "CPU6502.push(word:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/grhodes/Projects/2020/SwiftProjects/Emu6510/Sources/Emu6510/CPU6502.swift",
+      "line": 622,
+      "symbol": "CPU6502.doBranchOnCondition(offset:cond:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/grhodes/Projects/2020/SwiftProjects/Emu6510/Sources/Emu6510/CPU6502.swift",
+      "line": 1494,
+      "symbol": "CPU6502.opcodes",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
@@ -289,16 +464,114 @@
     },
     {
       "file": "/Users/grhodes/Projects/2020/SwiftProjects/Emu6510/Sources/Emu6510/CPU65xx.swift",
-      "line": 34,
-      "symbol": "CPU65xx.run()",
+      "line": 46,
+      "symbol": "CPU65xx.isEqualTo(_:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/grhodes/Projects/2020/SwiftProjects/Emu6510/Sources/Emu6510/CPU65xx.swift",
-      "line": 36,
-      "symbol": "CPU65xx.dispatchOpcode(opcode:)",
+      "line": 48,
+      "symbol": "CPU65xx.asAnyCPU65xx()",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/grhodes/Projects/2020/SwiftProjects/Emu6510/Sources/Emu6510/CPU65xx.swift",
+      "line": 51,
+      "symbol": "CPU65xx",
+      "symbol_kind": "source.lang.swift.decl.extension",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/grhodes/Projects/2020/SwiftProjects/Emu6510/Sources/Emu6510/CPU65xx.swift",
+      "line": 52,
+      "symbol": "CPU65xx.asAnyCPU65xx()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/grhodes/Projects/2020/SwiftProjects/Emu6510/Sources/Emu6510/CPU65xx.swift",
+      "line": 54,
+      "symbol": "CPU65xx.isEqualTo(_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/grhodes/Projects/2020/SwiftProjects/Emu6510/Sources/Emu6510/CPU65xx.swift",
+      "line": 60,
+      "symbol": "AnyCPU65xx",
+      "symbol_kind": "source.lang.swift.decl.struct",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/grhodes/Projects/2020/SwiftProjects/Emu6510/Sources/Emu6510/CPU65xx.swift",
+      "line": 64,
+      "symbol": "AnyCPU65xx.addressBuss",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/grhodes/Projects/2020/SwiftProjects/Emu6510/Sources/Emu6510/CPU65xx.swift",
+      "line": 65,
+      "symbol": "AnyCPU65xx.accumulator",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/grhodes/Projects/2020/SwiftProjects/Emu6510/Sources/Emu6510/CPU65xx.swift",
+      "line": 66,
+      "symbol": "AnyCPU65xx.xRegister",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/grhodes/Projects/2020/SwiftProjects/Emu6510/Sources/Emu6510/CPU65xx.swift",
+      "line": 67,
+      "symbol": "AnyCPU65xx.yRegister",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/grhodes/Projects/2020/SwiftProjects/Emu6510/Sources/Emu6510/CPU65xx.swift",
+      "line": 68,
+      "symbol": "AnyCPU65xx.stRegister",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/grhodes/Projects/2020/SwiftProjects/Emu6510/Sources/Emu6510/CPU65xx.swift",
+      "line": 69,
+      "symbol": "AnyCPU65xx.stackPointer",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/grhodes/Projects/2020/SwiftProjects/Emu6510/Sources/Emu6510/CPU65xx.swift",
+      "line": 70,
+      "symbol": "AnyCPU65xx.progCounter",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/grhodes/Projects/2020/SwiftProjects/Emu6510/Sources/Emu6510/CPU65xx.swift",
+      "line": 78,
+      "symbol": "AnyCPU65xx.init(_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/grhodes/Projects/2020/SwiftProjects/Emu6510/Sources/Emu6510/CPU65xx.swift",
+      "line": 96,
+      "symbol": "AnyCPU65xx.isEqualTo(_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/grhodes/Projects/2020/SwiftProjects/Emu6510/Sources/Emu6510/CPU65xx.swift",
+      "line": 99,
+      "symbol": "AnyCPU65xx",
+      "symbol_kind": "source.lang.swift.decl.extension",
       "warning": "undocumented"
     },
     {
@@ -306,6 +579,76 @@
       "line": 47,
       "symbol": "CPUClock",
       "symbol_kind": "source.lang.swift.decl.protocol",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/grhodes/Projects/2020/SwiftProjects/Emu6510/Sources/Emu6510/CPUClock.swift",
+      "line": 107,
+      "symbol": "CPUClock.isEqualTo(_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/grhodes/Projects/2020/SwiftProjects/Emu6510/Sources/Emu6510/CPUClock.swift",
+      "line": 109,
+      "symbol": "CPUClock.asAnyCPUClock()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/grhodes/Projects/2020/SwiftProjects/Emu6510/Sources/Emu6510/CPUClock.swift",
+      "line": 112,
+      "symbol": "CPUClock",
+      "symbol_kind": "source.lang.swift.decl.extension",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/grhodes/Projects/2020/SwiftProjects/Emu6510/Sources/Emu6510/CPUClock.swift",
+      "line": 113,
+      "symbol": "CPUClock.asAnyCPUClock()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/grhodes/Projects/2020/SwiftProjects/Emu6510/Sources/Emu6510/CPUClock.swift",
+      "line": 115,
+      "symbol": "CPUClock.isEqualTo(_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/grhodes/Projects/2020/SwiftProjects/Emu6510/Sources/Emu6510/CPUClock.swift",
+      "line": 121,
+      "symbol": "AnyCPUClock",
+      "symbol_kind": "source.lang.swift.decl.struct",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/grhodes/Projects/2020/SwiftProjects/Emu6510/Sources/Emu6510/CPUClock.swift",
+      "line": 131,
+      "symbol": "AnyCPUClock.init(_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/grhodes/Projects/2020/SwiftProjects/Emu6510/Sources/Emu6510/CPUClock.swift",
+      "line": 148,
+      "symbol": "AnyCPUClock",
+      "symbol_kind": "source.lang.swift.decl.extension",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/grhodes/Projects/2020/SwiftProjects/Emu6510/Sources/Emu6510/CPUClock.swift",
+      "line": 153,
+      "symbol": "Array.==(_:_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/grhodes/Projects/2020/SwiftProjects/Emu6510/Sources/Emu6510/CPUClock.swift",
+      "line": 157,
+      "symbol": "Dictionary.==(_:_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.static",
       "warning": "undocumented"
     },
     {
@@ -430,127 +773,218 @@
     {
       "file": "/Users/grhodes/Projects/2020/SwiftProjects/Emu6510/Sources/Emu6510/ClockWatcher.swift",
       "line": 25,
-      "symbol": "_ClockWatcher",
+      "symbol": "ClockWatcher",
       "symbol_kind": "source.lang.swift.decl.protocol",
       "warning": "undocumented"
     },
     {
       "file": "/Users/grhodes/Projects/2020/SwiftProjects/Emu6510/Sources/Emu6510/ClockWatcher.swift",
-      "line": 27,
-      "symbol": "_ClockWatcher.isRunning",
-      "symbol_kind": "source.lang.swift.decl.var.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/grhodes/Projects/2020/SwiftProjects/Emu6510/Sources/Emu6510/ClockWatcher.swift",
-      "line": 28,
-      "symbol": "_ClockWatcher.isPaused",
-      "symbol_kind": "source.lang.swift.decl.var.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/grhodes/Projects/2020/SwiftProjects/Emu6510/Sources/Emu6510/ClockWatcher.swift",
-      "line": 29,
-      "symbol": "_ClockWatcher.isStopped",
-      "symbol_kind": "source.lang.swift.decl.var.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/grhodes/Projects/2020/SwiftProjects/Emu6510/Sources/Emu6510/ClockWatcher.swift",
-      "line": 30,
-      "symbol": "_ClockWatcher.trigger",
-      "symbol_kind": "source.lang.swift.decl.var.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/grhodes/Projects/2020/SwiftProjects/Emu6510/Sources/Emu6510/ClockWatcher.swift",
-      "line": 31,
-      "symbol": "_ClockWatcher.skip",
-      "symbol_kind": "source.lang.swift.decl.var.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/grhodes/Projects/2020/SwiftProjects/Emu6510/Sources/Emu6510/ClockWatcher.swift",
-      "line": 33,
-      "symbol": "_ClockWatcher.hardStop()",
-      "symbol_kind": "source.lang.swift.decl.function.method.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/grhodes/Projects/2020/SwiftProjects/Emu6510/Sources/Emu6510/ClockWatcher.swift",
-      "line": 35,
-      "symbol": "_ClockWatcher.start()",
-      "symbol_kind": "source.lang.swift.decl.function.method.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/grhodes/Projects/2020/SwiftProjects/Emu6510/Sources/Emu6510/ClockWatcher.swift",
-      "line": 37,
-      "symbol": "_ClockWatcher.stop()",
-      "symbol_kind": "source.lang.swift.decl.function.method.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/grhodes/Projects/2020/SwiftProjects/Emu6510/Sources/Emu6510/ClockWatcher.swift",
-      "line": 40,
-      "symbol": "ClockWatcher",
-      "symbol_kind": "source.lang.swift.decl.class",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/grhodes/Projects/2020/SwiftProjects/Emu6510/Sources/Emu6510/ClockWatcher.swift",
-      "line": 42,
-      "symbol": "ClockWatcher.isPaused",
-      "symbol_kind": "source.lang.swift.decl.var.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/grhodes/Projects/2020/SwiftProjects/Emu6510/Sources/Emu6510/ClockWatcher.swift",
-      "line": 46,
-      "symbol": "ClockWatcher.trigger",
-      "symbol_kind": "source.lang.swift.decl.var.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/grhodes/Projects/2020/SwiftProjects/Emu6510/Sources/Emu6510/ClockWatcher.swift",
-      "line": 50,
+      "line": 26,
       "symbol": "ClockWatcher.isRunning",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/grhodes/Projects/2020/SwiftProjects/Emu6510/Sources/Emu6510/ClockWatcher.swift",
-      "line": 51,
+      "line": 27,
+      "symbol": "ClockWatcher.isPaused",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/grhodes/Projects/2020/SwiftProjects/Emu6510/Sources/Emu6510/ClockWatcher.swift",
+      "line": 28,
       "symbol": "ClockWatcher.isStopped",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/grhodes/Projects/2020/SwiftProjects/Emu6510/Sources/Emu6510/ClockWatcher.swift",
-      "line": 52,
+      "line": 29,
       "symbol": "ClockWatcher.skip",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/grhodes/Projects/2020/SwiftProjects/Emu6510/Sources/Emu6510/ClockWatcher.swift",
-      "line": 54,
+      "line": 31,
       "symbol": "ClockWatcher.hardStop()",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/grhodes/Projects/2020/SwiftProjects/Emu6510/Sources/Emu6510/ClockWatcher.swift",
-      "line": 56,
+      "line": 33,
       "symbol": "ClockWatcher.start()",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/grhodes/Projects/2020/SwiftProjects/Emu6510/Sources/Emu6510/ClockWatcher.swift",
-      "line": 58,
+      "line": 35,
       "symbol": "ClockWatcher.stop()",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/grhodes/Projects/2020/SwiftProjects/Emu6510/Sources/Emu6510/ClockWatcher.swift",
+      "line": 37,
+      "symbol": "ClockWatcher.isEqualTo(_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/grhodes/Projects/2020/SwiftProjects/Emu6510/Sources/Emu6510/ClockWatcher.swift",
+      "line": 39,
+      "symbol": "ClockWatcher.asEquatable()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/grhodes/Projects/2020/SwiftProjects/Emu6510/Sources/Emu6510/ClockWatcher.swift",
+      "line": 41,
+      "symbol": "ClockWatcher.getHash(into:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/grhodes/Projects/2020/SwiftProjects/Emu6510/Sources/Emu6510/ClockWatcher.swift",
+      "line": 43,
+      "symbol": "ClockWatcher.fire()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/grhodes/Projects/2020/SwiftProjects/Emu6510/Sources/Emu6510/ClockWatcher.swift",
+      "line": 46,
+      "symbol": "ClockWatcher",
+      "symbol_kind": "source.lang.swift.decl.extension",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/grhodes/Projects/2020/SwiftProjects/Emu6510/Sources/Emu6510/ClockWatcher.swift",
+      "line": 47,
+      "symbol": "ClockWatcher.asEquatable()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/grhodes/Projects/2020/SwiftProjects/Emu6510/Sources/Emu6510/ClockWatcher.swift",
+      "line": 49,
+      "symbol": "ClockWatcher.isEqualTo(_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/grhodes/Projects/2020/SwiftProjects/Emu6510/Sources/Emu6510/ClockWatcher.swift",
+      "line": 52,
+      "symbol": "ClockWatcher",
+      "symbol_kind": "source.lang.swift.decl.extension",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/grhodes/Projects/2020/SwiftProjects/Emu6510/Sources/Emu6510/ClockWatcher.swift",
+      "line": 53,
+      "symbol": "ClockWatcher.getHash(into:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/grhodes/Projects/2020/SwiftProjects/Emu6510/Sources/Emu6510/ClockWatcher.swift",
+      "line": 56,
+      "symbol": "AnyClockWatcher",
+      "symbol_kind": "source.lang.swift.decl.struct",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/grhodes/Projects/2020/SwiftProjects/Emu6510/Sources/Emu6510/ClockWatcher.swift",
+      "line": 59,
+      "symbol": "AnyClockWatcher.init(_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/grhodes/Projects/2020/SwiftProjects/Emu6510/Sources/Emu6510/ClockWatcher.swift",
+      "line": 61,
+      "symbol": "AnyClockWatcher.isRunning",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/grhodes/Projects/2020/SwiftProjects/Emu6510/Sources/Emu6510/ClockWatcher.swift",
+      "line": 62,
+      "symbol": "AnyClockWatcher.isStopped",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/grhodes/Projects/2020/SwiftProjects/Emu6510/Sources/Emu6510/ClockWatcher.swift",
+      "line": 63,
+      "symbol": "AnyClockWatcher.skip",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/grhodes/Projects/2020/SwiftProjects/Emu6510/Sources/Emu6510/ClockWatcher.swift",
+      "line": 64,
+      "symbol": "AnyClockWatcher.isPaused",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/grhodes/Projects/2020/SwiftProjects/Emu6510/Sources/Emu6510/ClockWatcher.swift",
+      "line": 69,
+      "symbol": "AnyClockWatcher.fire()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/grhodes/Projects/2020/SwiftProjects/Emu6510/Sources/Emu6510/ClockWatcher.swift",
+      "line": 71,
+      "symbol": "AnyClockWatcher.hardStop()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/grhodes/Projects/2020/SwiftProjects/Emu6510/Sources/Emu6510/ClockWatcher.swift",
+      "line": 73,
+      "symbol": "AnyClockWatcher.start()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/grhodes/Projects/2020/SwiftProjects/Emu6510/Sources/Emu6510/ClockWatcher.swift",
+      "line": 75,
+      "symbol": "AnyClockWatcher.stop()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/grhodes/Projects/2020/SwiftProjects/Emu6510/Sources/Emu6510/ClockWatcher.swift",
+      "line": 78,
+      "symbol": "AnyClockWatcher",
+      "symbol_kind": "source.lang.swift.decl.extension",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/grhodes/Projects/2020/SwiftProjects/Emu6510/Sources/Emu6510/ClockWatcher.swift",
+      "line": 82,
+      "symbol": "AnyClockWatcher",
+      "symbol_kind": "source.lang.swift.decl.extension",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/grhodes/Projects/2020/SwiftProjects/Emu6510/Sources/Emu6510/ClockWatcher.swift",
+      "line": 87,
+      "symbol": "Array.==(_:_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/grhodes/Projects/2020/SwiftProjects/Emu6510/Sources/Emu6510/ClockWatcher.swift",
+      "line": 91,
+      "symbol": "Dictionary.==(_:_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.static",
       "warning": "undocumented"
     },
     {
@@ -570,21 +1004,21 @@
     {
       "file": "/Users/grhodes/Projects/2020/SwiftProjects/Emu6510/Sources/Emu6510/Memory.swift",
       "line": 28,
-      "symbol": "RandomAccessMemory.startingAddress",
+      "symbol": "RandomAccessMemory.startAddress",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/grhodes/Projects/2020/SwiftProjects/Emu6510/Sources/Emu6510/Memory.swift",
       "line": 29,
-      "symbol": "RandomAccessMemory.endingAddress",
+      "symbol": "RandomAccessMemory.endAddress",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/grhodes/Projects/2020/SwiftProjects/Emu6510/Sources/Emu6510/Memory.swift",
       "line": 30,
-      "symbol": "RandomAccessMemory.size",
+      "symbol": "RandomAccessMemory.count",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
@@ -612,76 +1046,97 @@
     {
       "file": "/Users/grhodes/Projects/2020/SwiftProjects/Emu6510/Sources/Emu6510/Memory.swift",
       "line": 39,
+      "symbol": "RandomAccessMemory",
+      "symbol_kind": "source.lang.swift.decl.extension",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/grhodes/Projects/2020/SwiftProjects/Emu6510/Sources/Emu6510/Memory.swift",
+      "line": 40,
+      "symbol": "RandomAccessMemory.subscript(_:)",
+      "symbol_kind": "source.lang.swift.decl.function.subscript",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/grhodes/Projects/2020/SwiftProjects/Emu6510/Sources/Emu6510/Memory.swift",
+      "line": 44,
+      "symbol": "RandomAccessMemory.subscript(_:)",
+      "symbol_kind": "source.lang.swift.decl.function.subscript",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/grhodes/Projects/2020/SwiftProjects/Emu6510/Sources/Emu6510/Memory.swift",
+      "line": 50,
       "symbol": "RAM",
       "symbol_kind": "source.lang.swift.decl.class",
       "warning": "undocumented"
     },
     {
       "file": "/Users/grhodes/Projects/2020/SwiftProjects/Emu6510/Sources/Emu6510/Memory.swift",
-      "line": 41,
+      "line": 52,
       "symbol": "RAM.readOnly",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/grhodes/Projects/2020/SwiftProjects/Emu6510/Sources/Emu6510/Memory.swift",
-      "line": 42,
-      "symbol": "RAM.startingAddress",
+      "line": 53,
+      "symbol": "RAM.startAddress",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/grhodes/Projects/2020/SwiftProjects/Emu6510/Sources/Emu6510/Memory.swift",
-      "line": 43,
-      "symbol": "RAM.endingAddress",
+      "line": 54,
+      "symbol": "RAM.endAddress",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/grhodes/Projects/2020/SwiftProjects/Emu6510/Sources/Emu6510/Memory.swift",
-      "line": 44,
-      "symbol": "RAM.size",
+      "line": 56,
+      "symbol": "RAM.count",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/grhodes/Projects/2020/SwiftProjects/Emu6510/Sources/Emu6510/Memory.swift",
-      "line": 58,
+      "line": 69,
       "symbol": "RAM.init(start:end:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/grhodes/Projects/2020/SwiftProjects/Emu6510/Sources/Emu6510/Memory.swift",
-      "line": 67,
+      "line": 78,
       "symbol": "RAM.load(from:offset:length:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/grhodes/Projects/2020/SwiftProjects/Emu6510/Sources/Emu6510/Memory.swift",
-      "line": 74,
+      "line": 85,
       "symbol": "RAM.load(to:offset:length:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/grhodes/Projects/2020/SwiftProjects/Emu6510/Sources/Emu6510/Memory.swift",
-      "line": 81,
+      "line": 92,
       "symbol": "RAM.subscript(_:)",
       "symbol_kind": "source.lang.swift.decl.function.subscript",
       "warning": "undocumented"
     },
     {
       "file": "/Users/grhodes/Projects/2020/SwiftProjects/Emu6510/Sources/Emu6510/Memory.swift",
-      "line": 94,
+      "line": 104,
       "symbol": "ROM",
       "symbol_kind": "source.lang.swift.decl.class",
       "warning": "undocumented"
     },
     {
       "file": "/Users/grhodes/Projects/2020/SwiftProjects/Emu6510/Sources/Emu6510/Memory.swift",
-      "line": 95,
+      "line": 105,
       "symbol": "ROM.init(start:end:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
@@ -757,13 +1212,6 @@
       "warning": "undocumented"
     },
     {
-      "file": "/Users/grhodes/Projects/2020/SwiftProjects/Emu6510/Sources/Emu6510/OpcodeInfo.swift",
-      "line": 70,
-      "symbol": "Emu6510Opcodes",
-      "symbol_kind": "source.lang.swift.decl.var.global",
-      "warning": "undocumented"
-    },
-    {
       "file": "/Users/grhodes/Projects/2020/SwiftProjects/Emu6510/Sources/Emu6510/ProcessorFlags.swift",
       "line": 30,
       "symbol": "ProcessorFlags",
@@ -821,140 +1269,140 @@
     },
     {
       "file": "/Users/grhodes/Projects/2020/SwiftProjects/Emu6510/Sources/Emu6510/ProcessorFlags.swift",
-      "line": 39,
+      "line": 40,
       "symbol": "ProcessorFlags.~(_:)",
       "symbol_kind": "source.lang.swift.decl.function.method.static",
       "warning": "undocumented"
     },
     {
       "file": "/Users/grhodes/Projects/2020/SwiftProjects/Emu6510/Sources/Emu6510/ProcessorFlags.swift",
-      "line": 41,
+      "line": 42,
       "symbol": "ProcessorFlags.|=(_:_:)",
       "symbol_kind": "source.lang.swift.decl.function.method.static",
       "warning": "undocumented"
     },
     {
       "file": "/Users/grhodes/Projects/2020/SwiftProjects/Emu6510/Sources/Emu6510/ProcessorFlags.swift",
-      "line": 43,
+      "line": 44,
       "symbol": "ProcessorFlags.&=(_:_:)",
       "symbol_kind": "source.lang.swift.decl.function.method.static",
       "warning": "undocumented"
     },
     {
       "file": "/Users/grhodes/Projects/2020/SwiftProjects/Emu6510/Sources/Emu6510/ProcessorFlags.swift",
-      "line": 45,
+      "line": 46,
       "symbol": "ProcessorFlags.|(_:_:)",
       "symbol_kind": "source.lang.swift.decl.function.method.static",
       "warning": "undocumented"
     },
     {
       "file": "/Users/grhodes/Projects/2020/SwiftProjects/Emu6510/Sources/Emu6510/ProcessorFlags.swift",
-      "line": 47,
+      "line": 48,
       "symbol": "ProcessorFlags.&(_:_:)",
       "symbol_kind": "source.lang.swift.decl.function.method.static",
       "warning": "undocumented"
     },
     {
       "file": "/Users/grhodes/Projects/2020/SwiftProjects/Emu6510/Sources/Emu6510/ProcessorFlags.swift",
-      "line": 49,
+      "line": 50,
       "symbol": "ProcessorFlags.|(_:_:)",
       "symbol_kind": "source.lang.swift.decl.function.method.static",
       "warning": "undocumented"
     },
     {
       "file": "/Users/grhodes/Projects/2020/SwiftProjects/Emu6510/Sources/Emu6510/ProcessorFlags.swift",
-      "line": 51,
+      "line": 52,
       "symbol": "ProcessorFlags.&(_:_:)",
       "symbol_kind": "source.lang.swift.decl.function.method.static",
       "warning": "undocumented"
     },
     {
       "file": "/Users/grhodes/Projects/2020/SwiftProjects/Emu6510/Sources/Emu6510/ProcessorFlags.swift",
-      "line": 53,
+      "line": 54,
       "symbol": "ProcessorFlags.|(_:_:)",
       "symbol_kind": "source.lang.swift.decl.function.method.static",
       "warning": "undocumented"
     },
     {
       "file": "/Users/grhodes/Projects/2020/SwiftProjects/Emu6510/Sources/Emu6510/ProcessorFlags.swift",
-      "line": 55,
+      "line": 56,
       "symbol": "ProcessorFlags.&(_:_:)",
       "symbol_kind": "source.lang.swift.decl.function.method.static",
       "warning": "undocumented"
     },
     {
       "file": "/Users/grhodes/Projects/2020/SwiftProjects/Emu6510/Sources/Emu6510/ProcessorFlags.swift",
-      "line": 57,
+      "line": 58,
       "symbol": "ProcessorFlags.==(_:_:)",
       "symbol_kind": "source.lang.swift.decl.function.method.static",
       "warning": "undocumented"
     },
     {
       "file": "/Users/grhodes/Projects/2020/SwiftProjects/Emu6510/Sources/Emu6510/ProcessorFlags.swift",
-      "line": 59,
+      "line": 60,
       "symbol": "ProcessorFlags.==(_:_:)",
       "symbol_kind": "source.lang.swift.decl.function.method.static",
       "warning": "undocumented"
     },
     {
       "file": "/Users/grhodes/Projects/2020/SwiftProjects/Emu6510/Sources/Emu6510/ProcessorFlags.swift",
-      "line": 61,
+      "line": 62,
       "symbol": "ProcessorFlags.!=(_:_:)",
       "symbol_kind": "source.lang.swift.decl.function.method.static",
       "warning": "undocumented"
     },
     {
       "file": "/Users/grhodes/Projects/2020/SwiftProjects/Emu6510/Sources/Emu6510/ProcessorFlags.swift",
-      "line": 63,
+      "line": 64,
       "symbol": "ProcessorFlags.!=(_:_:)",
       "symbol_kind": "source.lang.swift.decl.function.method.static",
       "warning": "undocumented"
     },
     {
       "file": "/Users/grhodes/Projects/2020/SwiftProjects/Emu6510/Sources/Emu6510/ProcessorFlags.swift",
-      "line": 65,
+      "line": 66,
       "symbol": "ProcessorFlags.&==(_:_:)",
       "symbol_kind": "source.lang.swift.decl.function.method.static",
       "warning": "undocumented"
     },
     {
       "file": "/Users/grhodes/Projects/2020/SwiftProjects/Emu6510/Sources/Emu6510/ProcessorFlags.swift",
-      "line": 67,
+      "line": 68,
       "symbol": "ProcessorFlags.&!=(_:_:)",
       "symbol_kind": "source.lang.swift.decl.function.method.static",
       "warning": "undocumented"
     },
     {
       "file": "/Users/grhodes/Projects/2020/SwiftProjects/Emu6510/Sources/Emu6510/ProcessorFlags.swift",
-      "line": 69,
+      "line": 70,
       "symbol": "ProcessorFlags.set(status:when:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/grhodes/Projects/2020/SwiftProjects/Emu6510/Sources/Emu6510/ProcessorFlags.swift",
-      "line": 71,
+      "line": 72,
       "symbol": "ProcessorFlags.setIf(status:_:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/grhodes/Projects/2020/SwiftProjects/Emu6510/Sources/Emu6510/ProcessorFlags.swift",
-      "line": 87,
+      "line": 88,
       "symbol": "ProcessorFlags.flagsList(flags:)",
       "symbol_kind": "source.lang.swift.decl.function.method.static",
       "warning": "undocumented"
     },
     {
       "file": "/Users/grhodes/Projects/2020/SwiftProjects/Emu6510/Sources/Emu6510/ProcessorFlags.swift",
-      "line": 92,
+      "line": 93,
       "symbol": "&==(_:_:)",
       "symbol_kind": "source.lang.swift.decl.function.free",
       "warning": "undocumented"
     },
     {
       "file": "/Users/grhodes/Projects/2020/SwiftProjects/Emu6510/Sources/Emu6510/ProcessorFlags.swift",
-      "line": 94,
+      "line": 95,
       "symbol": "&!=(_:_:)",
       "symbol_kind": "source.lang.swift.decl.function.free",
       "warning": "undocumented"
@@ -971,13 +1419,6 @@
       "line": 26,
       "symbol": "AddressInfo",
       "symbol_kind": "source.lang.swift.decl.typealias",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/grhodes/Projects/2020/SwiftProjects/Emu6510/Sources/Emu6510/Utils.swift",
-      "line": 55,
-      "symbol": "onSamePage(_:_:)",
-      "symbol_kind": "source.lang.swift.decl.function.free",
       "warning": "undocumented"
     }
   ],

@@ -33,15 +33,15 @@ import Foundation
     /*===========================================================================================================================*/
     /// The clock has been hard stopped and cannot be restarted.
     ///
-    case Stopped = 0
+    case Stopped      = 0
     /*===========================================================================================================================*/
     /// The clock is running.
     ///
-    case Running = 1
+    case Running      = 1
     /*===========================================================================================================================*/
     /// The clock is paused.
     ///
-    case Paused  = 2
+    case Paused       = 2
 }
 
 public protocol CPUClock {
@@ -53,7 +53,7 @@ public protocol CPUClock {
     /*===========================================================================================================================*/
     /// `true` if the clock is running. Read-only.
     ///
-    var runStatus: RunStatus { get }
+    var runStatus:      RunStatus { get }
 
     /*===========================================================================================================================*/
     /// Starts the clock.
@@ -103,4 +103,56 @@ public protocol CPUClock {
     ///                      no effect.
     ///
     func removeWatcher(_ watcher: ClockWatcher)
+
+    func isEqualTo(_ other: CPUClock) -> Bool
+
+    func asAnyCPUClock() -> AnyCPUClock
+}
+
+public extension CPUClock where Self: Equatable {
+    @inlinable func asAnyCPUClock() -> AnyCPUClock { AnyCPUClock(self) }
+
+    @inlinable func isEqualTo(_ other: CPUClock) -> Bool {
+        guard let other: Self = other as? Self else { return false }
+        return self == other
+    }
+}
+
+public struct AnyCPUClock: CPUClock {
+    @usableFromInline var clock: CPUClock
+
+    @inlinable public var runStatus: RunStatus { clock.runStatus }
+
+    @inlinable public var clockFrequency: ClockFrequencies {
+        get { clock.clockFrequency }
+        set { clock.clockFrequency = newValue }
+    }
+
+    public init(_ clock: CPUClock) {
+        self.clock = clock
+    }
+
+    @inlinable public func start() throws { try clock.start() }
+
+    @inlinable public func pause() throws { try clock.pause() }
+
+    @inlinable public func unPause() throws { try clock.unPause() }
+
+    @inlinable public func stop() throws { try clock.stop() }
+
+    @inlinable public func addWatcher(_ watcher: ClockWatcher) { clock.addWatcher(watcher) }
+
+    @inlinable public func removeWatcher(_ watcher: ClockWatcher) { clock.removeWatcher(watcher) }
+}
+
+extension AnyCPUClock: Equatable {
+    public static func == (lhs: AnyCPUClock, rhs: AnyCPUClock) -> Bool { lhs.clock.isEqualTo(rhs.clock) }
+}
+
+extension Array where Element: CPUClock {
+    @inlinable public static func == (lhs: [CPUClock], rhs: [CPUClock]) -> Bool { lhs.map({ $0.asAnyCPUClock() }) == rhs.map({ $0.asAnyCPUClock() }) }
+}
+
+extension Dictionary where Value: CPUClock {
+    @inlinable public static func == (lhs: [Key: CPUClock], rhs: [Key: CPUClock]) -> Bool { lhs.mapValues({ $0.asAnyCPUClock() }) == rhs.mapValues({ $0.asAnyCPUClock() }) }
 }
