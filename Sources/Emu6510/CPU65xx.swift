@@ -22,7 +22,7 @@
 
 import Foundation
 
-public protocol CPU65xx: CPUClock {
+public protocol CPU65xx: AnyObject {
     var addressBuss:  AnyAddressBuss { get }
     var accumulator:  UInt8 { get }
     var xRegister:    UInt8 { get }
@@ -38,64 +38,64 @@ public protocol CPU65xx: CPUClock {
 
     /*===========================================================================================================================*/
     /// Dispatch the given opcode.
-    /// 
+    ///
     /// - Parameter opcode: the opcode
     ///
     func dispatchOpcode(opcode: OpcodeInfo)
 
     func isEqualTo(_ other: CPU65xx) -> Bool
 
-    func asAnyCPU65xx() -> AnyCPU65xx
+    func asHashable() -> AnyCPU65xx
+
+    func getHash(into hasher: inout Hasher)
 }
 
-public extension CPU65xx where Self: Equatable {
-    @inlinable func asAnyCPU65xx() -> AnyCPU65xx { AnyCPU65xx(self) }
-
-    @inlinable func isEqualTo(_ other: CPU65xx) -> Bool {
-        guard let other: Self = other as? Self else { return false }
-        return self == other
-    }
-}
-
-public struct AnyCPU65xx: CPU65xx {
-
+open class AnyCPU65xx: CPU65xx, Hashable {
     @usableFromInline var cpu: CPU65xx
 
-    @inlinable public var addressBuss:  AnyAddressBuss { cpu.addressBuss }
-    @inlinable public var accumulator:  UInt8 { cpu.accumulator }
-    @inlinable public var xRegister:    UInt8 { cpu.xRegister }
-    @inlinable public var yRegister:    UInt8 { cpu.yRegister }
-    @inlinable public var stRegister:   UInt8 { cpu.stRegister }
-    @inlinable public var stackPointer: UInt8 { cpu.stackPointer }
-    @inlinable public var progCounter:  UInt16 { cpu.progCounter }
-    @inlinable public var runStatus:    RunStatus { cpu.runStatus }
-
-    @inlinable public var clockFrequency: ClockFrequencies {
-        get { cpu.clockFrequency }
-        set { cpu.clockFrequency = newValue }
-    }
+    @inlinable open var addressBuss:  AnyAddressBuss { cpu.addressBuss }
+    @inlinable open var accumulator:  UInt8 { cpu.accumulator }
+    @inlinable open var xRegister:    UInt8 { cpu.xRegister }
+    @inlinable open var yRegister:    UInt8 { cpu.yRegister }
+    @inlinable open var stRegister:   UInt8 { cpu.stRegister }
+    @inlinable open var stackPointer: UInt8 { cpu.stackPointer }
+    @inlinable open var progCounter:  UInt16 { cpu.progCounter }
 
     public init(_ cpu: CPU65xx) { self.cpu = cpu }
 
-    @inlinable public func run() { cpu.run() }
+    @inlinable open func run() { cpu.run() }
 
-    @inlinable public func dispatchOpcode(opcode: OpcodeInfo) { cpu.dispatchOpcode(opcode: opcode) }
+    @inlinable open func dispatchOpcode(opcode: OpcodeInfo) { cpu.dispatchOpcode(opcode: opcode) }
 
-    @inlinable public func start() throws { try cpu.start() }
+    @inlinable open func hash(into hasher: inout Hasher) { cpu.getHash(into: &hasher) }
 
-    @inlinable public func pause() throws { try cpu.pause() }
+    @inlinable public static func == (lhs: AnyCPU65xx, rhs: AnyCPU65xx) -> Bool { lhs.cpu.isEqualTo(rhs.cpu) }
 
-    @inlinable public func unPause() throws { try cpu.unPause() }
+    @inlinable open func asHashable() -> AnyCPU65xx { self }
 
-    @inlinable public func stop() throws { try cpu.stop() }
-
-    @inlinable public func addWatcher(_ watcher: ClockWatcher) { cpu.addWatcher(watcher) }
-
-    @inlinable public func removeWatcher(_ watcher: ClockWatcher) { cpu.removeWatcher(watcher) }
-
-    @inlinable public func isEqualTo(_ other: CPU65xx) -> Bool { cpu.isEqualTo(other) }
+    @inlinable open func isEqualTo(_ other: CPU65xx) -> Bool { ((self === other) || ((type(of: other) == AnyCPU65xx.self) && (self == (other as! AnyCPU65xx)))) }
 }
 
-extension AnyCPU65xx: Equatable {
-    @inlinable public static func == (lhs: AnyCPU65xx, rhs: AnyCPU65xx) -> Bool { lhs.cpu.isEqualTo(rhs.cpu) }
+extension CPU65xx where Self: Equatable {
+    @inlinable public func asEquatable() -> AnyCPU65xx { asHashable() }
+
+    @inlinable public static func == (lhs: CPU65xx, rhs: CPU65xx) -> Bool { lhs === rhs }
+}
+
+extension CPU65xx where Self: Hashable {
+    @inlinable public func asHashable() -> AnyCPU65xx { AnyCPU65xx(self) }
+
+    @inlinable public func getHash(into hasher: inout Hasher) { hash(into: &hasher) }
+}
+
+extension Array where Element: CPU65xx {
+    @inlinable public static func == (lhs: [CPU65xx], rhs: [CPU65xx]) -> Bool { lhs.map({ $0.asHashable() }) == rhs.map({ $0.asHashable() }) }
+}
+
+extension Dictionary where Value: CPU65xx {
+    @inlinable public static func == (lhs: [Key: CPU65xx], rhs: [Key: CPU65xx]) -> Bool { lhs.mapValues({ $0.asHashable() }) == rhs.mapValues({ $0.asHashable() }) }
+}
+
+extension Set where Element: CPU65xx & Hashable {
+    @inlinable public static func == (lhs: Set<Element>, rhs: Set<Element>) -> Bool { lhs.map({ $0.asHashable() }) == rhs.map({ $0.asHashable() }) }
 }

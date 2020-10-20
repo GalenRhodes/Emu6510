@@ -26,6 +26,10 @@ public protocol AddressBuss {
 
     subscript(position: Int) -> UInt8 { get set }
 
+    subscript(_ zpAddr: UInt8) -> UInt8 { get set }
+
+    subscript(_ addr: UInt16) -> UInt8 { get set }
+
     func isEqualTo(_ other: AddressBuss) -> Bool
 
     func asEquatable() -> AnyAddressBuss
@@ -33,10 +37,7 @@ public protocol AddressBuss {
     func getHash(into hasher: inout Hasher)
 }
 
-extension AddressBuss where Self: Equatable {
-    @inlinable public func asEquatable() -> AnyAddressBuss { AnyAddressBuss(self) }
-
-    @inlinable public func isEqualTo(_ other: AddressBuss) -> Bool { guard let other: Self = other as? Self else { return false }; return self == other }
+extension AddressBuss {
 
     @inlinable public subscript(_ zpAddr: UInt8) -> UInt8 {
         get { self[Int(zpAddr)] }
@@ -46,6 +47,12 @@ extension AddressBuss where Self: Equatable {
         get { self[Int(addr)] }
         set { self[Int(addr)] = newValue }
     }
+}
+
+extension AddressBuss where Self: Equatable {
+    @inlinable public func asEquatable() -> AnyAddressBuss { AnyAddressBuss(self) }
+
+    @inlinable public func isEqualTo(_ other: AddressBuss) -> Bool { guard let other: Self = other as? Self else { return false }; return self == other }
 }
 
 extension AddressBuss where Self: Hashable {
@@ -77,4 +84,8 @@ extension Array where Element: AddressBuss {
 
 extension Dictionary where Value: AddressBuss {
     @inlinable public static func == (lhs: [Key: AddressBuss], rhs: [Key: AddressBuss]) -> Bool { lhs.mapValues({ $0.asEquatable() }) == rhs.mapValues({ $0.asEquatable() }) }
+}
+
+extension Set where Element: AddressBuss {
+    @inlinable public static func == (lhs: Set<Element>, rhs: Set<Element>) -> Bool { lhs.map({ $0.asEquatable() }) == rhs.map({ $0.asEquatable() }) }
 }

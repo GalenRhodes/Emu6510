@@ -44,7 +44,7 @@ import Foundation
     case Paused       = 2
 }
 
-public protocol CPUClock {
+public protocol CPUClock: AnyObject {
     /*===========================================================================================================================*/
     /// The clock frequency.
     ///
@@ -57,7 +57,7 @@ public protocol CPUClock {
 
     /*===========================================================================================================================*/
     /// Starts the clock.
-    /// 
+    ///
     /// - Throws: `CPUErrors.AlreadyRunning` if the clock is already running.
     /// - Throws: `CPUErrors.AlreadyStopped` if the clock has already been stopped.
     ///
@@ -65,7 +65,7 @@ public protocol CPUClock {
 
     /*===========================================================================================================================*/
     /// Pauses the clock.
-    /// 
+    ///
     /// - Throws: `CPUErrors.AlreadyPaused` if the clock is already paused.
     /// - Throws: `CPUErrors.NotStarted` if the clock has never been started.
     ///
@@ -73,7 +73,7 @@ public protocol CPUClock {
 
     /*===========================================================================================================================*/
     /// Un-pauses the clock.
-    /// 
+    ///
     /// - Throws: `CPUErrors.NotPaused` if the clock is not paused.
     /// - Throws: `CPUErrors.NotStarted` if the clock has never been started.
     ///
@@ -82,7 +82,7 @@ public protocol CPUClock {
     /*===========================================================================================================================*/
     /// Stops the clock permanently. After this call all of the resources have been released, the watchers have been removed, and
     /// the clock CANNOT be restarted.
-    /// 
+    ///
     /// - Throws: `CPUErrors.AlreadyStopped` if the clock has already been stopped.
     /// - Throws: `CPUErrors.NotStarted` if the clock has never been started.
     ///
@@ -90,7 +90,7 @@ public protocol CPUClock {
 
     /*===========================================================================================================================*/
     /// Adds a watcher to this clock.
-    /// 
+    ///
     /// - Parameter watcher: the watcher to add. If the watcher is already watching this clock then calling this method has no
     ///                      effect.
     ///
@@ -98,7 +98,7 @@ public protocol CPUClock {
 
     /*===========================================================================================================================*/
     /// Removes a watcher from this clock.
-    /// 
+    ///
     /// - Parameter watcher: the watcher to remove. If the watcher is not actually watching this clock then calling this method has
     ///                      no effect.
     ///
@@ -106,53 +106,61 @@ public protocol CPUClock {
 
     func isEqualTo(_ other: CPUClock) -> Bool
 
-    func asAnyCPUClock() -> AnyCPUClock
+    func asHashable() -> AnyCPUClock
+
+    func getHash(into hasher: inout Hasher)
 }
 
-public extension CPUClock where Self: Equatable {
-    @inlinable func asAnyCPUClock() -> AnyCPUClock { AnyCPUClock(self) }
+open class AnyCPUClock: CPUClock, Hashable {
+    @usableFromInline var clk: CPUClock
 
-    @inlinable func isEqualTo(_ other: CPUClock) -> Bool {
-        guard let other: Self = other as? Self else { return false }
-        return self == other
+    @inlinable open var runStatus:      RunStatus { clk.runStatus }
+    @inlinable open var clockFrequency: ClockFrequencies {
+        get { clk.clockFrequency }
+        set { clk.clockFrequency = newValue }
     }
+
+    public init(_ clk: CPUClock) { self.clk = clk }
+
+    @inlinable open func start() throws { try clk.start() }
+
+    @inlinable open func pause() throws { try clk.pause() }
+
+    @inlinable open func unPause() throws { try clk.unPause() }
+
+    @inlinable open func stop() throws { try clk.stop() }
+
+    @inlinable open func addWatcher(_ watcher: ClockWatcher) { clk.addWatcher(watcher) }
+
+    @inlinable open func removeWatcher(_ watcher: ClockWatcher) { clk.removeWatcher(watcher) }
+
+    @inlinable open func hash(into hasher: inout Hasher) { clk.getHash(into: &hasher) }
+
+    @inlinable public static func == (lhs: AnyCPUClock, rhs: AnyCPUClock) -> Bool { lhs.clk.isEqualTo(rhs.clk) }
+
+    @inlinable open func asHashable() -> AnyCPUClock { self }
+
+    @inlinable open func isEqualTo(_ other: CPUClock) -> Bool { ((self === other) || ((type(of: other) == AnyCPUClock.self) && (self == (other as! AnyCPUClock)))) }
 }
 
-public struct AnyCPUClock: CPUClock {
-    @usableFromInline var clock: CPUClock
-
-    @inlinable public var runStatus: RunStatus { clock.runStatus }
-
-    @inlinable public var clockFrequency: ClockFrequencies {
-        get { clock.clockFrequency }
-        set { clock.clockFrequency = newValue }
-    }
-
-    public init(_ clock: CPUClock) {
-        self.clock = clock
-    }
-
-    @inlinable public func start() throws { try clock.start() }
-
-    @inlinable public func pause() throws { try clock.pause() }
-
-    @inlinable public func unPause() throws { try clock.unPause() }
-
-    @inlinable public func stop() throws { try clock.stop() }
-
-    @inlinable public func addWatcher(_ watcher: ClockWatcher) { clock.addWatcher(watcher) }
-
-    @inlinable public func removeWatcher(_ watcher: ClockWatcher) { clock.removeWatcher(watcher) }
+extension CPUClock where Self: Equatable {
+    @inlinable public func asEquatable() -> AnyCPUClock { AnyCPUClock(self) }
 }
 
-extension AnyCPUClock: Equatable {
-    public static func == (lhs: AnyCPUClock, rhs: AnyCPUClock) -> Bool { lhs.clock.isEqualTo(rhs.clock) }
+extension CPUClock where Self: Hashable {
+    @inlinable public func asHashable() -> AnyCPUClock { AnyCPUClock(self) }
+
+    @inlinable public func getHash(into hasher: inout Hasher) { hash(into: &hasher) }
 }
 
 extension Array where Element: CPUClock {
-    @inlinable public static func == (lhs: [CPUClock], rhs: [CPUClock]) -> Bool { lhs.map({ $0.asAnyCPUClock() }) == rhs.map({ $0.asAnyCPUClock() }) }
+    @inlinable public static func == (lhs: [CPUClock], rhs: [CPUClock]) -> Bool { lhs.map({ $0.asHashable() }) == rhs.map({ $0.asHashable() }) }
 }
 
 extension Dictionary where Value: CPUClock {
-    @inlinable public static func == (lhs: [Key: CPUClock], rhs: [Key: CPUClock]) -> Bool { lhs.mapValues({ $0.asAnyCPUClock() }) == rhs.mapValues({ $0.asAnyCPUClock() }) }
+    @inlinable public static func == (lhs: [Key: CPUClock], rhs: [Key: CPUClock]) -> Bool { lhs.mapValues({ $0.asHashable() }) == rhs.mapValues({ $0.asHashable() }) }
+}
+
+extension Set where Element: CPUClock & Hashable {
+    @inlinable public static func == (lhs: Set<Element>, rhs: Set<Element>) -> Bool { lhs.map({ $0.asHashable() }) == rhs.map({ $0.asHashable() }) }
 }

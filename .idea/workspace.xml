@@ -33,69 +33,13 @@
     </select>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="87075da3-fef8-4e0e-a558-4c45fa2c2b82" name="Default Changelist" comment="More...">
+    <list default="true" id="87075da3-fef8-4e0e-a558-4c45fa2c2b82" name="Default Changelist" comment="Equatable Protocols!">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Sources/Emu6510/AddressBuss.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Sources/Emu6510/AddressBuss.swift" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Sources/Emu6510/CPU6502.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Sources/Emu6510/CPU6502.swift" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Sources/Emu6510/CPU65xx.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Sources/Emu6510/CPU65xx.swift" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Sources/Emu6510/CPUClock.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Sources/Emu6510/CPUClock.swift" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Sources/Emu6510/ClockWatcher.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Sources/Emu6510/ClockWatcher.swift" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Sources/Emu6510/Memory.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Sources/Emu6510/Memory.swift" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Sources/Emu6510/OpcodeInfo.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Sources/Emu6510/OpcodeInfo.swift" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Sources/Emu6510/ProcessorFlags.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Sources/Emu6510/ProcessorFlags.swift" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Sources/Emu6510/Utils.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Sources/Emu6510/Utils.swift" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/Classes.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/Classes.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/Classes/CPU6502.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/Classes/CPU6502.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/Classes/CPU6510.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/Classes/CPU6510.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/Classes/ClockWatcher.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/Classes/OpcodeInfo.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/Classes/OpcodeInfo.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/Classes/RAM.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/Classes/RAM.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/Classes/ROM.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/Classes/ROM.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/Enums.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/Enums.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/Enums/AddressModes.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/Enums/AddressModes.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/Enums/CPUErrors.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/Enums/CPUErrors.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/Enums/ClockFrequencies.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/Enums/ClockFrequencies.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/Enums/ProcessorFlags.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/Enums/ProcessorFlags.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/Enums/RunStatus.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/Enums/RunStatus.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/Functions.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/Functions.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/Global Variables.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/Protocols.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/Protocols.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/Protocols/AddressBuss.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/Protocols/AddressBuss.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/Protocols/CPU65xx.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/Protocols/CPU65xx.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/Protocols/CPUClock.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/Protocols/CPUClock.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/Protocols/RandomAccessMemory.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/Protocols/RandomAccessMemory.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/Protocols/_5FClockWatcher.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/Typealiases.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/Typealiases.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/badge.svg" beforeDir="false" afterPath="$PROJECT_DIR$/docs/badge.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Classes.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Classes.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Classes/CPU6502.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Classes/CPU6502.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Classes/CPU6510.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Classes/CPU6510.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Classes/ClockWatcher.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Classes/OpcodeInfo.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Classes/OpcodeInfo.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Classes/RAM.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Classes/RAM.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Classes/ROM.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Classes/ROM.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Enums.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Enums.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Enums/AddressModes.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Enums/AddressModes.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Enums/CPUErrors.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Enums/CPUErrors.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Enums/ClockFrequencies.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Enums/ClockFrequencies.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Enums/ProcessorFlags.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Enums/ProcessorFlags.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Enums/RunStatus.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Enums/RunStatus.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Functions.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Functions.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Global Variables.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Protocols.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Protocols.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Protocols/AddressBuss.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Protocols/AddressBuss.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Protocols/CPU65xx.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Protocols/CPU65xx.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Protocols/CPUClock.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Protocols/CPUClock.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Protocols/RandomAccessMemory.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Protocols/RandomAccessMemory.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Protocols/_5FClockWatcher.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Typealiases.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Typealiases.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/search.json" beforeDir="false" afterPath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/search.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/docSet.dsidx" beforeDir="false" afterPath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/docSet.dsidx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/docsets/.tgz" beforeDir="false" afterPath="$PROJECT_DIR$/docs/docsets/.tgz" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/search.json" beforeDir="false" afterPath="$PROJECT_DIR$/docs/search.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/undocumented.json" beforeDir="false" afterPath="$PROJECT_DIR$/docs/undocumented.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -220,7 +164,10 @@
       <workItem from="1602298699675" duration="3275000" />
       <workItem from="1602598087576" duration="585000" />
       <workItem from="1602598696433" duration="9555000" />
-      <workItem from="1602680494986" duration="15724000" />
+      <workItem from="1602680494986" duration="15899000" />
+      <workItem from="1602718487172" duration="174000" />
+      <workItem from="1603196938891" duration="106000" />
+      <workItem from="1603197093025" duration="3712000" />
     </task>
     <task id="LOCAL-00001" summary="Redo">
       <created>1600997267219</created>
@@ -257,7 +204,21 @@
       <option name="project" value="LOCAL" />
       <updated>1602212720516</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="Equatable Protocols!">
+      <created>1602697578675</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1602697578675</updated>
+    </task>
+    <task id="LOCAL-00007" summary="Equatable Protocols!">
+      <created>1602697589902</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1602697589902</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -299,7 +260,8 @@
     <option name="CHECK_NEW_TODO" value="false" />
     <MESSAGE value="Redo" />
     <MESSAGE value="More..." />
-    <option name="LAST_COMMIT_MESSAGE" value="More..." />
+    <MESSAGE value="Equatable Protocols!" />
+    <option name="LAST_COMMIT_MESSAGE" value="Equatable Protocols!" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REARRANGE_BEFORE_PROJECT_COMMIT" value="true" />
