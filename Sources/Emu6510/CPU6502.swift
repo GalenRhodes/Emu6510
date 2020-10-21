@@ -23,7 +23,7 @@
 import Foundation
 import Rubicon
 
-public class CPU6502: CPU65xx, Equatable {
+public class CPU6502: CPU65xx, CPUClock, Hashable {
 
     @usableFromInline @frozen enum SpinLock {
         case Free
@@ -579,7 +579,7 @@ public class CPU6502: CPU65xx, Equatable {
     /*===========================================================================================================================*/
     /// Called after an operation that is to be stored back into a memory location. Mainly these are the bit-shift operations and
     /// the store operations.
-    /// 
+    ///
     /// - Parameters:
     ///   - value: the value to store.
     ///   - mode: the addressing mode.
@@ -635,7 +635,7 @@ public class CPU6502: CPU65xx, Equatable {
     /*===========================================================================================================================*/
     /// The setting of the N, Z, and C status register flags is something that occurs very often so I wrapped it into it's own
     /// method for convienience.
-    /// 
+    ///
     /// - Parameters:
     ///   - value: the value being tested for being negative or zero.
     ///   - carrySet: If `true` the carry flag will be set. If `false` the carry flag will be cleared. If `nil` (default) the carry
@@ -647,7 +647,7 @@ public class CPU6502: CPU65xx, Equatable {
     /*===========================================================================================================================*/
     /// The setting of the N and Z status register flags is something that occurs very often so I wrapped it into it's own method
     /// for convienience.
-    /// 
+    ///
     /// - Parameter value: the value being tested for being negative or zero.
     /// - Returns: the updated value of the status register.
     ///
@@ -656,7 +656,7 @@ public class CPU6502: CPU65xx, Equatable {
     /*===========================================================================================================================*/
     /// Update the overflow flag. See: [The 6502 overflow flag explained
     /// mathematically](http://www.righto.com/2012/12/the-6502-overflow-flag-explained.html)
-    /// 
+    ///
     /// - Parameters:
     ///   - ans: The result of the addition or subtraction.
     ///   - lhs: The value of the accumulator before the addition or subtraction.
@@ -669,7 +669,7 @@ public class CPU6502: CPU65xx, Equatable {
 
     /*===========================================================================================================================*/
     /// Binary addition/subtraction. (Subtraction is simply addition with the 1's compliment of the right-hand operand.)
-    /// 
+    ///
     /// - Parameters:
     ///   - lhs: left-hand operand.
     ///   - rhs: right-hand operand.
@@ -685,7 +685,7 @@ public class CPU6502: CPU65xx, Equatable {
 
     /*===========================================================================================================================*/
     /// Decimal mode addition. See: [6502.org Tutorials: Decimal Mode](http://www.6502.org/tutorials/decimal_mode.html)
-    /// 
+    ///
     /// - Parameters:
     ///   - lhs: The left-hand operand in BCD.
     ///   - rhs: The right-hand operand in BCD.
@@ -705,7 +705,7 @@ public class CPU6502: CPU65xx, Equatable {
 
     /*===========================================================================================================================*/
     /// Decimal mode subtraction. See: [6502.org Tutorials: Decimal Mode](http://www.6502.org/tutorials/decimal_mode.html)
-    /// 
+    ///
     /// - Parameters:
     ///   - lhs: The left-hand operand in BCD.
     ///   - rhs: The right-hand operand in BCD.
@@ -736,7 +736,7 @@ public class CPU6502: CPU65xx, Equatable {
 
     /*===========================================================================================================================*/
     /// Handles the ADC opcode.
-    /// 
+    ///
     /// - Parameter opcode: The opcode information.
     ///
     @inlinable open func processADC(opcode: OpcodeInfo) {
@@ -749,7 +749,7 @@ public class CPU6502: CPU65xx, Equatable {
 
     /*===========================================================================================================================*/
     /// Handles the AHX opcode. THIS IS AN INVALID INSTRUCTION!!!
-    /// 
+    ///
     /// - Parameter opcode: The opcode information.
     ///
     @inlinable open func processAHX(opcode: OpcodeInfo) {
@@ -758,7 +758,7 @@ public class CPU6502: CPU65xx, Equatable {
 
     /*===========================================================================================================================*/
     /// Handles the ALR opcode. THIS IS AN INVALID INSTRUCTION!!!
-    /// 
+    ///
     /// - Parameter opcode: The opcode information.
     ///
     @inlinable open func processALR(opcode: OpcodeInfo) {
@@ -767,7 +767,7 @@ public class CPU6502: CPU65xx, Equatable {
 
     /*===========================================================================================================================*/
     /// Handles the ANC opcode. THIS IS AN INVALID INSTRUCTION!!!
-    /// 
+    ///
     /// - Parameter opcode: The opcode information.
     ///
     @inlinable open func processANC(opcode: OpcodeInfo) {
@@ -776,7 +776,7 @@ public class CPU6502: CPU65xx, Equatable {
 
     /*===========================================================================================================================*/
     /// Handles the AND opcode.
-    /// 
+    ///
     /// - Parameter opcode: The opcode information.
     ///
     @inlinable open func processAND(opcode: OpcodeInfo) {
@@ -789,7 +789,7 @@ public class CPU6502: CPU65xx, Equatable {
 
     /*===========================================================================================================================*/
     /// Handles the ARR opcode. THIS IS AN INVALID INSTRUCTION!!!
-    /// 
+    ///
     /// - Parameter opcode: The opcode information.
     ///
     @inlinable open func processARR(opcode: OpcodeInfo) {
@@ -798,7 +798,7 @@ public class CPU6502: CPU65xx, Equatable {
 
     /*===========================================================================================================================*/
     /// Handles the ASL opcode.
-    /// 
+    ///
     /// - Parameter opcode: The opcode information.
     ///
     @inlinable open func processASL(opcode: OpcodeInfo) {
@@ -812,7 +812,7 @@ public class CPU6502: CPU65xx, Equatable {
 
     /*===========================================================================================================================*/
     /// Handles the AXS opcode. THIS IS AN INVALID INSTRUCTION!!!
-    /// 
+    ///
     /// - Parameter opcode: The opcode information.
     ///
     @inlinable open func processAXS(opcode: OpcodeInfo) {
@@ -821,7 +821,7 @@ public class CPU6502: CPU65xx, Equatable {
 
     /*===========================================================================================================================*/
     /// Handles the BCC opcode.
-    /// 
+    ///
     /// - Parameter opcode: The opcode information.
     ///
     @inlinable open func processBCC(opcode: OpcodeInfo) {
@@ -830,7 +830,7 @@ public class CPU6502: CPU65xx, Equatable {
 
     /*===========================================================================================================================*/
     /// Handles the BCS opcode.
-    /// 
+    ///
     /// - Parameter opcode: The opcode information.
     ///
     @inlinable open func processBCS(opcode: OpcodeInfo) {
@@ -839,7 +839,7 @@ public class CPU6502: CPU65xx, Equatable {
 
     /*===========================================================================================================================*/
     /// Handles the BEQ opcode.
-    /// 
+    ///
     /// - Parameter opcode: The opcode information.
     ///
     @inlinable open func processBEQ(opcode: OpcodeInfo) {
@@ -848,7 +848,7 @@ public class CPU6502: CPU65xx, Equatable {
 
     /*===========================================================================================================================*/
     /// Handles the BIT opcode.
-    /// 
+    ///
     /// - Parameter opcode: The opcode information.
     ///
     @inlinable open func processBIT(opcode: OpcodeInfo) {
@@ -861,7 +861,7 @@ public class CPU6502: CPU65xx, Equatable {
 
     /*===========================================================================================================================*/
     /// Handles the BMI opcode.
-    /// 
+    ///
     /// - Parameter opcode: The opcode information.
     ///
     @inlinable open func processBMI(opcode: OpcodeInfo) {
@@ -870,7 +870,7 @@ public class CPU6502: CPU65xx, Equatable {
 
     /*===========================================================================================================================*/
     /// Handles the BNE opcode.
-    /// 
+    ///
     /// - Parameter opcode: The opcode information.
     ///
     @inlinable open func processBNE(opcode: OpcodeInfo) {
@@ -879,7 +879,7 @@ public class CPU6502: CPU65xx, Equatable {
 
     /*===========================================================================================================================*/
     /// Handles the BPL opcode.
-    /// 
+    ///
     /// - Parameter opcode: The opcode information.
     ///
     @inlinable open func processBPL(opcode: OpcodeInfo) {
@@ -888,7 +888,7 @@ public class CPU6502: CPU65xx, Equatable {
 
     /*===========================================================================================================================*/
     /// Handles the BRK opcode.
-    /// 
+    ///
     /// - Parameter opcode: The opcode information.
     ///
     @inlinable open func processBRK(opcode: OpcodeInfo) {
@@ -897,7 +897,7 @@ public class CPU6502: CPU65xx, Equatable {
 
     /*===========================================================================================================================*/
     /// Handles the BVC opcode.
-    /// 
+    ///
     /// - Parameter opcode: The opcode information.
     ///
     @inlinable open func processBVC(opcode: OpcodeInfo) {
@@ -906,7 +906,7 @@ public class CPU6502: CPU65xx, Equatable {
 
     /*===========================================================================================================================*/
     /// Handles the BVS opcode.
-    /// 
+    ///
     /// - Parameter opcode: The opcode information.
     ///
     @inlinable open func processBVS(opcode: OpcodeInfo) {
@@ -915,7 +915,7 @@ public class CPU6502: CPU65xx, Equatable {
 
     /*===========================================================================================================================*/
     /// Handles the CLC opcode.
-    /// 
+    ///
     /// - Parameter opcode: The opcode information.
     ///
     @inlinable open func processCLC(opcode: OpcodeInfo) {
@@ -924,7 +924,7 @@ public class CPU6502: CPU65xx, Equatable {
 
     /*===========================================================================================================================*/
     /// Handles the CLD opcode.
-    /// 
+    ///
     /// - Parameter opcode: The opcode information.
     ///
     @inlinable open func processCLD(opcode: OpcodeInfo) {
@@ -933,7 +933,7 @@ public class CPU6502: CPU65xx, Equatable {
 
     /*===========================================================================================================================*/
     /// Handles the CLI opcode.
-    /// 
+    ///
     /// - Parameter opcode: The opcode information.
     ///
     @inlinable open func processCLI(opcode: OpcodeInfo) {
@@ -942,7 +942,7 @@ public class CPU6502: CPU65xx, Equatable {
 
     /*===========================================================================================================================*/
     /// Handles the CLV opcode.
-    /// 
+    ///
     /// - Parameter opcode: The opcode information.
     ///
     @inlinable open func processCLV(opcode: OpcodeInfo) {
@@ -951,7 +951,7 @@ public class CPU6502: CPU65xx, Equatable {
 
     /*===========================================================================================================================*/
     /// Handles the CMP opcode.
-    /// 
+    ///
     /// - Parameter opcode: The opcode information.
     ///
     @inlinable open func processCMP(opcode: OpcodeInfo) {
@@ -960,7 +960,7 @@ public class CPU6502: CPU65xx, Equatable {
 
     /*===========================================================================================================================*/
     /// Handles the CPX opcode.
-    /// 
+    ///
     /// - Parameter opcode: The opcode information.
     ///
     @inlinable open func processCPX(opcode: OpcodeInfo) {
@@ -969,7 +969,7 @@ public class CPU6502: CPU65xx, Equatable {
 
     /*===========================================================================================================================*/
     /// Handles the CPY opcode.
-    /// 
+    ///
     /// - Parameter opcode: The opcode information.
     ///
     @inlinable open func processCPY(opcode: OpcodeInfo) {
@@ -978,7 +978,7 @@ public class CPU6502: CPU65xx, Equatable {
 
     /*===========================================================================================================================*/
     /// Handles the DCP opcode. THIS IS AN INVALID INSTRUCTION!!!
-    /// 
+    ///
     /// - Parameter opcode: The opcode information.
     ///
     @inlinable open func processDCP(opcode: OpcodeInfo) {
@@ -987,7 +987,7 @@ public class CPU6502: CPU65xx, Equatable {
 
     /*===========================================================================================================================*/
     /// Handles the DEC opcode.
-    /// 
+    ///
     /// - Parameter opcode: The opcode information.
     ///
     @inlinable open func processDEC(opcode: OpcodeInfo) {
@@ -1001,7 +1001,7 @@ public class CPU6502: CPU65xx, Equatable {
 
     /*===========================================================================================================================*/
     /// Handles the DEX opcode.
-    /// 
+    ///
     /// - Parameter opcode: The opcode information.
     ///
     @inlinable open func processDEX(opcode: OpcodeInfo) {
@@ -1010,7 +1010,7 @@ public class CPU6502: CPU65xx, Equatable {
 
     /*===========================================================================================================================*/
     /// Handles the DEY opcode.
-    /// 
+    ///
     /// - Parameter opcode: The opcode information.
     ///
     @inlinable open func processDEY(opcode: OpcodeInfo) {
@@ -1019,7 +1019,7 @@ public class CPU6502: CPU65xx, Equatable {
 
     /*===========================================================================================================================*/
     /// Handles the EOR opcode.
-    /// 
+    ///
     /// - Parameter opcode: The opcode information.
     ///
     @inlinable open func processEOR(opcode: OpcodeInfo) {
@@ -1032,7 +1032,7 @@ public class CPU6502: CPU65xx, Equatable {
 
     /*===========================================================================================================================*/
     /// Handles the INC opcode.
-    /// 
+    ///
     /// - Parameter opcode: The opcode information.
     ///
     @inlinable open func processINC(opcode: OpcodeInfo) {
@@ -1046,7 +1046,7 @@ public class CPU6502: CPU65xx, Equatable {
 
     /*===========================================================================================================================*/
     /// Handles the INX opcode.
-    /// 
+    ///
     /// - Parameter opcode: The opcode information.
     ///
     @inlinable open func processINX(opcode: OpcodeInfo) {
@@ -1055,7 +1055,7 @@ public class CPU6502: CPU65xx, Equatable {
 
     /*===========================================================================================================================*/
     /// Handles the INY opcode.
-    /// 
+    ///
     /// - Parameter opcode: The opcode information.
     ///
     @inlinable open func processINY(opcode: OpcodeInfo) {
@@ -1064,7 +1064,7 @@ public class CPU6502: CPU65xx, Equatable {
 
     /*===========================================================================================================================*/
     /// Handles the ISC opcode. THIS IS AN INVALID INSTRUCTION!!!
-    /// 
+    ///
     /// - Parameter opcode: The opcode information.
     ///
     @inlinable open func processISC(opcode: OpcodeInfo) {
@@ -1073,7 +1073,7 @@ public class CPU6502: CPU65xx, Equatable {
 
     /*===========================================================================================================================*/
     /// Handles the JMP opcode.
-    /// 
+    ///
     /// - Parameter opcode: The opcode information.
     ///
     @inlinable open func processJMP(opcode: OpcodeInfo) {
@@ -1085,7 +1085,7 @@ public class CPU6502: CPU65xx, Equatable {
 
     /*===========================================================================================================================*/
     /// Handles the JSR opcode.
-    /// 
+    ///
     /// - Parameter opcode: The opcode information.
     ///
     @inlinable open func processJSR(opcode: OpcodeInfo) {
@@ -1099,7 +1099,7 @@ public class CPU6502: CPU65xx, Equatable {
 
     /*===========================================================================================================================*/
     /// Handles the KIL opcode.
-    /// 
+    ///
     /// - Parameter opcode: The opcode information.
     ///
     open func processKIL(opcode: OpcodeInfo) {
@@ -1108,7 +1108,7 @@ public class CPU6502: CPU65xx, Equatable {
 
     /*===========================================================================================================================*/
     /// Handles the LAS opcode. THIS IS AN INVALID INSTRUCTION!!!
-    /// 
+    ///
     /// - Parameter opcode: The opcode information.
     ///
     @inlinable open func processLAS(opcode: OpcodeInfo) {
@@ -1117,7 +1117,7 @@ public class CPU6502: CPU65xx, Equatable {
 
     /*===========================================================================================================================*/
     /// Handles the LAX opcode. THIS IS AN INVALID INSTRUCTION!!!
-    /// 
+    ///
     /// - Parameter opcode: The opcode information.
     ///
     @inlinable open func processLAX(opcode: OpcodeInfo) {
@@ -1126,7 +1126,7 @@ public class CPU6502: CPU65xx, Equatable {
 
     /*===========================================================================================================================*/
     /// Handles the LDA opcode.
-    /// 
+    ///
     /// - Parameter opcode: The opcode information.
     ///
     @inlinable open func processLDA(opcode: OpcodeInfo) {
@@ -1139,7 +1139,7 @@ public class CPU6502: CPU65xx, Equatable {
 
     /*===========================================================================================================================*/
     /// Handles the LDX opcode.
-    /// 
+    ///
     /// - Parameter opcode: The opcode information.
     ///
     @inlinable open func processLDX(opcode: OpcodeInfo) {
@@ -1152,7 +1152,7 @@ public class CPU6502: CPU65xx, Equatable {
 
     /*===========================================================================================================================*/
     /// Handles the LDY opcode.
-    /// 
+    ///
     /// - Parameter opcode: The opcode information.
     ///
     @inlinable open func processLDY(opcode: OpcodeInfo) {
@@ -1165,7 +1165,7 @@ public class CPU6502: CPU65xx, Equatable {
 
     /*===========================================================================================================================*/
     /// Handles the LSR opcode.
-    /// 
+    ///
     /// - Parameter opcode: The opcode information.
     ///
     @inlinable open func processLSR(opcode: OpcodeInfo) {
@@ -1179,7 +1179,7 @@ public class CPU6502: CPU65xx, Equatable {
 
     /*===========================================================================================================================*/
     /// Handles the NOP opcode.
-    /// 
+    ///
     /// - Parameter opcode: The opcode information.
     ///
     @inlinable open func processNOP(opcode: OpcodeInfo) {
@@ -1188,7 +1188,7 @@ public class CPU6502: CPU65xx, Equatable {
 
     /*===========================================================================================================================*/
     /// Handles the ORA opcode.
-    /// 
+    ///
     /// - Parameter opcode: The opcode information.
     ///
     @inlinable open func processORA(opcode: OpcodeInfo) {
@@ -1201,7 +1201,7 @@ public class CPU6502: CPU65xx, Equatable {
 
     /*===========================================================================================================================*/
     /// Handles the PHA opcode.
-    /// 
+    ///
     /// - Parameter opcode: The opcode information.
     ///
     @inlinable open func processPHA(opcode: OpcodeInfo) {
@@ -1210,7 +1210,7 @@ public class CPU6502: CPU65xx, Equatable {
 
     /*===========================================================================================================================*/
     /// Handles the PHP opcode.
-    /// 
+    ///
     /// - Parameter opcode: The opcode information.
     ///
     @inlinable open func processPHP(opcode: OpcodeInfo) {
@@ -1219,7 +1219,7 @@ public class CPU6502: CPU65xx, Equatable {
 
     /*===========================================================================================================================*/
     /// Handles the PLA opcode.
-    /// 
+    ///
     /// - Parameter opcode: The opcode information.
     ///
     @inlinable open func processPLA(opcode: OpcodeInfo) {
@@ -1229,7 +1229,7 @@ public class CPU6502: CPU65xx, Equatable {
 
     /*===========================================================================================================================*/
     /// Handles the PLP opcode.
-    /// 
+    ///
     /// - Parameter opcode: The opcode information.
     ///
     @inlinable open func processPLP(opcode: OpcodeInfo) {
@@ -1238,7 +1238,7 @@ public class CPU6502: CPU65xx, Equatable {
 
     /*===========================================================================================================================*/
     /// Handles the RLA opcode. THIS IS AN INVALID INSTRUCTION!!!
-    /// 
+    ///
     /// - Parameter opcode: The opcode information.
     ///
     @inlinable open func processRLA(opcode: OpcodeInfo) {
@@ -1247,7 +1247,7 @@ public class CPU6502: CPU65xx, Equatable {
 
     /*===========================================================================================================================*/
     /// Handles the ROL opcode.
-    /// 
+    ///
     /// - Parameter opcode: The opcode information.
     ///
     @inlinable open func processROL(opcode: OpcodeInfo) {
@@ -1261,7 +1261,7 @@ public class CPU6502: CPU65xx, Equatable {
 
     /*===========================================================================================================================*/
     /// Handles the ROR opcode.
-    /// 
+    ///
     /// - Parameter opcode: The opcode information.
     ///
     @inlinable open func processROR(opcode: OpcodeInfo) {
@@ -1275,7 +1275,7 @@ public class CPU6502: CPU65xx, Equatable {
 
     /*===========================================================================================================================*/
     /// Handles the RRA opcode. THIS IS AN INVALID INSTRUCTION!!!
-    /// 
+    ///
     /// - Parameter opcode: The opcode information.
     ///
     @inlinable open func processRRA(opcode: OpcodeInfo) {
@@ -1284,7 +1284,7 @@ public class CPU6502: CPU65xx, Equatable {
 
     /*===========================================================================================================================*/
     /// Handles the RTI opcode.
-    /// 
+    ///
     /// - Parameter opcode: The opcode information.
     ///
     @inlinable open func processRTI(opcode: OpcodeInfo) {
@@ -1294,7 +1294,7 @@ public class CPU6502: CPU65xx, Equatable {
 
     /*===========================================================================================================================*/
     /// Handles the RTS opcode.
-    /// 
+    ///
     /// - Parameter opcode: The opcode information.
     ///
     @inlinable open func processRTS(opcode: OpcodeInfo) {
@@ -1303,7 +1303,7 @@ public class CPU6502: CPU65xx, Equatable {
 
     /*===========================================================================================================================*/
     /// Handles the SAX opcode. THIS IS AN INVALID INSTRUCTION!!!
-    /// 
+    ///
     /// - Parameter opcode: The opcode information.
     ///
     @inlinable open func processSAX(opcode: OpcodeInfo) {
@@ -1312,7 +1312,7 @@ public class CPU6502: CPU65xx, Equatable {
 
     /*===========================================================================================================================*/
     /// Handles the SBC opcode.
-    /// 
+    ///
     /// - Parameter opcode: The opcode information.
     ///
     @inlinable open func processSBC(opcode: OpcodeInfo) {
@@ -1325,7 +1325,7 @@ public class CPU6502: CPU65xx, Equatable {
 
     /*===========================================================================================================================*/
     /// Handles the SEC opcode.
-    /// 
+    ///
     /// - Parameter opcode: The opcode information.
     ///
     @inlinable open func processSEC(opcode: OpcodeInfo) {
@@ -1334,7 +1334,7 @@ public class CPU6502: CPU65xx, Equatable {
 
     /*===========================================================================================================================*/
     /// Handles the SED opcode.
-    /// 
+    ///
     /// - Parameter opcode: The opcode information.
     ///
     @inlinable open func processSED(opcode: OpcodeInfo) {
@@ -1343,7 +1343,7 @@ public class CPU6502: CPU65xx, Equatable {
 
     /*===========================================================================================================================*/
     /// Handles the SEI opcode.
-    /// 
+    ///
     /// - Parameter opcode: The opcode information.
     ///
     @inlinable open func processSEI(opcode: OpcodeInfo) {
@@ -1352,7 +1352,7 @@ public class CPU6502: CPU65xx, Equatable {
 
     /*===========================================================================================================================*/
     /// Handles the SHX opcode. THIS IS AN INVALID INSTRUCTION!!!
-    /// 
+    ///
     /// - Parameter opcode: The opcode information.
     ///
     @inlinable open func processSHX(opcode: OpcodeInfo) {
@@ -1361,7 +1361,7 @@ public class CPU6502: CPU65xx, Equatable {
 
     /*===========================================================================================================================*/
     /// Handles the SHY opcode. THIS IS AN INVALID INSTRUCTION!!!
-    /// 
+    ///
     /// - Parameter opcode: The opcode information.
     ///
     @inlinable open func processSHY(opcode: OpcodeInfo) {
@@ -1370,7 +1370,7 @@ public class CPU6502: CPU65xx, Equatable {
 
     /*===========================================================================================================================*/
     /// Handles the SLO opcode. THIS IS AN INVALID INSTRUCTION!!!
-    /// 
+    ///
     /// - Parameter opcode: The opcode information.
     ///
     @inlinable open func processSLO(opcode: OpcodeInfo) {
@@ -1379,7 +1379,7 @@ public class CPU6502: CPU65xx, Equatable {
 
     /*===========================================================================================================================*/
     /// Handles the SRE opcode. THIS IS AN INVALID INSTRUCTION!!!
-    /// 
+    ///
     /// - Parameter opcode: The opcode information.
     ///
     @inlinable open func processSRE(opcode: OpcodeInfo) {
@@ -1388,7 +1388,7 @@ public class CPU6502: CPU65xx, Equatable {
 
     /*===========================================================================================================================*/
     /// Handles the STA opcode.
-    /// 
+    ///
     /// - Parameter opcode: The opcode information.
     ///
     @inlinable open func processSTA(opcode: OpcodeInfo) {
@@ -1397,7 +1397,7 @@ public class CPU6502: CPU65xx, Equatable {
 
     /*===========================================================================================================================*/
     /// Handles the STX opcode.
-    /// 
+    ///
     /// - Parameter opcode: The opcode information.
     ///
     @inlinable open func processSTX(opcode: OpcodeInfo) {
@@ -1406,7 +1406,7 @@ public class CPU6502: CPU65xx, Equatable {
 
     /*===========================================================================================================================*/
     /// Handles the STY opcode.
-    /// 
+    ///
     /// - Parameter opcode: The opcode information.
     ///
     @inlinable open func processSTY(opcode: OpcodeInfo) {
@@ -1415,7 +1415,7 @@ public class CPU6502: CPU65xx, Equatable {
 
     /*===========================================================================================================================*/
     /// Handles the TAS opcode.
-    /// 
+    ///
     /// - Parameter opcode: The opcode information.
     ///
     @inlinable open func processTAS(opcode: OpcodeInfo) {
@@ -1424,7 +1424,7 @@ public class CPU6502: CPU65xx, Equatable {
 
     /*===========================================================================================================================*/
     /// Handles the TAX opcode.
-    /// 
+    ///
     /// - Parameter opcode: The opcode information.
     ///
     @inlinable open func processTAX(opcode: OpcodeInfo) {
@@ -1434,7 +1434,7 @@ public class CPU6502: CPU65xx, Equatable {
 
     /*===========================================================================================================================*/
     /// Handles the TAY opcode.
-    /// 
+    ///
     /// - Parameter opcode: The opcode information.
     ///
     @inlinable open func processTAY(opcode: OpcodeInfo) {
@@ -1444,7 +1444,7 @@ public class CPU6502: CPU65xx, Equatable {
 
     /*===========================================================================================================================*/
     /// Handles the TSX opcode.
-    /// 
+    ///
     /// - Parameter opcode: The opcode information.
     ///
     @inlinable open func processTSX(opcode: OpcodeInfo) {
@@ -1454,7 +1454,7 @@ public class CPU6502: CPU65xx, Equatable {
 
     /*===========================================================================================================================*/
     /// Handles the TXA opcode.
-    /// 
+    ///
     /// - Parameter opcode: The opcode information.
     ///
     @inlinable open func processTXA(opcode: OpcodeInfo) {
@@ -1464,7 +1464,7 @@ public class CPU6502: CPU65xx, Equatable {
 
     /*===========================================================================================================================*/
     /// Handles the TXS opcode.
-    /// 
+    ///
     /// - Parameter opcode: The opcode information.
     ///
     @inlinable open func processTXS(opcode: OpcodeInfo) {
@@ -1473,7 +1473,7 @@ public class CPU6502: CPU65xx, Equatable {
 
     /*===========================================================================================================================*/
     /// Handles the TYA opcode.
-    /// 
+    ///
     /// - Parameter opcode: The opcode information.
     ///
     @inlinable open func processTYA(opcode: OpcodeInfo) {
@@ -1483,12 +1483,16 @@ public class CPU6502: CPU65xx, Equatable {
 
     /*===========================================================================================================================*/
     /// Handles the XAA opcode. THIS IS AN INVALID INSTRUCTION!!!
-    /// 
+    ///
     /// - Parameter opcode: The opcode information.
     ///
     @inlinable open func processXAA(opcode: OpcodeInfo) {
         // TODO: processXAA opcode
     }
+
+    public func getHash(into hasher: inout Hasher) {}
+
+    public func hash(into hasher: inout Hasher) {}
 
 //@f:0
     public let opcodes: [OpcodeInfo] = [

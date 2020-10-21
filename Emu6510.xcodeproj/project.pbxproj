@@ -24,15 +24,19 @@
 
 /* Begin PBXBuildFile section */
 		1117D01D65054C312DDEE3EB /* CPUClock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1117DB8AF1D8E3167C5E47E8 /* CPUClock.swift */; };
+		1117D05C7B2A995626CE4046 /* ROM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1117D4C40897228155F31F55 /* ROM.swift */; };
 		1117D1DF2F51DF1DC7732233 /* Emu6510.h in Headers */ = {isa = PBXBuildFile; fileRef = 1117D6B20123D0B3661713BB /* Emu6510.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		1117D3098636E6687F7F4C20 /* CPU65xx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1117D898E93C68326B5B4D0D /* CPU65xx.swift */; };
+		1117D4A540E363B4B8BBB8A3 /* RAM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1117D9AD1AA0A0DB587CD405 /* RAM.swift */; };
 		1117D660A3AC70277DF53E12 /* ProcessorFlags.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1117DFD6209082494BE4A2FA /* ProcessorFlags.swift */; };
+		1117D79535FF523F561E82F3 /* SubRAM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1117D1A3A2A884F9146AA3CC /* SubRAM.swift */; };
 		1117D8190552C697CAB23AAD /* OpcodeInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1117D0103545E799DBEBF12A /* OpcodeInfo.swift */; };
 		1117D83054F6EF04E63A95F6 /* ClockFrequencies.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1117D3FA2C625950C700918F /* ClockFrequencies.swift */; };
 		1117D8C0418C83D64614E5DB /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1117D103987D334633B34DD1 /* Utils.swift */; };
+		1117D9408D87546D010C01F2 /* AnyRandomAccessMemory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1117D58DD48648D418634207 /* AnyRandomAccessMemory.swift */; };
 		1117DA8C0E8C29B3F34B3178 /* ProcessorFlags.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1117DFD6209082494BE4A2FA /* ProcessorFlags.swift */; };
 		1117DAC4B1EAF51EC2A544A8 /* ClockWatcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1117D00004529EF6E3236B5D /* ClockWatcher.swift */; };
-		1117DB1BD0B42847BD841A10 /* Memory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1117D8DD4311FE9AD7857B8D /* Memory.swift */; };
+		1117DB1BD0B42847BD841A10 /* RandomAccessMemory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1117D8DD4311FE9AD7857B8D /* RandomAccessMemory.swift */; };
 		1117DB1FEAC9AB763FF318C3 /* CPUErrors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1117D703450F182671551863 /* CPUErrors.swift */; };
 		1117DB90D6AE946E9CED831E /* CPU6502.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1117D334A228E2D8926DB570 /* CPU6502.swift */; };
 		1117DBD19DF9A768AC6539F0 /* AddressBuss.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1117DF4EF76504EBC2DD8E24 /* AddressBuss.swift */; };
@@ -110,15 +114,19 @@
 		1117D0103545E799DBEBF12A /* OpcodeInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OpcodeInfo.swift; sourceTree = "<group>"; };
 		1117D02BFDB374D44731C71F /* AddressModes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddressModes.swift; sourceTree = "<group>"; };
 		1117D103987D334633B34DD1 /* Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
+		1117D1A3A2A884F9146AA3CC /* SubRAM.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SubRAM.swift; sourceTree = "<group>"; };
 		1117D3274BCB596FEA6024F4 /* 65c02_invalid.csv */ = {isa = PBXFileReference; lastKnownFileType = file.csv; path = 65c02_invalid.csv; sourceTree = "<group>"; };
 		1117D334A228E2D8926DB570 /* CPU6502.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CPU6502.swift; sourceTree = "<group>"; };
 		1117D3E72888D0903471B65D /* opcodes.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = opcodes.txt; sourceTree = "<group>"; };
 		1117D3FA2C625950C700918F /* ClockFrequencies.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClockFrequencies.swift; sourceTree = "<group>"; };
 		1117D434C092A48EAD21ED33 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.info; path = Info.plist; sourceTree = "<group>"; };
+		1117D4C40897228155F31F55 /* ROM.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ROM.swift; sourceTree = "<group>"; };
+		1117D58DD48648D418634207 /* AnyRandomAccessMemory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnyRandomAccessMemory.swift; sourceTree = "<group>"; };
 		1117D6B20123D0B3661713BB /* Emu6510.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Emu6510.h; sourceTree = "<group>"; };
 		1117D703450F182671551863 /* CPUErrors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CPUErrors.swift; sourceTree = "<group>"; };
 		1117D898E93C68326B5B4D0D /* CPU65xx.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CPU65xx.swift; sourceTree = "<group>"; };
-		1117D8DD4311FE9AD7857B8D /* Memory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Memory.swift; sourceTree = "<group>"; };
+		1117D8DD4311FE9AD7857B8D /* RandomAccessMemory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RandomAccessMemory.swift; sourceTree = "<group>"; };
+		1117D9AD1AA0A0DB587CD405 /* RAM.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RAM.swift; sourceTree = "<group>"; };
 		1117D9EBF4A6A241D0594F6B /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.info; path = Info.plist; sourceTree = "<group>"; };
 		1117DA37B1AFF1AC08ED37F7 /* 65c02.csv */ = {isa = PBXFileReference; lastKnownFileType = file.csv; path = 65c02.csv; sourceTree = "<group>"; };
 		1117DB8AF1D8E3167C5E47E8 /* CPUClock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CPUClock.swift; sourceTree = "<group>"; };
@@ -234,12 +242,16 @@
 				1117D00004529EF6E3236B5D /* ClockWatcher.swift */,
 				1117DB8AF1D8E3167C5E47E8 /* CPUClock.swift */,
 				1117D703450F182671551863 /* CPUErrors.swift */,
-				1117D8DD4311FE9AD7857B8D /* Memory.swift */,
+				1117D8DD4311FE9AD7857B8D /* RandomAccessMemory.swift */,
 				1117DF4EF76504EBC2DD8E24 /* AddressBuss.swift */,
 				1117D898E93C68326B5B4D0D /* CPU65xx.swift */,
 				1117DC1351C9F62C4B7B4CC2 /* CPU6510.swift */,
 				1117D103987D334633B34DD1 /* Utils.swift */,
 				1117D334A228E2D8926DB570 /* CPU6502.swift */,
+				1117D9AD1AA0A0DB587CD405 /* RAM.swift */,
+				1117D4C40897228155F31F55 /* ROM.swift */,
+				1117D1A3A2A884F9146AA3CC /* SubRAM.swift */,
+				1117D58DD48648D418634207 /* AnyRandomAccessMemory.swift */,
 			);
 			path = Emu6510;
 			sourceTree = "<group>";
@@ -471,12 +483,16 @@
 				1117DAC4B1EAF51EC2A544A8 /* ClockWatcher.swift in Sources */,
 				1117D01D65054C312DDEE3EB /* CPUClock.swift in Sources */,
 				1117DB1FEAC9AB763FF318C3 /* CPUErrors.swift in Sources */,
-				1117DB1BD0B42847BD841A10 /* Memory.swift in Sources */,
+				1117DB1BD0B42847BD841A10 /* RandomAccessMemory.swift in Sources */,
 				1117DBD19DF9A768AC6539F0 /* AddressBuss.swift in Sources */,
 				1117D3098636E6687F7F4C20 /* CPU65xx.swift in Sources */,
 				1117DE0F1538967775A02808 /* CPU6510.swift in Sources */,
 				1117D8C0418C83D64614E5DB /* Utils.swift in Sources */,
 				1117DB90D6AE946E9CED831E /* CPU6502.swift in Sources */,
+				1117D4A540E363B4B8BBB8A3 /* RAM.swift in Sources */,
+				1117D05C7B2A995626CE4046 /* ROM.swift in Sources */,
+				1117D79535FF523F561E82F3 /* SubRAM.swift in Sources */,
+				1117D9408D87546D010C01F2 /* AnyRandomAccessMemory.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
