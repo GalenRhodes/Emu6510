@@ -1,4 +1,4 @@
-// swift-tools-version:5.2
+// swift-tools-version:5.4
 // The swift-tools-version declares the minimum version of Swift required to build this package.
 
 import PackageDescription
@@ -9,9 +9,7 @@ let package = Package(
   products: [
       .library(name: "Emu6510", targets: [ "Emu6510" ]),
   ],
-  dependencies: [
-      .package(name: "Rubicon", url: "https://github.com/GalenRhodes/Rubicon", from: "0.2.7"),
-  ],
+  dependencies: [ .package(name: "Rubicon", url: "https://github.com/GalenRhodes/Rubicon", from: "0.2.12"), ],
   targets: [
       .target(name: "Emu6510", dependencies: [ "Rubicon" ]),
       .testTarget(name: "Emu6510Tests", dependencies: [ "Emu6510" ]),
