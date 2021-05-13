@@ -34,14 +34,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="87075da3-fef8-4e0e-a558-4c45fa2c2b82" name="Default Changelist" comment="Hashable Protocols!">
-      <change afterPath="$PROJECT_DIR$/Sources/Emu6510/AnyRandomAccessMemory.swift" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Sources/Emu6510/RAM.swift" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Sources/Emu6510/ROM.swift" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Sources/Emu6510/SubRAM.swift" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Emu6510.xcodeproj/project.pbxproj" beforeDir="false" afterPath="$PROJECT_DIR$/Emu6510.xcodeproj/project.pbxproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Sources/Emu6510/CPU6502.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Sources/Emu6510/CPU6502.swift" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Sources/Emu6510/Memory.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Sources/Emu6510/RandomAccessMemory.swift" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -97,8 +91,10 @@
     <property name="OBJC.PRESERVED_TARGET_SELECTION" value="Emu6510" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="RunOnceActivity.cidr.known.project.marker" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="cidr.known.project.marker" value="true" />
     <property name="com.intellij.ide.scratch.LRUPopupBuilder$1/New Scratch File" value="TEXT" />
     <property name="dart.analysis.tool.window.visible" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/Emu6510.xcodeproj" />
@@ -170,6 +166,8 @@
       <workItem from="1602718487172" duration="174000" />
       <workItem from="1603196938891" duration="106000" />
       <workItem from="1603197093025" duration="15666000" />
+      <workItem from="1603308686737" duration="169000" />
+      <workItem from="1620920857201" duration="136000" />
     </task>
     <task id="LOCAL-00001" summary="Redo">
       <created>1600997267219</created>
@@ -227,7 +225,14 @@
       <option name="project" value="LOCAL" />
       <updated>1603212906496</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="Hashable Protocols!">
+      <created>1603308830023</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1603308830023</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
