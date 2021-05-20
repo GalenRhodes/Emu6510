@@ -127,7 +127,7 @@
 		1117DA020E72FAA43F076B89 /* MOS6502AddressingMode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MOS6502AddressingMode.swift; sourceTree = "<group>"; };
 		1117DA06963CF6ABF5626BD1 /* ParseTemplate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParseTemplate.swift; sourceTree = "<group>"; };
 		1117DA37B1AFF1AC08ED37F7 /* 65c02_valid.csv */ = {isa = PBXFileReference; lastKnownFileType = file.csv; path = 65c02_valid.csv; sourceTree = "<group>"; };
-		1117DAAA8E1C65AAF45687CE /* 6502 NMOS Extra Opcodes.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = "6502 NMOS Extra Opcodes.md"; sourceTree = "<group>"; };
+		1117DAAA8E1C65AAF45687CE /* Extra Instructions Of The 65XX Series CPU.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = "Extra Instructions Of The 65XX Series CPU.md"; sourceTree = "<group>"; };
 		1117DBFEE46D2512608F39A4 /* MOS6502Error.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MOS6502Error.swift; sourceTree = "<group>"; };
 		1117DC2E0090842B50F71563 /* MOS6502Opcode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MOS6502Opcode.swift; sourceTree = "<group>"; };
 		1117DC56D2CEF3680F476D3B /* MOS6502Mnemonic.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MOS6502Mnemonic.swift; sourceTree = "<group>"; };
@@ -205,7 +205,7 @@
 				1117DA37B1AFF1AC08ED37F7 /* 65c02_valid.csv */,
 				1117D710656CD54976A3F1E8 /* 65c02_all.csv */,
 				1117D079B08025E28C413EB2 /* 65c02_all_2.csv */,
-				1117DAAA8E1C65AAF45687CE /* 6502 NMOS Extra Opcodes.md */,
+				1117DAAA8E1C65AAF45687CE /* Extra Instructions Of The 65XX Series CPU.md */,
 			);
 			path = Other;
 			sourceTree = "<group>";
