@@ -33,55 +33,8 @@
     </select>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="87075da3-fef8-4e0e-a558-4c45fa2c2b82" name="Default Changelist" comment="Hashable Protocols!">
-      <change afterPath="$PROJECT_DIR$/.idea/csv-plugin.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Other/6502 NMOS Extra Opcodes.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Other/65c02_all.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Other/65c02_all_2.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Other/65c02_valid.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Sources/Emu6510/MOS6502Addressable.swift" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Sources/Emu6510/MOS6502AddressingMode.swift" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Sources/Emu6510/MOS6502CPU.swift" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Sources/Emu6510/MOS6502Clock.swift" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Sources/Emu6510/MOS6502Error.swift" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Sources/Emu6510/MOS6502Events.swift" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Sources/Emu6510/MOS6502Flag.swift" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Sources/Emu6510/MOS6502Interrupt.swift" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Sources/Emu6510/MOS6502Mnemonic.swift" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Sources/Emu6510/MOS6502Opcode.swift" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Sources/Emu6510/MOS6502OpcodeList.swift" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Sources/Emu6510/MOS6502SystemMemoryMap.swift" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Sources/Emu6510/Tools.swift" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Sources/Tools/ParseTemplate.swift" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Templates/MOS6502AddressingMode.swift" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Templates/MOS6502Mnemonic.swift" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Templates/MOS6502OpcodeList.swift" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/runConfigurations/Emu6510_Tests.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/runConfigurations/Emu6510_Tests.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Emu6510.xcodeproj/project.pbxproj" beforeDir="false" afterPath="$PROJECT_DIR$/Emu6510.xcodeproj/project.pbxproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Emu6510.xcodeproj/xcshareddata/xcschemes/Emu6510 Tests.xcscheme" beforeDir="false" afterPath="$PROJECT_DIR$/Emu6510.xcodeproj/xcshareddata/xcschemes/Emu6510 Tests.xcscheme" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Other/65c02.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Other/65c02_invalid.csv" beforeDir="false" afterPath="$PROJECT_DIR$/Other/65c02_invalid.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Package.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Package.swift" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Sources/Emu6510/AddressBuss.swift" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Sources/Emu6510/AddressModes.swift" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Sources/Emu6510/AnyRandomAccessMemory.swift" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Sources/Emu6510/CPU6502.swift" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Sources/Emu6510/CPU6510.swift" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Sources/Emu6510/CPU65xx.swift" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Sources/Emu6510/CPUClock.swift" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Sources/Emu6510/CPUErrors.swift" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Sources/Emu6510/ClockFrequencies.swift" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Sources/Emu6510/ClockWatcher.swift" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Sources/Emu6510/OpcodeInfo.swift" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Sources/Emu6510/ProcessorFlags.swift" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Sources/Emu6510/RAM.swift" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Sources/Emu6510/ROM.swift" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Sources/Emu6510/RandomAccessMemory.swift" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Sources/Emu6510/SubRAM.swift" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Sources/Emu6510/Utils.swift" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Sources/Tools/main.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Sources/Tools/main.swift" afterDir="false" />
+    <list default="true" id="87075da3-fef8-4e0e-a558-4c45fa2c2b82" name="Default Changelist" comment="Re-write.">
+      <change beforePath="$PROJECT_DIR$/Other/6502 NMOS Extra Opcodes.md" beforeDir="false" afterPath="$PROJECT_DIR$/Other/6502 NMOS Extra Opcodes.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -216,7 +169,7 @@
       <workItem from="1621254820809" duration="11055000" />
       <workItem from="1621342321648" duration="16859000" />
       <workItem from="1621426636162" duration="18283000" />
-      <workItem from="1621453892356" duration="11013000" />
+      <workItem from="1621453892356" duration="11122000" />
     </task>
     <task id="LOCAL-00001" summary="Redo">
       <created>1600997267219</created>
@@ -295,7 +248,14 @@
       <option name="project" value="LOCAL" />
       <updated>1620921125466</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="Re-write.">
+      <created>1621513430372</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1621513430377</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -339,7 +299,8 @@
     <MESSAGE value="More..." />
     <MESSAGE value="Equatable Protocols!" />
     <MESSAGE value="Hashable Protocols!" />
-    <option name="LAST_COMMIT_MESSAGE" value="Hashable Protocols!" />
+    <MESSAGE value="Re-write." />
+    <option name="LAST_COMMIT_MESSAGE" value="Re-write." />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REARRANGE_BEFORE_PROJECT_COMMIT" value="true" />

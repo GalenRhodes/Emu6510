@@ -28,7 +28,6 @@ This opcode ASLs the contents of a memory location and then ORs the result with 
 Supported modes:
 
       A       |      B     |        C
-
 --------------|------------|----------------- ASO abcd | 0F cd ab | No. Cycles= 6 ASO abcd,X | 1F cd ab | 7 ASO abcd,Y | 1B cd ab |
 7 ASO ab | 07 ab | 5 ASO ab,X | 17 ab | 6 ASO (ab,X)    | 03 ab | 8 ASO (ab),Y | 13 ab | 8
 
