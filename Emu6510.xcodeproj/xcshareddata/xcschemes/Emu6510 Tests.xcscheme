@@ -26,6 +26,11 @@
                BlueprintName = "Emu6510Tests"
                ReferencedContainer = "container:Emu6510.xcodeproj">
             </BuildableReference>
+            <SelectedTests>
+               <Test
+                  Identifier = "Emu6510Tests">
+               </Test>
+            </SelectedTests>
          </TestableReference>
       </Testables>
    </TestAction>

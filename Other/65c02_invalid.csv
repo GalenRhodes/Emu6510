@@ -1,67 +1,67 @@
-opcode,mnemonic,addressing mode,bytes,cycles,flags
-0x07  ,SLO     ,ZP             ,2    ,3     ,NZC
-0x17  ,SLO     ,ZPX            ,2    ,3     ,NZC
-0x03  ,SLO     ,INDX           ,2    ,3     ,NZC
-0x13  ,SLO     ,INDY           ,2    ,3     ,NZC
-0x0f  ,SLO     ,ABS            ,3    ,3     ,NZC
-0x1f  ,SLO     ,ABSX           ,3    ,3     ,NZC
-0x1b  ,SLO     ,ABSY           ,3    ,3     ,NZC
-0x27  ,RLA     ,ZP             ,2    ,3     ,NZC
-0x37  ,RLA     ,ZPX            ,2    ,3     ,NZC
-0x23  ,RLA     ,INDX           ,2    ,3     ,NZC
-0x33  ,RLA     ,INDY           ,2    ,3     ,NZC
-0x2f  ,RLA     ,ABS            ,3    ,3     ,NZC
-0x3f  ,RLA     ,ABSX           ,3    ,3     ,NZC
-0x3b  ,RLA     ,ABSY           ,3    ,3     ,NZC
-0x47  ,SRE     ,ZP             ,2    ,3     ,NZC
-0x57  ,SRE     ,ZPX            ,2    ,3     ,NZC
-0x43  ,SRE     ,INDX           ,2    ,3     ,NZC
-0x53  ,SRE     ,INDY           ,2    ,3     ,NZC
-0x4f  ,SRE     ,ABS            ,3    ,3     ,NZC
-0x5f  ,SRE     ,ABSX           ,3    ,3     ,NZC
-0x5b  ,SRE     ,ABSY           ,3    ,3     ,NZC
-0x67  ,RRA     ,ZP             ,2    ,3     ,NVZC
-0x77  ,RRA     ,ZPX            ,2    ,3     ,NVZC
-0x63  ,RRA     ,INDX           ,2    ,3     ,NVZC
-0x73  ,RRA     ,INDY           ,2    ,3     ,NVZC
-0x6f  ,RRA     ,ABS            ,3    ,3     ,NVZC
-0x7f  ,RRA     ,ABSX           ,3    ,3     ,NVZC
-0x7b  ,RRA     ,ABSY           ,3    ,3     ,NVZC
-0x87  ,SAX     ,ZP             ,2    ,3     ,.
-0x97  ,SAX     ,ZPY            ,2    ,3     ,.
-0x83  ,SAX     ,INDX           ,2    ,3     ,.
-0x8f  ,SAX     ,ABS            ,3    ,3     ,.
-0xa7  ,LAX     ,ZP             ,2    ,3     ,NZ
-0xb7  ,LAX     ,ZPY            ,2    ,3     ,NZ
-0xa3  ,LAX     ,INDX           ,2    ,3     ,NZ
-0xb3  ,LAX     ,INDY           ,2    ,3     ,NZ
-0xaf  ,LAX     ,ABS            ,3    ,3     ,NZ
-0xbf  ,LAX     ,ABSY           ,3    ,3     ,NZ
-0xc7  ,DCP     ,ZP             ,2    ,3     ,NZC
-0xd7  ,DCP     ,ZPX            ,2    ,3     ,NZC
-0xc3  ,DCP     ,INDX           ,2    ,3     ,NZC
-0xd3  ,DCP     ,INDY           ,2    ,3     ,NZC
-0xcf  ,DCP     ,ABS            ,3    ,3     ,NZC
-0xdf  ,DCP     ,ABSX           ,3    ,3     ,NZC
-0xdb  ,DCP     ,ABSY           ,3    ,3     ,NZC
-0xe7  ,ISC     ,ZP             ,2    ,3     ,NVZC
-0xf7  ,ISC     ,ZPX            ,2    ,3     ,NVZC
-0xe3  ,ISC     ,INDX           ,2    ,3     ,NVZC
-0xf3  ,ISC     ,INDY           ,2    ,3     ,NVZC
-0xef  ,ISC     ,ABS            ,3    ,3     ,NVZC
-0xff  ,ISC     ,ABSX           ,3    ,3     ,NVZC
-0xfb  ,ISC     ,ABSY           ,3    ,3     ,NVZC
-0x0b  ,ANC     ,IMM            ,2    ,3     ,NZC
-0x2b  ,ANC     ,IMM            ,2    ,3     ,NZC
-0x4b  ,ALR     ,IMM            ,2    ,3     ,NZC
-0x6b  ,ARR     ,IMM            ,2    ,3     ,NZCV
-0x8b  ,XAA     ,IMM            ,2    ,3     ,NZ
-0xab  ,LAX     ,IMM            ,2    ,3     ,NZ
-0xcb  ,AXS     ,IMM            ,2    ,3     ,NZC
-0xeb  ,SBC     ,IMM            ,2    ,3     ,NZCV
-0x93  ,AHX     ,INDY           ,2    ,3     ,.
-0x9f  ,AHX     ,ABSY           ,3    ,3     ,.
-0x9c  ,SHY     ,ABSX           ,3    ,3     ,.
-0x9e  ,SHX     ,ABSY           ,3    ,3     ,.
-0x9b  ,TAS     ,ABSY           ,3    ,3     ,.
-0xbb  ,LAS     ,ABSY           ,3    ,3     ,NZ
+opcode,mnemonic,addressing mode,bytes,cycles,illegal,flags
+0x03  ,SLO     ,INDX           ,2    ,3     ,true   ,CZidbvN
+0x07  ,SLO     ,ZP             ,2    ,3     ,true   ,CZidbvN
+0x0b  ,ANC     ,IMM            ,2    ,3     ,true   ,CZidbvN
+0x0f  ,SLO     ,ABS            ,3    ,3     ,true   ,CZidbvN
+0x13  ,SLO     ,INDY           ,2    ,3     ,true   ,CZidbvN
+0x17  ,SLO     ,ZPX            ,2    ,3     ,true   ,CZidbvN
+0x1b  ,SLO     ,ABSY           ,3    ,3     ,true   ,CZidbvN
+0x1f  ,SLO     ,ABSX           ,3    ,3     ,true   ,CZidbvN
+0x23  ,RLA     ,INDX           ,2    ,3     ,true   ,CZidbvN
+0x27  ,RLA     ,ZP             ,2    ,3     ,true   ,CZidbvN
+0x2b  ,ANC     ,IMM            ,2    ,3     ,true   ,CZidbvN
+0x2f  ,RLA     ,ABS            ,3    ,3     ,true   ,CZidbvN
+0x33  ,RLA     ,INDY           ,2    ,3     ,true   ,CZidbvN
+0x37  ,RLA     ,ZPX            ,2    ,3     ,true   ,CZidbvN
+0x3b  ,RLA     ,ABSY           ,3    ,3     ,true   ,CZidbvN
+0x3f  ,RLA     ,ABSX           ,3    ,3     ,true   ,CZidbvN
+0x43  ,SRE     ,INDX           ,2    ,3     ,true   ,CZidbvN
+0x47  ,SRE     ,ZP             ,2    ,3     ,true   ,CZidbvN
+0x4b  ,ALR     ,IMM            ,2    ,3     ,true   ,CZidbvN
+0x4f  ,SRE     ,ABS            ,3    ,3     ,true   ,CZidbvN
+0x53  ,SRE     ,INDY           ,2    ,3     ,true   ,CZidbvN
+0x57  ,SRE     ,ZPX            ,2    ,3     ,true   ,CZidbvN
+0x5b  ,SRE     ,ABSY           ,3    ,3     ,true   ,CZidbvN
+0x5f  ,SRE     ,ABSX           ,3    ,3     ,true   ,CZidbvN
+0x63  ,RRA     ,INDX           ,2    ,3     ,true   ,CZidbVN
+0x67  ,RRA     ,ZP             ,2    ,3     ,true   ,CZidbVN
+0x6b  ,ARR     ,IMM            ,2    ,3     ,true   ,CZidbVN
+0x6f  ,RRA     ,ABS            ,3    ,3     ,true   ,CZidbVN
+0x73  ,RRA     ,INDY           ,2    ,3     ,true   ,CZidbVN
+0x77  ,RRA     ,ZPX            ,2    ,3     ,true   ,CZidbVN
+0x7b  ,RRA     ,ABSY           ,3    ,3     ,true   ,CZidbVN
+0x7f  ,RRA     ,ABSX           ,3    ,3     ,true   ,CZidbVN
+0x83  ,SAX     ,INDX           ,2    ,3     ,true   ,czidbvn
+0x87  ,SAX     ,ZP             ,2    ,3     ,true   ,czidbvn
+0x8b  ,XAA     ,IMM            ,2    ,3     ,true   ,cZidbvN
+0x8f  ,SAX     ,ABS            ,3    ,3     ,true   ,czidbvn
+0x93  ,AHX     ,INDY           ,2    ,3     ,true   ,czidbvn
+0x97  ,SAX     ,ZPY            ,2    ,3     ,true   ,czidbvn
+0x9b  ,TAS     ,ABSY           ,3    ,3     ,true   ,czidbvn
+0x9c  ,SHY     ,ABSX           ,3    ,3     ,true   ,czidbvn
+0x9e  ,SHX     ,ABSY           ,3    ,3     ,true   ,czidbvn
+0x9f  ,AHX     ,ABSY           ,3    ,3     ,true   ,czidbvn
+0xa3  ,LAX     ,INDX           ,2    ,3     ,true   ,cZidbvN
+0xa7  ,LAX     ,ZP             ,2    ,3     ,true   ,cZidbvN
+0xab  ,LAX     ,IMM            ,2    ,3     ,true   ,cZidbvN
+0xaf  ,LAX     ,ABS            ,3    ,3     ,true   ,cZidbvN
+0xb3  ,LAX     ,INDY           ,2    ,3     ,true   ,cZidbvN
+0xb7  ,LAX     ,ZPY            ,2    ,3     ,true   ,cZidbvN
+0xbb  ,LAS     ,ABSY           ,3    ,3     ,true   ,cZidbvN
+0xbf  ,LAX     ,ABSY           ,3    ,3     ,true   ,cZidbvN
+0xc3  ,DCP     ,INDX           ,2    ,3     ,true   ,CZidbvN
+0xc7  ,DCP     ,ZP             ,2    ,3     ,true   ,CZidbvN
+0xcb  ,AXS     ,IMM            ,2    ,3     ,true   ,CZidbvN
+0xcf  ,DCP     ,ABS            ,3    ,3     ,true   ,CZidbvN
+0xd3  ,DCP     ,INDY           ,2    ,3     ,true   ,CZidbvN
+0xd7  ,DCP     ,ZPX            ,2    ,3     ,true   ,CZidbvN
+0xdb  ,DCP     ,ABSY           ,3    ,3     ,true   ,CZidbvN
+0xdf  ,DCP     ,ABSX           ,3    ,3     ,true   ,CZidbvN
+0xe3  ,ISC     ,INDX           ,2    ,3     ,true   ,CZidbVN
+0xe7  ,ISC     ,ZP             ,2    ,3     ,true   ,CZidbVN
+0xeb  ,SBC     ,IMM            ,2    ,3     ,true   ,CZidbVN
+0xef  ,ISC     ,ABS            ,3    ,3     ,true   ,CZidbVN
+0xf3  ,ISC     ,INDY           ,2    ,3     ,true   ,CZidbVN
+0xf7  ,ISC     ,ZPX            ,2    ,3     ,true   ,CZidbVN
+0xfb  ,ISC     ,ABSY           ,3    ,3     ,true   ,CZidbVN
+0xff  ,ISC     ,ABSX           ,3    ,3     ,true   ,CZidbVN
