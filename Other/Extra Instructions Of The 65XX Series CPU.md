@@ -8,9 +8,9 @@
 The following is a list of 65XX/85XX extra opcodes. The operation codes for the 6502 CPU fit in a single byte; out of 256 possible
 combinations, only 151 are "legal."  This text describes the other `256 - 151 = 105` operation codes. These opcodes are not generally
 recognized as part of the 6502 instruction set. They are also referred to as undefined opcodes or undocumented opcodes or
-non-standard opcodes or unofficial opcodes. In "The Commodore 64 Programmer's Reference Guide" their hexadecimal values are 
-simply marked as future expansion. This list of opcodes was compiled with help from _"The Complete Inner Space Anthology"_ by Karl 
-J. H. Hildon.
+non-standard opcodes or unofficial opcodes. In ["The Commodore 64 Programmer's Reference Guide"](http://cini.classiccmp.org/pdf/Commodore/C64%20Programmer's%20Reference%20Guide.pdf) their hexadecimal values are 
+simply marked as future expansion. This list of opcodes was compiled with help from [_"The Complete Inner Space Anthology"_ by Karl 
+J. H. Hildon](https://www.amazon.com/Complete-Commodore-Inner-Space-Anthology/dp/096920860X).
 
 I have marked off the beginning of the description of each opcode with a few asterisks. At times, I also included an alternate name
 in parentheses. All opcode values are given in hexadecimal. These hexadecimal values are listed immediately to the right of any
@@ -695,7 +695,10 @@ derives first from the same source as regards these opcodes. Coding `LAX $00,X` 
 
 ## References
 
-- Joel Shepherd. _"Extra Instructions"_ COMPUTE!, October 1983.
-- Jim Butterfield. _"Strange Opcodes"_ COMPUTE, March 1993.
-- Raymond Quirling. _"6510 Opcodes"_ The Transactor, March 1986.
-- John West, Marko M�kel�. _'64doc'_ file, 1994/06/03.
+- [Joel Shepherd. _"Extra Instructions"_ COMPUTE!, October 1983 - Page
+  261](http://www.commodore.ca/gallery/magazines/compute/Compute-041-03.pdf).
+- [Jim Butterfield. _"Strange Opcodes"_ COMPUTE, March 1993 - Page
+  G-18](https://www.commodore.ca/gallery/magazines/compute/Compute-150-02.pdf).
+- [Raymond Quirling. _"6510 Opcodes"_ The Transactor, March 1986 - Page
+  58](http://www.commodore.ca/wp-content/uploads/2015/12/the_transactor_vol06_05_1986_mar-www-commodore-ca.pdf).
+- [John West, Marko Mäkelä. _'64doc'_ file, 1994/06/03](http://web.mit.edu/jhawk/mnt/ss.b/vice-0.12.0/doc/64doc).
