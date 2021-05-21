@@ -18,3 +18,5 @@
 import Foundation
 import CoreFoundation
 import Rubicon
+
+@inlinable func diffPage(_ a: UInt16, _ b: UInt16) -> Bool { ((a & 0xff00) != (b & 0xff00)) }

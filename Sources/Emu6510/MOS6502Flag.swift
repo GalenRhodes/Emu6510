@@ -19,6 +19,11 @@ import Foundation
 import CoreFoundation
 import Rubicon
 
+infix operator <+=: AssignmentPrecedence
+infix operator <-=: AssignmentPrecedence
+infix operator ?==: ComparisonPrecedence
+infix operator ?!=: ComparisonPrecedence
+
 public enum MOS6502Flag: UInt8 {
     case Carry    = 1
     case Zero     = 2
@@ -27,4 +32,44 @@ public enum MOS6502Flag: UInt8 {
     case Break    = 16
     case Overflow = 64
     case Negative = 128
+
+    @inlinable public static prefix func ~ (flag: MOS6502Flag) -> UInt8 { ~flag.rawValue }
+
+    @inlinable public static func | (lhs: MOS6502Flag, rhs: MOS6502Flag) -> UInt8 { (lhs.rawValue | rhs.rawValue) }
+
+    @inlinable public static func & (lhs: MOS6502Flag, rhs: MOS6502Flag) -> UInt8 { (lhs.rawValue & rhs.rawValue) }
+
+    @inlinable public static func | (lhs: UInt8, rhs: MOS6502Flag) -> UInt8 { (lhs | rhs.rawValue) }
+
+    @inlinable public static func & (lhs: UInt8, rhs: MOS6502Flag) -> UInt8 { (lhs & rhs.rawValue) }
+
+    @inlinable public static func | (lhs: MOS6502Flag, rhs: UInt8) -> UInt8 { (lhs.rawValue | rhs) }
+
+    @inlinable public static func & (lhs: MOS6502Flag, rhs: UInt8) -> UInt8 { (lhs.rawValue & rhs) }
+
+    @inlinable public static func <-= (lhs: inout UInt8, rhs: MOS6502Flag) { lhs = (lhs & ~rhs) }
+
+    @inlinable public static func <+= (lhs: inout UInt8, rhs: MOS6502Flag) { lhs = (lhs | rhs) }
+
+    @inlinable public static func == (lhs: UInt8, rhs: MOS6502Flag) -> Bool { (lhs == rhs.rawValue) }
+
+    @inlinable public static func == (lhs: MOS6502Flag, rhs: UInt8) -> Bool { (lhs.rawValue == rhs) }
+
+    @inlinable public static func != (lhs: UInt8, rhs: MOS6502Flag) -> Bool { (lhs != rhs.rawValue) }
+
+    @inlinable public static func != (lhs: MOS6502Flag, rhs: UInt8) -> Bool { (lhs.rawValue != rhs) }
+
+    @inlinable public static func ?== (lhs: UInt8, rhs: MOS6502Flag) -> Bool { ((lhs & rhs) == rhs) }
+
+    @inlinable public static func ?== (lhs: MOS6502Flag, rhs: UInt8) -> Bool { ((lhs & rhs) == lhs) }
+
+    @inlinable public static func ?!= (lhs: UInt8, rhs: MOS6502Flag) -> Bool { ((lhs & rhs) == 0) }
+
+    @inlinable public static func ?!= (lhs: MOS6502Flag, rhs: UInt8) -> Bool { ((lhs & rhs) == 0) }
+}
+
+extension UInt8 {
+    @inlinable static func <+= (lhs: inout UInt8, rhs: UInt8) { lhs = (lhs | rhs) }
+
+    @inlinable static func <-= (lhs: inout UInt8, rhs: UInt8) { lhs = (lhs & ~rhs) }
 }

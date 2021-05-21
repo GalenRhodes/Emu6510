@@ -47,22 +47,25 @@ open class MOS6502Addressable: BidirectionalCollection, Equatable, Hashable {
 
     open func index(after i: Index) -> Index { (((i + 1) < endIndex) ? (i + 1) : startIndex) }
 
-    open func getWord(address: UInt16) -> UInt16 { (UInt16(self[address]) | (UInt16(self[address + 1]) << 8)) }
+    open func getWord(address a: UInt16, fromSamePage pg: Bool = false) -> UInt16 {
+        (UInt16(self[a]) | (UInt16(self[((pg) ? (((a &+ 1) & 0x00ff) | (a & 0xff00)) : (a &+ 1))]) << 8))
+    }
+
+    open func getWord(zpAddress a: UInt8) -> UInt16 { (UInt16(self[a]) | ((UInt16(self[a &+ 1])) << 8)) }
 
     open subscript(position: Index) -> UInt8 {
         get { fatalError("Not Implemented") }
         set { fatalError("Not Implemented") }
     }
 
+    open subscript(zpAddress: UInt8) -> UInt8 {
+        get { let idx: Index = numericCast(zpAddress); return self[idx] }
+        set { let idx: Index = numericCast(zpAddress); self[idx] = newValue }
+    }
+
     open subscript(address: UInt16) -> UInt8 {
-        get {
-            let idx: Index = numericCast(address)
-            return self[idx]
-        }
-        set {
-            let idx: Index = numericCast(address)
-            self[idx] = newValue
-        }
+        get { let idx: Index = numericCast(address); return self[idx] }
+        set { let idx: Index = numericCast(address); self[idx] = newValue }
     }
 
     public subscript(bounds: Range<Index>) -> SubSequence {
