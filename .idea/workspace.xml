@@ -34,8 +34,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="87075da3-fef8-4e0e-a558-4c45fa2c2b82" name="Default Changelist" comment="Added &quot;6502_6510_8500_8502 Opcodes.md&quot;">
-      <change afterPath="$PROJECT_DIR$/.idea/codeStyles/codeStyleConfig.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Other/6502_6510_8500_8502 Opcodes.md" beforeDir="false" afterPath="$PROJECT_DIR$/Other/6502_6510_8500_8502 Opcodes.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -171,7 +169,7 @@
       <workItem from="1621254820809" duration="11055000" />
       <workItem from="1621342321648" duration="16859000" />
       <workItem from="1621426636162" duration="18283000" />
-      <workItem from="1621453892356" duration="42258000" />
+      <workItem from="1621453892356" duration="43194000" />
     </task>
     <task id="LOCAL-00001" summary="Redo">
       <created>1600997267219</created>
@@ -306,7 +304,14 @@
       <option name="project" value="LOCAL" />
       <updated>1621609645319</updated>
     </task>
-    <option name="localTasksCounter" value="20" />
+    <task id="LOCAL-00020" summary="Added &quot;6502_6510_8500_8502 Opcodes.md&quot;">
+      <created>1621611364867</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1621611364867</updated>
+    </task>
+    <option name="localTasksCounter" value="21" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
