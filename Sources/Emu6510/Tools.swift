@@ -19,4 +19,14 @@ import Foundation
 import CoreFoundation
 import Rubicon
 
+@usableFromInline let fZ: UInt8  = MOS6502Flag.Zero.rawValue
+@usableFromInline let fV: UInt8  = MOS6502Flag.Overflow.rawValue
+@usableFromInline let fN: UInt8  = MOS6502Flag.Negative.rawValue
+@usableFromInline let fC: UInt8  = MOS6502Flag.Carry.rawValue
+@usableFromInline let NZ: UInt8  = (fZ | fN)
+@usableFromInline let CV: UInt8  = (fC | fV)
+@usableFromInline let zC: UInt16 = 0x0100
+
 @inlinable func diffPage(_ a: UInt16, _ b: UInt16) -> Bool { ((a & 0xff00) != (b & 0xff00)) }
+
+@inlinable func zeroFlag<T: BinaryInteger>(_ v: T) -> UInt8 { ((v == T(0)) ? fZ : UInt8.zero) }

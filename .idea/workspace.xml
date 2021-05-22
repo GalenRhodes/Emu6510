@@ -34,7 +34,17 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="87075da3-fef8-4e0e-a558-4c45fa2c2b82" name="Default Changelist" comment="Added &quot;6502_6510_8500_8502 Opcodes.md&quot;">
+      <change afterPath="$PROJECT_DIR$/Other/IllegalOpcodeList.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/csv-plugin.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/csv-plugin.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Emu6510.xcodeproj/project.pbxproj" beforeDir="false" afterPath="$PROJECT_DIR$/Emu6510.xcodeproj/project.pbxproj" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Other/6502_6510_8500_8502 Opcodes.md" beforeDir="false" afterPath="$PROJECT_DIR$/Other/6502_6510_8500_8502 Opcodes.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Other/Extra Instructions Of The 65XX Series CPU.md" beforeDir="false" afterPath="$PROJECT_DIR$/Other/Extra Instructions Of The 65XX Series CPU.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Sources/Emu6510/MOS6502CPU.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Sources/Emu6510/MOS6502CPU.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Sources/Emu6510/MOS6502Flag.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Sources/Emu6510/MOS6502Flag.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Sources/Emu6510/Tools.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Sources/Emu6510/Tools.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Sources/Tools/main.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Sources/Tools/main.swift" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -169,7 +179,8 @@
       <workItem from="1621254820809" duration="11055000" />
       <workItem from="1621342321648" duration="16859000" />
       <workItem from="1621426636162" duration="18283000" />
-      <workItem from="1621453892356" duration="43194000" />
+      <workItem from="1621453892356" duration="60545000" />
+      <workItem from="1621650595933" duration="1354000" />
     </task>
     <task id="LOCAL-00001" summary="Redo">
       <created>1600997267219</created>
@@ -311,7 +322,14 @@
       <option name="project" value="LOCAL" />
       <updated>1621611364867</updated>
     </task>
-    <option name="localTasksCounter" value="21" />
+    <task id="LOCAL-00021" summary="Added &quot;6502_6510_8500_8502 Opcodes.md&quot;">
+      <created>1621612436755</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1621612436755</updated>
+    </task>
+    <option name="localTasksCounter" value="22" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

@@ -30,6 +30,7 @@ public enum MOS6502Flag: UInt8 {
     case IRQ      = 4
     case Decimal  = 8
     case Break    = 16
+    // Bit 5 is unused.
     case Overflow = 64
     case Negative = 128
 

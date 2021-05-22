@@ -22,65 +22,77 @@ import Rubicon
 let templatePath = "Templates"
 let sourcePath   = "Sources/Emu6510"
 
-guard let data: String = try? String(contentsOfFile: "Other/65c02_all.csv") else { fatalError("File not found.") }
-var opcodeList: [[String]] = data.split(on: "\r?\n").map { $0.split(on: "\\s*,\\s*", limit: -1) }
-opcodeList.removeFirst()
+let opcodeList: [[String]] = getOpcodes()
 
-guard opcodeList.count == 256 else {
-    for (i, oc) in opcodeList.enumerated() {
-        let op = oc[0]
-        let j  = (Int(op[op.index(op.startIndex, offsetBy: 2) ..< op.endIndex], radix: 16) ?? -1)
-        guard i == j else {
-            fatalError("There are only \(opcodeList.count) out of 256 opcodes found. Opcode 0x\(String(i, radix: 16)) is missing.")
-        }
+var data: [String: [(String, String)]] = [:]
+
+for o in opcodeList.filter { s in s[5] == "true" } {
+    if var d: [(String, String)] = data[o[1]] {
+        d <+ (o[2], o[0])
+        data[o[1]] = d
     }
-    fatalError("There are only \(opcodeList.count) out of 256 opcodes found.")
-}
-
-//***********************************************************************************************************************************************************************************
-print("\nPLUS ONE INSTRUCTIONS\n")
-
-for (n, i) in opcodeList.sorted(by: { a, b in (a[1] < b[1]) || ((a[1] == b[1]) && (a[2] < b[2])) }).enumerated() {
-    if i[4].count > 1 {
-        print("%3d> \(i[0]): \(i[1]) - \(i[2])".format(n))
+    else {
+        var d: [(String, String)] = []
+        d <+ (o[2], o[0])
+        data[o[1]] = d
     }
 }
 
-//***********************************************************************************************************************************************************************************
-print("\nADDRESSING MODE LIST\n")
-
-var foo1 = fooBar(opcodeList.map({ s -> (String, UInt8) in (s[2], UInt8(s[0][2 ..< 4], radix: 16) ?? 0) }))
-
-for (am, bilo, bihi, oc) in foo1 {
-    print("%-4s \(bihi) \(bilo) - %#04x".format(am, oc))
-}
-
-//***********************************************************************************************************************************************************************************
-print("\nINSTRUCTION LIST\n")
-
-foo1 = fooBar(opcodeList.filter { s in s[5] == "false" }.map({ s -> (String, UInt8) in (s[1], UInt8(s[0][2 ..< 4], radix: 16) ?? 0) }))
-
-for (am, bilo, bihi, oc) in foo1.sorted(by: { a, b in (a.am < b.am) }) {
-    print("%-4s \(bihi) \(bilo) - %#04x".format(am, oc))
-}
-
-//***********************************************************************************************************************************************************************************
-func fooBar(_ array: [(String, UInt8)]) -> [(am: String, bilo: String, bihi: String, oc: UInt8)] {
-    var foo:  [String: UInt8]                                       = [:]
-    var foo1: [(am: String, bilo: String, bihi: String, oc: UInt8)] = []
-
-    for i in array {
-        if let o = foo[i.0] {
-            foo[i.0] = (o & i.1)
+for k in data.keys.sorted() {
+    if let d = data[k] {
+        print("\(k): ", terminator: "")
+        var b = true
+        for e in d.sorted { t1, t2 in (t1.0 < t2.0) } {
+            if b { b = false } else { print(", ", terminator: "") }
+            print("%-4s (%4s)".format(e.0, e.1), terminator: "")
         }
-        else {
-            foo[i.0] = i.1
+        print()
+    }
+}
+
+//***********************************************************************************************************************************************************************************
+func forStudy(_ opcodeList: [[String]]) {
+    print("\nPLUS ONE INSTRUCTIONS\n")
+
+    for (n, i) in opcodeList.sorted(by: { a, b in (a[1] < b[1]) || ((a[1] == b[1]) && (a[2] < b[2])) }).enumerated() {
+        if i[4].count > 1 {
+            print("%3d> \(i[0]): \(i[1]) - \(i[2])".format(n))
         }
     }
 
-    for (am, oc) in foo { let bi = toBinary(oc, sep: "", pad: 8); foo1 <+ (am: am, bilo: String(bi[4 ..< 8]), bihi: String(bi[0 ..< 4]), oc: oc) }
+    print("\nADDRESSING MODE LIST\n")
 
-    return foo1.sorted(by: { a, b in ((a.bilo < b.bilo) || ((a.bilo == b.bilo) && (a.bihi < b.bihi))) })
+    var foo1 = fooBar(opcodeList.map({ s -> (String, UInt8) in (s[2], UInt8(s[0][2 ..< 4], radix: 16) ?? 0) }))
+
+    for (am, bilo, bihi, oc) in foo1 {
+        print("%-4s \(bihi) \(bilo) - %#04x".format(am, oc))
+    }
+
+    print("\nINSTRUCTION LIST\n")
+
+    foo1 = fooBar(opcodeList.filter { s in s[5] == "false" }.map({ s -> (String, UInt8) in (s[1], UInt8(s[0][2 ..< 4], radix: 16) ?? 0) }))
+
+    for (am, bilo, bihi, oc) in foo1.sorted(by: { a, b in (a.am < b.am) }) {
+        print("%-4s \(bihi) \(bilo) - %#04x".format(am, oc))
+    }
+
+    func fooBar(_ array: [(String, UInt8)]) -> [(am: String, bilo: String, bihi: String, oc: UInt8)] {
+        var foo:  [String: UInt8]                                       = [:]
+        var foo1: [(am: String, bilo: String, bihi: String, oc: UInt8)] = []
+
+        for i in array {
+            if let o = foo[i.0] {
+                foo[i.0] = (o & i.1)
+            }
+            else {
+                foo[i.0] = i.1
+            }
+        }
+
+        for (am, oc) in foo { let bi = toBinary(oc, sep: "", pad: 8); foo1 <+ (am: am, bilo: String(bi[4 ..< 8]), bihi: String(bi[0 ..< 4]), oc: oc) }
+
+        return foo1.sorted(by: { a, b in ((a.bilo < b.bilo) || ((a.bilo == b.bilo) && (a.bihi < b.bihi))) })
+    }
 }
 
 //***********************************************************************************************************************************************************************************
@@ -153,4 +165,21 @@ func doOpcodes(_ opcodeList: [[String]]) {
     }
 }
 
+//***********************************************************************************************************************************************************************************
+func getOpcodes() -> [[String]] {
+    guard let data: String = try? String(contentsOfFile: "Other/65c02_all.csv") else { fatalError("File not found.") }
+    var opcodeList: [[String]] = data.split(on: "\r?\n").map { $0.split(on: "\\s*,\\s*", limit: -1) }
+    opcodeList.removeFirst()
 
+    guard opcodeList.count == 256 else {
+        for (i, oc) in opcodeList.enumerated() {
+            let op = oc[0]
+            let j  = (Int(op[op.index(op.startIndex, offsetBy: 2) ..< op.endIndex], radix: 16) ?? -1)
+            guard i == j else {
+                fatalError("There are only \(opcodeList.count) out of 256 opcodes found. Opcode 0x\(String(i, radix: 16)) is missing.")
+            }
+        }
+        fatalError("There are only \(opcodeList.count) out of 256 opcodes found.")
+    }
+    return opcodeList
+}

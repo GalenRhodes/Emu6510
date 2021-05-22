@@ -19,15 +19,10 @@ import Foundation
 import CoreFoundation
 import Rubicon
 
-@usableFromInline let fZ: UInt8  = MOS6502Flag.Zero.rawValue
-@usableFromInline let fV: UInt8  = MOS6502Flag.Overflow.rawValue
-@usableFromInline let fN: UInt8  = MOS6502Flag.Negative.rawValue
-@usableFromInline let fC: UInt8  = MOS6502Flag.Carry.rawValue
-@usableFromInline let NZ: UInt8  = (fZ | fN)
-@usableFromInline let CV: UInt8  = (fC | fV)
-@usableFromInline let zC: UInt16 = 0x0100
-
 open class MOS6502CPU: ClockListener {
+    @usableFromInline typealias EfOperand = (operand: UInt8, plus: UInt8)
+    @usableFromInline typealias EfAddress = (address: UInt16, plus: UInt8)
+
     public let            clock:     MOS6502Clock
     public let            memory:    MOS6502SystemMemoryMap
     public var            irq:       Bool = false
@@ -67,15 +62,17 @@ open class MOS6502CPU: ClockListener {
     @usableFromInline var tickCount:   UInt8          = 0
     @usableFromInline var lock:        MutexLock      = MutexLock()
 
+    // These fields are used to calculate the effective address of the operand or the target address of a JMP or JSR.
     @inlinable final  var efOperand:   UInt16         { (_regPC &+ 1) }
     @inlinable final  var efAbsolute:  UInt16         { memory.getWord(address: efOperand) }
     @inlinable final  var efAbsoluteX: (UInt16, Bool) { let a = (memory.getWord(address: efOperand) &+ UInt16(_regX)); return (a, diffPage(a, (efOperand &+ 1))) }
     @inlinable final  var efAbsoluteY: (UInt16, Bool) { let a = (memory.getWord(address: efOperand) &+ UInt16(_regY)); return (a, diffPage(a, (efOperand &+ 1))) }
     @inlinable final  var efIndirectY: (UInt16, Bool) { let a = memory.getWord(zpAddress: memory[efOperand]); let b = (a &+ UInt16(_regY)); return (b, diffPage(a, b)) }
+    @inlinable final  var efIndirectX: UInt16         { memory.getWord(zpAddress: (memory[efOperand] &+ _regX)) }
+    @inlinable final  var efIndirect:  UInt16         { memory.getWord(address: efAbsolute, fromSamePage: true) }
     @inlinable final  var efZeroPage:  UInt8          { memory[efOperand] }
     @inlinable final  var efZeroPageX: UInt8          { memory[efOperand] &+ _regX }
     @inlinable final  var efZeroPageY: UInt8          { memory[efOperand] &+ _regY }
-    @inlinable final  var efIndirectX: UInt16         { memory.getWord(zpAddress: (memory[efOperand] &+ _regX)) }
     //@f:1
 
     public init(frequency: UInt64, memory: MOS6502SystemMemoryMap) {
@@ -104,9 +101,6 @@ open class MOS6502CPU: ClockListener {
         }
     }
 
-    private var tickAdd:  UInt8 = 0
-    private var tickHold: Bool  = true
-
     public func clockTick(sequence: UInt64) {
         if tickAdd > 0 {
             tickCount += (tickAdd - 1)
@@ -119,11 +113,6 @@ open class MOS6502CPU: ClockListener {
         else {
             tickCount -= 1
         }
-    }
-
-    private func setTickAdd(_ delta: UInt8) {
-        while tickAdd != 0 {}
-        tickAdd = delta
     }
 
     public func run() {
@@ -219,26 +208,24 @@ open class MOS6502CPU: ClockListener {
         }
     }
 
-    func handleInterrupt(_ type: MOS6502Interrupt) {
-        switch type {
-            case .IRQ, .NMI:
-                stackPushAddress(address: _regPC)
-                stackPush(byte: _regSt)
-                _regSt <+= .IRQ
-            case .Reset:
-                _regSt <+= .IRQ
-            case .Break:
-                break
-        }
-        _regPC = memory.getWord(address: type.vector)
+    @inlinable final func exitOpcode(_ opcode: MOS6502Opcode, plusCycle: UInt8 = 0) -> UInt8 {
+        _regPC += UInt16(opcode.bytes)
+        return plusCycle
     }
 
-    @inlinable final func setNZFlags(value v: UInt8) {
-        _regSt = ((_regSt & (~NZ)) | (v & fN) | ((v == 0) ? UInt8.zero : fZ))
+    @discardableResult @inlinable final func setNZFlags(value v: UInt8) -> UInt8 {
+        _regSt = ((_regSt & (~NZ)) | (v & fN) | zeroFlag(v))
+        return v
     }
 
-    @inlinable final func setCFlag(carryValue v: UInt8) {
-        _regSt = ((_regSt & ~1) | (v & 1))
+    @discardableResult @inlinable final func setNZCFlags(value v: UInt8, carryOut c: UInt8) -> UInt8 {
+        _regSt = ((_regSt & (~(fC | fN | fZ))) | (v & fN) | zeroFlag(v) | (c & fC))
+        return v
+    }
+
+    @discardableResult @inlinable final func setNZVFlags(value v: UInt8) -> UInt8 {
+        _regSt = ((_regSt & (~(fV | fN | fZ))) | (v & fN) | zeroFlag(v) | (v & fV))
+        return v
     }
 
     @inlinable final func stackPush(byte: UInt8) {
@@ -257,9 +244,30 @@ open class MOS6502CPU: ClockListener {
         let bLo = stackPop(); let bHi = stackPop(); return (UInt16(bLo) | (UInt16(bHi) << 8))
     }
 
-    final func getOperand(_ opcode: MOS6502Opcode) -> (operand: UInt8, plus: UInt8) {
+    /// This method is for opcodes that operate only on memory. In other words, no IMPlied, ACCumulator, or IMMediate addressing modes.
+    ///
+    /// - Parameter opcode: The opcode.
+    /// - Returns: The target address of the operand.
+    ///
+    @usableFromInline final func getTargetAddress(_ opcode: MOS6502Opcode) -> EfAddress {
         switch opcode.addressingMode {
-            case .IMP, .REL, .IND:                return (0, 0)
+            case .ACC, .IMM, .IMP:                fatalError("Invalid addressing mode.")
+            case .ABS:                            return (efAbsolute, 0)
+            case .ABSX: let (a, p) = efAbsoluteX; return (a, ((opcode.plus1 && p) ? 1 : 0))
+            case .ABSY: let (a, p) = efAbsoluteY; return (a, ((opcode.plus1 && p) ? 1 : 0))
+            case .IND:                            return (efIndirect, 0)
+            case .INDX:                           return (efIndirectX, 0)
+            case .INDY: let (a, p) = efIndirectY; return (a, ((opcode.plus1 && p) ? 1 : 0))
+            case .REL:                            return efRelative
+            case .ZP:                             return (UInt16(efZeroPage), 0)
+            case .ZPX:                            return (UInt16(efZeroPageX), 0)
+            case .ZPY:                            return (UInt16(efZeroPageY), 0)
+        }
+    }
+
+    @discardableResult @usableFromInline final func getOperand(_ opcode: MOS6502Opcode) -> EfOperand {
+        switch opcode.addressingMode {
+            case .IMP, .REL, .IND:                fatalError("Invalid addressing mode.")
             case .ACC:                            return (_regAcc, 0)
             case .ABS:                            return (memory[efAbsolute], 0)
             case .ABSX: let (a, p) = efAbsoluteX; return (memory[a], ((opcode.plus1 && p) ? 1 : 0))
@@ -273,12 +281,12 @@ open class MOS6502CPU: ClockListener {
         }
     }
 
-    @discardableResult final func setOperand(_ opcode: MOS6502Opcode, value: UInt8) -> UInt8 {
+    @discardableResult @usableFromInline final func setOperand(_ opcode: MOS6502Opcode, value: UInt8) -> UInt8 {
         var a: UInt16 = 0
         var p: Bool   = false
 
         switch opcode.addressingMode {
-            case .IMM, .IMP, .REL, .IND: return 0
+            case .IMM, .IMP, .REL, .IND: fatalError("Invalid addressing mode.")
             case .ACC:                   _regAcc = value; return 0
             case .ABS:                   a = efAbsolute
             case .ABSX:                  (a, p) = efAbsoluteX
@@ -294,24 +302,66 @@ open class MOS6502CPU: ClockListener {
         return ((opcode.plus1 && p) ? 1 : 0)
     }
 
-    @inlinable final func addWithCarry(operand op: UInt8) {
-        let res: UInt16 = (UInt16(_regAcc) + UInt16(op) + UInt16(_regSt & fC))
+    @inlinable final func addWithCarry(leftOperand opL: UInt8, rightOperand opR: UInt8, carryIn: UInt8) -> (UInt8, UInt8) {
+        let res: UInt16 = (UInt16(opL) + UInt16(opR) + UInt16(carryIn)) // There is no chance of overflow here.
         let rs8: UInt8  = UInt8(res & 0xff)
-        let v:   UInt8  = (((_regAcc ^ rs8) & (op ^ rs8) & 0x80) >> 1)
-        let c:   UInt8  = UInt8((res & zC) >> 8)
-        let z:   UInt8  = ((rs8 == 0) ? UInt8.zero : fZ)
-        let n:   UInt8  = (rs8 & fN)
-        let m:   UInt8  = ~(NZ | CV)
+        return (rs8, ((_regSt & (~(NZ | CV))) | (rs8 & fN) | zeroFlag(rs8) | UInt8((res & zC) >> 8) | (((opL ^ rs8) & (opR ^ rs8) & fN) >> 1)))
+    }
 
-        _regAcc = rs8
-        _regSt = ((_regSt & m) | n | z | c | v)
+    @inlinable final func shiftLeft(opcode: MOS6502Opcode, carryIn c: UInt8) -> UInt8 {
+        shiftRight(opcode: opcode, operand: getOperand(opcode), carryIn: c)
+    }
+
+    @inlinable final func shiftRight(opcode: MOS6502Opcode, carryIn c: UInt8) -> UInt8 {
+        shiftLeft(opcode: opcode, operand: getOperand(opcode), carryIn: c)
+    }
+
+    @inlinable final func shiftLeft(opcode: MOS6502Opcode, operand o: EfOperand, carryIn c: UInt8) -> UInt8 {
+        let r: UInt8 = ((o.operand >> 1) | (c << 7))
+        setOperand(opcode, value: setNZCFlags(value: r, carryOut: (o.operand & fC)))
+        return exitOpcode(opcode, plusCycle: o.plus)
+    }
+
+    @inlinable final func shiftRight(opcode: MOS6502Opcode, operand o: EfOperand, carryIn c: UInt8) -> UInt8 {
+        let r: UInt8 = ((o.operand << 1) | (c & fC))
+        setOperand(opcode, value: setNZCFlags(value: r, carryOut: (o.operand >> 7)))
+        return exitOpcode(opcode, plusCycle: o.plus)
     }
 
     @inlinable final func handleBranch(opcode: MOS6502Opcode, branchOn: Bool) -> UInt8 {
         guard branchOn else { _regPC &+= UInt16(opcode.bytes); return 0 }
-        let oa: UInt16 = (efOperand)
-        _regPC = UInt16(bitPattern: (Int16(bitPattern: oa) + Int16(Int8(bitPattern: memory[oa]))))
-        return (diffPage(_regPC, oa) ? 2 : 1)
+        let (ta, p1) = efRelative
+        _regPC = ta
+        return p1
+    }
+
+    @inlinable final var efRelative: (UInt16, UInt8) {
+        let pc: UInt16 = (efOperand)
+        let ta: UInt16 = UInt16(bitPattern: (Int16(bitPattern: pc) + Int16(Int8(bitPattern: memory[pc]))))
+        return (ta, (diffPage(ta, pc) ? 2 : 1))
+    }
+
+    @inlinable final func handleCompare(opcode: MOS6502Opcode, register reg: UInt8) -> UInt8 {
+        let (op, p1) = getOperand(opcode)
+        let (_, st)  = addWithCarry(leftOperand: reg, rightOperand: op, carryIn: 1)
+        _regSt = ((_regSt & (~(fN | fC | fZ))) | (st & ~fV))
+        return exitOpcode(opcode, plusCycle: p1)
+    }
+
+    @inlinable final func handleInterrupt(_ type: MOS6502Interrupt) {
+        switch type {
+            case .IRQ, .NMI:
+                stackPushAddress(address: (_regPC &- 1))
+                stackPush(byte: _regSt)
+                _regSt <+= .IRQ
+            case .Break:
+                stackPushAddress(address: _regPC)
+                stackPush(byte: _regSt)
+                _regSt <+= .IRQ
+            case .Reset:
+                _regSt <+= .IRQ
+        }
+        _regPC = memory.getWord(address: type.vector)
     }
 
     open func processBCS(opcode: MOS6502Opcode) -> UInt8 { handleBranch(opcode: opcode, branchOn: _regSt ?== .Carry) }
@@ -331,269 +381,235 @@ open class MOS6502CPU: ClockListener {
     open func processBVC(opcode: MOS6502Opcode) -> UInt8 { handleBranch(opcode: opcode, branchOn: _regSt ?!= .Overflow) }
 
     open func processADC(opcode: MOS6502Opcode) -> UInt8 {
-        let (op, p1) = getOperand(opcode)
-        addWithCarry(operand: op)
-        _regPC += UInt16(opcode.bytes)
-        return p1
+        let o: EfOperand = getOperand(opcode)
+        (_regAcc, _regSt) = addWithCarry(leftOperand: _regAcc, rightOperand: o.operand, carryIn: (_regSt & fC))
+        return exitOpcode(opcode, plusCycle: o.plus)
     }
 
     open func processAHX(opcode: MOS6502Opcode) -> UInt8 {
-        let a = (opcode.opcode == 0x9f)
-        memory[(a ? efAbsoluteY : efIndirectY).0] = (_regAcc & _regX & ((a ? memory[efOperand] : memory[memory[efOperand]]) &+ 1))
-        _regPC += UInt16(opcode.bytes)
-        return 0
+        let o: Bool = (opcode.opcode == 0x9f)
+        memory[(o ? efAbsoluteY : efIndirectY).0] = (_regAcc & _regX & ((o ? memory[efOperand] : memory[memory[efOperand]]) &+ 1))
+        return exitOpcode(opcode)
     }
 
     open func processALR(opcode: MOS6502Opcode) -> UInt8 {
-        let (op, _) = getOperand(opcode)
-        _regAcc = (_regAcc & op)
-        _regSt = ((_regSt & ~1) | (_regAcc & 1))
-        _regAcc = (_regAcc >> 1)
-        setNZFlags(value: _regAcc)
-        _regPC += UInt16(opcode.bytes)
-        return 0
+        let o: EfOperand = getOperand(opcode)
+        let r: UInt8     = (_regAcc & o.operand)
+        _regAcc = setNZCFlags(value: (r >> 1), carryOut: (r & fC))
+        return exitOpcode(opcode, plusCycle: o.plus)
     }
 
     open func processANC(opcode: MOS6502Opcode) -> UInt8 {
-        let op = memory[efOperand]
-        _regAcc = (_regAcc & op)
-        _regSt = ((_regSt & ~1) | (_regAcc >> 7))
-        setNZFlags(value: _regAcc)
-        _regPC += UInt16(opcode.bytes)
-        return 0
+        let o: EfOperand = getOperand(opcode)
+        let r: UInt8     = (_regAcc & o.operand)
+        _regAcc = setNZCFlags(value: r, carryOut: (r >> 7))
+        return exitOpcode(opcode, plusCycle: o.plus)
     }
 
     open func processAND(opcode: MOS6502Opcode) -> UInt8 {
-        let (op, p1) = getOperand(opcode)
-        _regAcc = (_regAcc & op)
-        setNZFlags(value: _regAcc)
-        _regPC += UInt16(opcode.bytes)
-        return p1
+        let o: EfOperand = getOperand(opcode)
+        _regAcc = setNZFlags(value: (_regAcc & o.operand))
+        return exitOpcode(opcode, plusCycle: o.plus)
     }
 
     open func processARR(opcode: MOS6502Opcode) -> UInt8 {
-        let (op, _)   = getOperand(opcode)
-        let r1: UInt8 = (_regAcc & op)
-        let r2: UInt8 = ((r1 >> 1) | ((_regSt & 1) << 7))
-
-        setCFlag(carryValue: r1)
-        setNZFlags(value: r2)
-        _regAcc = r2
-        _regPC += UInt16(opcode.bytes)
-        return 0
+        let o: EfOperand = getOperand(opcode)
+        return shiftRight(opcode: opcode, operand: ((_regAcc & o.operand), o.plus), carryIn: (_regSt & fC))
     }
 
     open func processASL(opcode: MOS6502Opcode) -> UInt8 {
-        let (op, p1) = getOperand(opcode)
-        let r: UInt8 = (op << 1)
-
-        setOperand(opcode, value: r)
-        setCFlag(carryValue: (op >> 7))
-        setNZFlags(value: r)
-        _regPC += UInt16(opcode.bytes)
-        return p1
+        shiftLeft(opcode: opcode, carryIn: 0)
     }
 
     open func processAXS(opcode: MOS6502Opcode) -> UInt8 {
-        _regPC += UInt16(opcode.bytes)
-        return 0
+
+        return exitOpcode(opcode)
     }
 
     open func processBIT(opcode: MOS6502Opcode) -> UInt8 {
-        _regPC += UInt16(opcode.bytes)
-        return 0
+        let o: EfOperand = getOperand(opcode)
+        setNZVFlags(value: (_regAcc & o.operand))
+        return exitOpcode(opcode, plusCycle: o.plus)
     }
 
     open func processBRK(opcode: MOS6502Opcode) -> UInt8 {
-        _regPC += UInt16(opcode.bytes)
+        handleInterrupt(.Break)
         return 0
     }
 
     open func processCLC(opcode: MOS6502Opcode) -> UInt8 {
         _regSt <-= .Carry
-        _regPC += UInt16(opcode.bytes)
-        return 0
+        return exitOpcode(opcode)
     }
 
     open func processCLD(opcode: MOS6502Opcode) -> UInt8 {
         _regSt <-= .Decimal
-        _regPC += UInt16(opcode.bytes)
-        return 0
+        return exitOpcode(opcode)
     }
 
     open func processCLI(opcode: MOS6502Opcode) -> UInt8 {
         _regSt <-= .IRQ
-        _regPC += UInt16(opcode.bytes)
-        return 0
+        return exitOpcode(opcode)
     }
 
     open func processCLV(opcode: MOS6502Opcode) -> UInt8 {
         _regSt <-= .Overflow
-        _regPC += UInt16(opcode.bytes)
-        return 0
+        return exitOpcode(opcode)
     }
 
     open func processCMP(opcode: MOS6502Opcode) -> UInt8 {
-        _regPC += UInt16(opcode.bytes)
-        return 0
+        handleCompare(opcode: opcode, register: _regAcc)
     }
 
     open func processCPX(opcode: MOS6502Opcode) -> UInt8 {
-        _regPC += UInt16(opcode.bytes)
-        return 0
+        handleCompare(opcode: opcode, register: _regX)
     }
 
     open func processCPY(opcode: MOS6502Opcode) -> UInt8 {
-        _regPC += UInt16(opcode.bytes)
-        return 0
+        handleCompare(opcode: opcode, register: _regY)
     }
 
     open func processDCP(opcode: MOS6502Opcode) -> UInt8 {
-        _regPC += UInt16(opcode.bytes)
-        return 0
+        return exitOpcode(opcode)
     }
 
     open func processDEC(opcode: MOS6502Opcode) -> UInt8 {
-        _regPC += UInt16(opcode.bytes)
-        return 0
+        let a: EfAddress = getTargetAddress(opcode)
+        memory[a.address] = setNZFlags(value: (memory[a.address] &- 1))
+        return exitOpcode(opcode, plusCycle: a.plus)
     }
 
     open func processDEX(opcode: MOS6502Opcode) -> UInt8 {
-        _regPC += UInt16(opcode.bytes)
-        return 0
+        _regX = setNZFlags(value: _regX &- 1)
+        return exitOpcode(opcode)
     }
 
     open func processDEY(opcode: MOS6502Opcode) -> UInt8 {
-        _regPC += UInt16(opcode.bytes)
-        return 0
+        _regY = setNZFlags(value: _regY &- 1)
+        return exitOpcode(opcode)
     }
 
     open func processEOR(opcode: MOS6502Opcode) -> UInt8 {
-        _regPC += UInt16(opcode.bytes)
-        return 0
+        let o: EfOperand = getOperand(opcode)
+        _regAcc = setNZFlags(value: (_regAcc ^ o.operand))
+        return exitOpcode(opcode, plusCycle: o.plus)
     }
 
     open func processINC(opcode: MOS6502Opcode) -> UInt8 {
-        _regPC += UInt16(opcode.bytes)
-        return 0
+        let a: EfAddress = getTargetAddress(opcode)
+        memory[a.address] = setNZFlags(value: (memory[a.address] &+ 1))
+        return exitOpcode(opcode, plusCycle: a.plus)
     }
 
     open func processINX(opcode: MOS6502Opcode) -> UInt8 {
-        _regPC += UInt16(opcode.bytes)
-        return 0
+        _regX = setNZFlags(value: _regX &+ 1)
+        return exitOpcode(opcode)
     }
 
     open func processINY(opcode: MOS6502Opcode) -> UInt8 {
-        _regPC += UInt16(opcode.bytes)
-        return 0
+        _regY = setNZFlags(value: _regY &+ 1)
+        return exitOpcode(opcode)
     }
 
     open func processISC(opcode: MOS6502Opcode) -> UInt8 {
-        _regPC += UInt16(opcode.bytes)
-        return 0
+        return exitOpcode(opcode)
     }
 
     open func processJMP(opcode: MOS6502Opcode) -> UInt8 {
-        let abs = memory.getWord(address: efOperand)
-        _regPC = ((opcode.addressingMode == .IND) ? memory.getWord(address: abs, fromSamePage: true) : abs)
-        return 0
+        let a: EfAddress = getTargetAddress(opcode)
+        _regPC = a.address
+        return a.plus
     }
 
     open func processJSR(opcode: MOS6502Opcode) -> UInt8 {
         stackPushAddress(address: (_regPC &+ UInt16(opcode.bytes - 1)))
-        _regPC = memory.getWord(address: efOperand)
-        return 0
+        return processJMP(opcode: opcode)
     }
 
     open func processKIL(opcode: MOS6502Opcode) -> UInt8 {
-        _regPC += UInt16(opcode.bytes)
+        clock.stop()
         return 0
     }
 
     open func processLAS(opcode: MOS6502Opcode) -> UInt8 {
-        _regPC += UInt16(opcode.bytes)
-        return 0
+        return exitOpcode(opcode)
     }
 
     open func processLAX(opcode: MOS6502Opcode) -> UInt8 {
-        _regPC += UInt16(opcode.bytes)
-        return 0
+        return exitOpcode(opcode)
     }
 
     open func processLDA(opcode: MOS6502Opcode) -> UInt8 {
-        _regPC += UInt16(opcode.bytes)
-        return 0
+        let o: EfOperand = getOperand(opcode)
+        _regAcc = setNZFlags(value: o.operand)
+        return exitOpcode(opcode, plusCycle: o.plus)
     }
 
     open func processLDX(opcode: MOS6502Opcode) -> UInt8 {
-        _regPC += UInt16(opcode.bytes)
-        return 0
+        let o: EfOperand = getOperand(opcode)
+        _regX = setNZFlags(value: o.operand)
+        return exitOpcode(opcode, plusCycle: o.plus)
     }
 
     open func processLDY(opcode: MOS6502Opcode) -> UInt8 {
-        _regPC += UInt16(opcode.bytes)
-        return 0
+        let o: EfOperand = getOperand(opcode)
+        _regY = setNZFlags(value: o.operand)
+        return exitOpcode(opcode, plusCycle: o.plus)
     }
 
     open func processLSR(opcode: MOS6502Opcode) -> UInt8 {
-        _regPC += UInt16(opcode.bytes)
-        return 0
+        shiftRight(opcode: opcode, carryIn: 0)
     }
 
     open func processNOP(opcode: MOS6502Opcode) -> UInt8 {
-        _regPC += UInt16(opcode.bytes)
-        return 0
+        exitOpcode(opcode)
     }
 
     open func processORA(opcode: MOS6502Opcode) -> UInt8 {
-        _regPC += UInt16(opcode.bytes)
-        return 0
+        let o: EfOperand = getOperand(opcode)
+        _regAcc = setNZFlags(value: _regAcc | o.operand)
+        return exitOpcode(opcode, plusCycle: o.plus)
     }
 
     open func processPHA(opcode: MOS6502Opcode) -> UInt8 {
-        _regPC += UInt16(opcode.bytes)
-        return 0
+        stackPush(byte: _regAcc)
+        return exitOpcode(opcode)
     }
 
     open func processPHP(opcode: MOS6502Opcode) -> UInt8 {
-        _regPC += UInt16(opcode.bytes)
-        return 0
+        stackPush(byte: _regSt)
+        return exitOpcode(opcode)
     }
 
     open func processPLA(opcode: MOS6502Opcode) -> UInt8 {
-        _regPC += UInt16(opcode.bytes)
-        return 0
+        _regAcc = setNZFlags(value: stackPop())
+        return exitOpcode(opcode)
     }
 
     open func processPLP(opcode: MOS6502Opcode) -> UInt8 {
-        _regPC += UInt16(opcode.bytes)
-        return 0
+        _regSt = stackPop()
+        return exitOpcode(opcode)
     }
 
     open func processRLA(opcode: MOS6502Opcode) -> UInt8 {
-        _regPC += UInt16(opcode.bytes)
-        return 0
+        return exitOpcode(opcode)
     }
 
     open func processROL(opcode: MOS6502Opcode) -> UInt8 {
-        _regPC += UInt16(opcode.bytes)
-        return 0
+        shiftLeft(opcode: opcode, carryIn: (_regSt & fC))
     }
 
     open func processROR(opcode: MOS6502Opcode) -> UInt8 {
-        _regPC += UInt16(opcode.bytes)
-        return 0
+        shiftRight(opcode: opcode, carryIn: (_regSt & fC))
     }
 
     open func processRRA(opcode: MOS6502Opcode) -> UInt8 {
-        _regPC += UInt16(opcode.bytes)
-        return 0
+        return exitOpcode(opcode)
     }
 
     open func processRTI(opcode: MOS6502Opcode) -> UInt8 {
         _regSt = stackPop()
-        _regPC = (stackPopAddress() &+ 1)
-        return 0
+        return processRTS(opcode: opcode)
     }
 
     open func processRTS(opcode: MOS6502Opcode) -> UInt8 {
@@ -602,118 +618,101 @@ open class MOS6502CPU: ClockListener {
     }
 
     open func processSAX(opcode: MOS6502Opcode) -> UInt8 {
-        _regPC += UInt16(opcode.bytes)
-        return 0
+        return exitOpcode(opcode)
     }
 
     open func processSBC(opcode: MOS6502Opcode) -> UInt8 {
-        let (op, p1) = getOperand(opcode)
-        addWithCarry(operand: (255 - op))
-        _regPC += UInt16(opcode.bytes)
-        return p1
+        let o: EfOperand = getOperand(opcode)
+        (_regAcc, _regSt) = addWithCarry(leftOperand: _regAcc, rightOperand: ~o.operand, carryIn: (_regSt & fC))
+        return exitOpcode(opcode, plusCycle: o.plus)
     }
 
     open func processSEC(opcode: MOS6502Opcode) -> UInt8 {
         _regSt <+= .Carry
-        _regPC += UInt16(opcode.bytes)
-        return 0
+        return exitOpcode(opcode)
     }
 
     open func processSED(opcode: MOS6502Opcode) -> UInt8 {
         _regSt <+= .Decimal
-        _regPC += UInt16(opcode.bytes)
-        return 0
+        return exitOpcode(opcode)
     }
 
     open func processSEI(opcode: MOS6502Opcode) -> UInt8 {
         _regSt <+= .IRQ
-        _regPC += UInt16(opcode.bytes)
-        return 0
+        return exitOpcode(opcode)
     }
 
     open func processSHX(opcode: MOS6502Opcode) -> UInt8 {
-        _regPC += UInt16(opcode.bytes)
-        return 0
+        return exitOpcode(opcode)
     }
 
     open func processSHY(opcode: MOS6502Opcode) -> UInt8 {
-        _regPC += UInt16(opcode.bytes)
-        return 0
+        return exitOpcode(opcode)
     }
 
     open func processSLO(opcode: MOS6502Opcode) -> UInt8 {
-        _regPC += UInt16(opcode.bytes)
-        return 0
+        return exitOpcode(opcode)
     }
 
     open func processSRE(opcode: MOS6502Opcode) -> UInt8 {
-        _regPC += UInt16(opcode.bytes)
-        return 0
+        return exitOpcode(opcode)
     }
 
     open func processSTA(opcode: MOS6502Opcode) -> UInt8 {
-        _regPC += UInt16(opcode.bytes)
-        return 0
+        exitOpcode(opcode, plusCycle: setOperand(opcode, value: _regAcc))
     }
 
     open func processSTX(opcode: MOS6502Opcode) -> UInt8 {
-        _regPC += UInt16(opcode.bytes)
-        return 0
+        exitOpcode(opcode, plusCycle: setOperand(opcode, value: _regX))
     }
 
     open func processSTY(opcode: MOS6502Opcode) -> UInt8 {
-        _regPC += UInt16(opcode.bytes)
-        return 0
+        exitOpcode(opcode, plusCycle: setOperand(opcode, value: _regY))
     }
 
     open func processTAS(opcode: MOS6502Opcode) -> UInt8 {
-        _regPC += UInt16(opcode.bytes)
-        return 0
+        return exitOpcode(opcode)
     }
 
     open func processTAX(opcode: MOS6502Opcode) -> UInt8 {
-        _regX = _regAcc
-        setNZFlags(value: _regX)
-        _regPC += UInt16(opcode.bytes)
-        return 0
+        _regX = setNZFlags(value: _regAcc)
+        return exitOpcode(opcode)
     }
 
     open func processTAY(opcode: MOS6502Opcode) -> UInt8 {
-        _regY = _regAcc
-        setNZFlags(value: _regY)
-        _regPC += UInt16(opcode.bytes)
-        return 0
+        _regY = setNZFlags(value: _regAcc)
+        return exitOpcode(opcode)
     }
 
     open func processTSX(opcode: MOS6502Opcode) -> UInt8 {
-        _regX = regSP
-        setNZFlags(value: _regX)
-        _regPC += UInt16(opcode.bytes)
-        return 0
+        _regX = setNZFlags(value: regSP)
+        return exitOpcode(opcode)
     }
 
     open func processTXA(opcode: MOS6502Opcode) -> UInt8 {
-        _regAcc = _regX
-        setNZFlags(value: _regAcc)
-        _regPC += UInt16(opcode.bytes)
-        return 0
+        _regAcc = setNZFlags(value: _regX)
+        return exitOpcode(opcode)
     }
 
     open func processTXS(opcode: MOS6502Opcode) -> UInt8 {
         _regSP = (0x0100 | UInt16(_regX))
-        _regPC += UInt16(opcode.bytes)
-        return 0
+        return exitOpcode(opcode)
     }
 
     open func processTYA(opcode: MOS6502Opcode) -> UInt8 {
-        _regAcc = _regY
-        setNZFlags(value: _regAcc)
-        _regPC += UInt16(opcode.bytes)
-        return 0
+        _regAcc = setNZFlags(value: _regY)
+        return exitOpcode(opcode)
     }
 
     open func processXAA(opcode: MOS6502Opcode) -> UInt8 {
-        _regPC += UInt16(opcode.bytes)
-        return 0
+        return exitOpcode(opcode)
+    }
+
+    private var tickAdd:  UInt8 = 0
+    private var tickHold: Bool  = true
+
+    private func setTickAdd(_ delta: UInt8) {
+        while tickAdd != 0 {}
+        tickAdd = delta
     }
 }

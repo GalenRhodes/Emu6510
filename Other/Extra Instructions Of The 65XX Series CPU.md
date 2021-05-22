@@ -1,26 +1,12 @@
 # Extra Instructions Of The 65XX Series CPU
 
-##### By: Adam Vardy (abe0084@infonet.st-johns.nf.ca)
+##### By: Adam Vardy (abe0084@infonet.st-johns.nf.ca)<br/>File created: 22, Aug. 1995... 27, Sept. 1996<br/>Converted to Markdown and corrections/additions by [Galen Rhodes](https://github.com/GalenRhodes) - 20 May 2021
 
-###### [File created: 22, Aug. 1995... 27, Sept. 1996]
-###### [Converted to Markdown by [Galen Rhodes](https://github.com/GalenRhodes) - 20 May 2021]
+The following is a list of 65XX/85XX extra opcodes.  The operation codes for the 6502 CPU fit in a single byte; out of 256 possible combinations, only 151 are "legal."  This text describes the other `256 - 151 = 105` operation codes.  These opcodes are not generally recognized as part of the 6502 instruction set.  They are also referred to as undefined opcodes or undocumented opcodes or non-standard opcodes or unofficial opcodes.  In ["The Commodore 64 Programmer's Reference Guide"](http://cini.classiccmp.org/pdf/Commodore/C64%20Programmer's%20Reference%20Guide.pdf) their hexadecimal values are simply marked as future expansion.  This list of opcodes was compiled with help from [_"The Complete Inner Space Anthology"_ by Karl J. H. Hildon](https://www.amazon.com/Complete-Commodore-Inner-Space-Anthology/dp/096920860X).
 
-The following is a list of 65XX/85XX extra opcodes. The operation codes for the 6502 CPU fit in a single byte; out of 256 possible
-combinations, only 151 are "legal."  This text describes the other `256 - 151 = 105` operation codes. These opcodes are not generally
-recognized as part of the 6502 instruction set. They are also referred to as undefined opcodes or undocumented opcodes or
-non-standard opcodes or unofficial opcodes. In ["The Commodore 64 Programmer's Reference Guide"](http://cini.classiccmp.org/pdf/Commodore/C64%20Programmer's%20Reference%20Guide.pdf) their hexadecimal values are 
-simply marked as future expansion. This list of opcodes was compiled with help from [_"The Complete Inner Space Anthology"_ by Karl 
-J. H. Hildon](https://www.amazon.com/Complete-Commodore-Inner-Space-Anthology/dp/096920860X).
+I have marked off the beginning of the description of each opcode with a few asterisks.  At times, I also included an alternate name in parentheses.  All opcode values are given in hexadecimal.  These hexadecimal values are listed immediately to the right of any sample code.  The lowercase letters found in these examples represent the hex digits that you must provide as the instruction's immediate byte value or as the instruction's destination or source address.  Thus, immediate values and zero-page addresses are referred to as '`ab`'.  For absolute addressing mode the two bytes of an absolute address are referred to as '`cd`' and '`ab`'.
 
-I have marked off the beginning of the description of each opcode with a few asterisks. At times, I also included an alternate name
-in parentheses. All opcode values are given in hexadecimal. These hexadecimal values are listed immediately to the right of any
-sample code. The lowercase letters found in these examples represent the hex digits that you must provide as the instruction's
-immediate byte value or as the instruction's destination or source address. Thus, immediate values and zero-page addresses are
-referred to as '`ab`'. For absolute addressing mode the two bytes of an absolute address are referred to as '`cd`' and '`ab`'.
-
-Execution times for all opcodes are given alongside to the very right of any sample code. A number of the opcodes described here
-combine the operation of two regular 6502 instructions. You can refer to a book on the 6502 instruction set for more information,
-such as which flags a particular instruction affects.
+Execution times for all opcodes are given alongside to the very right of any sample code.  A number of the opcodes described here combine the operation of two regular 6502 instructions.  You can refer to a book on the 6502 instruction set for more information, such as which flags a particular instruction affects.
 
 ### `ASO`        (`SLO`)
 
@@ -148,9 +134,7 @@ ADC $030C
 
 ### `AXS`        (`SAX`)
 
-`AXS` `AND`s the contents of the `A` and `X` registers (without changing the contents of either register) and stores the result in
-memory.
-`AXS` does not affect any flags in the processor status register.
+`AXS` `AND`s the contents of the `A` and `X` registers (without changing the contents of either register) and stores the result in memory.  `AXS` does not affect any flags in the processor status register.
 
 Supported modes:
 
@@ -344,8 +328,7 @@ AND #$44
 
 ### `OAL`
 
-This opcode ORs the `A` register with `#$EE`, `AND`s the result with an immediate value, and then stores the result in both `A`
-and `X`.
+This opcode ORs the `A` register with `#$EE`, `AND`s the result with an immediate value, and then stores the result in both `A` and `X`.
 
 One supported mode:
 
@@ -369,11 +352,9 @@ TAX
 
 ### `SAX`
 
-`SAX` `AND`s the contents of the `A` and `X` registers (leaving the contents of `A` intact), subtracts an immediate value, and then
-stores the result in `X`. ... `A` few points might be made about the action of subtracting an immediate value. It actually works
-just like the `CMP` instruction, except that `CMP` does not store the result of the subtraction it performs in any register. 
-This subtract operation is not affected by the state of the Carry flag, though it does affect the Carry flag. It does not affect the
-Overflow flag.
+`SAX` `AND`s the contents of the `A` and `X` registers (leaving the contents of `A` intact), subtracts an immediate value, and then stores the result in `X`.
+
+A few points might be made about the action of subtracting an immediate value.  It actually works just like the `CMP` instruction, except that `CMP` does not store the result of the subtraction it performs in any register.  This subtract operation is not affected by the state of the Carry flag, though it does affect the Carry flag.  It does not affect the Overflow flag.
 
 One supported mode:
 
@@ -403,40 +384,29 @@ Note: Memory location `$02` would not be altered by the `SAX` opcode.
 
 ### `NOP`
 
-`NOP` performs no operation. Opcodes: `1A`, `3A`, `5A`, `7A`, `DA`, `FA`. Takes 2 cycles to execute.
+`NOP` performs no operation.  Opcodes: `1A`, `3A`, `5A`, `7A`, `DA`, `FA`.  Takes 2 cycles to execute.
 
 ### `SKB`
 
-`SKB` stands for skip next byte. Opcodes: `80`, `82`, `C2`, `E2`, `04`, `14`, `34`, `44`, `54`, `64`, `74`, `D4`, `F4`. Takes 2, 3,
-or 4 cycles to execute.
+`SKB` stands for skip next byte.  Opcodes: `80`, `82`, `C2`, `E2`, `04`, `14`, `34`, `44`, `54`, `64`, `74`, `D4`, `F4`.  Takes 2, 3, or 4 cycles to execute.
 
 ### `SKW`
 
-`SKW` skips next word (two bytes). Opcodes: `0C`, `1C`, `3C`, `5C`, `7C`, `DC`, `FC`. Takes 4 cycles to execute.
+`SKW` skips next word (two bytes).  Opcodes: `0C`, `1C`, `3C`, `5C`, `7C`, `DC`, `FC`.  Takes 4 cycles to execute.
 
-To be dizzyingly precise, `SKW` actually performs a read operation. It's just that the value read is not stored in any register.
-Further, opcode `0C` uses the absolute addressing mode. The two bytes which follow it form the absolute address. All the other `SKW`
-opcodes use the absolute indexed `X` addressing mode. If a page boundary is crossed, the execution time of one of these `SKW`
-opcodes is upped to 5 clock cycles.
---------------------------------------------------------------------------
+To be dizzyingly precise, `SKW` actually performs a read operation.  It's just that the value read is not stored in any register.  Further, opcode `0C` uses the absolute addressing mode.  The two bytes which follow it form the absolute address.  All the other `SKW` opcodes use the absolute indexed `X` addressing mode.  If a page boundary is crossed, the execution time of one of these `SKW` opcodes is upped to 5 clock cycles.
 
-The following opcodes were discovered and named exclusively by the author.
-(Or so it was thought before.)
+## The following opcodes were discovered and named exclusively by the author.  (Or so it was thought before.)
 
 ### `HLT`
 
-`HLT` crashes the microprocessor. When this opcode is executed, program execution ceases. No hardware interrupts will execute
-either. The author has characterized this instruction as a halt instruction since this is the most straightforward explanation for
-this opcode's behaviour. Only a reset will restart execution. This opcode leaves no trace of any operation performed!  No registers
-affected.
+`HLT` crashes the microprocessor.  When this opcode is executed, program execution ceases.  No hardware interrupts will execute either.  The author has characterized this instruction as a halt instruction since this is the most straightforward explanation for this opcode's behavior.  Only a reset will restart execution.  This opcode leaves no trace of any operation performed!  No registers affected.
 
 Opcodes: `02`, `12`, `22`, `32`, `42`, `52`, `62`, `72`, `92`, `B2`, `D2`, `F2`.
 
 ### `TAS`
 
-This opcode `AND`s the contents of the `A` and `X` registers (without changing the contents of either register) and transfers the
-result to the stack pointer. It then `AND`s that result with the contents of the high byte of the target address of the operand +1
-and stores that final result in memory.
+This opcode `AND`s the contents of the `A` and `X` registers (without changing the contents of either register) and transfers the result to the stack pointer.  It then `AND`s that result with the contents of the high byte of the target address of the `operand + 1` and stores that final result in memory.
 
 One supported mode:
 
@@ -468,9 +438,7 @@ LDX $02
 
 __Note:__ Memory location `$02` would not be altered by the `TAS` opcode.
 
-Above I used the phrase 'the high byte of the target address of the operand +1'. By the words target address, I mean the un-indexed
-address, the one specified explicitly in the operand. The high byte is then the second byte after the opcode (`ab`). So we'll
-shorten that phrase to `AB+1`.
+Above I used the phrase 'the high byte of the target address of the `operand + 1`'.  By the words target address, I mean the un-indexed address, the one specified explicitly in the operand.  The high byte is then the second byte after the opcode (`ab`).  So we'll shorten that phrase to `AB+1`.
 
 ### `SAY`
 
@@ -526,7 +494,7 @@ PLA
 
 ### `AXA`
 
-This opcode stores the result of `A` `AND` `X` `AND` the high byte of the target address of the operand +1 in memory.
+This opcode stores the result of `A` `AND` `X` `AND` the high byte of the target address of the `operand + 1` in memory.
 
 Supported modes:
 
@@ -557,23 +525,15 @@ __Note:__ Memory location `$02` would not be altered by the `AXA` opcode.
 
 #### The following notes apply to the above four opcodes: `TAS`, `SAY`, `XAS`, `AXA`.
 
-None of these opcodes affect the accumulator, the `X` register, the `Y` register, or the processor status register! The author 
-has no explanation for the complexity of these instructions. It is hard to comprehend how the microprocessor could handle the 
-convoluted sequence of events which appears to occur while executing one of these opcodes. A partial explanation for what is 
-going on is that these instructions appear to be corruptions of other instructions. For example, the opcode `SAY` would have been
-one of the addressing modes of the standard instruction `STY` (absolute indexed `X`) were it not for the fact that the normal
-operation of this instruction is impaired in this particular instance.
+None of these opcodes affect the accumulator, the `X` register, the `Y` register, or the processor status register! The author has no explanation for the complexity of these instructions.  It is hard to comprehend how the microprocessor could handle the convoluted sequence of events which appears to occur while executing one of these opcodes.  A partial explanation for what is going on is that these instructions appear to be corruptions of other instructions.  For example, the opcode `SAY` would have been one of the addressing modes of the standard instruction `STY` (absolute indexed `X`) were it not for the fact that the normal operation of this instruction is impaired in this particular instance.
 
-One irregularity uncovered is that sometimes the actual value is stored in memory, and the `AND` with `<ab+1>` part drops off (
-ex. `SAY` becomes true `STY`). This happens very infrequently. The behaviour appears to be connected with the video display. For 
-example, it never seems to occur if either the screen is blanked or C128 2MHz mode is enabled.
+One irregularity uncovered is that sometimes the actual value is stored in memory, and the `AND` with `<ab+1>` part drops off (ex.  `SAY` becomes true `STY`).  This happens very infrequently.  The behavior appears to be connected with the video display.  For example, it never seems to occur if either the screen is blanked or C128 2MHz mode is enabled.
 
 ##### --- Imported example ---
 
-Here is a demo program to illustrate the above effect. `SYS 8200` to try it.
+Here is a demo program to illustrate the above effect.  `SYS 8200` to try it.
 
-There is no exit, so you'll have to hit Stop-Restore to quit. And you may want to clear the screen before running it. For contrast,
-there is a second routine which runs during idle state display. Use `SYS 8211` for it.
+There is no exit, so you'll have to hit Stop-Restore to quit.  And you may want to clear the screen before running it.  For contrast, there is a second routine which runs during idle state display.  Use `SYS 8211` for it.
 
 After trying the second routine, check it out again using `POKE 53269,255` to enable sprites.
 
@@ -585,16 +545,13 @@ end
 
 ##### --- Text import end ---
 
-__WARNING:__ If the target address crosses a page boundary because of indexing, the instruction may not store at the intended
-address. It may end up storing in zero-page, or another address altogether (page=value stored). Apparently certain internal 65XX
-registers are being overridden. The whole scheme behind this erratic behaviour is very complex and strange.
+__WARNING:__ If the target address crosses a page boundary because of indexing, the instruction may not store at the intended address.  It may end up storing in zero-page, or another address altogether (page=value stored).  Apparently certain internal 65XX registers are being overridden.  The whole scheme behind this erratic behaviour is very complex and strange.
 
-_And continuing with the list..._
+### _And continuing with the list..._
 
 ### `ANC`
 
-`ANC` `AND`s the contents of the `A` register with an immediate value and then moves bit 7 of `A` into the Carry flag. This opcode
-works basically identically to `AND #immed`. except that the Carry flag is set to the same state that the Negative flag is set to.
+`ANC` `AND`s the contents of the `A` register with an immediate value and then moves bit 7 of `A` into the Carry flag.  This opcode works basically identically to `AND #immed`.  except that the Carry flag is set to the same state that the Negative flag is set to.
 
 One supported mode:
 
@@ -607,12 +564,11 @@ Assembly      | Machine Code | No. Cycles
 
 ### OPCODE `89`
 
-Opcode `89` is another `SKB` instruction. It requires 2 cycles to execute.
+Opcode `89` is another `SKB` instruction.  It requires 2 cycles to execute.
 
 ### `LAS`
 
-This opcode `AND`s the contents of a memory location with the contents of the stack pointer register and stores the result in the
-accumulator, the `X` register, and the stack pointer. Affected flags: N Z.
+This opcode `AND`s the contents of a memory location with the contents of the stack pointer register and stores the result in the accumulator, the `X` register, and the stack pointer.  Affected flags: N Z.
 
 One supported mode:
 
@@ -624,81 +580,53 @@ Assembly      | Machine Code | No. Cycles
 
 ### OPCODE `EB`
 
-Opcode `EB` seems to work exactly like `SBC #immediate`. Takes 2 cycles.
+Opcode `EB` seems to work exactly like `SBC #immediate`.  Takes 2 cycles.
 
 That is the end of the list.
 
-This list is a full and complete list of all undocumented opcodes, every last hex value. It provides complete and thorough
-information, and it also corrects some incorrect information found elsewhere. The opcodes `MKA` and `MKX` (also known as `TSTA`
-and `TSTX`) as described in "The Complete Commodore Inner Space Anthology" do not exist. Also, it is erroneously indicated there 
-that the instructions `ASO`, `RLA`, `LSE`, `RRA` have an immediate addressing mode.  (`RLA #ab` would be `ANC #ab`.)
+This list is a full and complete list of all undocumented opcodes, every last hex value.  It provides complete and thorough information, and it also corrects some incorrect information found elsewhere.  The opcodes `MKA` and `MKX` (also known as `TSTA` and `TSTX`) as described in "The Complete Commodore Inner Space Anthology" do not exist.  Also, it is erroneously indicates that the instructions `ASO`, `RLA`, `LSE`, `RRA` have an immediate addressing mode.  (`RLA #ab` would be `ANC #ab`.)
 
-[Recent additions to this text file]
+## Recent additions to this text file
 
 Here are some other more scrutinizing observations.
 
-The opcode `ARR` operates more complexly than actually described in the list above. Here is a brief rundown on this. The following
-assumes the decimal flag is clear. You see, the sub-instruction for `ARR` (``$6B``) is in fact `ADC` (`$69`), not `AND`. While 
-`ADC` is not performed, some of the `ADC` mechanics are evident. Like `ADC`, `ARR` affects the overflow flag. The following 
-effects occur after `AND`ing but before `ROR`ing. The V flag is set to the result of exclusive `OR`ing bit 7 with bit 6. 
+The opcode `ARR` operates more complexly than actually described in the list above.  Here is a brief rundown on this.  The following assumes the decimal flag is clear.  You see, the sub-instruction for `ARR` (``$6B``) is in fact `ADC` (`$69`), not `AND`.  While `ADC` is not performed, some of the `ADC` mechanics are evident.  Like `ADC`, `ARR` affects the overflow flag.  The following effects occur after `AND`ing but before `ROR`ing.  The V flag is set to the result of exclusive `OR`ing bit 7 with bit 6.
 
-Unlike `ROR`, bit 0 does not go into the carry flag. The state of bit 7 is exchanged with the carry flag. Bit 0 is lost. All of 
-this may appear strange, but it makes sense if you consider the probable internal operations of `ADC` itself.
+Unlike `ROR`, bit 0 does not go into the carry flag.  The state of bit 7 is exchanged with the carry flag.  Bit 0 is lost.  All of this may appear strange, but it makes sense if you consider the probable internal operations of `ADC` itself.
 
-`SKB` opcodes `82`, `C2`, `E2` may be `HLT`s. Since only one source claims this, and no other sources corroborate this, it must be
-true on very few machines. On all others, these opcodes always perform no operation.
+`SKB` opcodes `82`, `C2`, `E2` may be `HLT`s.  Since only one source claims this, and no other sources corroborate this, it must be true on very few machines.  On all others, these opcodes always perform no operation.
 
-`LAS` is suspect. This opcode is possibly unreliable.
+`LAS` is suspect.  This opcode is possibly unreliable.
 
 ### OPCODE BIT-PATTERN: `10x0 1011`
 
-Now it is time to discuss `XAA` (`$8B`) and `OAL` (`$AB`). A fair bit of controversy has surrounded
-these two opcodes. There are two good reasons for this. 
+Now it is time to discuss `XAA` (`$8B`) and `OAL` (`$AB`).  A fair bit of controversy has surrounded these two opcodes.  There are two good reasons for this.
 
-1) They are rather weird in operation.
-2) They do operate differently on different machines. Highly variable.
+ 1) They are rather weird in operation.
+ 2) They do operate differently on different machines.  Highly variable.
 
-Here is the basic operation. `OAL` This opcode ORs the `A` register with #xx, `AND`s the result with an immediate value, and then
-stores the result in both `A` and `X`.
+Here is the basic operation.  `OAL` This opcode ORs the `A` register with #xx, `AND`s the result with an immediate value, and then stores the result in both `A` and `X`.
 
-On my 128, xx may be `EE`,`EF`,`FE`, OR `FF`. These possibilities appear to depend on three factors: the `X` register, PC, and the
-previous instruction executed. Bit 0 is ORed from x, and also from `PCH`. As for `XAA`, on my 128 this opcode appears to work
-exactly as described in the list.
+On my 128, xx may be `EE`,`EF`,`FE`, OR `FF`.  These possibilities appear to depend on three factors: the `X` register, PC, and the previous instruction executed.  Bit 0 is ORed from x, and also from `PCH`.  As for `XAA`, on my 128 this opcode appears to work exactly as described in the list.
 
-On my 64, `OAL` produces all sorts of values for xx: `00`,`04`,`06`,`80`, etc... A rough scenario I worked out to explain this is
-here. The constant value `EE` disappears entirely. Instead of ORing with `EE`, the accumulator is ORed with certain bits of `X` and
-also ORed with certain bits of another "register" (nature unknown, whether it be the data bus, or something else). However, if 
-`OAL` is preceded by certain other instructions like `NOP`, the constant value `EE` reappears, and the foregoing does not take place.
+On my 64, `OAL` produces all sorts of values for xx: `00`,`04`,`06`,`80`, etc...  A rough scenario I worked out to explain this is here.  The constant value `EE` disappears entirely.  Instead of ORing with `EE`, the accumulator is ORed with certain bits of `X` and also ORed with certain bits of another "register" (nature unknown, whether it be the data bus, or something else).  However, if `OAL` is preceded by certain other instructions like `NOP`, the constant value `EE` reappears, and the foregoing does not take place.
 
-On my 64, `XAA` works like this. While `X` is transferred to `A`, bit 0 and bit 4 are not. Instead, these bits are ANDed with those
-bits from `A`, and the result is stored in `A`.
+On my 64, `XAA` works like this.  While `X` is transferred to `A`, bit 0 and bit 4 are not.  Instead, these bits are ANDed with those bits from `A`, and the result is stored in `A`.
 
-There may be many variations in the behaviour of both opcodes. `XAA #$00` or `OAL #$00` are likely quite reliable in any case. It
-seems clear that the video chip (i.e., VIC-II) bears responsibility for some small part of the anomaly at least. Beyond that,
-the issue is unclear.
+There may be many variations in the behaviour of both opcodes.  `XAA #$00` or `OAL #$00` are likely quite reliable in any case.  It seems clear that the video chip (i.e., VIC-II) bears responsibility for some small part of the anomaly at least.  Beyond that, the issue is unclear.
 
-One idea I'll just throw up in the air about why the two opcodes behave as they do is this observation. While other opcodes
-like `4B` and `6B` perform `AND` as their first step, `8B` and `AB` do not. Perhaps this difference leads to some internal 
-conflict in the microprocessor. Besides being subject to "noise", the actual base operations do not vary.
+One idea I'll just throw up in the air about why the two opcodes behave as they do is this observation.  While other opcodes like `4B` and `6B` perform `AND` as their first step, `8B` and `AB` do not.  Perhaps this difference leads to some internal conflict in the microprocessor.  Besides being subject to "noise", the actual base operations do not vary.
 
-All of the opcodes in this list (at least up to the dividing line) use the naming convention from the CCISA Anthology book. There is
-another naming convention used, for example in the first issue of C=Hacking. The only assembler I know of that supports undocumented
-opcodes is Power Assembler. And it uses the same naming conventions as used here.
+All of the opcodes in this list (at least up to the dividing line) use the naming convention from the CCISA Anthology book.  There is another naming convention used, for example in the first issue of C=Hacking.  The only assembler I know of that supports undocumented opcodes is Power Assembler.  And it uses the same naming conventions as used here.
 
-One note on a different topic. A small error has been pointed out in the 64 Programmers Reference Guide with the instruction set
-listing. In the last row, in the last column of the two instructions `AND` and `ORA` there should be an asterisk, just as there is
-with `ADC`. That is the indirect,Y addressing mode. In another table several pages later correct information is given.
+One note on a different topic.  A small error has been pointed out in the 64 Programmers Reference Guide with the instruction set listing.  In the last row, in the last column of the two instructions `AND` and `ORA` there should be an asterisk, just as there is with `ADC`.  That is the indirect,Y addressing mode.  In another table several pages later correct information is given.
 
-_(A correction:  There was one error in this document originally. One addressing mode for `LAX` was given as `LAX ab,X`. This should
-have been `LAX ab,Y` (`B7`). Also note that Power Assembler apparently has this same error, likely because both it and this document
-derives first from the same source as regards these opcodes. Coding `LAX $00,X` is accepted and produces the output `B7 00`.)_
+_(A correction:  There was one error in this document originally.  One addressing mode for `LAX` was given as `LAX ab,X`.  This should have been `LAX ab,Y` (`B7`).  Also note that Power Assembler apparently has this same error, likely because both it and this document derives first from the same source as regards these opcodes.  Coding `LAX $00,X` is accepted and produces the output `B7 00`.)_
 
 ## References
 
-- [Joel Shepherd. _"Extra Instructions"_ COMPUTE!, October 1983 - Page
-  261](http://www.commodore.ca/gallery/magazines/compute/Compute-041-03.pdf).
-- [Jim Butterfield. _"Strange Opcodes"_ COMPUTE, March 1993 - Page
-  G-18](https://www.commodore.ca/gallery/magazines/compute/Compute-150-02.pdf).
-- [Raymond Quirling. _"6510 Opcodes"_ The Transactor, March 1986 - Page
-  58](http://www.commodore.ca/wp-content/uploads/2015/12/the_transactor_vol06_05_1986_mar-www-commodore-ca.pdf).
+- [Joel Shepherd. _"Extra Instructions"_ COMPUTE!, October 1983 - Page 261](http://www.commodore.ca/gallery/magazines/compute/Compute-041-03.pdf).
+- [Jim Butterfield. _"Strange Opcodes"_ COMPUTE, March 1993 - Page G-18](https://www.commodore.ca/gallery/magazines/compute/Compute-150-02.pdf).
+- [Raymond Quirling. _"6510 Opcodes"_ The Transactor, March 1986 - Page 58](http://www.commodore.ca/wp-content/uploads/2015/12/the_transactor_vol06_05_1986_mar-www-commodore-ca.pdf).
 - [John West, Marko Mäkelä. _'64doc'_ file, 1994/06/03](http://web.mit.edu/jhawk/mnt/ss.b/vice-0.12.0/doc/64doc).
+
