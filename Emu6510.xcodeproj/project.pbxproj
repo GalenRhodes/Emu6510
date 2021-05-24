@@ -23,7 +23,7 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
-		1117D01E608FC6DDAC17F538 /* MOS6502Clock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1117D1D72A72CD2D0986510A /* MOS6502Clock.swift */; };
+		1117D01E608FC6DDAC17F538 /* MOS6502ClockInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1117D1D72A72CD2D0986510A /* MOS6502ClockInfo.swift */; };
 		1117D1DF2F51DF1DC7732233 /* Emu6510.h in Headers */ = {isa = PBXBuildFile; fileRef = 1117D6B20123D0B3661713BB /* Emu6510.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		1117D314FA4DE9769DF68AC7 /* MOS6502OpcodeList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1117D7202896B7C80F43C219 /* MOS6502OpcodeList.swift */; };
 		1117D3F7B0EB0722AC2C2E80 /* ParseTemplate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1117DA06963CF6ABF5626BD1 /* ParseTemplate.swift */; };
@@ -42,6 +42,7 @@
 		83637968251CF5D100657A3B /* Emu6510.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8363795E251CF5D000657A3B /* Emu6510.framework */; };
 		8363796D251CF5D100657A3B /* Emu6510Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8363796C251CF5D100657A3B /* Emu6510Tests.swift */; };
 		836379A0251CF98300657A3B /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8363798E251CF95E00657A3B /* main.swift */; };
+		838AB2FE265C35D5007C5198 /* libiconv.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 83BF6FD6264D85C50061DEA7 /* libiconv.tbd */; };
 		83BF6FD2264D81CB0061DEA7 /* Rubicon in Frameworks */ = {isa = PBXBuildFile; productRef = 83637983251CF7F000657A3B /* Rubicon */; };
 		83BF6FD3264D81CB0061DEA7 /* PGDocFixer in Frameworks */ = {isa = PBXBuildFile; productRef = 836379A5251CF9B500657A3B /* PGDocFixer */; };
 		83BF6FD4264D81CB0061DEA7 /* Rubicon in Frameworks */ = {isa = PBXBuildFile; productRef = 8300370F25276B540077EB13 /* Rubicon */; };
@@ -115,7 +116,7 @@
 		1117D079B08025E28C413EB2 /* 65c02_all_2.csv */ = {isa = PBXFileReference; lastKnownFileType = file.csv; path = 65c02_all_2.csv; sourceTree = "<group>"; };
 		1117D0C9AEBDD01E5F83C6ED /* MOS6502Addressable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MOS6502Addressable.swift; sourceTree = "<group>"; };
 		1117D1445B3F95C2E02AC4EE /* MOS6502SystemMemoryMap.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MOS6502SystemMemoryMap.swift; sourceTree = "<group>"; };
-		1117D1D72A72CD2D0986510A /* MOS6502Clock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MOS6502Clock.swift; sourceTree = "<group>"; };
+		1117D1D72A72CD2D0986510A /* MOS6502ClockInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MOS6502ClockInfo.swift; sourceTree = "<group>"; };
 		1117D3274BCB596FEA6024F4 /* 65c02_invalid.csv */ = {isa = PBXFileReference; lastKnownFileType = file.csv; path = 65c02_invalid.csv; sourceTree = "<group>"; };
 		1117D3E72888D0903471B65D /* opcodes.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = opcodes.txt; sourceTree = "<group>"; };
 		1117D434C092A48EAD21ED33 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.info; path = Info.plist; sourceTree = "<group>"; };
@@ -157,6 +158,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				838AB2FE265C35D5007C5198 /* libiconv.tbd in Frameworks */,
 				83BF6FD2264D81CB0061DEA7 /* Rubicon in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -279,7 +281,7 @@
 				1117D0C9AEBDD01E5F83C6ED /* MOS6502Addressable.swift */,
 				1117D1445B3F95C2E02AC4EE /* MOS6502SystemMemoryMap.swift */,
 				1117D04AD73A21CA46DF54F4 /* MOS6502Events.swift */,
-				1117D1D72A72CD2D0986510A /* MOS6502Clock.swift */,
+				1117D1D72A72CD2D0986510A /* MOS6502ClockInfo.swift */,
 				1117DD216A3D69DD6C0CB656 /* MOS6502CPU.swift */,
 				1117DBFEE46D2512608F39A4 /* MOS6502Error.swift */,
 				1117DF59C20474D525743C90 /* Tools.swift */,
@@ -464,8 +466,8 @@
 			);
 			mainGroup = 83637954251CF5D000657A3B;
 			packageReferences = (
-				83637982251CF7F000657A3B /* XCRemoteSwiftPackageReference "Rubicon.git" */,
-				836379A4251CF9B500657A3B /* XCRemoteSwiftPackageReference "PGDocFixer.git" */,
+				83637982251CF7F000657A3B /* XCRemoteSwiftPackageReference "Rubicon" */,
+				836379A4251CF9B500657A3B /* XCRemoteSwiftPackageReference "PGDocFixer" */,
 			);
 			productRefGroup = 8363795F251CF5D000657A3B /* Products */;
 			projectDirPath = "";
@@ -510,7 +512,7 @@
 				1117D8CF96162EAF6F137531 /* MOS6502Addressable.swift in Sources */,
 				1117DBEACD9739837D9BC745 /* MOS6502SystemMemoryMap.swift in Sources */,
 				1117DDECB72F225763EF9CE5 /* MOS6502Events.swift in Sources */,
-				1117D01E608FC6DDAC17F538 /* MOS6502Clock.swift in Sources */,
+				1117D01E608FC6DDAC17F538 /* MOS6502ClockInfo.swift in Sources */,
 				1117DF2BD3907462AA5ED330 /* MOS6502CPU.swift in Sources */,
 				1117D7C55894788A99B14162 /* MOS6502Error.swift in Sources */,
 				1117D8D0049B0224E812D53A /* Tools.swift in Sources */,
@@ -910,7 +912,7 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		83637982251CF7F000657A3B /* XCRemoteSwiftPackageReference "Rubicon.git" */ = {
+		83637982251CF7F000657A3B /* XCRemoteSwiftPackageReference "Rubicon" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/GalenRhodes/Rubicon.git";
 			requirement = {
@@ -918,7 +920,7 @@
 				minimumVersion = 0.2.13;
 			};
 		};
-		836379A4251CF9B500657A3B /* XCRemoteSwiftPackageReference "PGDocFixer.git" */ = {
+		836379A4251CF9B500657A3B /* XCRemoteSwiftPackageReference "PGDocFixer" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/GalenRhodes/PGDocFixer.git";
 			requirement = {
@@ -931,22 +933,22 @@
 /* Begin XCSwiftPackageProductDependency section */
 		8300370F25276B540077EB13 /* Rubicon */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 83637982251CF7F000657A3B /* XCRemoteSwiftPackageReference "Rubicon.git" */;
+			package = 83637982251CF7F000657A3B /* XCRemoteSwiftPackageReference "Rubicon" */;
 			productName = Rubicon;
 		};
 		83637983251CF7F000657A3B /* Rubicon */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 83637982251CF7F000657A3B /* XCRemoteSwiftPackageReference "Rubicon.git" */;
+			package = 83637982251CF7F000657A3B /* XCRemoteSwiftPackageReference "Rubicon" */;
 			productName = Rubicon;
 		};
 		836379A5251CF9B500657A3B /* PGDocFixer */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 836379A4251CF9B500657A3B /* XCRemoteSwiftPackageReference "PGDocFixer.git" */;
+			package = 836379A4251CF9B500657A3B /* XCRemoteSwiftPackageReference "PGDocFixer" */;
 			productName = PGDocFixer;
 		};
 		836379C5251D150A00657A3B /* Rubicon */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 83637982251CF7F000657A3B /* XCRemoteSwiftPackageReference "Rubicon.git" */;
+			package = 83637982251CF7F000657A3B /* XCRemoteSwiftPackageReference "Rubicon" */;
 			productName = Rubicon;
 		};
 /* End XCSwiftPackageProductDependency section */

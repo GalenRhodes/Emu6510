@@ -24,29 +24,32 @@ let sourcePath   = "Sources/Emu6510"
 
 let opcodeList: [[String]] = getOpcodes()
 
-var data: [String: [(String, String)]] = [:]
+func illegalOpcodeList(_ opcodeList: [[String]]) {
+    var data: [String: [(String, String)]] = [:]
 
-for o in opcodeList.filter { s in s[5] == "true" } {
-    if var d: [(String, String)] = data[o[1]] {
-        d <+ (o[2], o[0])
-        data[o[1]] = d
-    }
-    else {
-        var d: [(String, String)] = []
-        d <+ (o[2], o[0])
-        data[o[1]] = d
-    }
-}
-
-for k in data.keys.sorted() {
-    if let d = data[k] {
-        print("\(k): ", terminator: "")
-        var b = true
-        for e in d.sorted { t1, t2 in (t1.0 < t2.0) } {
-            if b { b = false } else { print(", ", terminator: "") }
-            print("%-4s (%4s)".format(e.0, e.1), terminator: "")
+    for o in opcodeList.filter({ s in s[5] == "true" }) {
+        if var d: [(String, String)] = data[o[1]] {
+            d <+ (o[2], o[0])
+            data[o[1]] = d
         }
-        print()
+        else {
+            var d: [(String, String)] = []
+            d <+ (o[2], o[0])
+            data[o[1]] = d
+        }
+    }
+
+    for k in data.keys.sorted() {
+        if let d = data[k] {
+            print("\(k): ", terminator: "")
+            var b = true
+            for e in d.sorted(by: { t1, t2 in (t1.0 < t2.0) }) {
+                if b { b = false }
+                else { print(", ", terminator: "") }
+                print("%-4s (%4s)".format(e.0, e.1), terminator: "")
+            }
+            print()
+        }
     }
 }
 

@@ -34,16 +34,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="87075da3-fef8-4e0e-a558-4c45fa2c2b82" name="Default Changelist" comment="Added &quot;6502_6510_8500_8502 Opcodes.md&quot;">
-      <change afterPath="$PROJECT_DIR$/Other/IllegalOpcodeList.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Sources/Emu6510/MOS6502ClockInfo.swift" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/csv-plugin.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/csv-plugin.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Emu6510.xcodeproj/project.pbxproj" beforeDir="false" afterPath="$PROJECT_DIR$/Emu6510.xcodeproj/project.pbxproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Other/6502_6510_8500_8502 Opcodes.md" beforeDir="false" afterPath="$PROJECT_DIR$/Other/6502_6510_8500_8502 Opcodes.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Emu6510.xcodeproj/xcuserdata/grhodes.xcuserdatad/xcschemes/xcschememanagement.plist" beforeDir="false" afterPath="$PROJECT_DIR$/Emu6510.xcodeproj/xcuserdata/grhodes.xcuserdatad/xcschemes/xcschememanagement.plist" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Other/Extra Instructions Of The 65XX Series CPU.md" beforeDir="false" afterPath="$PROJECT_DIR$/Other/Extra Instructions Of The 65XX Series CPU.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Sources/Emu6510/MOS6502CPU.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Sources/Emu6510/MOS6502CPU.swift" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Sources/Emu6510/MOS6502Flag.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Sources/Emu6510/MOS6502Flag.swift" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Sources/Emu6510/Tools.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Sources/Emu6510/Tools.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Sources/Emu6510/MOS6502Clock.swift" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Sources/Emu6510/MOS6502Mnemonic.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Sources/Emu6510/MOS6502Mnemonic.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Sources/Emu6510/MOS6502OpcodeList.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Sources/Emu6510/MOS6502OpcodeList.swift" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Sources/Tools/main.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Sources/Tools/main.swift" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -111,9 +111,9 @@
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="nodejs_package_manager_path" value="npm" />
-    <property name="settings.editor.selected.configurable" value="preferences.sourceCode.Markdown" />
+    <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
   </component>
-  <component name="RunManager" selected="Application.Tools">
+  <component name="RunManager" selected="Application.Emu6510">
     <configuration default="true" type="Application" factoryName="Application">
       <method v="2">
         <option name="Make" enabled="true" />
@@ -121,10 +121,10 @@
     </configuration>
     <list>
       <item itemvalue="Application.Emu6510" />
+      <item itemvalue="XCTest.Emu6510 Tests" />
       <item itemvalue="Application.Tools" />
       <item itemvalue="Application.Emu6510 - All" />
       <item itemvalue="Application.DocFixer" />
-      <item itemvalue="XCTest.Emu6510 Tests" />
     </list>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
@@ -180,7 +180,8 @@
       <workItem from="1621342321648" duration="16859000" />
       <workItem from="1621426636162" duration="18283000" />
       <workItem from="1621453892356" duration="60545000" />
-      <workItem from="1621650595933" duration="1354000" />
+      <workItem from="1621650595933" duration="1584000" />
+      <workItem from="1621797047335" duration="24033000" />
     </task>
     <task id="LOCAL-00001" summary="Redo">
       <created>1600997267219</created>
@@ -329,7 +330,14 @@
       <option name="project" value="LOCAL" />
       <updated>1621612436755</updated>
     </task>
-    <option name="localTasksCounter" value="22" />
+    <task id="LOCAL-00022" summary="Added &quot;6502_6510_8500_8502 Opcodes.md&quot;">
+      <created>1621652025165</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1621652025165</updated>
+    </task>
+    <option name="localTasksCounter" value="23" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

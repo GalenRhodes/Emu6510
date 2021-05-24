@@ -120,7 +120,7 @@ public let mos6502OpcodeList: [MOS6502Opcode] = [
     MOS6502Opcode(opcode: 0x5f, mnemonic: .SRE, addressingMode: .ABSX, cycles: 3, plus1: false, illegal: true,  affectedFlags: [ .Carry, .Zero, .Negative ]),
     MOS6502Opcode(opcode: 0x60, mnemonic: .RTS, addressingMode: .IMP,  cycles: 6, plus1: false, illegal: false, affectedFlags: []),
     MOS6502Opcode(opcode: 0x61, mnemonic: .ADC, addressingMode: .INDX, cycles: 6, plus1: false, illegal: false, affectedFlags: [ .Carry, .Zero, .Overflow, .Negative ]),
-    MOS6502Opcode(opcode: 0x62, mnemonic: .KIL, addressingMode: .IMP,  cycles: 0, plus1: false, illegal: true,  affectedFlags: []),
+    MOS6502Opcode(opcode: 0x62, mnemonic: .KIL, addressingMode: .IMP,  cycles: 2, plus1: false, illegal: true,  affectedFlags: []),
     MOS6502Opcode(opcode: 0x63, mnemonic: .RRA, addressingMode: .INDX, cycles: 3, plus1: false, illegal: true,  affectedFlags: [ .Carry, .Zero, .Overflow, .Negative ]),
     MOS6502Opcode(opcode: 0x64, mnemonic: .NOP, addressingMode: .ZP,   cycles: 3, plus1: false, illegal: true,  affectedFlags: []),
     MOS6502Opcode(opcode: 0x65, mnemonic: .ADC, addressingMode: .ZP,   cycles: 3, plus1: false, illegal: false, affectedFlags: [ .Carry, .Zero, .Overflow, .Negative ]),
@@ -153,11 +153,11 @@ public let mos6502OpcodeList: [MOS6502Opcode] = [
     MOS6502Opcode(opcode: 0x80, mnemonic: .NOP, addressingMode: .IMM,  cycles: 2, plus1: false, illegal: true,  affectedFlags: []),
     MOS6502Opcode(opcode: 0x81, mnemonic: .STA, addressingMode: .INDX, cycles: 6, plus1: false, illegal: false, affectedFlags: []),
     MOS6502Opcode(opcode: 0x82, mnemonic: .KIL, addressingMode: .IMP,  cycles: 0, plus1: false, illegal: true,  affectedFlags: []),
-    MOS6502Opcode(opcode: 0x83, mnemonic: .SAX, addressingMode: .INDX, cycles: 3, plus1: false, illegal: true,  affectedFlags: []),
+    MOS6502Opcode(opcode: 0x83, mnemonic: .SAX, addressingMode: .INDX, cycles: 3, plus1: false, illegal: true,  affectedFlags: []), // This is called ASX in other sources.
     MOS6502Opcode(opcode: 0x84, mnemonic: .STY, addressingMode: .ZP,   cycles: 3, plus1: false, illegal: false, affectedFlags: []),
     MOS6502Opcode(opcode: 0x85, mnemonic: .STA, addressingMode: .ZP,   cycles: 3, plus1: false, illegal: false, affectedFlags: []),
     MOS6502Opcode(opcode: 0x86, mnemonic: .STX, addressingMode: .ZP,   cycles: 3, plus1: false, illegal: false, affectedFlags: []),
-    MOS6502Opcode(opcode: 0x87, mnemonic: .SAX, addressingMode: .ZP,   cycles: 3, plus1: false, illegal: true,  affectedFlags: []),
+    MOS6502Opcode(opcode: 0x87, mnemonic: .SAX, addressingMode: .ZP,   cycles: 3, plus1: false, illegal: true,  affectedFlags: []), // This is called ASX in other sources.
     MOS6502Opcode(opcode: 0x88, mnemonic: .DEY, addressingMode: .IMP,  cycles: 2, plus1: false, illegal: false, affectedFlags: [ .Zero, .Negative ]),
     MOS6502Opcode(opcode: 0x89, mnemonic: .NOP, addressingMode: .IMM,  cycles: 2, plus1: false, illegal: true,  affectedFlags: []),
     MOS6502Opcode(opcode: 0x8a, mnemonic: .TXA, addressingMode: .IMP,  cycles: 2, plus1: false, illegal: false, affectedFlags: [ .Zero, .Negative ]),
@@ -165,7 +165,7 @@ public let mos6502OpcodeList: [MOS6502Opcode] = [
     MOS6502Opcode(opcode: 0x8c, mnemonic: .STY, addressingMode: .ABS,  cycles: 4, plus1: false, illegal: false, affectedFlags: []),
     MOS6502Opcode(opcode: 0x8d, mnemonic: .STA, addressingMode: .ABS,  cycles: 4, plus1: false, illegal: false, affectedFlags: []),
     MOS6502Opcode(opcode: 0x8e, mnemonic: .STX, addressingMode: .ABS,  cycles: 4, plus1: false, illegal: false, affectedFlags: []),
-    MOS6502Opcode(opcode: 0x8f, mnemonic: .SAX, addressingMode: .ABS,  cycles: 3, plus1: false, illegal: true,  affectedFlags: []),
+    MOS6502Opcode(opcode: 0x8f, mnemonic: .SAX, addressingMode: .ABS,  cycles: 3, plus1: false, illegal: true,  affectedFlags: []), // This is called ASX in other sources.
     MOS6502Opcode(opcode: 0x90, mnemonic: .BCC, addressingMode: .REL,  cycles: 2, plus1: true , illegal: false, affectedFlags: []),
     MOS6502Opcode(opcode: 0x91, mnemonic: .STA, addressingMode: .INDY, cycles: 6, plus1: false, illegal: false, affectedFlags: []),
     MOS6502Opcode(opcode: 0x92, mnemonic: .KIL, addressingMode: .IMP,  cycles: 0, plus1: false, illegal: true,  affectedFlags: []),
@@ -173,7 +173,7 @@ public let mos6502OpcodeList: [MOS6502Opcode] = [
     MOS6502Opcode(opcode: 0x94, mnemonic: .STY, addressingMode: .ZPX,  cycles: 4, plus1: false, illegal: false, affectedFlags: []),
     MOS6502Opcode(opcode: 0x95, mnemonic: .STA, addressingMode: .ZPX,  cycles: 4, plus1: false, illegal: false, affectedFlags: []),
     MOS6502Opcode(opcode: 0x96, mnemonic: .STX, addressingMode: .ZPY,  cycles: 4, plus1: false, illegal: false, affectedFlags: []),
-    MOS6502Opcode(opcode: 0x97, mnemonic: .SAX, addressingMode: .ZPY,  cycles: 3, plus1: false, illegal: true,  affectedFlags: []),
+    MOS6502Opcode(opcode: 0x97, mnemonic: .SAX, addressingMode: .ZPY,  cycles: 3, plus1: false, illegal: true,  affectedFlags: []), // This is called ASX in other sources.
     MOS6502Opcode(opcode: 0x98, mnemonic: .TYA, addressingMode: .IMP,  cycles: 2, plus1: false, illegal: false, affectedFlags: [ .Zero, .Negative ]),
     MOS6502Opcode(opcode: 0x99, mnemonic: .STA, addressingMode: .ABSY, cycles: 5, plus1: false, illegal: false, affectedFlags: []),
     MOS6502Opcode(opcode: 0x9a, mnemonic: .TXS, addressingMode: .IMP,  cycles: 2, plus1: false, illegal: false, affectedFlags: []),
@@ -225,7 +225,7 @@ public let mos6502OpcodeList: [MOS6502Opcode] = [
     MOS6502Opcode(opcode: 0xc8, mnemonic: .INY, addressingMode: .IMP,  cycles: 2, plus1: false, illegal: false, affectedFlags: [ .Zero, .Negative ]),
     MOS6502Opcode(opcode: 0xc9, mnemonic: .CMP, addressingMode: .IMM,  cycles: 2, plus1: false, illegal: false, affectedFlags: [ .Carry, .Zero, .Negative ]),
     MOS6502Opcode(opcode: 0xca, mnemonic: .DEX, addressingMode: .IMP,  cycles: 2, plus1: false, illegal: false, affectedFlags: [ .Zero, .Negative ]),
-    MOS6502Opcode(opcode: 0xcb, mnemonic: .AXS, addressingMode: .IMM,  cycles: 3, plus1: false, illegal: true,  affectedFlags: [ .Carry, .Zero, .Negative ]),
+    MOS6502Opcode(opcode: 0xcb, mnemonic: .AXS, addressingMode: .IMM,  cycles: 3, plus1: false, illegal: true,  affectedFlags: [ .Carry, .Zero, .Negative ]), // This is called "SAX" in other sources.
     MOS6502Opcode(opcode: 0xcc, mnemonic: .CPY, addressingMode: .ABS,  cycles: 4, plus1: false, illegal: false, affectedFlags: [ .Carry, .Zero, .Negative ]),
     MOS6502Opcode(opcode: 0xcd, mnemonic: .CMP, addressingMode: .ABS,  cycles: 4, plus1: false, illegal: false, affectedFlags: [ .Carry, .Zero, .Negative ]),
     MOS6502Opcode(opcode: 0xce, mnemonic: .DEC, addressingMode: .ABS,  cycles: 6, plus1: false, illegal: false, affectedFlags: [ .Zero, .Negative ]),

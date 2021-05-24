@@ -574,7 +574,7 @@ One supported mode:
 
 Assembly      | Machine Code | No. Cycles
 :-------------|:-------------|:----------: 
-`LAS abcd,Y    `|` BB cd ab     `| 4*
+`LAS abcd,Y`|` BB cd ab     `| 4*
 
 *=Add 1 if page boundary is crossed
 

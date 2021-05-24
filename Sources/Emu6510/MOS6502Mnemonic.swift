@@ -216,7 +216,7 @@ public enum MOS6502Mnemonic: CustomStringConvertible {
             case .JSR: return Set<MOS6502AddressingMode>([ .ABS, ])
             case .KIL: return Set<MOS6502AddressingMode>([ .IMP, .IMP, .IMP, .IMP, .IMP, .IMP, .IMP, .IMP, .IMP, .IMP, .IMP, .IMP, .IMP, ])
             case .LAS: return Set<MOS6502AddressingMode>([ .ABSY, ])
-            case .LAX: return Set<MOS6502AddressingMode>([ .INDX, .ZP, .IMM, .ABS, .INDY, .ZPY, .ABSY, .ABC, ])
+            case .LAX: return Set<MOS6502AddressingMode>([ .INDX, .ZP, .IMM, .ABS, .INDY, .ZPY, .ABSY, .ABS, ])
             case .LDA: return Set<MOS6502AddressingMode>([ .INDX, .ZP, .IMM, .ABS, .INDY, .ZPX, .ABSY, .ABSX, ])
             case .LDX: return Set<MOS6502AddressingMode>([ .IMM, .ZP, .ABS, .ZPY, .ABSY, ])
             case .LDY: return Set<MOS6502AddressingMode>([ .IMM, .ZP, .ABS, .ZPX, .ABSX, ])
