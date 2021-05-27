@@ -15,7 +15,7 @@ cycles on a 6510 then it will take 7 clock cycles in the emulator as well.~~ - _
 
 Currently, the only thing supported is the emulation of the processor itself.  The further emulation of an entire machine, such as, say, a Commodore® 64, is still remaining to be done.  This may take a while.
 
-The first goal of this project is to emulate a Commodore® 1541/1571/1581 disk drive on an [ODROID® H2](https://www.hardkernel.com/shop/odroid-h2plus/).
+The first goal of this project is to emulate a Commodore® [1541](https://en.wikipedia.org/wiki/Commodore_1541)/[1571](https://en.wikipedia.org/wiki/Commodore_1571)/[1581](https://en.wikipedia.org/wiki/Commodore_1581) disk drive on an [ODROID® H2](https://www.hardkernel.com/shop/odroid-h2plus/).
 
 ## Learning Resources
 
