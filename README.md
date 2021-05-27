@@ -23,8 +23,8 @@ The following websites were used as excellent resources for learning to write an
 
 - [emulator101.com - 6502 emulator](http://www.emulator101.com/6502-emulator.html)
 - [the 6502 microprocessor resource](http://www.6502.org)
-- [6502/6510/8500/8502 Opcodes](http://galenrhodes.com/Emu6510/Other/6502_6510_8500_8502%20Opcodes.md)
-- [Extra Instructions Of The 65XX Series CPU](http://galenrhodes.com/Emu6510/Other/Extra%20Instructions%20Of%20The%2065XX%20Series%20CPU.md)
+- [6502/6510/8500/8502 Opcodes](http://galenrhodes.com/Emu6510/Other/6502_6510_8500_8502%20Opcodes.html)
+- [Extra Instructions Of The 65XX Series CPU](http://galenrhodes.com/Emu6510/Other/Extra%20Instructions%20Of%20The%2065XX%20Series%20CPU.html)
 
 ## References for the 6510 microprocessor
 
