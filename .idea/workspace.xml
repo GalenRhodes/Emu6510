@@ -33,9 +33,7 @@
     </select>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="87075da3-fef8-4e0e-a558-4c45fa2c2b82" name="Default Changelist" comment="Added &quot;6502_6510_8500_8502 Opcodes.md&quot;">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Emu6510.xcodeproj/xcuserdata/grhodes.xcuserdatad/xcschemes/xcschememanagement.plist" beforeDir="false" afterPath="$PROJECT_DIR$/Emu6510.xcodeproj/xcuserdata/grhodes.xcuserdatad/xcschemes/xcschememanagement.plist" afterDir="false" />
+    <list default="true" id="87075da3-fef8-4e0e-a558-4c45fa2c2b82" name="Default Changelist" comment="Updated README.md file.">
       <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -174,7 +172,7 @@
       <workItem from="1621453892356" duration="60545000" />
       <workItem from="1621650595933" duration="1584000" />
       <workItem from="1621797047335" duration="25094000" />
-      <workItem from="1622120043068" duration="310000" />
+      <workItem from="1622120043068" duration="482000" />
     </task>
     <task id="LOCAL-00001" summary="Redo">
       <created>1600997267219</created>
@@ -337,7 +335,14 @@
       <option name="project" value="LOCAL" />
       <updated>1621884601075</updated>
     </task>
-    <option name="localTasksCounter" value="24" />
+    <task id="LOCAL-00024" summary="Updated README.md file.">
+      <created>1622120664997</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1622120664997</updated>
+    </task>
+    <option name="localTasksCounter" value="25" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -384,7 +389,8 @@
     <MESSAGE value="Added &quot;Extra Instructions Of The 65XX Series CPU&quot; as a Markdown file." />
     <MESSAGE value="Added external links to &quot;Extra Instructions Of The 65XX Series CPU&quot;" />
     <MESSAGE value="Added &quot;6502_6510_8500_8502 Opcodes.md&quot;" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added &quot;6502_6510_8500_8502 Opcodes.md&quot;" />
+    <MESSAGE value="Updated README.md file." />
+    <option name="LAST_COMMIT_MESSAGE" value="Updated README.md file." />
   </component>
   <component name="XCUnloadedResolveContextsSettings">
     <option name="restrictArchs" value="false" />

@@ -19,8 +19,8 @@ The following websites were used as excellent resources for learning to write an
 
 - [emulator101.com - 6502 emulator](http://www.emulator101.com/6502-emulator.html)
 - [the 6502 microprocessor resource](http://www.6502.org)
-- [6502/6510/8500/8502 Opcodes](Other/6502_6510_8500_8502+Opcodes.md)
-- [Extra Instructions Of The 65XX Series CPU](Other/Extra+Instructions+Of+The+65XX+Series+CPU.md)
+- [6502/6510/8500/8502 Opcodes](Other/6502_6510_8500_8502%20Opcodes.md)
+- [Extra Instructions Of The 65XX Series CPU](Other/Extra%20Instructions%20Of%20The%2065XX%20Series%20CPU.md)
 
 ## References for the 6510 microprocessor
 
