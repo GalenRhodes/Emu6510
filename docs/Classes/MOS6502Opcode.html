@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>MOS6502Opcode Class Reference</title>
+    <link rel="stylesheet" type="text/css" href="../css/jazzy.css" />
+    <link rel="stylesheet" type="text/css" href="../css/highlight.css" />
+    <meta charset='utf-8'>
+    <script src="../js/jquery.min.js" defer></script>
+    <script src="../js/jazzy.js" defer></script>
+    
+  </head>
+  <body>
+    <a name="//apple_ref/swift/Class/MOS6502Opcode" class="dashAnchor"></a>
+    <a title="MOS6502Opcode Class Reference"></a>
+    <header>
+      <div class="content-wrapper">
+        <p><a href="../index.html">Emu6510©</a> (11% documented)</p>
+        <p class="header-right"><a href="https://github.com/GalenRhodes/Emu6510"><img src="../img/gh.png"/>View on GitHub</a></p>
+      </div>
+    </header>
+    <div class="content-wrapper">
+      <p id="breadcrumbs">
+        <a href="../index.html"> Reference</a>
+        <img id="carat" src="../img/carat.png" />
+        MOS6502Opcode Class Reference
+      </p>
+    </div>
+    <div class="content-wrapper">
+      <nav class="sidebar">
+        <ul class="nav-groups">
+          <li class="nav-group-name">
+            <a href="../Classes.html">Classes</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Classes/MOS6502Addressable.html">MOS6502Addressable</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/MOS6502CPU.html">MOS6502CPU</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/MOS6502Opcode.html">MOS6502Opcode</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/MOS6502Ram.html">MOS6502Ram</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/MOS6502Rom.html">MOS6502Rom</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/MOS6502SystemMemoryMap.html">MOS6502SystemMemoryMap</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Global%20Variables.html">Global Variables</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Global%20Variables.html#/s:7Emu651010SixtyFourKSivp">SixtyFourK</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Global%20Variables.html#/s:7Emu651017mos6502OpcodeListSayAA07MOS6502C0CGvp">mos6502OpcodeList</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Enums.html">Enumerations</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Enums/CommodoreCPUClock.html">CommodoreCPUClock</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/MOS6502AddressingMode.html">MOS6502AddressingMode</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/MOS6502Error.html">MOS6502Error</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/MOS6502Events.html">MOS6502Events</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/MOS6502Flag.html">MOS6502Flag</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/MOS6502Interrupt.html">MOS6502Interrupt</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/MOS6502Mnemonic.html">MOS6502Mnemonic</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Extensions.html">Extensions</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Extensions/UInt8.html">UInt8</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Protocols.html">Protocols</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Protocols/MOS6502ClockInfo.html">MOS6502ClockInfo</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+      <article class="main-content">
+        <section>
+          <section class="section">
+            <h1>MOS6502Opcode</h1>
+              <div class="declaration">
+                <div class="language">
+                  <pre class="highlight swift"><code><span class="kd">open</span> <span class="kd">class</span> <span class="kt">MOS6502Opcode</span> <span class="p">:</span> <span class="kt">Hashable</span><span class="p">,</span> <span class="kt">Equatable</span></code></pre>
+
+                </div>
+              </div>
+            
+          </section>
+          <section class="section task-group-section">
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7Emu651013MOS6502OpcodeC6opcodes5UInt8Vvp"></a>
+                    <a name="//apple_ref/swift/Property/opcode" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7Emu651013MOS6502OpcodeC6opcodes5UInt8Vvp">opcode</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">let</span> <span class="nv">opcode</span><span class="p">:</span> <span class="kt">UInt8</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/GalenRhodes/Emu6510/blob/master/Sources/Emu6510/MOS6502Opcode.swift#L">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7Emu651013MOS6502OpcodeC8mnemonicAA0B8MnemonicOvp"></a>
+                    <a name="//apple_ref/swift/Property/mnemonic" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7Emu651013MOS6502OpcodeC8mnemonicAA0B8MnemonicOvp">mnemonic</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">let</span> <span class="nv">mnemonic</span><span class="p">:</span> <span class="kt"><a href="../Enums/MOS6502Mnemonic.html">MOS6502Mnemonic</a></span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/GalenRhodes/Emu6510/blob/master/Sources/Emu6510/MOS6502Opcode.swift#L">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7Emu651013MOS6502OpcodeC14addressingModeAA0b10AddressingE0Ovp"></a>
+                    <a name="//apple_ref/swift/Property/addressingMode" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7Emu651013MOS6502OpcodeC14addressingModeAA0b10AddressingE0Ovp">addressingMode</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">let</span> <span class="nv">addressingMode</span><span class="p">:</span> <span class="kt"><a href="../Enums/MOS6502AddressingMode.html">MOS6502AddressingMode</a></span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/GalenRhodes/Emu6510/blob/master/Sources/Emu6510/MOS6502Opcode.swift#L">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7Emu651013MOS6502OpcodeC5bytess5UInt8Vvp"></a>
+                    <a name="//apple_ref/swift/Property/bytes" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7Emu651013MOS6502OpcodeC5bytess5UInt8Vvp">bytes</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">bytes</span><span class="p">:</span> <span class="kt">UInt8</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/GalenRhodes/Emu6510/blob/master/Sources/Emu6510/MOS6502Opcode.swift#L">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7Emu651013MOS6502OpcodeC6cycless5UInt8Vvp"></a>
+                    <a name="//apple_ref/swift/Property/cycles" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7Emu651013MOS6502OpcodeC6cycless5UInt8Vvp">cycles</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">let</span> <span class="nv">cycles</span><span class="p">:</span> <span class="kt">UInt8</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/GalenRhodes/Emu6510/blob/master/Sources/Emu6510/MOS6502Opcode.swift#L">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7Emu651013MOS6502OpcodeC5plus1Sbvp"></a>
+                    <a name="//apple_ref/swift/Property/plus1" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7Emu651013MOS6502OpcodeC5plus1Sbvp">plus1</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">let</span> <span class="nv">plus1</span><span class="p">:</span> <span class="kt">Bool</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/GalenRhodes/Emu6510/blob/master/Sources/Emu6510/MOS6502Opcode.swift#L">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7Emu651013MOS6502OpcodeC13affectedFlagsShyAA0B4FlagOGvp"></a>
+                    <a name="//apple_ref/swift/Property/affectedFlags" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7Emu651013MOS6502OpcodeC13affectedFlagsShyAA0B4FlagOGvp">affectedFlags</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">let</span> <span class="nv">affectedFlags</span><span class="p">:</span> <span class="kt">Set</span><span class="o">&lt;</span><span class="kt"><a href="../Enums/MOS6502Flag.html">MOS6502Flag</a></span><span class="o">&gt;</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/GalenRhodes/Emu6510/blob/master/Sources/Emu6510/MOS6502Opcode.swift#L">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7Emu651013MOS6502OpcodeC6opcode8mnemonic14addressingMode6cycles5plus17illegal13affectedFlagsACs5UInt8V_AA0B8MnemonicOAA0b10AddressingG0OALS2bSayAA0B4FlagOGtcfc"></a>
+                    <a name="//apple_ref/swift/Method/init(opcode:mnemonic:addressingMode:cycles:plus1:illegal:affectedFlags:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7Emu651013MOS6502OpcodeC6opcode8mnemonic14addressingMode6cycles5plus17illegal13affectedFlagsACs5UInt8V_AA0B8MnemonicOAA0b10AddressingG0OALS2bSayAA0B4FlagOGtcfc">init(opcode:mnemonic:addressingMode:cycles:plus1:illegal:affectedFlags:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="nf">init</span><span class="p">(</span><span class="nv">opcode</span><span class="p">:</span> <span class="kt">UInt8</span><span class="p">,</span> <span class="nv">mnemonic</span><span class="p">:</span> <span class="kt"><a href="../Enums/MOS6502Mnemonic.html">MOS6502Mnemonic</a></span><span class="p">,</span> <span class="nv">addressingMode</span><span class="p">:</span> <span class="kt"><a href="../Enums/MOS6502AddressingMode.html">MOS6502AddressingMode</a></span><span class="p">,</span> <span class="nv">cycles</span><span class="p">:</span> <span class="kt">UInt8</span><span class="p">,</span> <span class="nv">plus1</span><span class="p">:</span> <span class="kt">Bool</span><span class="p">,</span> <span class="nv">illegal</span><span class="p">:</span> <span class="kt">Bool</span><span class="p">,</span> <span class="nv">affectedFlags</span><span class="p">:</span> <span class="p">[</span><span class="kt"><a href="../Enums/MOS6502Flag.html">MOS6502Flag</a></span><span class="p">])</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/GalenRhodes/Emu6510/blob/master/Sources/Emu6510/MOS6502Opcode.swift#L31-L38">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:SH4hash4intoys6HasherVz_tF"></a>
+                    <a name="//apple_ref/swift/Method/hash(into:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:SH4hash4intoys6HasherVz_tF">hash(into:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">open</span> <span class="kd">func</span> <span class="nf">hash</span><span class="p">(</span><span class="n">into</span> <span class="nv">hasher</span><span class="p">:</span> <span class="k">inout</span> <span class="kt">Hasher</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/GalenRhodes/Emu6510/blob/master/Sources/Emu6510/MOS6502Opcode.swift#L40-L47">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:SQ2eeoiySbx_xtFZ"></a>
+                    <a name="//apple_ref/swift/Method/==(_:_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:SQ2eeoiySbx_xtFZ">==(_:_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">static</span> <span class="kd">func</span> <span class="o">==</span> <span class="p">(</span><span class="nv">lhs</span><span class="p">:</span> <span class="kt">MOS6502Opcode</span><span class="p">,</span> <span class="nv">rhs</span><span class="p">:</span> <span class="kt">MOS6502Opcode</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Bool</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/GalenRhodes/Emu6510/blob/master/Sources/Emu6510/MOS6502Opcode.swift#L49-L51">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </section>
+        </section>
+        <section id="footer">
+          <p>&copy; 2021 <a class="link" href="https://blog.projectgalen.com" target="_blank" rel="external">Galen Rhodes</a>. All rights reserved. (Last updated: 2021-05-27)</p>
+          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.13.1</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+        </section>
+      </article>
+    </div>
+  </body>
+</div>
+</html>

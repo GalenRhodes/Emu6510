@@ -22,4 +22,3 @@ import Rubicon
 public enum MOS6502Error: Error {
     case AlreadyExists(description: String)
 }
-

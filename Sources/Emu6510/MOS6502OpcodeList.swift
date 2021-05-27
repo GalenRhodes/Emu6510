@@ -20,7 +20,9 @@ import CoreFoundation
 import Rubicon
 
 //@f:0
+/*===============================================================================================================================================================================*/
 /// All of the possible 256 opcodes.  DO NOT CHANGE THE ORDER OF THESE!!!!
+///
 public let mos6502OpcodeList: [MOS6502Opcode] = [
     MOS6502Opcode(opcode: 0x00, mnemonic: .BRK, addressingMode: .IMP,  cycles: 7, plus1: false, illegal: false, affectedFlags: []),
     MOS6502Opcode(opcode: 0x01, mnemonic: .ORA, addressingMode: .INDX, cycles: 6, plus1: false, illegal: false, affectedFlags: [ .Zero, .Negative ]),

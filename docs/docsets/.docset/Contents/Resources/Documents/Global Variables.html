@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>  Reference</title>
+    <title>Global Variables  Reference</title>
     <link rel="stylesheet" type="text/css" href="css/jazzy.css" />
     <link rel="stylesheet" type="text/css" href="css/highlight.css" />
     <meta charset='utf-8'>
@@ -10,7 +10,8 @@
     
   </head>
   <body>
-    <a title="  Reference"></a>
+    <a name="//apple_ref/swift/Section/Global Variables" class="dashAnchor"></a>
+    <a title="Global Variables  Reference"></a>
     <header>
       <div class="content-wrapper">
         <p><a href="index.html">Emu6510©</a> (11% documented)</p>
@@ -21,7 +22,7 @@
       <p id="breadcrumbs">
         <a href="index.html"> Reference</a>
         <img id="carat" src="img/carat.png" />
-          Reference
+        Global Variables  Reference
       </p>
     </div>
     <div class="content-wrapper">
@@ -108,40 +109,74 @@
       <article class="main-content">
         <section>
           <section class="section">
-            
-            <h1 id='emu6510' class='heading'>Emu6510</h1>
+            <h1>Global Variables</h1>
+            <p>The following global variables are available globally.</p>
 
-<p>Emu6510 is an experimental emulator for the 6510 family of microprocessors found in computers
-such as the Commodore® 64.</p>
-<h2 id='goals' class='heading'>Goals</h2>
+          </section>
+          <section class="section task-group-section">
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7Emu651010SixtyFourKSivp"></a>
+                    <a name="//apple_ref/swift/Global/SixtyFourK" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7Emu651010SixtyFourKSivp">SixtyFourK</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">let</span> <span class="nv">SixtyFourK</span><span class="p">:</span> <span class="kt">Int</span></code></pre>
 
-<p>The project will be developed in four phases:</p>
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/GalenRhodes/Emu6510/blob/master/Sources/Emu6510/MOS6502Addressable.swift#L">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7Emu651017mos6502OpcodeListSayAA07MOS6502C0CGvp"></a>
+                    <a name="//apple_ref/swift/Global/mos6502OpcodeList" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7Emu651017mos6502OpcodeListSayAA07MOS6502C0CGvp">mos6502OpcodeList</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>All of the possible 256 opcodes.  DO NOT CHANGE THE ORDER OF THESE!!!!</p>
 
-<p>1) <del>Documented opcode emulation - no undocumented opcodes.</del> - <em>Done</em>.
-2) <del>Frequency emulation - throttling down to 1-2 Mhz.</del> - <em>Done</em>.
-3) <del>Exact cycle support.  In other words if an instruction took 7 clock
-cycles on a 6510 then it will take 7 clock cycles in the emulator as well.</del> - <em>Done</em>.
-4) <del>Undocumented opcodes.</del> - <em>Done.</em></p>
-<h2 id='learning-resources' class='heading'>Learning Resources</h2>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">let</span> <span class="nv">mos6502OpcodeList</span><span class="p">:</span> <span class="p">[</span><span class="kt"><a href="Classes/MOS6502Opcode.html">MOS6502Opcode</a></span><span class="p">]</span></code></pre>
 
-<p>The following websites were used as excellent resources for learning to write an emulator.</p>
-
-<ul>
-<li><a href="http://www.emulator101.com/6502-emulator.html">emulator101.com - 6502 emulator</a></li>
-<li><a href="http://www.6502.org">the 6502 microprocessor resource</a></li>
-<li><a href="Other/6502_6510_8500_8502%20Opcodes.md">6502/6510/8500/8502 Opcodes</a></li>
-<li><a href="Other/Extra%20Instructions%20Of%20The%2065XX%20Series%20CPU.md">Extra Instructions Of The 65XX Series CPU</a></li>
-</ul>
-<h2 id='references-for-the-6510-microprocessor' class='heading'>References for the 6510 microprocessor</h2>
-
-<ul>
-<li><a href="https://www.commodore.ca/wp-content/uploads/2018/11/c64-programmers_reference_guide-05-basic_to_machine_language.pdf">C64 Programmers Reference Guide</a> starting on page 24 (232)</li>
-<li><a href="http://archive.6502.org/datasheets/mos_6510_mpu.pdf">MOS 6510 Data Sheet</a></li>
-</ul>
-<h2 id='api-documentation' class='heading'>API Documentation</h2>
-
-<p>Documentation of the API can be found here: <a href="http://galenrhodes.com/Emu6510/">Emu6510 API</a></p>
-
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/GalenRhodes/Emu6510/blob/master/Sources/Emu6510/MOS6502OpcodeList.swift#L26">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
           </section>
         </section>
         <section id="footer">

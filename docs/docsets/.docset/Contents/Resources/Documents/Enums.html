@@ -2,19 +2,19 @@
 <html lang="en">
   <head>
     <title>Enumerations  Reference</title>
-    <link href="css/jazzy.css" rel="stylesheet" type="text/css" />
-    <link href="css/highlight.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="css/jazzy.css" />
+    <link rel="stylesheet" type="text/css" href="css/highlight.css" />
     <meta charset='utf-8'>
-    <script defer src="js/jquery.min.js"></script>
-    <script defer src="js/jazzy.js"></script>
-
+    <script src="js/jquery.min.js" defer></script>
+    <script src="js/jazzy.js" defer></script>
+    
   </head>
   <body>
-    <a class="dashAnchor" name="//apple_ref/swift/Section/Enumerations"></a>
+    <a name="//apple_ref/swift/Section/Enumerations" class="dashAnchor"></a>
     <a title="Enumerations  Reference"></a>
     <header>
       <div class="content-wrapper">
-        <p><a href="index.html">Emu6510©</a> (40% documented)</p>
+        <p><a href="index.html">Emu6510©</a> (11% documented)</p>
         <p class="header-right"><a href="https://github.com/GalenRhodes/Emu6510"><img src="img/gh.png"/>View on GitHub</a></p>
       </div>
     </header>
@@ -32,19 +32,33 @@
             <a href="Classes.html">Classes</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
-                <a href="Classes/CPU6502.html">CPU6502</a>
+                <a href="Classes/MOS6502Addressable.html">MOS6502Addressable</a>
               </li>
               <li class="nav-group-task">
-                <a href="Classes/CPU6510.html">CPU6510</a>
+                <a href="Classes/MOS6502CPU.html">MOS6502CPU</a>
               </li>
               <li class="nav-group-task">
-                <a href="Classes/OpcodeInfo.html">OpcodeInfo</a>
+                <a href="Classes/MOS6502Opcode.html">MOS6502Opcode</a>
               </li>
               <li class="nav-group-task">
-                <a href="Classes/RAM.html">RAM</a>
+                <a href="Classes/MOS6502Ram.html">MOS6502Ram</a>
               </li>
               <li class="nav-group-task">
-                <a href="Classes/ROM.html">ROM</a>
+                <a href="Classes/MOS6502Rom.html">MOS6502Rom</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Classes/MOS6502SystemMemoryMap.html">MOS6502SystemMemoryMap</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="Global%20Variables.html">Global Variables</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="Global%20Variables.html#/s:7Emu651010SixtyFourKSivp">SixtyFourK</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Global%20Variables.html#/s:7Emu651017mos6502OpcodeListSayAA07MOS6502C0CGvp">mos6502OpcodeList</a>
               </li>
             </ul>
           </li>
@@ -52,19 +66,25 @@
             <a href="Enums.html">Enumerations</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
-                <a href="Enums/AddressModes.html">AddressModes</a>
+                <a href="Enums/CommodoreCPUClock.html">CommodoreCPUClock</a>
               </li>
               <li class="nav-group-task">
-                <a href="Enums/CPUErrors.html">CPUErrors</a>
+                <a href="Enums/MOS6502AddressingMode.html">MOS6502AddressingMode</a>
               </li>
               <li class="nav-group-task">
-                <a href="Enums/ClockFrequencies.html">ClockFrequencies</a>
+                <a href="Enums/MOS6502Error.html">MOS6502Error</a>
               </li>
               <li class="nav-group-task">
-                <a href="Enums/ProcessorFlags.html">ProcessorFlags</a>
+                <a href="Enums/MOS6502Events.html">MOS6502Events</a>
               </li>
               <li class="nav-group-task">
-                <a href="Enums/RunStatus.html">RunStatus</a>
+                <a href="Enums/MOS6502Flag.html">MOS6502Flag</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Enums/MOS6502Interrupt.html">MOS6502Interrupt</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Enums/MOS6502Mnemonic.html">MOS6502Mnemonic</a>
               </li>
             </ul>
           </li>
@@ -72,27 +92,7 @@
             <a href="Extensions.html">Extensions</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
-                <a href="Extensions/Array.html">Array</a>
-              </li>
-              <li class="nav-group-task">
-                <a href="Extensions/Dictionary.html">Dictionary</a>
-              </li>
-            </ul>
-          </li>
-          <li class="nav-group-name">
-            <a href="Functions.html">Functions</a>
-            <ul class="nav-group-tasks">
-              <li class="nav-group-task">
-                <a href="Functions.html#/s:7Emu65103aneoiySbx_q_tSzRzSzR_r0_lF">&amp;!=(_:_:)</a>
-              </li>
-              <li class="nav-group-task">
-                <a href="Functions.html#/s:7Emu65103aeeoiySbx_q_tSzRzSzR_r0_lF">&amp;==(_:_:)</a>
-              </li>
-              <li class="nav-group-task">
-                <a href="Functions.html#/s:7Emu65108makeWord2lo2his6UInt16Vs5UInt8V_AHtF">makeWord(lo:hi:)</a>
-              </li>
-              <li class="nav-group-task">
-                <a href="Functions.html#/s:7Emu65108makeWord2lo2hi6offsetSb19pageBoundaryCrossed_s6UInt16V7addressts5UInt8V_A2KtF">makeWord(lo:hi:offset:)</a>
+                <a href="Extensions/UInt8.html">UInt8</a>
               </li>
             </ul>
           </li>
@@ -100,47 +100,7 @@
             <a href="Protocols.html">Protocols</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
-                <a href="Protocols/AddressBuss.html">AddressBuss</a>
-              </li>
-              <li class="nav-group-task">
-                <a href="Protocols/CPU65xx.html">CPU65xx</a>
-              </li>
-              <li class="nav-group-task">
-                <a href="Protocols/CPUClock.html">CPUClock</a>
-              </li>
-              <li class="nav-group-task">
-                <a href="Protocols/ClockWatcher.html">ClockWatcher</a>
-              </li>
-              <li class="nav-group-task">
-                <a href="Protocols/RandomAccessMemory.html">RandomAccessMemory</a>
-              </li>
-            </ul>
-          </li>
-          <li class="nav-group-name">
-            <a href="Structs.html">Structures</a>
-            <ul class="nav-group-tasks">
-              <li class="nav-group-task">
-                <a href="Structs/AnyAddressBuss.html">AnyAddressBuss</a>
-              </li>
-              <li class="nav-group-task">
-                <a href="Structs/AnyCPU65xx.html">AnyCPU65xx</a>
-              </li>
-              <li class="nav-group-task">
-                <a href="Structs/AnyCPUClock.html">AnyCPUClock</a>
-              </li>
-              <li class="nav-group-task">
-                <a href="Structs/AnyClockWatcher.html">AnyClockWatcher</a>
-              </li>
-            </ul>
-          </li>
-          <li class="nav-group-name">
-            <a href="Typealiases.html">Type Aliases</a>
-            <ul class="nav-group-tasks">
-              <li class="nav-group-task">
-                <a href="Typealiases.html#/s:7Emu651011AddressInfoa">AddressInfo</a>
-              </li>
-              <li class="nav-group-task">
-                <a href="Typealiases.html#/s:7Emu651011OperandInfoa">OperandInfo</a>
+                <a href="Protocols/MOS6502ClockInfo.html">MOS6502ClockInfo</a>
               </li>
             </ul>
           </li>
@@ -159,9 +119,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:7Emu651012AddressModesO"></a>
-                    <a class="dashAnchor" name="//apple_ref/swift/Enum/AddressModes"></a>
-                    <a class="token" href="#/s:7Emu651012AddressModesO">AddressModes</a>
+                    <a name="/s:7Emu651021MOS6502AddressingModeO"></a>
+                    <a name="//apple_ref/swift/Enum/MOS6502AddressingMode" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7Emu651021MOS6502AddressingModeO">MOS6502AddressingMode</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -169,25 +129,19 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Here are some notes on the addressing modes.</p>
-
-<p>1) The instructions that are implied (IMP) or relative (REL) have no other addressing mode. 2) ROL, ROR, ASL, and LSR are the
-only opcodes that have the Accumulator (ACC) addressing mode. 3) JMP is the only instruction to have the Absolute Indirect
-(IND) addressing mode. 4) LDX and STX are the only instructions that have the ZeroPage,Y (ZPY) addressing mode.</p>
-
-                        <a class="slightly-smaller" href="Enums/AddressModes.html">See more</a>
+                        
+                        <a href="Enums/MOS6502AddressingMode.html" class="slightly-smaller">See more</a>
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">@frozen</span>
-<span class="kd">public</span> <span class="kd">enum</span> <span class="kt">AddressModes</span> <span class="p">:</span> <span class="kt">CustomStringConvertible</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">enum</span> <span class="kt">MOS6502AddressingMode</span> <span class="p">:</span> <span class="kt">CustomStringConvertible</span></code></pre>
 
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/GalenRhodes/Emu6510/blob/master/Sources/Emu6510/AddressModes.swift#L32-L100">Show on GitHub</a>
+                        <a href="https://github.com/GalenRhodes/Emu6510/blob/master/Sources/Emu6510/MOS6502AddressingMode.swift#L22-L72">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -195,9 +149,9 @@ only opcodes that have the Accumulator (ACC) addressing mode. 3) JMP is the only
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:7Emu65109RunStatusO"></a>
-                    <a class="dashAnchor" name="//apple_ref/swift/Enum/RunStatus"></a>
-                    <a class="token" href="#/s:7Emu65109RunStatusO">RunStatus</a>
+                    <a name="/s:7Emu651017CommodoreCPUClockO"></a>
+                    <a name="//apple_ref/swift/Enum/CommodoreCPUClock" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7Emu651017CommodoreCPUClockO">CommodoreCPUClock</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -205,21 +159,19 @@ only opcodes that have the Accumulator (ACC) addressing mode. 3) JMP is the only
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>The clock run modes.</p>
-
-                        <a class="slightly-smaller" href="Enums/RunStatus.html">See more</a>
+                        
+                        <a href="Enums/CommodoreCPUClock.html" class="slightly-smaller">See more</a>
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">@frozen</span>
-<span class="kd">public</span> <span class="kd">enum</span> <span class="kt">RunStatus</span> <span class="p">:</span> <span class="kt">Int8</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">enum</span> <span class="kt">CommodoreCPUClock</span> <span class="p">:</span> <span class="kt"><a href="Protocols/MOS6502ClockInfo.html">MOS6502ClockInfo</a></span></code></pre>
 
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/GalenRhodes/Emu6510/blob/master/Sources/Emu6510/CPUClock.swift#L28-L45">Show on GitHub</a>
+                        <a href="https://github.com/GalenRhodes/Emu6510/blob/master/Sources/Emu6510/MOS6502ClockInfo.swift#L27-L29">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -227,9 +179,9 @@ only opcodes that have the Accumulator (ACC) addressing mode. 3) JMP is the only
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:7Emu65109CPUErrorsO"></a>
-                    <a class="dashAnchor" name="//apple_ref/swift/Enum/CPUErrors"></a>
-                    <a class="token" href="#/s:7Emu65109CPUErrorsO">CPUErrors</a>
+                    <a name="/s:7Emu651012MOS6502ErrorO"></a>
+                    <a name="//apple_ref/swift/Enum/MOS6502Error" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7Emu651012MOS6502ErrorO">MOS6502Error</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -237,19 +189,19 @@ only opcodes that have the Accumulator (ACC) addressing mode. 3) JMP is the only
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-
-                        <a class="slightly-smaller" href="Enums/CPUErrors.html">See more</a>
+                        
+                        <a href="Enums/MOS6502Error.html" class="slightly-smaller">See more</a>
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">enum</span> <span class="kt">CPUErrors</span> <span class="p">:</span> <span class="kt">Error</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">enum</span> <span class="kt">MOS6502Error</span> <span class="p">:</span> <span class="kt">Error</span></code></pre>
 
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/GalenRhodes/Emu6510/blob/master/Sources/Emu6510/CPUErrors.swift#L25-L34">Show on GitHub</a>
+                        <a href="https://github.com/GalenRhodes/Emu6510/blob/master/Sources/Emu6510/MOS6502Error.swift#L22-L24">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -257,9 +209,9 @@ only opcodes that have the Accumulator (ACC) addressing mode. 3) JMP is the only
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:7Emu651016ClockFrequenciesO"></a>
-                    <a class="dashAnchor" name="//apple_ref/swift/Enum/ClockFrequencies"></a>
-                    <a class="token" href="#/s:7Emu651016ClockFrequenciesO">ClockFrequencies</a>
+                    <a name="/s:7Emu651013MOS6502EventsO"></a>
+                    <a name="//apple_ref/swift/Enum/MOS6502Events" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7Emu651013MOS6502EventsO">MOS6502Events</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -267,20 +219,19 @@ only opcodes that have the Accumulator (ACC) addressing mode. 3) JMP is the only
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-
-                        <a class="slightly-smaller" href="Enums/ClockFrequencies.html">See more</a>
+                        
+                        <a href="Enums/MOS6502Events.html" class="slightly-smaller">See more</a>
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">@frozen</span>
-<span class="kd">public</span> <span class="kd">enum</span> <span class="kt">ClockFrequencies</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">enum</span> <span class="kt">MOS6502Events</span></code></pre>
 
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/GalenRhodes/Emu6510/blob/master/Sources/Emu6510/ClockFrequencies.swift#L25-L43">Show on GitHub</a>
+                        <a href="https://github.com/GalenRhodes/Emu6510/blob/master/Sources/Emu6510/MOS6502Events.swift#L22-L26">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -288,9 +239,9 @@ only opcodes that have the Accumulator (ACC) addressing mode. 3) JMP is the only
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:7Emu651014ProcessorFlagsO"></a>
-                    <a class="dashAnchor" name="//apple_ref/swift/Enum/ProcessorFlags"></a>
-                    <a class="token" href="#/s:7Emu651014ProcessorFlagsO">ProcessorFlags</a>
+                    <a name="/s:7Emu651011MOS6502FlagO"></a>
+                    <a name="//apple_ref/swift/Enum/MOS6502Flag" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7Emu651011MOS6502FlagO">MOS6502Flag</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -298,20 +249,79 @@ only opcodes that have the Accumulator (ACC) addressing mode. 3) JMP is the only
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-
-                        <a class="slightly-smaller" href="Enums/ProcessorFlags.html">See more</a>
+                        
+                        <a href="Enums/MOS6502Flag.html" class="slightly-smaller">See more</a>
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">@frozen</span>
-<span class="kd">public</span> <span class="kd">enum</span> <span class="kt">ProcessorFlags</span> <span class="p">:</span> <span class="kt">UInt8</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">enum</span> <span class="kt">MOS6502Flag</span> <span class="p">:</span> <span class="kt">UInt8</span></code></pre>
 
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/GalenRhodes/Emu6510/blob/master/Sources/Emu6510/ProcessorFlags.swift#L30-L91">Show on GitHub</a>
+                        <a href="https://github.com/GalenRhodes/Emu6510/blob/master/Sources/Emu6510/MOS6502Flag.swift#L27-L70">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7Emu651016MOS6502InterruptO"></a>
+                    <a name="//apple_ref/swift/Enum/MOS6502Interrupt" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7Emu651016MOS6502InterruptO">MOS6502Interrupt</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                        <a href="Enums/MOS6502Interrupt.html" class="slightly-smaller">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">enum</span> <span class="kt">MOS6502Interrupt</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/GalenRhodes/Emu6510/blob/master/Sources/Emu6510/MOS6502Interrupt.swift#L22-L32">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7Emu651015MOS6502MnemonicO"></a>
+                    <a name="//apple_ref/swift/Enum/MOS6502Mnemonic" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7Emu651015MOS6502MnemonicO">MOS6502Mnemonic</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                        <a href="Enums/MOS6502Mnemonic.html" class="slightly-smaller">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">enum</span> <span class="kt">MOS6502Mnemonic</span> <span class="p">:</span> <span class="kt">CustomStringConvertible</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/GalenRhodes/Emu6510/blob/master/Sources/Emu6510/MOS6502Mnemonic.swift#L22-L258">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -321,8 +331,8 @@ only opcodes that have the Accumulator (ACC) addressing mode. 3) JMP is the only
           </section>
         </section>
         <section id="footer">
-          <p>&copy; 2020 <a class="link" href="https://blog.projectgalen.com" rel="external" target="_blank">Galen Rhodes</a>. All rights reserved. (Last updated: 2020-10-14)</p>
-          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" rel="external" target="_blank">jazzy ♪♫ v0.13.1</a>, a <a class="link" href="https://realm.io" rel="external" target="_blank">Realm</a> project.</p>
+          <p>&copy; 2021 <a class="link" href="https://blog.projectgalen.com" target="_blank" rel="external">Galen Rhodes</a>. All rights reserved. (Last updated: 2021-05-27)</p>
+          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.13.1</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
         </section>
       </article>
     </div>

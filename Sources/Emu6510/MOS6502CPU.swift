@@ -23,7 +23,8 @@ open class MOS6502CPU {
     @usableFromInline typealias EfOperand = (operand: UInt8, plus: UInt8)
     @usableFromInline typealias EfAddress = (address: UInt16, plus: UInt8)
 
-    /// Returns true if the CPU Clock is running.
+    /*===========================================================================================================================================================================*/
+    /// Returns `true` if the CPU Clock is running.
     ///
     public internal(set) var isRunning: Bool = false
 
@@ -32,22 +33,28 @@ open class MOS6502CPU {
     public var            reset:     Bool = false
     public let            memory:    MOS6502SystemMemoryMap
 
+    /*===========================================================================================================================================================================*/
     /// The Accumulator.
     ///
     @inlinable public var regAcc:    UInt8 { _regAcc }
+    /*===========================================================================================================================================================================*/
     /// The X register.
     ///
     @inlinable public var regX:      UInt8 { _regX }
+    /*===========================================================================================================================================================================*/
     /// The Y register.
     ///
     @inlinable public var regY:      UInt8 { _regY }
+    /*===========================================================================================================================================================================*/
     /// The program counter.
     ///
     @inlinable public var regPC:     UInt16 { _regPC }
-    /// I've look in several places and no one really talks about what the initial value of the stack pointer is.  Only one reference said it is reset to zero on startup.
-    /// But it is known that the startup routine SHOULD set the stack pointer.
+    /*===========================================================================================================================================================================*/
+    /// I've look in several places and no one really talks about what the initial value of the stack pointer is. Only one reference said it is reset to zero on startup. But it is
+    /// known that the startup routine SHOULD set the stack pointer.
     ///
     @inlinable public var regSP:     UInt8 { UInt8(_regSP & 0x00ff) }
+    /*===========================================================================================================================================================================*/
     /// The sixth bit (32 (0x20)) of the status register should always be 1 (one).
     ///
     @inlinable public var regStatus: UInt8 { (_regSt | 0x20) }
@@ -154,8 +161,9 @@ open class MOS6502CPU {
         let bLo = stackPop(); let bHi = stackPop(); return (UInt16(bLo) | (UInt16(bHi) << 8))
     }
 
+    /*===========================================================================================================================================================================*/
     /// This method is for opcodes that operate only on memory. In other words, no IMPlied, ACCumulator, or IMMediate addressing modes.
-    ///
+    /// 
     /// - Parameter opcode: The opcode.
     /// - Returns: The target address of the operand.
     ///

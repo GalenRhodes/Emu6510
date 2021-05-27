@@ -42,6 +42,7 @@
 		83637968251CF5D100657A3B /* Emu6510.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8363795E251CF5D000657A3B /* Emu6510.framework */; };
 		8363796D251CF5D100657A3B /* Emu6510Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8363796C251CF5D100657A3B /* Emu6510Tests.swift */; };
 		836379A0251CF98300657A3B /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8363798E251CF95E00657A3B /* main.swift */; };
+		836BD6DC265FD30900C140FE /* libiconv.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 83BF6FD6264D85C50061DEA7 /* libiconv.tbd */; };
 		838AB2FE265C35D5007C5198 /* libiconv.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 83BF6FD6264D85C50061DEA7 /* libiconv.tbd */; };
 		83BF6FD2264D81CB0061DEA7 /* Rubicon in Frameworks */ = {isa = PBXBuildFile; productRef = 83637983251CF7F000657A3B /* Rubicon */; };
 		83BF6FD3264D81CB0061DEA7 /* PGDocFixer in Frameworks */ = {isa = PBXBuildFile; productRef = 836379A5251CF9B500657A3B /* PGDocFixer */; };
@@ -175,6 +176,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				836BD6DC265FD30900C140FE /* libiconv.tbd in Frameworks */,
 				83BF6FD3264D81CB0061DEA7 /* PGDocFixer in Frameworks */,
 				83BF6FD4264D81CB0061DEA7 /* Rubicon in Frameworks */,
 			);

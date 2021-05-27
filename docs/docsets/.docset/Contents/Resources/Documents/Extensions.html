@@ -2,19 +2,19 @@
 <html lang="en">
   <head>
     <title>Extensions  Reference</title>
-    <link href="css/jazzy.css" rel="stylesheet" type="text/css" />
-    <link href="css/highlight.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="css/jazzy.css" />
+    <link rel="stylesheet" type="text/css" href="css/highlight.css" />
     <meta charset='utf-8'>
-    <script defer src="js/jquery.min.js"></script>
-    <script defer src="js/jazzy.js"></script>
-
+    <script src="js/jquery.min.js" defer></script>
+    <script src="js/jazzy.js" defer></script>
+    
   </head>
   <body>
-    <a class="dashAnchor" name="//apple_ref/swift/Section/Extensions"></a>
+    <a name="//apple_ref/swift/Section/Extensions" class="dashAnchor"></a>
     <a title="Extensions  Reference"></a>
     <header>
       <div class="content-wrapper">
-        <p><a href="index.html">Emu6510©</a> (40% documented)</p>
+        <p><a href="index.html">Emu6510©</a> (11% documented)</p>
         <p class="header-right"><a href="https://github.com/GalenRhodes/Emu6510"><img src="img/gh.png"/>View on GitHub</a></p>
       </div>
     </header>
@@ -32,19 +32,33 @@
             <a href="Classes.html">Classes</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
-                <a href="Classes/CPU6502.html">CPU6502</a>
+                <a href="Classes/MOS6502Addressable.html">MOS6502Addressable</a>
               </li>
               <li class="nav-group-task">
-                <a href="Classes/CPU6510.html">CPU6510</a>
+                <a href="Classes/MOS6502CPU.html">MOS6502CPU</a>
               </li>
               <li class="nav-group-task">
-                <a href="Classes/OpcodeInfo.html">OpcodeInfo</a>
+                <a href="Classes/MOS6502Opcode.html">MOS6502Opcode</a>
               </li>
               <li class="nav-group-task">
-                <a href="Classes/RAM.html">RAM</a>
+                <a href="Classes/MOS6502Ram.html">MOS6502Ram</a>
               </li>
               <li class="nav-group-task">
-                <a href="Classes/ROM.html">ROM</a>
+                <a href="Classes/MOS6502Rom.html">MOS6502Rom</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Classes/MOS6502SystemMemoryMap.html">MOS6502SystemMemoryMap</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="Global%20Variables.html">Global Variables</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="Global%20Variables.html#/s:7Emu651010SixtyFourKSivp">SixtyFourK</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Global%20Variables.html#/s:7Emu651017mos6502OpcodeListSayAA07MOS6502C0CGvp">mos6502OpcodeList</a>
               </li>
             </ul>
           </li>
@@ -52,19 +66,25 @@
             <a href="Enums.html">Enumerations</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
-                <a href="Enums/AddressModes.html">AddressModes</a>
+                <a href="Enums/CommodoreCPUClock.html">CommodoreCPUClock</a>
               </li>
               <li class="nav-group-task">
-                <a href="Enums/CPUErrors.html">CPUErrors</a>
+                <a href="Enums/MOS6502AddressingMode.html">MOS6502AddressingMode</a>
               </li>
               <li class="nav-group-task">
-                <a href="Enums/ClockFrequencies.html">ClockFrequencies</a>
+                <a href="Enums/MOS6502Error.html">MOS6502Error</a>
               </li>
               <li class="nav-group-task">
-                <a href="Enums/ProcessorFlags.html">ProcessorFlags</a>
+                <a href="Enums/MOS6502Events.html">MOS6502Events</a>
               </li>
               <li class="nav-group-task">
-                <a href="Enums/RunStatus.html">RunStatus</a>
+                <a href="Enums/MOS6502Flag.html">MOS6502Flag</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Enums/MOS6502Interrupt.html">MOS6502Interrupt</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Enums/MOS6502Mnemonic.html">MOS6502Mnemonic</a>
               </li>
             </ul>
           </li>
@@ -72,27 +92,7 @@
             <a href="Extensions.html">Extensions</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
-                <a href="Extensions/Array.html">Array</a>
-              </li>
-              <li class="nav-group-task">
-                <a href="Extensions/Dictionary.html">Dictionary</a>
-              </li>
-            </ul>
-          </li>
-          <li class="nav-group-name">
-            <a href="Functions.html">Functions</a>
-            <ul class="nav-group-tasks">
-              <li class="nav-group-task">
-                <a href="Functions.html#/s:7Emu65103aneoiySbx_q_tSzRzSzR_r0_lF">&amp;!=(_:_:)</a>
-              </li>
-              <li class="nav-group-task">
-                <a href="Functions.html#/s:7Emu65103aeeoiySbx_q_tSzRzSzR_r0_lF">&amp;==(_:_:)</a>
-              </li>
-              <li class="nav-group-task">
-                <a href="Functions.html#/s:7Emu65108makeWord2lo2his6UInt16Vs5UInt8V_AHtF">makeWord(lo:hi:)</a>
-              </li>
-              <li class="nav-group-task">
-                <a href="Functions.html#/s:7Emu65108makeWord2lo2hi6offsetSb19pageBoundaryCrossed_s6UInt16V7addressts5UInt8V_A2KtF">makeWord(lo:hi:offset:)</a>
+                <a href="Extensions/UInt8.html">UInt8</a>
               </li>
             </ul>
           </li>
@@ -100,47 +100,7 @@
             <a href="Protocols.html">Protocols</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
-                <a href="Protocols/AddressBuss.html">AddressBuss</a>
-              </li>
-              <li class="nav-group-task">
-                <a href="Protocols/CPU65xx.html">CPU65xx</a>
-              </li>
-              <li class="nav-group-task">
-                <a href="Protocols/CPUClock.html">CPUClock</a>
-              </li>
-              <li class="nav-group-task">
-                <a href="Protocols/ClockWatcher.html">ClockWatcher</a>
-              </li>
-              <li class="nav-group-task">
-                <a href="Protocols/RandomAccessMemory.html">RandomAccessMemory</a>
-              </li>
-            </ul>
-          </li>
-          <li class="nav-group-name">
-            <a href="Structs.html">Structures</a>
-            <ul class="nav-group-tasks">
-              <li class="nav-group-task">
-                <a href="Structs/AnyAddressBuss.html">AnyAddressBuss</a>
-              </li>
-              <li class="nav-group-task">
-                <a href="Structs/AnyCPU65xx.html">AnyCPU65xx</a>
-              </li>
-              <li class="nav-group-task">
-                <a href="Structs/AnyCPUClock.html">AnyCPUClock</a>
-              </li>
-              <li class="nav-group-task">
-                <a href="Structs/AnyClockWatcher.html">AnyClockWatcher</a>
-              </li>
-            </ul>
-          </li>
-          <li class="nav-group-name">
-            <a href="Typealiases.html">Type Aliases</a>
-            <ul class="nav-group-tasks">
-              <li class="nav-group-task">
-                <a href="Typealiases.html#/s:7Emu651011AddressInfoa">AddressInfo</a>
-              </li>
-              <li class="nav-group-task">
-                <a href="Typealiases.html#/s:7Emu651011OperandInfoa">OperandInfo</a>
+                <a href="Protocols/MOS6502ClockInfo.html">MOS6502ClockInfo</a>
               </li>
             </ul>
           </li>
@@ -159,9 +119,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:Sa"></a>
-                    <a class="dashAnchor" name="//apple_ref/swift/Extension/Array"></a>
-                    <a class="token" href="#/s:Sa">Array</a>
+                    <a name="/s:s5UInt8V"></a>
+                    <a name="//apple_ref/swift/Extension/UInt8" class="dashAnchor"></a>
+                    <a class="token" href="#/s:s5UInt8V">UInt8</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -169,45 +129,14 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-
-                        <a class="slightly-smaller" href="Extensions/Array.html">See more</a>
+                        
+                        <a href="Extensions/UInt8.html" class="slightly-smaller">See more</a>
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">extension</span> <span class="kt">Array</span> <span class="k">where</span> <span class="kt">Element</span><span class="p">:</span> <span class="kt"><a href="Protocols/AddressBuss.html">AddressBuss</a></span></code></pre>
-<pre class="highlight swift"><code><span class="kd">extension</span> <span class="kt">Array</span> <span class="k">where</span> <span class="kt">Element</span><span class="p">:</span> <span class="kt"><a href="Protocols/CPUClock.html">CPUClock</a></span></code></pre>
-<pre class="highlight swift"><code><span class="kd">extension</span> <span class="kt">Array</span> <span class="k">where</span> <span class="kt">Element</span><span class="p">:</span> <span class="kt"><a href="Protocols/ClockWatcher.html">ClockWatcher</a></span></code></pre>
-
-                        </div>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:SD"></a>
-                    <a class="dashAnchor" name="//apple_ref/swift/Extension/Dictionary"></a>
-                    <a class="token" href="#/s:SD">Dictionary</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-
-                        <a class="slightly-smaller" href="Extensions/Dictionary.html">See more</a>
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">extension</span> <span class="kt">Dictionary</span> <span class="k">where</span> <span class="kt">Value</span><span class="p">:</span> <span class="kt"><a href="Protocols/AddressBuss.html">AddressBuss</a></span></code></pre>
-<pre class="highlight swift"><code><span class="kd">extension</span> <span class="kt">Dictionary</span> <span class="k">where</span> <span class="kt">Value</span><span class="p">:</span> <span class="kt"><a href="Protocols/CPUClock.html">CPUClock</a></span></code></pre>
-<pre class="highlight swift"><code><span class="kd">extension</span> <span class="kt">Dictionary</span> <span class="k">where</span> <span class="kt">Value</span><span class="p">:</span> <span class="kt"><a href="Protocols/ClockWatcher.html">ClockWatcher</a></span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">extension</span> <span class="kt">UInt8</span></code></pre>
 
                         </div>
                       </div>
@@ -219,8 +148,8 @@
           </section>
         </section>
         <section id="footer">
-          <p>&copy; 2020 <a class="link" href="https://blog.projectgalen.com" rel="external" target="_blank">Galen Rhodes</a>. All rights reserved. (Last updated: 2020-10-14)</p>
-          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" rel="external" target="_blank">jazzy ♪♫ v0.13.1</a>, a <a class="link" href="https://realm.io" rel="external" target="_blank">Realm</a> project.</p>
+          <p>&copy; 2021 <a class="link" href="https://blog.projectgalen.com" target="_blank" rel="external">Galen Rhodes</a>. All rights reserved. (Last updated: 2021-05-27)</p>
+          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.13.1</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
         </section>
       </article>
     </div>

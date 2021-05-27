@@ -13,14 +13,18 @@ The project will be developed in four phases:
 cycles on a 6510 then it will take 7 clock cycles in the emulator as well.~~ - _Done_.
 4) ~~Undocumented opcodes.~~ - *Done.*
 
+Currently, the only thing supported is the emulation of the processor itself.  The further emulation of an entire machine, such as, say, a Commodore® 64, is still remaining to be done.  This may take a while.
+
+The first goal of this project is to emulate a Commodore® 1541/1571/1581 disk drive on an [ODROID® H2](https://www.hardkernel.com/shop/odroid-h2plus/).
+
 ## Learning Resources
 
 The following websites were used as excellent resources for learning to write an emulator.
 
 - [emulator101.com - 6502 emulator](http://www.emulator101.com/6502-emulator.html)
 - [the 6502 microprocessor resource](http://www.6502.org)
-- [6502/6510/8500/8502 Opcodes](Other/6502_6510_8500_8502%20Opcodes.md)
-- [Extra Instructions Of The 65XX Series CPU](Other/Extra%20Instructions%20Of%20The%2065XX%20Series%20CPU.md)
+- [6502/6510/8500/8502 Opcodes](http://galenrhodes.com/Emu6510/Other/6502_6510_8500_8502%20Opcodes.md)
+- [Extra Instructions Of The 65XX Series CPU](http://galenrhodes.com/Emu6510/Other/Extra%20Instructions%20Of%20The%2065XX%20Series%20CPU.md)
 
 ## References for the 6510 microprocessor
 
