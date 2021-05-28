@@ -34,7 +34,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="87075da3-fef8-4e0e-a558-4c45fa2c2b82" name="Default Changelist" comment="Updated README.md file.">
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Emu6510.xcodeproj/project.pbxproj" beforeDir="false" afterPath="$PROJECT_DIR$/Emu6510.xcodeproj/project.pbxproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Package.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Package.swift" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -172,7 +174,8 @@
       <workItem from="1621453892356" duration="60545000" />
       <workItem from="1621650595933" duration="1584000" />
       <workItem from="1621797047335" duration="25094000" />
-      <workItem from="1622120043068" duration="1704000" />
+      <workItem from="1622120043068" duration="2129000" />
+      <workItem from="1622225501428" duration="374000" />
     </task>
     <task id="LOCAL-00001" summary="Redo">
       <created>1600997267219</created>
@@ -363,7 +366,14 @@
       <option name="project" value="LOCAL" />
       <updated>1622124084429</updated>
     </task>
-    <option name="localTasksCounter" value="28" />
+    <task id="LOCAL-00028" summary="Updated README.md file.">
+      <created>1622124428369</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1622124428369</updated>
+    </task>
+    <option name="localTasksCounter" value="29" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

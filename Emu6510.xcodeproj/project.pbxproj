@@ -918,8 +918,8 @@
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/GalenRhodes/Rubicon.git";
 			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 0.2.13;
+				kind = upToNextMinorVersion;
+				minimumVersion = 0.2.14;
 			};
 		};
 		836379A4251CF9B500657A3B /* XCRemoteSwiftPackageReference "PGDocFixer" */ = {
