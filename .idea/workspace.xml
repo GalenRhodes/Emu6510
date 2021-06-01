@@ -33,10 +33,11 @@
     </select>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="87075da3-fef8-4e0e-a558-4c45fa2c2b82" name="Default Changelist" comment="Updated README.md file.">
+    <list default="true" id="87075da3-fef8-4e0e-a558-4c45fa2c2b82" name="Default Changelist" comment="Update Package.swift">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Emu6510.xcodeproj/project.pbxproj" beforeDir="false" afterPath="$PROJECT_DIR$/Emu6510.xcodeproj/project.pbxproj" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Package.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Package.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Sources/DocFixer/main.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Sources/DocFixer/main.swift" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -175,7 +176,8 @@
       <workItem from="1621650595933" duration="1584000" />
       <workItem from="1621797047335" duration="25094000" />
       <workItem from="1622120043068" duration="2129000" />
-      <workItem from="1622225501428" duration="374000" />
+      <workItem from="1622225501428" duration="453000" />
+      <workItem from="1622556666355" duration="359000" />
     </task>
     <task id="LOCAL-00001" summary="Redo">
       <created>1600997267219</created>
@@ -373,7 +375,14 @@
       <option name="project" value="LOCAL" />
       <updated>1622124428369</updated>
     </task>
-    <option name="localTasksCounter" value="29" />
+    <task id="LOCAL-00029" summary="Update Package.swift">
+      <created>1622225916025</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1622225916025</updated>
+    </task>
+    <option name="localTasksCounter" value="30" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -421,7 +430,8 @@
     <MESSAGE value="Added external links to &quot;Extra Instructions Of The 65XX Series CPU&quot;" />
     <MESSAGE value="Added &quot;6502_6510_8500_8502 Opcodes.md&quot;" />
     <MESSAGE value="Updated README.md file." />
-    <option name="LAST_COMMIT_MESSAGE" value="Updated README.md file." />
+    <MESSAGE value="Update Package.swift" />
+    <option name="LAST_COMMIT_MESSAGE" value="Update Package.swift" />
   </component>
   <component name="XCUnloadedResolveContextsSettings">
     <option name="restrictArchs" value="false" />

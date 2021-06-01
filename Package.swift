@@ -3,8 +3,15 @@
 
 import PackageDescription
 
-let package = Package(name: "Emu6510",
-                      platforms: [ .macOS(.v10_15), .tvOS(.v13), .iOS(.v13), .watchOS(.v6) ],
-                      products: [ .library(name: "Emu6510", targets: [ "Emu6510" ]), ],
-                      dependencies: [ .package(name: "Rubicon", url: "https://github.com/GalenRhodes/Rubicon", .upToNextMinor(from: "0.2.14")), ],
-                      targets: [ .target(name: "Emu6510", dependencies: [ "Rubicon" ]), .testTarget(name: "Emu6510Tests", dependencies: [ "Emu6510" ]), ])
+let package = Package(
+    name: "Emu6510",
+    platforms: [ .macOS(.v10_15), .tvOS(.v13), .iOS(.v13), .watchOS(.v6) ],
+    products: [ .library(name: "Emu6510", type: .static, targets: [ "Emu6510" ]), ],
+    dependencies: [
+        .package(name: "Rubicon", url: "https://github.com/GalenRhodes/Rubicon", .upToNextMinor(from: "0.2.27")),
+    ],
+    targets: [
+        .target(name: "Emu6510", dependencies: [ "Rubicon" ], exclude: [ "Info.plist" ]),
+        .testTarget(name: "Emu6510Tests", dependencies: [ "Emu6510" ], exclude: [ "Info.plist" ]),
+    ]
+)
