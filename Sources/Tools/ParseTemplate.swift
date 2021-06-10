@@ -36,11 +36,17 @@ fileprivate func parseTemplate(_ template: String, with block: (inout String, St
             lIdx = m.range.upperBound
 
             if let key = m[1].subString {
-                if key == "DATE" { out.append(contentsOf: "%tm/%<td/%<tY".format(Date())) }
-                else if !block(&out, key) { out.append(contentsOf: m.subString) }
+                if key == "DATE" {
+                    out.append("%tm/%<td/%<tY".format(Date()))
+                }
+                else {
+                    var _t: String = ""
+                    if block(&_t, key) { out.append(_t) }
+                    else { out.append(m.subString) }
+                }
             }
             else {
-                out.append(contentsOf: m.subString)
+                out.append(m.subString)
             }
         }
     }

@@ -7,12 +7,17 @@
 		<key>DocFixer.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
+			<integer>2</integer>
+		</dict>
+		<key>Emu6510 Tests.xcscheme_^#shared#^_</key>
+		<dict>
+			<key>orderHint</key>
 			<integer>3</integer>
 		</dict>
 		<key>Emu6510-All.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>5</integer>
+			<integer>4</integer>
 		</dict>
 		<key>Emu6510.xcscheme_^#shared#^_</key>
 		<dict>
@@ -24,19 +29,14 @@
 			<key>orderHint</key>
 			<integer>1</integer>
 		</dict>
-		<key>Emu6510 - All.xcscheme_^#shared#^_</key>
-		<dict>
-			<key>orderHint</key>
-			<integer>2</integer>
-		</dict>
-		<key>Emu6510 Tests.xcscheme_^#shared#^_</key>
-		<dict>
-			<key>orderHint</key>
-			<integer>4</integer>
-		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
+		<key>832E35F02672393D008E5591</key>
+		<dict>
+			<key>primary</key>
+			<true />
+		</dict>
 		<key>8363795D251CF5D000657A3B</key>
 		<dict>
 			<key>primary</key>
@@ -48,6 +48,11 @@
 			<true />
 		</dict>
 		<key>83637992251CF97300657A3B</key>
+		<dict>
+			<key>primary</key>
+			<true />
+		</dict>
+		<key>836379D1251D1CA400657A3B</key>
 		<dict>
 			<key>primary</key>
 			<true />

@@ -8,7 +8,7 @@ let package = Package(
     platforms: [ .macOS(.v10_15), .tvOS(.v13), .iOS(.v13), .watchOS(.v6) ],
     products: [ .library(name: "Emu6510", type: .static, targets: [ "Emu6510" ]), ],
     dependencies: [
-        .package(name: "Rubicon", url: "https://github.com/GalenRhodes/Rubicon", .upToNextMinor(from: "0.2.27")),
+        .package(name: "Rubicon", url: "https://github.com/GalenRhodes/Rubicon", .upToNextMinor(from: "0.2.38")),
     ],
     targets: [
         .target(name: "Emu6510", dependencies: [ "Rubicon" ], exclude: [ "Info.plist" ]),

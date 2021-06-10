@@ -19,6 +19,13 @@ import Foundation
 import CoreFoundation
 import Rubicon
 
+//@f:0
+fileprivate let BCDTable: [UInt8] = [
+
+
+]
+//@f:1
+
 open class MOS6502CPU {
     @usableFromInline typealias EfOperand = (operand: UInt8, plus: UInt8)
     @usableFromInline typealias EfAddress = (address: UInt16, plus: UInt8)
@@ -32,6 +39,11 @@ open class MOS6502CPU {
     public var            nmi:       Bool = false
     public var            reset:     Bool = false
     public let            memory:    MOS6502SystemMemoryMap
+    /// The 65C02 handles BCD mode slightly different with regards to the N and Z flags.
+    /// Setting this flag to true will cause the emulator to handle them the same way
+    /// the 65C02 does. Setting this flag to false will cause the emulator to handle them
+    /// the same way the 6502 does.
+    public var            bcd65c02:  Bool = false
 
     /*===========================================================================================================================================================================*/
     /// The Accumulator.
@@ -53,31 +65,29 @@ open class MOS6502CPU {
     /// I've look in several places and no one really talks about what the initial value of the stack pointer is. Only one reference said it is reset to zero on startup. But it is
     /// known that the startup routine SHOULD set the stack pointer.
     ///
-    @inlinable public var regSP:     UInt8 { UInt8(_regSP & 0x00ff) }
+    @inlinable public var regSP:     UInt8 { U16toU8(_regSP) }
     /*===========================================================================================================================================================================*/
     /// The sixth bit (32 (0x20)) of the status register should always be 1 (one).
     ///
     @inlinable public var regStatus: UInt8 { (_regSt | 0x20) }
 
     //@f:0
-    @usableFromInline var lock:        MutexLock       = MutexLock()
     @usableFromInline var _regAcc:     UInt8           = 0x00
     @usableFromInline var _regX:       UInt8           = 0x00
     @usableFromInline var _regY:       UInt8           = 0x00
     @usableFromInline var _regPC:      UInt16          = 0x0000
     @usableFromInline var _regSP:      UInt16          = 0x0100
     @usableFromInline var _regSt:      UInt8           = 0x20
-    @usableFromInline var ts:          timespec        = timespec()
     @usableFromInline var clockPeriod: UInt64
     @usableFromInline var clockInfo:   MOS6502ClockInfo
 
     // These fields are used to calculate the effective address of the operand or the target address of a JMP or JSR.
     @inlinable final  var efOperand:   UInt16          { (_regPC &+ 1) }
     @inlinable final  var efAbsolute:  UInt16          { memory.getWord(address: efOperand) }
-    @inlinable final  var efAbsoluteX: (UInt16, Bool)  { let a = (memory.getWord(address: efOperand) &+ UInt16(_regX)); return (a, diffPage(a, (efOperand &+ 1))) }
-    @inlinable final  var efAbsoluteY: (UInt16, Bool)  { let a = (memory.getWord(address: efOperand) &+ UInt16(_regY)); return (a, diffPage(a, (efOperand &+ 1))) }
-    @inlinable final  var efRelative:  (UInt16, UInt8) { let pc: UInt16 = efOperand; let ta: UInt16 = UInt16(bitPattern: (Int16(bitPattern: pc) &+ Int16(Int8(bitPattern: memory[pc])))); return (ta, (diffPage(ta, pc) ? 2 : 1)) }
-    @inlinable final  var efIndirectY: (UInt16, Bool)  { let a = memory.getWord(zpAddress: memory[efOperand]); let b = (a &+ UInt16(_regY)); return (b, diffPage(a, b)) }
+    @inlinable final  var efAbsoluteX: (UInt16, Bool)  { let a = (memory.getWord(address: efOperand) &+ U8toU16(_regX)); return (a, DiffPage(a, (efOperand &+ 1))) }
+    @inlinable final  var efAbsoluteY: (UInt16, Bool)  { let a = (memory.getWord(address: efOperand) &+ U8toU16(_regY)); return (a, DiffPage(a, (efOperand &+ 1))) }
+    @inlinable final  var efRelative:  (UInt16, UInt8) { let pc: UInt16 = efOperand; let ta: UInt16 = I16toU16((U16toI16(pc) &+ U8toI16(memory[pc]))); return (ta, (DiffPage(ta, pc) ? 2 : 1)) }
+    @inlinable final  var efIndirectY: (UInt16, Bool)  { let a = memory.getWord(zpAddress: memory[efOperand]); let b = (a &+ U8toU16(_regY)); return (b, DiffPage(a, b)) }
     @inlinable final  var efIndirectX: UInt16          { memory.getWord(zpAddress: (memory[efOperand] &+ _regX)) }
     @inlinable final  var efIndirect:  UInt16          { memory.getWord(address: efAbsolute, fromSamePage: true) }
     @inlinable final  var efZeroPage:  UInt8           { memory[efOperand] }
@@ -87,6 +97,9 @@ open class MOS6502CPU {
     @inlinable final  var clrNZC:      UInt8           { (_regSt & (~(fN | fZ | fC))) }
     @inlinable final  var clrNZV:      UInt8           { (_regSt & (~(fN | fZ | fV))) }
     @inlinable final  var clrNZ:       UInt8           { (_regSt & (~(fN | fZ))) }
+
+    @inlinable final  var fCarry:      UInt8           { (_regSt & fC) }
+    @inlinable final  var fDecimal:    Bool            { ((_regSt & MOS6502Flag.Decimal) == MOS6502Flag.Decimal) }
     //@f:1
 
     public init(clockInfo c: MOS6502ClockInfo, memory: MOS6502SystemMemoryMap) {
@@ -103,45 +116,40 @@ open class MOS6502CPU {
         return old
     }
 
-    @inlinable final func getSystemTime() -> UInt64 {
-        clock_gettime(CLOCK_MONOTONIC_RAW, &ts)
-        return (UInt64(UInt(bitPattern: ts.tv_sec)) * 1_000_000_000) &+ UInt64(UInt(bitPattern: ts.tv_nsec))
-    }
-
     @inlinable final func doWithOperand(_ opcode: MOS6502Opcode, _ proc: (UInt8) -> Void) -> UInt8 {
         let o = getOperand(opcode)
         proc(o.operand)
-        _regPC += UInt16(opcode.bytes)
+        _regPC += U8toU16(opcode.bytes)
         return o.plus
     }
 
     @inlinable final func doWithAddress(_ opcode: MOS6502Opcode, _ proc: (UInt16) -> Void) -> UInt8 {
         let a = getTargetAddress(opcode)
         proc(a.address)
-        _regPC += UInt16(opcode.bytes)
+        _regPC += U8toU16(opcode.bytes)
         return a.plus
     }
 
     @inlinable final func doWithRegister(_ opcode: MOS6502Opcode, _ proc: () -> Void) -> UInt8 {
         proc()
-        _regPC += UInt16(opcode.bytes)
+        _regPC += U8toU16(opcode.bytes)
         return 0 // Register actions never incur a cycle penalty.
     }
 
-    @inlinable final func setSP(_ sp: UInt8) { _regSP = (0x0100 | UInt16(sp)) }
+    @inlinable final func setSP(_ sp: UInt8) { _regSP = (0x0100 | U8toU16(sp)) }
 
     @discardableResult @inlinable final func setNZFlags(value v: UInt8) -> UInt8 {
-        _regSt = (clrNZ | (v & fN) | zeroFlag(v))
+        _regSt = (clrNZ | (v & fN) | ZeroFlag(v))
         return v
     }
 
     @discardableResult @inlinable final func setNZCFlags(value v: UInt8, carryOut c: UInt8) -> UInt8 {
-        _regSt = (clrNZC | (v & fN) | zeroFlag(v) | (c & fC))
+        _regSt = (clrNZC | (v & fN) | ZeroFlag(v) | (c & fC))
         return v
     }
 
     @discardableResult @inlinable final func setNZVFlags(value v: UInt8) -> UInt8 {
-        _regSt = (clrNZV | (v & fN) | zeroFlag(v) | (v & fV))
+        _regSt = (clrNZV | (v & fN) | ZeroFlag(v) | (v & fV))
         return v
     }
 
@@ -150,7 +158,7 @@ open class MOS6502CPU {
     }
 
     @inlinable final func stackPushAddress(address a: UInt16) {
-        stackPush(byte: UInt8((a & 0xff00) >> 8)); stackPush(byte: UInt8(a & 0x00ff))
+        stackPush(byte: U16toU8((a & 0xff00) >> 8)); stackPush(byte: U16toU8(a))
     }
 
     @inlinable final func stackPop() -> UInt8 {
@@ -158,12 +166,12 @@ open class MOS6502CPU {
     }
 
     @inlinable final func stackPopAddress() -> UInt16 {
-        let bLo = stackPop(); let bHi = stackPop(); return (UInt16(bLo) | (UInt16(bHi) << 8))
+        let bLo = stackPop(); let bHi = stackPop(); return (U8toU16(bLo) | (U8toU16(bHi) << 8))
     }
 
     /*===========================================================================================================================================================================*/
     /// This method is for opcodes that operate only on memory. In other words, no IMPlied, ACCumulator, or IMMediate addressing modes.
-    /// 
+    ///
     /// - Parameter opcode: The opcode.
     /// - Returns: The target address of the operand.
     ///
@@ -177,9 +185,9 @@ open class MOS6502CPU {
             case .INDX:                      return (efIndirectX, 0)
             case .INDY: let r = efIndirectY; return (r.0, ((opcode.plus1 && r.1) ? 1 : 0))
             case .REL:                       return efRelative
-            case .ZP:                        return (UInt16(efZeroPage), 0)
-            case .ZPX:                       return (UInt16(efZeroPageX), 0)
-            case .ZPY:                       return (UInt16(efZeroPageY), 0)
+            case .ZP:                        return (U8toU16(efZeroPage), 0)
+            case .ZPX:                       return (U8toU16(efZeroPageX), 0)
+            case .ZPY:                       return (U8toU16(efZeroPageY), 0)
         }
     }
 
@@ -213,9 +221,9 @@ open class MOS6502CPU {
             case .ABSY:                    r = efAbsoluteY
             case .INDX:                    r = (efIndirectX, false)
             case .INDY:                    r = efIndirectY
-            case .ZP:                      r = (UInt16(efZeroPage), false)
-            case .ZPX:                     r = (UInt16(efZeroPageX), false)
-            case .ZPY:                     r = (UInt16(efZeroPageY), false)
+            case .ZP:                      r = (U8toU16(efZeroPage), false)
+            case .ZPX:                     r = (U8toU16(efZeroPageX), false)
+            case .ZPY:                     r = (U8toU16(efZeroPageY), false)
             case .ACC:                     _regAcc = value; return 0 // The exception to the rule.
         }
 
@@ -223,10 +231,71 @@ open class MOS6502CPU {
         return ((opcode.plus1 && r.1) ? 1 : 0)
     }
 
-    @inlinable final func addWithCarry(leftOperand opL: UInt8, rightOperand opR: UInt8, carryIn: UInt8) -> (UInt8, UInt8) {
-        let res: UInt16 = (UInt16(opL) + UInt16(opR) + UInt16(carryIn)) // There is no chance of overflow here.
-        let rs8: UInt8  = UInt8(res & 0xff)
-        return (rs8, (clrNZCV | (rs8 & fN) | zeroFlag(rs8) | UInt8((res & zC) >> 8) | (((opL ^ rs8) & (opR ^ rs8) & fN) >> 1)))
+    @usableFromInline typealias MathResultA = (A: UInt8, S: UInt8)
+
+    @usableFromInline typealias MathResultB = (A: UInt8, V: UInt8, C: UInt8, N: UInt8, Z: UInt8)
+
+    @inlinable final func addWithCarry(leftOperand opL: UInt8, rightOperand opR: UInt8, carryIn: UInt8, decimalMode bcd: Bool = false) -> MathResultA {
+        (bcd ? addWithCarryBCD(opL: opL, opR: opR, carryIn: carryIn) : addWithCarryBinary(leftOperand: opL, rightOperand: opR, carryIn: carryIn))
+    }
+
+    @inlinable final func subtractWithCary(leftOperand opL: UInt8, rightOperand opR: UInt8, carryIn: UInt8) -> MathResultA {
+        (fDecimal ? subtractWithCarryBCD(opL: opL, opR: opR, carryIn: carryIn) : addWithCarryBinary(leftOperand: opL, rightOperand: ~opR, carryIn: carryIn))
+    }
+
+    @inlinable final func addWithCarryBinary(leftOperand opL: UInt8, rightOperand opR: UInt8, carryIn: UInt8) -> MathResultA {
+        let res: UInt16 = (U8toU16(opL) + U8toU16(opR) + U8toU16(carryIn)) // There is no chance of overflow here.
+        let rs8: UInt8  = U16toU8(res)
+        return (A: rs8, S: (clrNZCV | (rs8 & fN) | ZeroFlag(rs8) | CarryFlag(res) | (((opL ^ rs8) & (opR ^ rs8) & fN) >> 1)))
+    }
+
+    @inlinable func addWithCarryBCD(opL: UInt8, opR: UInt8, carryIn c: UInt8) -> MathResultA {
+        //@f:0
+        // http://6502.org/tutorials/decimal_mode.html#A
+        /* 1a. AL = (A & $0F) + (B & $0F) + C                           */ var al1 = (U8toU16(opL & 0x0f) + U8toU16(opR & 0x0f) + U8toU16(c))
+        /* 1b. If AL >= $0A, then AL = ((AL + $06) & $0F) + $10         */ if al1 >= 0x0a { al1 = (((al1 + 0x06) & 0x0f) + 0x10) }
+        /* 1c. A = (A & $F0) + (B & $F0) + AL                           */ al1 = (U8toU16(opL & 0xf0) + U8toU16(opR & 0xf0) + al1)
+        /* 1d. Note that A can be >= $100 at this point                 */
+        /* 1e. If (A >= $A0), then A = A + $60                          */ let al2 = ((al1 < 0xa0) ? al1 : (al1 + 0x60))
+        /* 1f. The accumulator result is the lower 8 bits of A          */ let a8 = U16toU8(al2)
+        /* 1g. The carry result is 1 if A >= $100, and is 0 if A < $100 */
+        //@f:1
+
+        let ali  = (U8toI16(opL & 0xf0) + U8toI16(opR & 0xf0) + U16toI16(al2))
+        let f    = (clrNZCV | CarryFlag(al2) | OverflowFlag(ali))
+        return (A: a8, S: (f | (bcd65c02 ? ((a8 & fN) | ZeroFlag(a8)) : ((I16toU8(ali) & fN) | ZeroFlag(al1 & 0xff)))))
+    }
+
+    @inlinable func subtractWithCarryBCD(opL: UInt8, opR: UInt8, carryIn: UInt8) -> MathResultA {
+        let r = (bcd65c02 ? sbcBCD65C02(opL, opR, U8toI16(carryIn)) : sbcBCD6502(opL, opR, U8toI16(carryIn)))
+        return (A: r.A, S: (clrNZCV | r.N | r.Z | r.C | r.V))
+    }
+
+    @inlinable final func sbcBCD6502(_ opL: UInt8, _ opR: UInt8, _ c: Int16) -> MathResultB {
+        //@f:0
+        // http://6502.org/tutorials/decimal_mode.html#A
+        /* 3a. AL = (A & $0F) - (B & $0F) + C - 1              */ var al = (U8toI16(opL & 0x0f) - U8toI16(opR & 0x0f) + c - 1)
+        /* 3b. If AL < 0, then AL = ((AL - $06) & $0F) - $10   */ if al < 0 { al = (((al - 0x06) & 0x0f) - 0x10) }
+        /* 3c. A = (A & $F0) - (B & $F0) + AL                  */ let aa:  Int16  = (U8toI16(opL & 0xf0) - U8toI16(opR & 0xf0) + al)
+        /* 3d. If A < 0, then A = A - $60                      */ let a16: UInt16 = I16toU16(((aa < 0) ? (aa - 0x60) : aa))
+        /* 3e. The accumulator result is the lower 8 bits of A */ let a8:  UInt8  = U16toU8(a16)
+        //@f:1
+
+        return (A: a8, V: ((aa < -128 || aa > 127) ? fV : 0), C: CarryFlag(a16), N: I16toU8(aa), Z: (((aa & 0xff) == 0) ? fZ : 0))
+    }
+
+    @inlinable final func sbcBCD65C02(_ opL: UInt8, _ opR: UInt8, _ c: Int16) -> MathResultB {
+        //@f:0
+        // http://6502.org/tutorials/decimal_mode.html#A
+        /* 4a. AL = (A & $0F) - (B & $0F) + C - 1              */ let al = (U8toI16(opL & 0x0f) - U8toI16(opR & 0x0f) + c - 1)
+        /* 4b. A = A - B + C - 1                               */ var aa = (U8toI16(opL) - U8toI16(opR) + c - 1)
+        /* 4c. If A < 0, then A = A - $60                      */ if aa < 0 { aa -= 0x60 }
+        /* 4d. If AL < 0, then A = A - $06                     */ if al < 0 { aa -= 0x06 }
+        /*                                                     */ let a16: UInt16 = I16toU16(aa)
+        /* 4e. The accumulator result is the lower 8 bits of A */ let a8:  UInt8  = U16toU8(a16)
+        //@f:1
+
+        return (A: a8, V: OverflowFlag(aa), C: CarryFlag(a16), N: (a8 & 0x80), Z: ZeroFlag(a8))
     }
 
     @discardableResult @inlinable final func shiftLeft(opcode: MOS6502Opcode, operand o: UInt8, carryIn c: UInt8) -> UInt8 {
@@ -242,7 +311,7 @@ open class MOS6502CPU {
     }
 
     @inlinable final func handleBranch(opcode: MOS6502Opcode, branchOn: Bool) -> UInt8 {
-        guard branchOn else { _regPC &+= UInt16(opcode.bytes); return 0 }
+        guard branchOn else { _regPC &+= U8toU16(opcode.bytes); return 0 }
         let (ta, p1) = efRelative
         _regPC = ta
         return p1
@@ -295,7 +364,8 @@ open class MOS6502CPU {
     }
 
     @inlinable final func handleRRA(opcode o: MOS6502Opcode, address a: UInt16) {
-        (_regAcc, _regSt) = addWithCarry(leftOperand: _regAcc, rightOperand: shiftRight(opcode: o, operand: memory[a], carryIn: (_regSt & fC)), carryIn: (_regSt & fC))
+        let o = shiftRight(opcode: o, operand: memory[a], carryIn: fCarry)
+        (_regAcc, _regSt) = addWithCarry(leftOperand: _regAcc, rightOperand: o, carryIn: fCarry)
     }
 
     @inlinable final func foo(_ cycles: UInt8) -> UInt64 { (UInt64(cycles) &+ clockPeriod) }
@@ -328,7 +398,7 @@ open class MOS6502CPU {
 
         switch opcode.mnemonic {
           // Don't change the order of these next two case statements!
-            case .JSR: stackPushAddress(address: (_regPC &+ UInt16(opcode.bytes &- 1))); fallthrough
+            case .JSR: stackPushAddress(address: (_regPC &+ U8toU16(opcode.bytes &- 1))); fallthrough
             case .JMP: _regPC = getTargetAddress(opcode).address
             case .BRK: handleInterrupt(.Break)
 
@@ -385,8 +455,8 @@ open class MOS6502CPU {
             case .BVS: return ((nextTick + foo(handleBranch(opcode: opcode, branchOn: _regSt ?== .Overflow))), true)
 
           // Math
-            case .ADC: return ((nextTick + foo(doWithOperand(opcode) { o in (_regAcc, _regSt) = addWithCarry(leftOperand: _regAcc, rightOperand: o, carryIn: (_regSt & fC)) })), true)
-            case .SBC: return ((nextTick + foo(doWithOperand(opcode) { o in (_regAcc, _regSt) = addWithCarry(leftOperand: _regAcc, rightOperand: ~o, carryIn: (_regSt & fC)) })), true)
+            case .ADC: return ((nextTick + foo(doWithOperand(opcode) { o in (_regAcc, _regSt) = addWithCarry(leftOperand: _regAcc, rightOperand: o, carryIn: fCarry, decimalMode: fDecimal) })), true)
+            case .SBC: return ((nextTick + foo(doWithOperand(opcode) { o in (_regAcc, _regSt) = addWithCarry(leftOperand: _regAcc, rightOperand: ~o, carryIn: fCarry, decimalMode: fDecimal) })), true)
             case .DEC: return ((nextTick + foo(doWithAddress(opcode) { a in handleDEC(address: a) })), true)
             case .INC: return ((nextTick + foo(doWithAddress(opcode) { a in handleINC(address: a) })), true)
             case .DEX: return ((nextTick + foo(doWithRegister(opcode) { _regX = setNZFlags(value: _regX &- 1) })), true)
@@ -397,8 +467,8 @@ open class MOS6502CPU {
           // Rotate and Shift
             case .ASL: return ((nextTick + foo(doWithOperand(opcode) { o in shiftLeft(opcode: opcode, operand: o, carryIn: 0) })), true)
             case .LSR: return ((nextTick + foo(doWithOperand(opcode) { o in shiftRight(opcode: opcode, operand: o, carryIn: 0) })), true)
-            case .ROL: return ((nextTick + foo(doWithOperand(opcode) { o in shiftLeft(opcode: opcode, operand: o, carryIn: (_regSt & fC)) })), true)
-            case .ROR: return ((nextTick + foo(doWithOperand(opcode) { o in shiftRight(opcode: opcode, operand: o, carryIn: (_regSt & fC)) })), true)
+            case .ROL: return ((nextTick + foo(doWithOperand(opcode) { o in shiftLeft(opcode: opcode, operand: o, carryIn: fCarry) })), true)
+            case .ROR: return ((nextTick + foo(doWithOperand(opcode) { o in shiftRight(opcode: opcode, operand: o, carryIn: fCarry) })), true)
 
           // Logic
             case .AND: return ((nextTick + foo(doWithOperand(opcode) { o in _regAcc = setNZFlags(value: (_regAcc & o)) })), true)
@@ -406,23 +476,23 @@ open class MOS6502CPU {
             case .ORA: return ((nextTick + foo(doWithOperand(opcode) { o in _regAcc = setNZFlags(value: (_regAcc | o)) })), true)
 
           // Does nothing...
-            case .NOP: _regPC += UInt16(opcode.bytes)
+            case .NOP: _regPC += U8toU16(opcode.bytes)
 
           // Illegal Instructions.
-            case .AHX: return ((nextTick + foo(doWithAddress(opcode) { a in memory[a] = (_regAcc & _regX & (UInt8(a >> 8) &+ 1)) })), true)
+            case .AHX: return ((nextTick + foo(doWithAddress(opcode) { a in memory[a] = (_regAcc & _regX & (U16HtoU8(a) &+ 1)) })), true)
             case .ALR: return ((nextTick + foo(doWithOperand(opcode) { o in let r = (_regAcc & o); _regAcc = setNZCFlags(value: (r >> 1), carryOut: (r & fC)) })), true)
             case .ANC: return ((nextTick + foo(doWithOperand(opcode) { o in let r: UInt8 = (_regAcc & o); _regAcc = setNZCFlags(value: r, carryOut: (r >> 7)) })), true)
-            case .ARR: return ((nextTick + foo(doWithOperand(opcode) { o in shiftRight(opcode: opcode, operand: (_regAcc & o), carryIn: (_regSt & fC)) })), true)
+            case .ARR: return ((nextTick + foo(doWithOperand(opcode) { o in shiftRight(opcode: opcode, operand: (_regAcc & o), carryIn: fCarry) })), true)
             case .AXS: return ((nextTick + foo(doWithOperand(opcode) { o in _regX = handleCompare(register: (_regAcc & _regX), operand: o) })), true)
             case .DCP: return ((nextTick + foo(doWithAddress(opcode) { a in handleCompare(register: _regAcc, operand: handleDEC(address: a)) })), true)
-            case .ISC: return ((nextTick + foo(doWithAddress(opcode) { a in (_regAcc, _regSt) = addWithCarry(leftOperand: _regAcc, rightOperand: ~handleINC(address: a), carryIn: (_regSt & fC)) })), true)
+            case .ISC: return ((nextTick + foo(doWithAddress(opcode) { a in (_regAcc, _regSt) = addWithCarry(leftOperand: _regAcc, rightOperand: ~handleINC(address: a), carryIn: fCarry) })), true)
             case .LAS: return ((nextTick + foo(doWithOperand(opcode) { o in let r = setNZFlags(value: o & regSP); _regAcc = r; _regX = r; setSP(r) })), true)
             case .LAX: return ((nextTick + foo(doWithOperand(opcode) { o in _regAcc = setNZFlags(value: o); _regX = o })), true)
-            case .RLA: return ((nextTick + foo(doWithAddress(opcode) { a in _regAcc = setNZFlags(value: (_regAcc & shiftRight(opcode: opcode, operand: memory[a], carryIn: (_regSt & fC)))) })), true)
+            case .RLA: return ((nextTick + foo(doWithAddress(opcode) { a in _regAcc = setNZFlags(value: (_regAcc & shiftRight(opcode: opcode, operand: memory[a], carryIn: fCarry))) })), true)
             case .RRA: return ((nextTick + foo(doWithAddress(opcode) { a in handleRRA(opcode: opcode, address: a) })), true)
             case .SAX: return ((nextTick + foo(doWithAddress(opcode) { a in memory[a] = (_regAcc & _regX) })), true)
-            case .SHX: return ((nextTick + foo(doWithAddress(opcode) { a in memory[a] = (_regX & UInt8(a >> 8)) })), true)
-            case .SHY: return ((nextTick + foo(doWithAddress(opcode) { a in memory[a] = (_regY & UInt8(a >> 8)) })), true)
+            case .SHX: return ((nextTick + foo(doWithAddress(opcode) { a in memory[a] = (_regX & U16HtoU8(a)) })), true)
+            case .SHY: return ((nextTick + foo(doWithAddress(opcode) { a in memory[a] = (_regY & U16HtoU8(a)) })), true)
             case .SLO: return ((nextTick + foo(doWithAddress(opcode) { a in _regAcc = setNZFlags(value: (_regAcc | shiftLeft(opcode: opcode, operand: memory[a], carryIn: 0))) })), true)
             case .SRE: return ((nextTick + foo(doWithAddress(opcode) { a in _regAcc = setNZFlags(value: (_regAcc ^ shiftRight(opcode: opcode, operand: memory[a], carryIn: 0))) })), true)
             case .TAS: return ((nextTick + foo(doWithAddress(opcode) { a in setSP(_regAcc & _regX); memory[a] = (_regAcc & _regX & memory[_regPC &+ 2]) })), true)

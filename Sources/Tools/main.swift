@@ -19,170 +19,91 @@ import Foundation
 import CoreFoundation
 import Rubicon
 
-let templatePath = "Templates"
-let sourcePath   = "Sources/Emu6510"
+parseTemplate(filename: "BCDTables.swift") { (out: inout String, key: String) -> Bool in
+    out = "    "
+    var idx: Int = 0
 
-let opcodeList: [[String]] = getOpcodes()
+    if key == "INSERT:A" {
+        for c: UInt8 in (0 ..< 2) {
+            for x: UInt8 in (0 ... 255) {
+                let xl: UInt8 = (x & 0x0f)
+                let xh: UInt8 = (x & 0xf0)
 
-func illegalOpcodeList(_ opcodeList: [[String]]) {
-    var data: [String: [(String, String)]] = [:]
+                for y: UInt8 in (0 ... 255) {
+                    //@f:0
+                    let yl:UInt8 = (y & 0x0f)
+                    let yh:UInt8 = (y & 0xf0)
 
-    for o in opcodeList.filter({ s in s[5] == "true" }) {
-        if var d: [(String, String)] = data[o[1]] {
-            d <+ (o[2], o[0])
-            data[o[1]] = d
-        }
-        else {
-            var d: [(String, String)] = []
-            d <+ (o[2], o[0])
-            data[o[1]] = d
-        }
-    }
+                    /* 1a. AL = (A & $0F) + (B & $0F) + C                           */ var al: UInt16 = UInt16((xl) + (yl) + c)
+                    /* 1b. If AL >= $0A, then AL = ((AL + $06) & $0F) + $10         */ if al >= 0x0a { al = (((al + 0x06) & 0x0f) + 0x10) }
+                    /* 1c. A = (A & $F0) + (B & $F0) + AL                           */ al = (UInt16(xh) + UInt16(yh) + al)
+                    /* 1d. Note that A can be >= $100 at this point                 */ let bin: Int16 = (Int16(Int8(bitPattern: xh)) + Int16(Int8(bitPattern: yh)) + Int16(bitPattern: al))
+                    /* 1e. If (A >= $A0), then A = A + $60                          */ if al >= 0xa0 { al = (al + 0x60) }
+                    /* 1f. The accumulator result is the lower 8 bits of A          */ let a8 = UInt8(al & 0xff)
+                    /* 1g. The carry result is 1 if A >= $100, and is 0 if A < $100 */ let c8 = UInt8((al >= 0x100) ? 1 : 0)
+                    //@f:1
 
-    for k in data.keys.sorted() {
-        if let d = data[k] {
-            print("\(k): ", terminator: "")
-            var b = true
-            for e in d.sorted(by: { t1, t2 in (t1.0 < t2.0) }) {
-                if b { b = false }
-                else { print(", ", terminator: "") }
-                print("%-4s (%4s)".format(e.0, e.1), terminator: "")
-            }
-            print()
-        }
-    }
-}
+                    let neg:  UInt8  = (a8 & 0x80)
+                    let zero: UInt8  = UInt8(((al & 0xff) == 0) ? 2 : 0)
+                    let ovfl: UInt8  = UInt8((bin < -128 || bin > 127) ? 64 : 0)
+                    let res:  UInt16 = ((UInt16(c8 | neg | zero | ovfl) << 8) | UInt16(a8))
 
-//***********************************************************************************************************************************************************************************
-func forStudy(_ opcodeList: [[String]]) {
-    print("\nPLUS ONE INSTRUCTIONS\n")
-
-    for (n, i) in opcodeList.sorted(by: { a, b in (a[1] < b[1]) || ((a[1] == b[1]) && (a[2] < b[2])) }).enumerated() {
-        if i[4].count > 1 {
-            print("%3d> \(i[0]): \(i[1]) - \(i[2])".format(n))
-        }
-    }
-
-    print("\nADDRESSING MODE LIST\n")
-
-    var foo1 = fooBar(opcodeList.map({ s -> (String, UInt8) in (s[2], UInt8(s[0][2 ..< 4], radix: 16) ?? 0) }))
-
-    for (am, bilo, bihi, oc) in foo1 {
-        print("%-4s \(bihi) \(bilo) - %#04x".format(am, oc))
-    }
-
-    print("\nINSTRUCTION LIST\n")
-
-    foo1 = fooBar(opcodeList.filter { s in s[5] == "false" }.map({ s -> (String, UInt8) in (s[1], UInt8(s[0][2 ..< 4], radix: 16) ?? 0) }))
-
-    for (am, bilo, bihi, oc) in foo1.sorted(by: { a, b in (a.am < b.am) }) {
-        print("%-4s \(bihi) \(bilo) - %#04x".format(am, oc))
-    }
-
-    func fooBar(_ array: [(String, UInt8)]) -> [(am: String, bilo: String, bihi: String, oc: UInt8)] {
-        var foo:  [String: UInt8]                                       = [:]
-        var foo1: [(am: String, bilo: String, bihi: String, oc: UInt8)] = []
-
-        for i in array {
-            if let o = foo[i.0] {
-                foo[i.0] = (o & i.1)
-            }
-            else {
-                foo[i.0] = i.1
-            }
-        }
-
-        for (am, oc) in foo { let bi = toBinary(oc, sep: "", pad: 8); foo1 <+ (am: am, bilo: String(bi[4 ..< 8]), bihi: String(bi[0 ..< 4]), oc: oc) }
-
-        return foo1.sorted(by: { a, b in ((a.bilo < b.bilo) || ((a.bilo == b.bilo) && (a.bihi < b.bihi))) })
-    }
-}
-
-//***********************************************************************************************************************************************************************************
-func doAddressingModes(_ opcodeList: [[String]]) {
-    var dict: [String: String] = [:]
-    for e in opcodeList {
-        if let b = dict[e[2]] { if b != e[3] { fatalError("duplicate entry: addressing mode: \(e[2]); existing byte count: \(b); new byte count: \(e[3])") } }
-        dict[e[2]] = e[3]
-    }
-    parseTemplate(filename: "MOS6502AddressingMode.swift") { (o, k) -> Bool in
-        switch k {
-            case "INSERT:A": for am in dict.keys.sorted() { o.append(contentsOf: "%8s %s\n".format("case", am)) }
-            case "INSERT:B": for am in dict.keys.sorted() { o.append(contentsOf: "%16s .%-5s return %s\n".format("case", "\(am):", am)) }
-            case "INSERT:C": for am in dict.keys.sorted() { o.append(contentsOf: "%16s .%-5s return %s\n".format("case", "\(am):", (dict[am] ?? "0"))) }
-            default: return false
-        }
-        return true
-    }
-}
-
-//***********************************************************************************************************************************************************************************
-func doMnemonics(_ opcodeList: [[String]]) {
-    let set = Set<String>(opcodeList.map { $0[1] }).sorted()
-
-    parseTemplate(filename: "MOS6502Mnemonic.swift") { (o: inout String, k: String) -> Bool in
-        switch k {
-            case "INSERT:A": for mnemonic in set { o.append(contentsOf: "    case \(mnemonic)\n") }
-            case "INSERT:B": for mnemonic in set { o.append(contentsOf: "            case .\(mnemonic): return \"\(mnemonic)\"\n") }
-            case "INSERT:C": for mnemonic in set {
-                o.append(contentsOf: "            case .\(mnemonic): return Set<MOS6502AddressingMode>([")
-                for a in opcodeList.filter({ $0[1] == mnemonic }).map({ $0[2] }) { o.append(contentsOf: " .\(a),") }
-                o.append(contentsOf: " ])\n")
-            }
-            default: return false
-        }
-        return true
-    }
-}
-
-//***********************************************************************************************************************************************************************************
-func doOpcodes(_ opcodeList: [[String]]) {
-    parseTemplate(filename: "MOS6502OpcodeList.swift") { (out: inout String, key: String) -> Bool in
-        guard key == "INSERT:A" else { return false }
-        for oc in opcodeList {
-            out.append(contentsOf: "    MOS6502Opcode(opcode: \(oc[0]), mnemonic: .\(oc[1]), addressingMode: .%-5s cycles: ".format("\(oc[2]),"))
-
-            let cycles = oc[4]
-            if cycles.count == 1 { out.append(contentsOf: "\(cycles), plus1: false") }
-            else { out.append(contentsOf: "\(cycles.first ?? "2"), plus1: true ") }
-
-            out.append(contentsOf: ", illegal: %-6s ".format("\(oc[5]),"))
-
-            out.append(contentsOf: "affectedFlags: [")
-            var f: Bool = false
-            for c in oc[6] {
-                switch c {
-                    case "C": out.append(contentsOf: "\(f ? ", " : " ").Carry"); f = true
-                    case "Z": out.append(contentsOf: "\(f ? ", " : " ").Zero"); f = true
-                    case "I": out.append(contentsOf: "\(f ? ", " : " ").IRQ"); f = true
-                    case "D": out.append(contentsOf: "\(f ? ", " : " ").Decimal"); f = true
-                    case "B": out.append(contentsOf: "\(f ? ", " : " ").Break"); f = true
-                    case "V": out.append(contentsOf: "\(f ? ", " : " ").Overflow"); f = true
-                    case "N": out.append(contentsOf: "\(f ? ", " : " ").Negative"); f = true
-                    default: break
+                    var str = String(res, radix: 16, uppercase: false)
+                    while str.count < 4 { str.insert("0", at: str.startIndex) }
+                    idx += 1
+                    out.append("0x\(str),\(((idx % 16) == 0) ? "\n    " : " ")")
                 }
             }
-            out.append(contentsOf: "\(f ? " " : "")]),\n")
         }
-        return true
     }
-}
+    else if key == "INSERT:B" {
+        for c: Int8 in (0 ..< 2) {
+            for x: UInt8 in (0 ... 255) {
+                let xl: UInt8 = (x & 0x0f)
+                let xh: UInt8 = (x & 0xf0)
 
-//***********************************************************************************************************************************************************************************
-func getOpcodes() -> [[String]] {
-    guard let data: String = try? String(contentsOfFile: "Other/65c02_all.csv") else { fatalError("File not found.") }
-    var opcodeList: [[String]] = data.split(on: "\r?\n").map { $0.split(on: "\\s*,\\s*", limit: -1) }
-    opcodeList.removeFirst()
+                for y: UInt8 in (0 ... 255) {
+                    //@f:0
+                    let yl: UInt8 = (y & 0x0f)
+                    let yh: UInt8 = (y & 0xf0)
 
-    guard opcodeList.count == 256 else {
-        for (i, oc) in opcodeList.enumerated() {
-            let op = oc[0]
-            let j  = (Int(op[op.index(op.startIndex, offsetBy: 2) ..< op.endIndex], radix: 16) ?? -1)
-            guard i == j else {
-                fatalError("There are only \(opcodeList.count) out of 256 opcodes found. Opcode 0x\(String(i, radix: 16)) is missing.")
+                    /* 3a. AL = (A & $0F) - (B & $0F) + C-1                */ var al: Int16 = (Int16(Int8(bitPattern: xl)) - Int16(Int8(bitPattern: yl)) + Int16(c) - 1)
+                    /* 3b. If AL < 0, then AL = ((AL - $06) & $0F) - $10   */ if al < 0 { al = (((al - 0x06) & 0x0f) - 0x10) }
+                    /* 3c. A = (A & $F0) - (B & $F0) + AL                  */ var a: Int16 = (Int16(Int8(bitPattern: xh)) - Int16(Int8(bitPattern: yh)) + al)
+                    /*                                                     */ let bin: Int16 = a
+                    /* 3d. If A < 0, then A = A - $60                      */ if a < 0 { a -= 0x60 }
+                    /* 3e. The accumulator result is the lower 8 bits of A */ let a8: UInt8 = UInt8(UInt16(bitPattern: a) & 0xff)
+                    /*                                                     */ let c8 = UInt8((UInt16(bitPattern: al) >= 0x100) ? 1 : 0)
+                    //@f:1
+
+                    let neg:  UInt8  = (a8 & 0x80)
+                    let zero: UInt8  = UInt8(((UInt16(bitPattern: al) & 0xff) == 0) ? 2 : 0)
+                    let ovfl: UInt8  = UInt8((bin < -128 || bin > 127) ? 64 : 0)
+                    let res:  UInt16 = ((UInt16(c8 | neg | zero | ovfl) << 8) | UInt16(a8))
+
+                    var str = String(res, radix: 16, uppercase: false)
+                    while str.count < 4 { str.insert("0", at: str.startIndex) }
+                    idx += 1
+                    out.append("0x\(str),\(((idx % 16) == 0) ? "\n    " : " ")")
+                }
             }
         }
-        fatalError("There are only \(opcodeList.count) out of 256 opcodes found.")
     }
-    return opcodeList
+    else if key == "INSERT:C" {
+        for x: UInt8 in (0 ... 255) {
+            let xl = (x & 0x0f)
+            let xh = ((x & 0xf0) >> 4)
+            let rs = ((xh &* 10) &+ xl)
+            var st = String(rs, radix: 16, uppercase: false)
+            while st.count < 2 { st.insert("0", at: st.startIndex) }
+            idx += 1
+            out.append("0x\(st),\(((idx % 16) == 0) ? "\n    " : " ")")
+        }
+    }
+    else {
+        return false
+    }
+
+    return true
 }
+
