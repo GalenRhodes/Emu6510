@@ -37,14 +37,12 @@
 		1117DE8537995144065CDE2F /* MOS6502Opcode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1117DC2E0090842B50F71563 /* MOS6502Opcode.swift */; };
 		1117DEAC76B18CFCB734A85E /* MOS6502Interrupt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1117DE5986818B4352FDE2D9 /* MOS6502Interrupt.swift */; };
 		1117DF2BD3907462AA5ED330 /* MOS6502CPU.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1117DD216A3D69DD6C0CB656 /* MOS6502CPU.swift */; };
+		830373722673BF080041F7D1 /* Emu6510.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8363795E251CF5D000657A3B /* Emu6510.framework */; };
+		830373752673C3B10041F7D1 /* Rubicon in Frameworks */ = {isa = PBXBuildFile; productRef = 830373742673C3B10041F7D1 /* Rubicon */; };
 		832E360426723A3C008E5591 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1117D80ED226BA5FF472B589 /* main.swift */; };
 		832E360526723A3C008E5591 /* ParseTemplate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1117DA06963CF6ABF5626BD1 /* ParseTemplate.swift */; };
 		832E360626723A3C008E5591 /* Subs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1117D9999B730B828088539D /* Subs.swift */; };
 		832E360B26723ADD008E5591 /* PGDocFixer in Frameworks */ = {isa = PBXBuildFile; productRef = 832E360A26723ADD008E5591 /* PGDocFixer */; };
-		832E360E26723B2D008E5591 /* Rubicon in Frameworks */ = {isa = PBXBuildFile; productRef = 832E360D26723B2D008E5591 /* Rubicon */; };
-		832E361226723B5D008E5591 /* Rubicon in Frameworks */ = {isa = PBXBuildFile; productRef = 832E361126723B5D008E5591 /* Rubicon */; };
-		832E361326723B5D008E5591 /* Rubicon in Embed Frameworks */ = {isa = PBXBuildFile; productRef = 832E361126723B5D008E5591 /* Rubicon */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
-		832E361526723B6D008E5591 /* libiconv.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 83BF6FD6264D85C50061DEA7 /* libiconv.tbd */; };
 		83637968251CF5D100657A3B /* Emu6510.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8363795E251CF5D000657A3B /* Emu6510.framework */; };
 		8363796D251CF5D100657A3B /* Emu6510Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8363796C251CF5D100657A3B /* Emu6510Tests.swift */; };
 		836379A0251CF98300657A3B /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8363798E251CF95E00657A3B /* main.swift */; };
@@ -52,6 +50,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		830373702673BEFF0041F7D1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 83637955251CF5D000657A3B /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 8363795D251CF5D000657A3B;
+			remoteInfo = Emu6510;
+		};
 		832E360226723997008E5591 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 83637955251CF5D000657A3B /* Project object */;
@@ -105,7 +110,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				832E361326723B5D008E5591 /* Rubicon in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -163,6 +167,7 @@
 		1117DF1329E1849564BEFD08 /* MOS6502AddressingMode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MOS6502AddressingMode.swift; sourceTree = "<group>"; };
 		1117DF59C20474D525743C90 /* Tools.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tools.swift; sourceTree = "<group>"; };
 		1117DFF42CE92F9363B971F4 /* MOS6502Flag.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MOS6502Flag.swift; sourceTree = "<group>"; };
+		830373762673C7A30041F7D1 /* Tools.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Tools.entitlements; sourceTree = "<group>"; };
 		832E35FD2672393D008E5591 /* Tools */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = Tools; sourceTree = BUILT_PRODUCTS_DIR; };
 		8363795E251CF5D000657A3B /* Emu6510.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Emu6510.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		83637967251CF5D100657A3B /* Emu6510Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Emu6510Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -182,8 +187,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				832E361526723B6D008E5591 /* libiconv.tbd in Frameworks */,
-				832E360E26723B2D008E5591 /* Rubicon in Frameworks */,
+				830373722673BF080041F7D1 /* Emu6510.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -192,7 +196,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				838AB2FE265C35D5007C5198 /* libiconv.tbd in Frameworks */,
-				832E361226723B5D008E5591 /* Rubicon in Frameworks */,
+				830373752673C3B10041F7D1 /* Rubicon in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -271,6 +275,7 @@
 		83637954251CF5D000657A3B = {
 			isa = PBXGroup;
 			children = (
+				830373762673C7A30041F7D1 /* Tools.entitlements */,
 				83637980251CF6FE00657A3B /* LICENSE */,
 				8363797F251CF6FE00657A3B /* Package.swift */,
 				8363797C251CF6D500657A3B /* README.md */,
@@ -386,10 +391,10 @@
 			buildRules = (
 			);
 			dependencies = (
+				830373712673BEFF0041F7D1 /* PBXTargetDependency */,
 			);
 			name = Tools;
 			packageProductDependencies = (
-				832E360D26723B2D008E5591 /* Rubicon */,
 			);
 			productName = DocFixer;
 			productReference = 832E35FD2672393D008E5591 /* Tools */;
@@ -411,7 +416,7 @@
 			);
 			name = Emu6510;
 			packageProductDependencies = (
-				832E361126723B5D008E5591 /* Rubicon */,
+				830373742673C3B10041F7D1 /* Rubicon */,
 			);
 			productName = Emu6510;
 			productReference = 8363795E251CF5D000657A3B /* Emu6510.framework */;
@@ -489,8 +494,8 @@
 			);
 			mainGroup = 83637954251CF5D000657A3B;
 			packageReferences = (
-				836379A4251CF9B500657A3B /* XCRemoteSwiftPackageReference "PGDocFixer.git" */,
-				832E360C26723B2D008E5591 /* XCRemoteSwiftPackageReference "Rubicon" */,
+				836379A4251CF9B500657A3B /* XCRemoteSwiftPackageReference "PGDocFixer" */,
+				830373732673C3B10041F7D1 /* XCRemoteSwiftPackageReference "Rubicon" */,
 			);
 			productRefGroup = 8363795F251CF5D000657A3B /* Products */;
 			projectDirPath = "";
@@ -572,6 +577,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		830373712673BEFF0041F7D1 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 8363795D251CF5D000657A3B /* Emu6510 */;
+			targetProxy = 830373702673BEFF0041F7D1 /* PBXContainerItemProxy */;
+		};
 		832E360326723997008E5591 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 832E35F02672393D008E5591 /* Tools */;
@@ -603,6 +613,7 @@
 		832E35FB2672393D008E5591 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = Tools.entitlements;
 				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = Q5XWZ7S7E9;
@@ -615,6 +626,7 @@
 		832E35FC2672393D008E5591 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = Tools.entitlements;
 				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = Q5XWZ7S7E9;
@@ -937,15 +949,15 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		832E360C26723B2D008E5591 /* XCRemoteSwiftPackageReference "Rubicon" */ = {
+		830373732673C3B10041F7D1 /* XCRemoteSwiftPackageReference "Rubicon" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/GalenRhodes/Rubicon";
 			requirement = {
 				kind = upToNextMinorVersion;
-				minimumVersion = 0.2.38;
+				minimumVersion = 0.2.41;
 			};
 		};
-		836379A4251CF9B500657A3B /* XCRemoteSwiftPackageReference "PGDocFixer.git" */ = {
+		836379A4251CF9B500657A3B /* XCRemoteSwiftPackageReference "PGDocFixer" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/GalenRhodes/PGDocFixer.git";
 			requirement = {
@@ -956,20 +968,15 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		830373742673C3B10041F7D1 /* Rubicon */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 830373732673C3B10041F7D1 /* XCRemoteSwiftPackageReference "Rubicon" */;
+			productName = Rubicon;
+		};
 		832E360A26723ADD008E5591 /* PGDocFixer */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 836379A4251CF9B500657A3B /* XCRemoteSwiftPackageReference "PGDocFixer.git" */;
+			package = 836379A4251CF9B500657A3B /* XCRemoteSwiftPackageReference "PGDocFixer" */;
 			productName = PGDocFixer;
-		};
-		832E360D26723B2D008E5591 /* Rubicon */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 832E360C26723B2D008E5591 /* XCRemoteSwiftPackageReference "Rubicon" */;
-			productName = Rubicon;
-		};
-		832E361126723B5D008E5591 /* Rubicon */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 832E360C26723B2D008E5591 /* XCRemoteSwiftPackageReference "Rubicon" */;
-			productName = Rubicon;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

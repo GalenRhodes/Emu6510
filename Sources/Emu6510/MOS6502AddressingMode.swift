@@ -19,7 +19,7 @@ import Foundation
 import CoreFoundation
 import Rubicon
 
-public enum MOS6502AddressingMode: CustomStringConvertible {
+public enum MOS6502AddressingMode: CustomStringConvertible, Comparable {
     case ABS
     case ABSX
     case ABSY
@@ -33,6 +33,26 @@ public enum MOS6502AddressingMode: CustomStringConvertible {
     case ZP
     case ZPX
     case ZPY
+
+    public static func < (lhs: MOS6502AddressingMode, rhs: MOS6502AddressingMode) -> Bool { (lhs.order < rhs.order) }
+
+    public var funDesc: String {
+        switch self {
+            case .ABS:  return "$1234"
+            case .ABSX: return "$1234,X"
+            case .ABSY: return "$1234,Y"
+            case .ACC:  return ""
+            case .IMM:  return "#$12"
+            case .IMP:  return ""
+            case .IND:  return "($1234)"
+            case .INDX: return "($12,X)"
+            case .INDY: return "($12),Y"
+            case .REL:  return "±$12"
+            case .ZP:   return "$12"
+            case .ZPX:  return "$12,X"
+            case .ZPY:  return "$12,Y"
+        }
+    }
 
     public var description: String {
         switch self {
@@ -67,6 +87,24 @@ public enum MOS6502AddressingMode: CustomStringConvertible {
             case .ZP:   return 2
             case .ZPX:  return 2
             case .ZPY:  return 2
+        }
+    }
+
+    public var order: UInt8 {
+        switch self {
+            case .IMP:  return 1
+            case .ACC:  return 2
+            case .IMM:  return 3
+            case .REL:  return 4
+            case .ZP:   return 5
+            case .ZPX:  return 6
+            case .ZPY:  return 7
+            case .ABS:  return 8
+            case .ABSX: return 9
+            case .ABSY: return 10
+            case .IND:  return 11
+            case .INDX: return 12
+            case .INDY: return 13
         }
     }
 }

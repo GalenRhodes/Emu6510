@@ -19,7 +19,7 @@ import Foundation
 import CoreFoundation
 import Rubicon
 
-public enum MOS6502Mnemonic: CustomStringConvertible {
+public enum MOS6502Mnemonic: CustomStringConvertible, Comparable {
     case ADC
     case AHX
     case ALR
@@ -95,6 +95,8 @@ public enum MOS6502Mnemonic: CustomStringConvertible {
     case TXS
     case TYA
     case XAA
+
+    public static func < (lhs: MOS6502Mnemonic, rhs: MOS6502Mnemonic) -> Bool { (lhs.description < rhs.description) }
 
     public var description: String {
         switch self {

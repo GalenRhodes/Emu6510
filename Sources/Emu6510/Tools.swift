@@ -23,13 +23,20 @@ import Rubicon
 @usableFromInline let fV: UInt8  = MOS6502Flag.Overflow.rawValue
 @usableFromInline let fN: UInt8  = MOS6502Flag.Negative.rawValue
 @usableFromInline let fC: UInt8  = MOS6502Flag.Carry.rawValue
+@usableFromInline let fD: UInt8  = MOS6502Flag.Decimal.rawValue
 @usableFromInline let NZ: UInt8  = (fZ | fN)
 @usableFromInline let CV: UInt8  = (fC | fV)
 @usableFromInline let zC: UInt16 = 0x0100
 
+@inlinable func toWord(lo: UInt8, hi: UInt8) -> UInt16 { (U8toU16(lo) | (U8toU16(hi) << 8)) }
+
+@inlinable func HiByte(_ w: UInt16) -> UInt8 { UInt8((w & 0xff00) >> 8) }
+
+@inlinable func LoByte(_ w: UInt16) -> UInt8 { UInt8(w & 0x00ff) }
+
 @inlinable func DiffPage(_ a: UInt16, _ b: UInt16) -> Bool { ((a & 0xff00) != (b & 0xff00)) }
 
-@inlinable func CarryFlag(_ w: UInt16) -> UInt8 { UInt8((w >= 0x100) ? 1 : 0) }
+@inlinable func CarryFlag(_ w: UInt16) -> UInt8 { UInt8((w >= 0x0100) ? 1 : 0) }
 
 @inlinable func OverflowFlag(_ a: Int16) -> UInt8 { (a < -128 || a > 127) ? fV : 0 }
 
@@ -43,11 +50,9 @@ import Rubicon
 
 @inlinable func I16toU16(_ w: Int16) -> UInt16 { UInt16(bitPattern: w) }
 
-@inlinable func U16toU8(_ w: UInt16) -> UInt8 { UInt8(w & 0xff) }
-
 @inlinable func U8toU16(_ b: UInt8) -> UInt16 { UInt16(b) }
 
-@inlinable func I16toI8(_ w: Int16) -> Int8 { U8toI8(U16toU8(I16toU16(w))) }
+@inlinable func I16toI8(_ w: Int16) -> Int8 { U8toI8(LoByte(I16toU16(w))) }
 
 @inlinable func I8toI16(_ b: Int8) -> Int16 { Int16(b) }
 
@@ -57,9 +62,7 @@ import Rubicon
 
 @inlinable func U16toI8(_ w: UInt16) -> Int8 { I16toI8(U16toI16(w)) }
 
-@inlinable func I16toU8(_ w: Int16) -> UInt8 { U16toU8(I16toU16(w)) }
-
-@inlinable func U16HtoU8(_ w: UInt16) -> UInt8 { UInt8((w & 0xff00) >> 8) }
+@inlinable func I16toU8(_ w: Int16) -> UInt8 { LoByte(I16toU16(w)) }
 
 @inlinable func getSystemTime() -> UInt64 {
     var ts: timespec = timespec()

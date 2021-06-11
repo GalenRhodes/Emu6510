@@ -34,18 +34,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="87075da3-fef8-4e0e-a558-4c45fa2c2b82" name="Default Changelist" comment="Update Package.swift">
-      <change afterPath="$PROJECT_DIR$/Sources/Tools/Subs.swift" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Templates/BCDTables.swift" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/runConfigurations/Emu6510___All.xml" beforeDir="false" />
+      <change afterPath="$PROJECT_DIR$/Tools.entitlements" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Emu6510.xcodeproj/project.pbxproj" beforeDir="false" afterPath="$PROJECT_DIR$/Emu6510.xcodeproj/project.pbxproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Emu6510.xcodeproj/xcshareddata/xcschemes/Emu6510 - All.xcscheme" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Emu6510.xcodeproj/xcshareddata/xcschemes/Emu6510 Tests.xcscheme" beforeDir="false" afterPath="$PROJECT_DIR$/Emu6510.xcodeproj/xcshareddata/xcschemes/Emu6510 Tests.xcscheme" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Emu6510.xcodeproj/xcuserdata/grhodes.xcuserdatad/xcschemes/xcschememanagement.plist" beforeDir="false" afterPath="$PROJECT_DIR$/Emu6510.xcodeproj/xcuserdata/grhodes.xcuserdatad/xcschemes/xcschememanagement.plist" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Package.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Package.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Sources/Emu6510/MOS6502AddressingMode.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Sources/Emu6510/MOS6502AddressingMode.swift" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Sources/Emu6510/MOS6502CPU.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Sources/Emu6510/MOS6502CPU.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Sources/Emu6510/MOS6502Mnemonic.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Sources/Emu6510/MOS6502Mnemonic.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Sources/Emu6510/MOS6502Opcode.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Sources/Emu6510/MOS6502Opcode.swift" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Sources/Emu6510/Tools.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Sources/Emu6510/Tools.swift" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Sources/Tools/ParseTemplate.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Sources/Tools/ParseTemplate.swift" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Sources/Tools/main.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Sources/Tools/main.swift" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -115,7 +112,7 @@
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="settings.editor.selected.configurable" value="editing.templates" />
   </component>
-  <component name="RunManager" selected="Application.Emu6510">
+  <component name="RunManager" selected="Application.Tools">
     <configuration default="true" type="Application" factoryName="Application">
       <method v="2">
         <option name="Make" enabled="true" />
@@ -187,7 +184,8 @@
       <workItem from="1622225501428" duration="453000" />
       <workItem from="1622556666355" duration="632000" />
       <workItem from="1623264874964" duration="8947000" />
-      <workItem from="1623329328325" duration="18178000" />
+      <workItem from="1623329328325" duration="18202000" />
+      <workItem from="1623423708446" duration="8924000" />
     </task>
     <task id="LOCAL-00001" summary="Redo">
       <created>1600997267219</created>
@@ -399,7 +397,14 @@
       <option name="project" value="LOCAL" />
       <updated>1622557250468</updated>
     </task>
-    <option name="localTasksCounter" value="31" />
+    <task id="LOCAL-00031" summary="Update Package.swift">
+      <created>1623359324610</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1623359324610</updated>
+    </task>
+    <option name="localTasksCounter" value="32" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

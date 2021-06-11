@@ -19,7 +19,7 @@ import Foundation
 import CoreFoundation
 import Rubicon
 
-open class MOS6502Opcode: Hashable, Equatable {
+open class MOS6502Opcode: Hashable, Equatable, CustomStringConvertible, Comparable {
     public let opcode:         UInt8
     public let mnemonic:       MOS6502Mnemonic
     public let addressingMode: MOS6502AddressingMode
@@ -27,6 +27,7 @@ open class MOS6502Opcode: Hashable, Equatable {
     public let cycles:         UInt8
     public let plus1:          Bool
     public let affectedFlags:  Set<MOS6502Flag>
+    public let illegal:        Bool
 
     public init(opcode: UInt8, mnemonic: MOS6502Mnemonic, addressingMode: MOS6502AddressingMode, cycles: UInt8, plus1: Bool, illegal: Bool, affectedFlags: [MOS6502Flag]) {
         self.opcode = opcode
@@ -35,6 +36,7 @@ open class MOS6502Opcode: Hashable, Equatable {
         self.cycles = cycles
         self.plus1 = plus1
         self.affectedFlags = Set<MOS6502Flag>(affectedFlags)
+        self.illegal = illegal
     }
 
     open func hash(into hasher: inout Hasher) {
@@ -44,9 +46,18 @@ open class MOS6502Opcode: Hashable, Equatable {
         hasher.combine(cycles)
         hasher.combine(plus1)
         hasher.combine(affectedFlags)
+        hasher.combine(illegal)
     }
 
     public static func == (lhs: MOS6502Opcode, rhs: MOS6502Opcode) -> Bool {
-        lhs.opcode == rhs.opcode && lhs.mnemonic == rhs.mnemonic && lhs.addressingMode == rhs.addressingMode && lhs.cycles == rhs.cycles && lhs.plus1 == rhs.plus1 && lhs.affectedFlags == rhs.affectedFlags
+        lhs.opcode == rhs.opcode && lhs.mnemonic == rhs.mnemonic && lhs.addressingMode == rhs.addressingMode && lhs.cycles == rhs.cycles && lhs.plus1 == rhs.plus1 && lhs.affectedFlags == rhs.affectedFlags && lhs.illegal == rhs.illegal
+    }
+
+    public static func < (lhs: MOS6502Opcode, rhs: MOS6502Opcode) -> Bool {
+        (lhs.mnemonic < rhs.mnemonic) || ((lhs.mnemonic == rhs.mnemonic) && (lhs.addressingMode < rhs.addressingMode)) || ((lhs.mnemonic == rhs.mnemonic) && (lhs.addressingMode == rhs.addressingMode) && (lhs.opcode < rhs.opcode))
+    }
+
+    public var description: String {
+        "\(mnemonic) \(addressingMode.funDesc)\(illegal ? " 🚫 ($%02x)".format(opcode) : "")"
     }
 }

@@ -19,14 +19,12 @@ import Foundation
 import CoreFoundation
 import Rubicon
 
-//@f:0
-fileprivate let BCDTable: [UInt8] = [
-
-
-]
-//@f:1
+@usableFromInline let SPStart: UInt16 = 0x0100
+@usableFromInline let SPEnd:   UInt16 = 0x01ff
 
 open class MOS6502CPU {
+    @usableFromInline typealias MathResultA = (A: UInt8, S: UInt8)
+    @usableFromInline typealias MathResultB = (A: UInt8, V: UInt8, C: UInt8, N: UInt8, Z: UInt8)
     @usableFromInline typealias EfOperand = (operand: UInt8, plus: UInt8)
     @usableFromInline typealias EfAddress = (address: UInt16, plus: UInt8)
 
@@ -65,7 +63,7 @@ open class MOS6502CPU {
     /// I've look in several places and no one really talks about what the initial value of the stack pointer is. Only one reference said it is reset to zero on startup. But it is
     /// known that the startup routine SHOULD set the stack pointer.
     ///
-    @inlinable public var regSP:     UInt8 { U16toU8(_regSP) }
+    @inlinable public var regSP:     UInt8 { LoByte(_regSP) }
     /*===========================================================================================================================================================================*/
     /// The sixth bit (32 (0x20)) of the status register should always be 1 (one).
     ///
@@ -76,7 +74,7 @@ open class MOS6502CPU {
     @usableFromInline var _regX:       UInt8           = 0x00
     @usableFromInline var _regY:       UInt8           = 0x00
     @usableFromInline var _regPC:      UInt16          = 0x0000
-    @usableFromInline var _regSP:      UInt16          = 0x0100
+    @usableFromInline var _regSP:      UInt16          = SPStart
     @usableFromInline var _regSt:      UInt8           = 0x20
     @usableFromInline var clockPeriod: UInt64
     @usableFromInline var clockInfo:   MOS6502ClockInfo
@@ -97,9 +95,8 @@ open class MOS6502CPU {
     @inlinable final  var clrNZC:      UInt8           { (_regSt & (~(fN | fZ | fC))) }
     @inlinable final  var clrNZV:      UInt8           { (_regSt & (~(fN | fZ | fV))) }
     @inlinable final  var clrNZ:       UInt8           { (_regSt & (~(fN | fZ))) }
-
     @inlinable final  var fCarry:      UInt8           { (_regSt & fC) }
-    @inlinable final  var fDecimal:    Bool            { ((_regSt & MOS6502Flag.Decimal) == MOS6502Flag.Decimal) }
+    @inlinable final  var fDecimal:    Bool            { ((_regSt & fD) == fD) }
     //@f:1
 
     public init(clockInfo c: MOS6502ClockInfo, memory: MOS6502SystemMemoryMap) {
@@ -130,13 +127,12 @@ open class MOS6502CPU {
         return a.plus
     }
 
-    @inlinable final func doWithRegister(_ opcode: MOS6502Opcode, _ proc: () -> Void) -> UInt8 {
+    @inlinable final func doWithRegister(_ opcode: MOS6502Opcode, _ proc: () -> Void) {
         proc()
         _regPC += U8toU16(opcode.bytes)
-        return 0 // Register actions never incur a cycle penalty.
     }
 
-    @inlinable final func setSP(_ sp: UInt8) { _regSP = (0x0100 | U8toU16(sp)) }
+    @inlinable final func setSP(_ sp: UInt8) { _regSP = (SPStart | U8toU16(sp)) }
 
     @discardableResult @inlinable final func setNZFlags(value v: UInt8) -> UInt8 {
         _regSt = (clrNZ | (v & fN) | ZeroFlag(v))
@@ -153,20 +149,29 @@ open class MOS6502CPU {
         return v
     }
 
+    @inlinable final func updateSP(_ d: Int8) {
+        _regSP = (SPStart | (I16toU16(U16toI16(_regSP) + I8toI16(d)) & 0x00ff))
+    }
+
     @inlinable final func stackPush(byte: UInt8) {
-        memory[_regSP] = byte; _regSP = ((_regSP == 0x0100) ? 0x01ff : (_regSP - 1))
+        memory[_regSP] = byte
+        updateSP(-1)
     }
 
     @inlinable final func stackPushAddress(address a: UInt16) {
-        stackPush(byte: U16toU8((a & 0xff00) >> 8)); stackPush(byte: U16toU8(a))
+        stackPush(byte: HiByte(a))
+        stackPush(byte: LoByte(a))
     }
 
     @inlinable final func stackPop() -> UInt8 {
-        _regSP = ((_regSP == 0x01ff) ? 0x0100 : (_regSP + 1)); return memory[_regSP]
+        updateSP(1)
+        return memory[_regSP]
     }
 
     @inlinable final func stackPopAddress() -> UInt16 {
-        let bLo = stackPop(); let bHi = stackPop(); return (U8toU16(bLo) | (U8toU16(bHi) << 8))
+        let bLo = stackPop()
+        let bHi = stackPop()
+        return toWord(lo: bLo, hi: bHi)
     }
 
     /*===========================================================================================================================================================================*/
@@ -231,10 +236,6 @@ open class MOS6502CPU {
         return ((opcode.plus1 && r.1) ? 1 : 0)
     }
 
-    @usableFromInline typealias MathResultA = (A: UInt8, S: UInt8)
-
-    @usableFromInline typealias MathResultB = (A: UInt8, V: UInt8, C: UInt8, N: UInt8, Z: UInt8)
-
     @inlinable final func addWithCarry(leftOperand opL: UInt8, rightOperand opR: UInt8, carryIn: UInt8, decimalMode bcd: Bool = false) -> MathResultA {
         (bcd ? addWithCarryBCD(opL: opL, opR: opR, carryIn: carryIn) : addWithCarryBinary(leftOperand: opL, rightOperand: opR, carryIn: carryIn))
     }
@@ -245,7 +246,7 @@ open class MOS6502CPU {
 
     @inlinable final func addWithCarryBinary(leftOperand opL: UInt8, rightOperand opR: UInt8, carryIn: UInt8) -> MathResultA {
         let res: UInt16 = (U8toU16(opL) + U8toU16(opR) + U8toU16(carryIn)) // There is no chance of overflow here.
-        let rs8: UInt8  = U16toU8(res)
+        let rs8: UInt8  = LoByte(res)
         return (A: rs8, S: (clrNZCV | (rs8 & fN) | ZeroFlag(rs8) | CarryFlag(res) | (((opL ^ rs8) & (opR ^ rs8) & fN) >> 1)))
     }
 
@@ -257,12 +258,12 @@ open class MOS6502CPU {
         /* 1c. A = (A & $F0) + (B & $F0) + AL                           */ al1 = (U8toU16(opL & 0xf0) + U8toU16(opR & 0xf0) + al1)
         /* 1d. Note that A can be >= $100 at this point                 */
         /* 1e. If (A >= $A0), then A = A + $60                          */ let al2 = ((al1 < 0xa0) ? al1 : (al1 + 0x60))
-        /* 1f. The accumulator result is the lower 8 bits of A          */ let a8 = U16toU8(al2)
+        /* 1f. The accumulator result is the lower 8 bits of A          */ let a8 = LoByte(al2)
         /* 1g. The carry result is 1 if A >= $100, and is 0 if A < $100 */
         //@f:1
 
-        let ali  = (U8toI16(opL & 0xf0) + U8toI16(opR & 0xf0) + U16toI16(al2))
-        let f    = (clrNZCV | CarryFlag(al2) | OverflowFlag(ali))
+        let ali = (U8toI16(opL & 0xf0) + U8toI16(opR & 0xf0) + U16toI16(al2))
+        let f   = (clrNZCV | CarryFlag(al2) | OverflowFlag(ali))
         return (A: a8, S: (f | (bcd65c02 ? ((a8 & fN) | ZeroFlag(a8)) : ((I16toU8(ali) & fN) | ZeroFlag(al1 & 0xff)))))
     }
 
@@ -278,7 +279,7 @@ open class MOS6502CPU {
         /* 3b. If AL < 0, then AL = ((AL - $06) & $0F) - $10   */ if al < 0 { al = (((al - 0x06) & 0x0f) - 0x10) }
         /* 3c. A = (A & $F0) - (B & $F0) + AL                  */ let aa:  Int16  = (U8toI16(opL & 0xf0) - U8toI16(opR & 0xf0) + al)
         /* 3d. If A < 0, then A = A - $60                      */ let a16: UInt16 = I16toU16(((aa < 0) ? (aa - 0x60) : aa))
-        /* 3e. The accumulator result is the lower 8 bits of A */ let a8:  UInt8  = U16toU8(a16)
+        /* 3e. The accumulator result is the lower 8 bits of A */ let a8:  UInt8  = LoByte(a16)
         //@f:1
 
         return (A: a8, V: ((aa < -128 || aa > 127) ? fV : 0), C: CarryFlag(a16), N: I16toU8(aa), Z: (((aa & 0xff) == 0) ? fZ : 0))
@@ -292,7 +293,7 @@ open class MOS6502CPU {
         /* 4c. If A < 0, then A = A - $60                      */ if aa < 0 { aa -= 0x60 }
         /* 4d. If AL < 0, then A = A - $06                     */ if al < 0 { aa -= 0x06 }
         /*                                                     */ let a16: UInt16 = I16toU16(aa)
-        /* 4e. The accumulator result is the lower 8 bits of A */ let a8:  UInt8  = U16toU8(a16)
+        /* 4e. The accumulator result is the lower 8 bits of A */ let a8:  UInt8  = LoByte(a16)
         //@f:1
 
         return (A: a8, V: OverflowFlag(aa), C: CarryFlag(a16), N: (a8 & 0x80), Z: ZeroFlag(a8))
@@ -388,13 +389,16 @@ open class MOS6502CPU {
                 nextTick += foo(handleInterrupt(.IRQ))
             }
             else {
-                (nextTick, isRunning) = handleOpcode(now: nextTick, opcode: mos6502OpcodeList[Int(memory[_regPC])])
+                let opcode = mos6502OpcodeList[Int(memory[_regPC])]
+                let result = handleOpcode(now: nextTick, opcode: opcode)
+                isRunning = result.stillRunning
+                nextTick += (foo(opcode.cycles) + UInt64(result.addTime))
             }
         }
     }
 
-    open func handleOpcode(now: UInt64, opcode: MOS6502Opcode) -> (UInt64, Bool) {
-        let nextTick = (now + foo(opcode.cycles))
+    open func handleOpcode(now: UInt64, opcode: MOS6502Opcode) -> (addTime: UInt8, stillRunning: Bool) {
+        var t: UInt8 = 0
 
         switch opcode.mnemonic {
           // Don't change the order of these next two case statements!
@@ -408,100 +412,102 @@ open class MOS6502CPU {
 
           // Legal Instructions.
           // Load and Store.
-            case .LDA: return ((nextTick + foo(doWithOperand(opcode) { o in _regAcc = setNZFlags(value: o) })), true)
-            case .LDX: return ((nextTick + foo(doWithOperand(opcode) { o in _regX = setNZFlags(value: o) })), true)
-            case .LDY: return ((nextTick + foo(doWithOperand(opcode) { o in _regY = setNZFlags(value: o) })), true)
-            case .STA: return ((nextTick + foo(setOperand(opcode, value: _regAcc))), true)
-            case .STX: return ((nextTick + foo(setOperand(opcode, value: _regX))), true)
-            case .STY: return ((nextTick + foo(setOperand(opcode, value: _regY))), true)
+            case .LDA: t = doWithOperand(opcode) { o in _regAcc = setNZFlags(value: o) }
+            case .LDX: t = doWithOperand(opcode) { o in _regX = setNZFlags(value: o) }
+            case .LDY: t = doWithOperand(opcode) { o in _regY = setNZFlags(value: o) }
+            case .STA: setOperand(opcode, value: _regAcc)
+            case .STX: setOperand(opcode, value: _regX)
+            case .STY: setOperand(opcode, value: _regY)
 
           // Transfer to/from Stack
-            case .PHA: return ((nextTick + foo(doWithRegister(opcode) { stackPush(byte: _regAcc) })), true)
-            case .PHP: return ((nextTick + foo(doWithRegister(opcode) { stackPush(byte: _regSt) })), true)
-            case .PLA: return ((nextTick + foo(doWithRegister(opcode) { _regAcc = setNZFlags(value: stackPop()) })), true)
-            case .PLP: return ((nextTick + foo(doWithRegister(opcode) { _regSt = stackPop() })), true)
+            case .PHA: doWithRegister(opcode) { stackPush(byte: _regAcc) }
+            case .PHP: doWithRegister(opcode) { stackPush(byte: _regSt) }
+            case .PLA: doWithRegister(opcode) { _regAcc = setNZFlags(value: stackPop()) }
+            case .PLP: doWithRegister(opcode) { _regSt = stackPop() }
 
           // Transfer Between Regsiters.
-            case .TAX: return ((nextTick + foo(doWithRegister(opcode) { _regX = setNZFlags(value: _regAcc) })), true)
-            case .TAY: return ((nextTick + foo(doWithRegister(opcode) { _regY = setNZFlags(value: _regAcc) })), true)
-            case .TSX: return ((nextTick + foo(doWithRegister(opcode) { _regX = setNZFlags(value: regSP) })), true)
-            case .TXA: return ((nextTick + foo(doWithRegister(opcode) { _regAcc = setNZFlags(value: _regX) })), true)
-            case .TXS: return ((nextTick + foo(doWithRegister(opcode) { setSP(_regX) })), true)
-            case .TYA: return ((nextTick + foo(doWithRegister(opcode) { _regAcc = setNZFlags(value: _regY) })), true)
+            case .TAX: doWithRegister(opcode) { _regX = setNZFlags(value: _regAcc) }
+            case .TAY: doWithRegister(opcode) { _regY = setNZFlags(value: _regAcc) }
+            case .TSX: doWithRegister(opcode) { _regX = setNZFlags(value: regSP) }
+            case .TXA: doWithRegister(opcode) { _regAcc = setNZFlags(value: _regX) }
+            case .TXS: doWithRegister(opcode) { setSP(_regX) }
+            case .TYA: doWithRegister(opcode) { _regAcc = setNZFlags(value: _regY) }
 
           // Status Register Manipulation.
-            case .CLC: return ((nextTick + foo(doWithRegister(opcode) { _regSt <-= .Carry })), true)
-            case .CLD: return ((nextTick + foo(doWithRegister(opcode) { _regSt <-= .Decimal })), true)
-            case .CLI: return ((nextTick + foo(doWithRegister(opcode) { _regSt <-= .IRQ })), true)
-            case .CLV: return ((nextTick + foo(doWithRegister(opcode) { _regSt <-= .Overflow })), true)
-            case .SEC: return ((nextTick + foo(doWithRegister(opcode) { _regSt <+= .Carry })), true)
-            case .SED: return ((nextTick + foo(doWithRegister(opcode) { _regSt <+= .Decimal })), true)
-            case .SEI: return ((nextTick + foo(doWithRegister(opcode) { _regSt <+= .IRQ })), true)
+            case .CLC: doWithRegister(opcode) { _regSt <-= .Carry }
+            case .CLD: doWithRegister(opcode) { _regSt <-= .Decimal }
+            case .CLI: doWithRegister(opcode) { _regSt <-= .IRQ }
+            case .CLV: doWithRegister(opcode) { _regSt <-= .Overflow }
+            case .SEC: doWithRegister(opcode) { _regSt <+= .Carry }
+            case .SED: doWithRegister(opcode) { _regSt <+= .Decimal }
+            case .SEI: doWithRegister(opcode) { _regSt <+= .IRQ }
 
           // Comparison
-            case .BIT: return ((nextTick + foo(doWithOperand(opcode) { o in setNZVFlags(value: (_regAcc & o)) })), true)
-            case .CMP: return ((nextTick + foo(doWithOperand(opcode) { o in handleCompare(register: _regAcc, operand: o) })), true)
-            case .CPX: return ((nextTick + foo(doWithOperand(opcode) { o in handleCompare(register: _regX, operand: o) })), true)
-            case .CPY: return ((nextTick + foo(doWithOperand(opcode) { o in handleCompare(register: _regY, operand: o) })), true)
+            case .CMP: t = doWithOperand(opcode) { o in handleCompare(register: _regAcc, operand: o) }
+            case .CPX: doWithOperand(opcode) { o in handleCompare(register: _regX, operand: o) }
+            case .CPY: doWithOperand(opcode) { o in handleCompare(register: _regY, operand: o) }
+            case .BIT: doWithOperand(opcode) { o in setNZVFlags(value: (_regAcc & o)) }
 
           // Branching
-            case .BCC: return ((nextTick + foo(handleBranch(opcode: opcode, branchOn: _regSt ?!= .Carry))), true)
-            case .BCS: return ((nextTick + foo(handleBranch(opcode: opcode, branchOn: _regSt ?== .Carry))), true)
-            case .BNE: return ((nextTick + foo(handleBranch(opcode: opcode, branchOn: _regSt ?!= .Zero))), true)
-            case .BEQ: return ((nextTick + foo(handleBranch(opcode: opcode, branchOn: _regSt ?== .Zero))), true)
-            case .BPL: return ((nextTick + foo(handleBranch(opcode: opcode, branchOn: _regSt ?!= .Negative))), true)
-            case .BMI: return ((nextTick + foo(handleBranch(opcode: opcode, branchOn: _regSt ?== .Negative))), true)
-            case .BVC: return ((nextTick + foo(handleBranch(opcode: opcode, branchOn: _regSt ?!= .Overflow))), true)
-            case .BVS: return ((nextTick + foo(handleBranch(opcode: opcode, branchOn: _regSt ?== .Overflow))), true)
+            case .BCC: t = handleBranch(opcode: opcode, branchOn: _regSt ?!= .Carry)
+            case .BCS: t = handleBranch(opcode: opcode, branchOn: _regSt ?== .Carry)
+            case .BNE: t = handleBranch(opcode: opcode, branchOn: _regSt ?!= .Zero)
+            case .BEQ: t = handleBranch(opcode: opcode, branchOn: _regSt ?== .Zero)
+            case .BPL: t = handleBranch(opcode: opcode, branchOn: _regSt ?!= .Negative)
+            case .BMI: t = handleBranch(opcode: opcode, branchOn: _regSt ?== .Negative)
+            case .BVC: t = handleBranch(opcode: opcode, branchOn: _regSt ?!= .Overflow)
+            case .BVS: t = handleBranch(opcode: opcode, branchOn: _regSt ?== .Overflow)
 
           // Math
-            case .ADC: return ((nextTick + foo(doWithOperand(opcode) { o in (_regAcc, _regSt) = addWithCarry(leftOperand: _regAcc, rightOperand: o, carryIn: fCarry, decimalMode: fDecimal) })), true)
-            case .SBC: return ((nextTick + foo(doWithOperand(opcode) { o in (_regAcc, _regSt) = addWithCarry(leftOperand: _regAcc, rightOperand: ~o, carryIn: fCarry, decimalMode: fDecimal) })), true)
-            case .DEC: return ((nextTick + foo(doWithAddress(opcode) { a in handleDEC(address: a) })), true)
-            case .INC: return ((nextTick + foo(doWithAddress(opcode) { a in handleINC(address: a) })), true)
-            case .DEX: return ((nextTick + foo(doWithRegister(opcode) { _regX = setNZFlags(value: _regX &- 1) })), true)
-            case .DEY: return ((nextTick + foo(doWithRegister(opcode) { _regY = setNZFlags(value: _regY &- 1) })), true)
-            case .INX: return ((nextTick + foo(doWithRegister(opcode) { _regX = setNZFlags(value: _regX &+ 1) })), true)
-            case .INY: return ((nextTick + foo(doWithRegister(opcode) { _regY = setNZFlags(value: _regY &+ 1) })), true)
+            case .ADC: t = doWithOperand(opcode) { o in (_regAcc, _regSt) = addWithCarry(leftOperand: _regAcc, rightOperand: o, carryIn: fCarry, decimalMode: fDecimal) }
+            case .SBC: t = doWithOperand(opcode) { o in (_regAcc, _regSt) = addWithCarry(leftOperand: _regAcc, rightOperand: ~o, carryIn: fCarry, decimalMode: fDecimal) }
+
+          // Increment/Decrement
+            case .DEC: doWithAddress(opcode) { a in handleDEC(address: a) }
+            case .INC: doWithAddress(opcode) { a in handleINC(address: a) }
+            case .DEX: doWithRegister(opcode) { _regX = setNZFlags(value: _regX &- 1) }
+            case .DEY: doWithRegister(opcode) { _regY = setNZFlags(value: _regY &- 1) }
+            case .INX: doWithRegister(opcode) { _regX = setNZFlags(value: _regX &+ 1) }
+            case .INY: doWithRegister(opcode) { _regY = setNZFlags(value: _regY &+ 1) }
 
           // Rotate and Shift
-            case .ASL: return ((nextTick + foo(doWithOperand(opcode) { o in shiftLeft(opcode: opcode, operand: o, carryIn: 0) })), true)
-            case .LSR: return ((nextTick + foo(doWithOperand(opcode) { o in shiftRight(opcode: opcode, operand: o, carryIn: 0) })), true)
-            case .ROL: return ((nextTick + foo(doWithOperand(opcode) { o in shiftLeft(opcode: opcode, operand: o, carryIn: fCarry) })), true)
-            case .ROR: return ((nextTick + foo(doWithOperand(opcode) { o in shiftRight(opcode: opcode, operand: o, carryIn: fCarry) })), true)
+            case .ASL: doWithOperand(opcode) { o in shiftLeft(opcode: opcode, operand: o, carryIn: 0) }
+            case .LSR: doWithOperand(opcode) { o in shiftRight(opcode: opcode, operand: o, carryIn: 0) }
+            case .ROL: doWithOperand(opcode) { o in shiftLeft(opcode: opcode, operand: o, carryIn: fCarry) }
+            case .ROR: doWithOperand(opcode) { o in shiftRight(opcode: opcode, operand: o, carryIn: fCarry) }
 
           // Logic
-            case .AND: return ((nextTick + foo(doWithOperand(opcode) { o in _regAcc = setNZFlags(value: (_regAcc & o)) })), true)
-            case .EOR: return ((nextTick + foo(doWithOperand(opcode) { o in _regAcc = setNZFlags(value: (_regAcc ^ o)) })), true)
-            case .ORA: return ((nextTick + foo(doWithOperand(opcode) { o in _regAcc = setNZFlags(value: (_regAcc | o)) })), true)
+            case .AND: t = doWithOperand(opcode) { o in _regAcc = setNZFlags(value: (_regAcc & o)) }
+            case .EOR: t = doWithOperand(opcode) { o in _regAcc = setNZFlags(value: (_regAcc ^ o)) }
+            case .ORA: t = doWithOperand(opcode) { o in _regAcc = setNZFlags(value: (_regAcc | o)) }
 
           // Does nothing...
             case .NOP: _regPC += U8toU16(opcode.bytes)
 
           // Illegal Instructions.
-            case .AHX: return ((nextTick + foo(doWithAddress(opcode) { a in memory[a] = (_regAcc & _regX & (U16HtoU8(a) &+ 1)) })), true)
-            case .ALR: return ((nextTick + foo(doWithOperand(opcode) { o in let r = (_regAcc & o); _regAcc = setNZCFlags(value: (r >> 1), carryOut: (r & fC)) })), true)
-            case .ANC: return ((nextTick + foo(doWithOperand(opcode) { o in let r: UInt8 = (_regAcc & o); _regAcc = setNZCFlags(value: r, carryOut: (r >> 7)) })), true)
-            case .ARR: return ((nextTick + foo(doWithOperand(opcode) { o in shiftRight(opcode: opcode, operand: (_regAcc & o), carryIn: fCarry) })), true)
-            case .AXS: return ((nextTick + foo(doWithOperand(opcode) { o in _regX = handleCompare(register: (_regAcc & _regX), operand: o) })), true)
-            case .DCP: return ((nextTick + foo(doWithAddress(opcode) { a in handleCompare(register: _regAcc, operand: handleDEC(address: a)) })), true)
-            case .ISC: return ((nextTick + foo(doWithAddress(opcode) { a in (_regAcc, _regSt) = addWithCarry(leftOperand: _regAcc, rightOperand: ~handleINC(address: a), carryIn: fCarry) })), true)
-            case .LAS: return ((nextTick + foo(doWithOperand(opcode) { o in let r = setNZFlags(value: o & regSP); _regAcc = r; _regX = r; setSP(r) })), true)
-            case .LAX: return ((nextTick + foo(doWithOperand(opcode) { o in _regAcc = setNZFlags(value: o); _regX = o })), true)
-            case .RLA: return ((nextTick + foo(doWithAddress(opcode) { a in _regAcc = setNZFlags(value: (_regAcc & shiftRight(opcode: opcode, operand: memory[a], carryIn: fCarry))) })), true)
-            case .RRA: return ((nextTick + foo(doWithAddress(opcode) { a in handleRRA(opcode: opcode, address: a) })), true)
-            case .SAX: return ((nextTick + foo(doWithAddress(opcode) { a in memory[a] = (_regAcc & _regX) })), true)
-            case .SHX: return ((nextTick + foo(doWithAddress(opcode) { a in memory[a] = (_regX & U16HtoU8(a)) })), true)
-            case .SHY: return ((nextTick + foo(doWithAddress(opcode) { a in memory[a] = (_regY & U16HtoU8(a)) })), true)
-            case .SLO: return ((nextTick + foo(doWithAddress(opcode) { a in _regAcc = setNZFlags(value: (_regAcc | shiftLeft(opcode: opcode, operand: memory[a], carryIn: 0))) })), true)
-            case .SRE: return ((nextTick + foo(doWithAddress(opcode) { a in _regAcc = setNZFlags(value: (_regAcc ^ shiftRight(opcode: opcode, operand: memory[a], carryIn: 0))) })), true)
-            case .TAS: return ((nextTick + foo(doWithAddress(opcode) { a in setSP(_regAcc & _regX); memory[a] = (_regAcc & _regX & memory[_regPC &+ 2]) })), true)
-            case .XAA: return ((nextTick + foo(doWithOperand(opcode) { o in _regAcc = setNZFlags(value: (_regAcc & _regX)) })), true)
+            case .AHX: doWithAddress(opcode) { a in memory[a] = (_regAcc & _regX & (HiByte(a) &+ 1)) }
+            case .ALR: doWithOperand(opcode) { o in let r = (_regAcc & o); _regAcc = setNZCFlags(value: (r >> 1), carryOut: (r & fC)) }
+            case .ANC: doWithOperand(opcode) { o in let r: UInt8 = (_regAcc & o); _regAcc = setNZCFlags(value: r, carryOut: (r >> 7)) }
+            case .ARR: doWithOperand(opcode) { o in shiftRight(opcode: opcode, operand: (_regAcc & o), carryIn: fCarry) }
+            case .AXS: doWithOperand(opcode) { o in _regX = handleCompare(register: (_regAcc & _regX), operand: o) }
+            case .DCP: doWithAddress(opcode) { a in handleCompare(register: _regAcc, operand: handleDEC(address: a)) }
+            case .ISC: doWithAddress(opcode) { a in (_regAcc, _regSt) = addWithCarry(leftOperand: _regAcc, rightOperand: ~handleINC(address: a), carryIn: fCarry) }
+            case .LAS: doWithOperand(opcode) { o in let r = setNZFlags(value: o & regSP); _regAcc = r; _regX = r; setSP(r) }
+            case .LAX: doWithOperand(opcode) { o in _regAcc = setNZFlags(value: o); _regX = o }
+            case .RLA: doWithAddress(opcode) { a in _regAcc = setNZFlags(value: (_regAcc & shiftRight(opcode: opcode, operand: memory[a], carryIn: fCarry))) }
+            case .RRA: doWithAddress(opcode) { a in handleRRA(opcode: opcode, address: a) }
+            case .SAX: doWithAddress(opcode) { a in memory[a] = (_regAcc & _regX) }
+            case .SHX: doWithAddress(opcode) { a in memory[a] = (_regX & HiByte(a)) }
+            case .SHY: doWithAddress(opcode) { a in memory[a] = (_regY & HiByte(a)) }
+            case .SLO: doWithAddress(opcode) { a in _regAcc = setNZFlags(value: (_regAcc | shiftLeft(opcode: opcode, operand: memory[a], carryIn: 0))) }
+            case .SRE: doWithAddress(opcode) { a in _regAcc = setNZFlags(value: (_regAcc ^ shiftRight(opcode: opcode, operand: memory[a], carryIn: 0))) }
+            case .TAS: doWithAddress(opcode) { a in setSP(_regAcc & _regX); memory[a] = (_regAcc & _regX & memory[_regPC &+ 2]) }
+            case .XAA: doWithOperand(opcode) { o in _regAcc = setNZFlags(value: (_regAcc & _regX)) }
 
           // Sudden Death!
             case .KIL: return (0, false)
         }
 
-        return (nextTick, true)
+        return (t, true)
     }
 }
