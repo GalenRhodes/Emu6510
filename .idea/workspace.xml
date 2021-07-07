@@ -34,16 +34,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="87075da3-fef8-4e0e-a558-4c45fa2c2b82" name="Default Changelist" comment="Update Package.swift">
-      <change afterPath="$PROJECT_DIR$/Tools.entitlements" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Emu6510.xcodeproj/project.pbxproj" beforeDir="false" afterPath="$PROJECT_DIR$/Emu6510.xcodeproj/project.pbxproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Package.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Package.swift" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Sources/Emu6510/MOS6502AddressingMode.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Sources/Emu6510/MOS6502AddressingMode.swift" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Sources/Emu6510/MOS6502CPU.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Sources/Emu6510/MOS6502CPU.swift" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Sources/Emu6510/MOS6502Mnemonic.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Sources/Emu6510/MOS6502Mnemonic.swift" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Sources/Emu6510/MOS6502Opcode.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Sources/Emu6510/MOS6502Opcode.swift" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Sources/Emu6510/Tools.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Sources/Emu6510/Tools.swift" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Sources/Tools/main.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Sources/Tools/main.swift" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -185,7 +176,8 @@
       <workItem from="1622556666355" duration="632000" />
       <workItem from="1623264874964" duration="8947000" />
       <workItem from="1623329328325" duration="18202000" />
-      <workItem from="1623423708446" duration="8924000" />
+      <workItem from="1623423708446" duration="9304000" />
+      <workItem from="1623672825905" duration="53000" />
     </task>
     <task id="LOCAL-00001" summary="Redo">
       <created>1600997267219</created>
@@ -404,7 +396,14 @@
       <option name="project" value="LOCAL" />
       <updated>1623359324610</updated>
     </task>
-    <option name="localTasksCounter" value="32" />
+    <task id="LOCAL-00032" summary="Update Package.swift">
+      <created>1623437734034</created>
+      <option name="number" value="00032" />
+      <option name="presentableId" value="LOCAL-00032" />
+      <option name="project" value="LOCAL" />
+      <updated>1623437734034</updated>
+    </task>
+    <option name="localTasksCounter" value="33" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
